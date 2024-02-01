@@ -1,5 +1,14 @@
+# VisualStudio
+.vs/
+tmep*/
+[Dd]ebug*/
+[Rr]elease*/
+*.exp
+*.pdb
+
 # Prerequisites
 *.d
+*.bak
 
 # Compiled Object files
 *.slo
