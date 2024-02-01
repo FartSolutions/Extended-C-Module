@@ -177,11 +177,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
+    <ClInclude Include="ecm\ecm_types.hpp" />
+    <ClInclude Include="ecm\ecm_version.h" />
+    <ClInclude Include="ecm\types\ecm_stdtypes.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

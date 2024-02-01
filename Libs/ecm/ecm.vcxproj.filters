@@ -12,11 +12,15 @@
     <ClCompile Include="source\win32\dllmain.cpp">
       <Filter>source\win32</Filter>
     </ClCompile>
+    <ClCompile Include="source\version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ecm\types\ecm_stdtypes.h" />
+    <ClInclude Include="ecm\ecm_types.hpp" />
+    <ClInclude Include="ecm\ecm_version.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
