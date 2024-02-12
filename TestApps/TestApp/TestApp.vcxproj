@@ -163,6 +163,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\ecm.algorithm\ecm.algorithm.vcxproj">
+      <Project>{94053112-848b-47e9-86e1-2b67e9452863}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libs\ecm\ecm.vcxproj">
+      <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

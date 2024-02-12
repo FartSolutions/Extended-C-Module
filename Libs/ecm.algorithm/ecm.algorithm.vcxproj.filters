@@ -2,9 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="source\win32\dllmain.cpp" />
+    <ClCompile Include="source\random.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ecm\algorithm\random.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.algorithm.rc" />

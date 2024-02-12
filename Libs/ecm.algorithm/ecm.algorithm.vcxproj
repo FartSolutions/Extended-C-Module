@@ -177,9 +177,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\random.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ecm\algorithm\random.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
