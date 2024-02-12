@@ -2,7 +2,7 @@
 #ifndef _ECM_VERSION_H_
 #define _ECM_VERSION_H_
 
-#include "types/ecm_stdtypes.h"
+#include "types/stdtypes.h"
 #include "ecm_api.h"
 
 #define ECM_VERSION_MAJOR 1

@@ -18,9 +18,11 @@
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="ecm\types\ecm_stdtypes.h" />
+    <ClInclude Include="ecm\types\stdtypes.h" />
     <ClInclude Include="ecm\ecm_types.hpp" />
     <ClInclude Include="ecm\ecm_version.h" />
+    <ClInclude Include="ecm\container\vector.hpp" />
+    <ClInclude Include="ecm\container\iterator.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
