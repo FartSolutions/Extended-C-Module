@@ -27,6 +27,16 @@
 #define ECM_API
 #endif // ECM_DYNAMIC_BUILD
 
+#if ECM_ALG_DYNAMIC_BUILD
+#if ECM_ALG_DYNAMIC_EXPORT
+#define ECM_ALG_API __declspec(dllexport)
+#else
+#define ECM_ALG_API __declspec(dllimport)
+#endif // ECM_ALG_DYNAMIC_EXPORT
+#else
+#define ECM_ALG_API
+#endif // ECM_ALG_DYNAMIC_BUILD
+
 #endif
 
 #endif // !_ECM_API_H_
