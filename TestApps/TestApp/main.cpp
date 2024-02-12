@@ -35,6 +35,20 @@ int main()
 		printf("\n");
 	}
 
+	ecm::container::free_vector<int> free_test;
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+	free_test.add(rand.next());
+
+	free_test.remove(4);
+
 	system("pause");
 	return 0;
 }

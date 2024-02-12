@@ -5,6 +5,7 @@
 #include <ecm/ecm_types.hpp>
 #include <ecm/container/iterator.hpp>
 #include <xutility>
+#include <iostream>
 
 namespace ecm::container
 {
@@ -769,6 +770,94 @@ namespace ecm::container
 		uint64	_size{ 0 };
 		_Ty* _data{ nullptr };
 	};
+
+	template<typename _Ty, template<typename, bool> typename _Ct>
+	class free_vector_base
+	{
+		static_assert(sizeof(_Ty) >= sizeof(uint32));
+	public:
+		free_vector_base() = default;
+		explicit free_vector_base(uint32 count)
+		{
+			_array.reserve(count);
+		}
+		~free_vector_base()
+		{
+			ECM_ASSERT(!_size);
+		}
+		template<class... params>
+		constexpr uint32 add(params&&... p)
+		{
+			uint32 id{ 0xffff'ffffu };
+			if (_next_free_index == 0xffff'ffffu)
+			{
+				id = (uint32)_array.size();
+				_array.emplace_back(std::forward<params>(p)...);
+			}
+			else
+			{
+				id = _next_free_index;
+				ECM_ASSERT(id < _array.size() && already_removed(id));
+				_next_free_index =
+					*(const uint32* const)std::addressof(_array[id]);
+			}
+			++_size;
+			return id;
+		}
+		constexpr void remove(uint32 id)
+		{
+			ECM_ASSERT(id < _array.size() && !already_removed(id));
+			_Ty& item{ *_array[id] };
+			item.~_Ty();
+			ECM_DEBUGOP(memset(std::addressof(*_array[id]), 0xcc, sizeof(_Ty)));
+			*(uint32* const)std::addressof(_array[id]) = _next_free_index;
+			_next_free_index = id;
+			--_size;
+		}
+		constexpr uint32 size() const
+		{
+			return _size;
+		}
+		constexpr uint32 capacity() const
+		{
+			return _array.capacity();
+		}
+		constexpr bool empty() const
+		{
+			return _size == 0;
+		}
+		ECM_NODISCARD constexpr _Ty& operator[](uint32 id)
+		{
+			ECM_ASSERT(id < _array.size() && !already_removed(id));
+			return _array[id];
+		}
+		ECM_NODISCARD constexpr const _Ty& operator[](uint32 id) const
+		{
+			ECM_ASSERT(id < _array.size() && !already_removed(id));
+			return _array[id];
+		}
+		constexpr bool already_removed(uint32 id)
+		{
+			if constexpr (sizeof(_Ty) > sizeof(uint32))
+			{
+				uint32 i{ sizeof(uint32) };
+				const uint8* const p{
+					(const uint8* const)std::addressof(_array[id]) };
+				while ((p[i] == 0xcc) && (i < sizeof(_Ty))) ++i;
+				return i == sizeof(_Ty);
+			}
+			return true;
+		}
+	private:
+		_Ct<_Ty, true>	_array;
+		uint32			_next_free_index{ 0xffff'ffffu };
+		uint32			_size{ 0 };
+	};
+
+	template<typename _Ty>
+	using free_vector = free_vector_base<_Ty, vector>;
+	template<typename _Ty>
+	using free_vector_it = free_vector_base<_Ty, vector_it>;
 } // namespace ecm::container
 
 #endif // !_ECM_VECTOR_H_
