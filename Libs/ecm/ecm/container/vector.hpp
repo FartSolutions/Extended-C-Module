@@ -150,8 +150,8 @@ namespace ecm::container
 				reserve(((_capacity + 1) * 3) >> 1);
 			}
 			ECM_ASSERT(_size < _capacity);
-			_Ty* const item{ new	(std::addressof(_data[_size]))
-									_Ty(std::forward<params>(p)...) };
+			_Ty* const item{ new (std::addressof(_data[_size]))
+								 _Ty(std::forward<params>(p)...) };
 			++_size;
 			return *item;
 		}
@@ -306,7 +306,7 @@ namespace ecm::container
 		}
 		// Indexing operator. Returns a reference to the item at specified
 		// index.
-		ECM_NODISCARD constexpr _Ty* operator[](uint64 index)
+		ECM_NODISCARD constexpr _Ty& operator[](uint64 index)
 		{
 			ECM_ASSERT(_data && index < _size);
 			return _data[index];
@@ -807,10 +807,10 @@ namespace ecm::container
 		constexpr void remove(uint32 id)
 		{
 			ECM_ASSERT(id < _array.size() && !already_removed(id));
-			_Ty& item{ *_array[id] };
+			_Ty& item{ _array[id] };
 			item.~_Ty();
-			ECM_DEBUGOP(memset(std::addressof(*_array[id]), 0xcc, sizeof(_Ty)));
-			*(uint32* const)std::addressof(_array[id]) = _next_free_index;
+			ECM_DEBUGOP(memset(std::addressof(_array[id]), 0xcc, sizeof(_Ty)));
+			*((uint32* const)std::addressof(_array[id])) = _next_free_index;
 			_next_free_index = id;
 			--_size;
 		}

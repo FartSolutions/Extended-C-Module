@@ -4,6 +4,16 @@
 
 #pragma warning(disable : 4996)
 
+class person
+{
+public:
+	person() : _id{ (ecm::uint32)-1 } {}
+	person(ecm::uint32 id) : _id{ id } {}
+	~person() {}
+private:
+	ecm::uint32 _id;
+};
+
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -35,19 +45,11 @@ int main()
 		printf("\n");
 	}
 
-	ecm::container::free_vector<int> free_test;
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
-	free_test.add(rand.next());
+	person test_person{};
 
-	free_test.remove(4);
+	ecm::container::free_vector<person> free_test;
+	free_test.add(test_person);
+	free_test.remove(0);
 
 	system("pause");
 	return 0;
