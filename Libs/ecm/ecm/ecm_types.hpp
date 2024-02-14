@@ -6,6 +6,9 @@
 
 #include <assert.h>
 
+#define ECM_SUCCESS 0
+#define ECM_FAILED 1
+
 #define ECM_ASSERT(ex) assert(ex)
 #define ECM_NODISCARD [[nodiscard]]
 

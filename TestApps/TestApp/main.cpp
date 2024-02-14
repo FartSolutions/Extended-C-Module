@@ -2,28 +2,26 @@
 #include <ecm/container/vector.hpp>
 #include <ecm/algorithm/random.h>
 #include <ecm/ecm_version.h>
+#include <ecm/ecm_console.h>
 
-#pragma warning(disable : 4996)
-
-class person
-{
-public:
-	person() : _id{ (ecm::uint32)-1 } {}
-	person(ecm::uint32 id) : _id{ id } {}
-	~person() {}
-private:
-	ecm::uint32 _id;
-};
+namespace ec = ecm::console;
 
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	printf("%x", ecm::GetVersionNumber());
-	printf("\n");
-	printf("%x", ECM_VERSIONNUM(1, 2, 3));
-	printf("\n");
-	
+	ec::Write("Hello world!");
+	ec::SetForeground(ec::ConsoleColor::LIGHTMAGENTA);
+	ec::WriteLine(" This is so coooool!");
+	ec::SetForeground(ec::ConsoleColor::LIGHTGRAY);
+
+	ec::Write("\nTippe mal ne Taste an: ");
+	ecm::int8 key = ec::ReadKey();
+	ec::Write("\nSchreib mal nen Satz: ");
+	ecm::string line = ec::ReadLine();
+
+	ec::WriteLine(line + " " + std::to_string(key));
+
 	system("pause");
 	return 0;
 }

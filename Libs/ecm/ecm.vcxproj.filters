@@ -13,6 +13,7 @@
       <Filter>source\win32</Filter>
     </ClCompile>
     <ClCompile Include="source\version.cpp" />
+    <ClCompile Include="source\console.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="ecm\ecm_version.h" />
     <ClInclude Include="ecm\container\vector.hpp" />
     <ClInclude Include="ecm\container\iterator.hpp" />
+    <ClInclude Include="ecm\ecm_console.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
