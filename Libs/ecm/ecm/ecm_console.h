@@ -42,8 +42,8 @@
 namespace ecm::console
 {
 	/*
-	* This structure defines colorcodes for the console fore- and background.
-	* 
+	 * This structure defines colorcodes for the console fore- and background.
+	 * 
 	 * \since v1.0.0
 	 * 
 	 * \sa Write
@@ -74,6 +74,8 @@ namespace ecm::console
 	} ConsoleColor;
 
 	/*
+	 * \param color the color you set for the console foreground.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
@@ -94,6 +96,8 @@ namespace ecm::console
 	extern ECM_API ConsoleColor GetForeground(void);
 
 	/*
+	 * \param color the color you set for the console background.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
@@ -114,6 +118,8 @@ namespace ecm::console
 	extern ECM_API ConsoleColor GetBackround(void);
 
 	/*
+	 * \param str the string that is output in the console.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
@@ -125,6 +131,8 @@ namespace ecm::console
 	extern ECM_API int32 Write(string str);
 
 	/*
+	 * \param str the string that is output in the console.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
@@ -136,6 +144,8 @@ namespace ecm::console
 	extern ECM_API int32 WriteLine(string str);
 
 	/*
+	 * \param str the string that is output in the console.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
@@ -147,6 +157,8 @@ namespace ecm::console
 	extern ECM_API int32 Write(wstring str);
 
 	/*
+	 * \param str the string that is output in the console.
+	 * 
 	 * \returns 0 on success or 1 on failure.
 	 * 
 	 * \since v1.0.0
