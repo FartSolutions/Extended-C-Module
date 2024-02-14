@@ -56,9 +56,14 @@ namespace ecm::console
 
 	// CONSOLE WRITER
 
-	int32 Write(string str)
+	/*
+	Sagst du mir bitte wie ich von meiner Funktion aus alle werte des
+	Arguments ... der funktion printf_s(str.c_str(), ) übergeben kann?
+	*/
+	int32 Write(string str, ...)
 	{
-		if (printf_s(str.c_str()) > 0)
+		va_list args;
+		if (printf_s(str.c_str(), args) > 0)
 		{
 			return ECM_FAILED;
 		}
@@ -95,6 +100,22 @@ namespace ecm::console
 		int8 chr{ '\0' };
 		wctomb_s(0, &chr, 1, wChr);
 		return chr;
+
+		/* Vorschlag ChatGPT für Unixsysteme:
+		char ReadKeyUnix() {
+			struct termios oldt, newt;
+			tcgetattr(STDIN_FILENO, &oldt); // Hole aktuelle Terminal-Einstellungen
+			newt = oldt; // Kopiere Einstellungen zur Modifikation
+			newt.c_lflag &= ~(ICANON | ECHO); // Deaktiviere kanonische Eingabe und Echo
+			tcsetattr(STDIN_FILENO, TCSANOW, &newt); // Setze neue Einstellungen sofort
+		
+			char ch = getchar(); // Lese Zeichen ohne auf Enter zu warten
+		
+			tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // Stelle alte Einstellungen wieder her
+			std::cout << ch; // Optional: Echo Zeichen auf der Konsole
+			return ch;
+		}
+		*/
 	}
 	
 	string ReadLine(void)

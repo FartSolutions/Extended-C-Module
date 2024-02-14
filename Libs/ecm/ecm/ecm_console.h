@@ -128,7 +128,7 @@ namespace ecm::console
 	 * \sa SetBackround
 	 * \sa SetForeround
 	 */
-	extern ECM_API int32 Write(string str);
+	extern ECM_API int32 Write(string str, ...);
 
 	/*
 	 * \param str the string that is output in the console.
