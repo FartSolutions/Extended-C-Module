@@ -62,12 +62,13 @@ namespace ecm::console
 	*/
 	int32 Write(string str, ...)
 	{
+		int32 retCode{ ECM_FAILED };
 		va_list args;
-		if (printf_s(str.c_str(), args) > 0)
-		{
-			return ECM_FAILED;
-		}
-		return ECM_SUCCESS;
+		va_start(args, str); // Initialize va_list
+		if (!(vprintf_s(str.c_str(), args) > 0))
+			retCode = ECM_SUCCESS;
+		va_end(args); // Clean va_list
+		return retCode;
 	}
 
 	int32 WriteLine(string str)
@@ -117,7 +118,7 @@ namespace ecm::console
 		}
 		*/
 	}
-	
+
 	string ReadLine(void)
 	{
 		char buf[MAX_PATH]{ "\0" };
