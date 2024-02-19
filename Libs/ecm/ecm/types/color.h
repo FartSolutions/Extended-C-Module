@@ -40,6 +40,9 @@
 
 namespace ecm
 {
+	struct Color;
+	struct ColorF;
+
 	/*
 	 * This structure represents a color in RGBA8888 format.
 	 * 
@@ -47,7 +50,7 @@ namespace ecm
 	 * 
 	 * \sa ColorF
 	 */
-	typedef struct ECM_API Color
+	struct ECM_API Color
 	{
 		enum : uint8
 		{
@@ -61,13 +64,66 @@ namespace ecm
 		{
 			struct
 			{
+				// red channel
 				uint8 r;
+				// green channel
 				uint8 g;
+				// blue channel
 				uint8 b;
+				// alpha channel
 				uint8 a;
 			};
 			uint8 channels[4]{ 0, 0, 0, 0 };
 		};
+
+		/*
+		 * This is the default constructor.
+		 * 
+		 * \since v1.0.0
+		 */
+		constexpr Color();
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \param _r value for red channel: range[0, 255]
+		 * \param _g value for green channel: range[0, 255]
+		 * \param _b value for blue channel: range[0, 255]
+		 * \param _a value for alpha channel: range[0, 255]
+		 * 
+		 * \since v1.0.0
+		 */
+		constexpr explicit Color(uint8 _r, uint8 _g, uint8 _b, uint8 _a);
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \param rgba32 the int32 value: 0xff'ff'ff'ff
+		 *                             -> red'green'blue'alpha
+		 * 
+		 * \since v1.0.0
+		 */
+		constexpr explicit Color(uint32 rgba32);
+
+		/*
+		 * 
+		 * 
+		 * \return All channels as int32: 0xred'green'blue'alpha
+		 * 
+		 * \since v1.0.0
+		 */
+		const int32 ToInt32() const;
+
+		/*
+		 * 
+		 * 
+		 * \return Actual object as ColorF (RGBA32F format).
+		 * 
+		 * \since v1.0.0
+		 * 
+		 * \sa ColorF
+		 */
+		const ColorF ToRGBA32F() const;
 	};
 
 	/*
@@ -77,7 +133,7 @@ namespace ecm
 	 * 
 	 * \sa Color
 	 */
-	typedef struct ECM_API ColorF
+	struct ECM_API ColorF
 	{
 		enum : uint8
 		{
@@ -96,7 +152,7 @@ namespace ecm
 				float32 b;
 				float32 a;
 			};
-			float32 channels[4]{ 0, 0, 0, 0 };
+			float32 channels[4]{ 0.f, 0.f, 0.f, 0.f };
 		};
 	};
 } // namespace ecm

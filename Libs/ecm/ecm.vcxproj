@@ -177,6 +177,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\color.cpp" />
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
