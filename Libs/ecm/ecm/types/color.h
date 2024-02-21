@@ -105,7 +105,8 @@ namespace ecm
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr explicit Color(float32 _r, float32 _g, float32 _b, float32 _a);
+		constexpr explicit Color(
+			float32 _r, float32 _g, float32 _b, float32 _a);
 
 		/*
 		 * This is a constructor.
@@ -129,7 +130,7 @@ namespace ecm
 		/*
 		 * Returns the current channel variables in an int32.
 		 *
-		 * \return All channels as int32: 0xred'green'blue'alpha
+		 * \returns All channels as int32: 0xred'green'blue'alpha.
 		 *
 		 * \since v1.0.0
 		 */
@@ -138,7 +139,7 @@ namespace ecm
 		/*
 		 * Returns the current object as RGBA32F-Color-Struct.
 		 *
-		 * \return Actual object as ColorF (RGBA32F format).
+		 * \returns Actual object as ColorF (RGBA32F format).
 		 *
 		 * \since v1.0.0
 		 *
@@ -147,14 +148,79 @@ namespace ecm
 		const ColorF ToRGBA32F() const;
 	};
 
-	extern ECM_API constexpr bool operator==(const Color& left, const Color& right);
-	extern ECM_API constexpr bool operator!=(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator+(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator-(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator*(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator+=(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator-=(const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator*=(const Color& left, const Color& right);
+	/*
+	 * This operator checks if the two colors are the same.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns true if left is same as right, or false if not.
+	 *
+	 * \since v1.0.0
+	 * 
+	 * \sa Color
+	 */
+	extern ECM_API constexpr bool operator==(
+		const Color& left, const Color& right);
+
+	/*
+	 * This operator checks if the two colors are not the same.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns true if left is not same as right, or false if.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr bool operator!=(
+		const Color& left, const Color& right);
+
+	/*
+	 * This operator creates an new Color object, calculates the addition of two
+	 * Color objects left and right component-wise and returns the newly created
+	 * object.
+	 * Channel values that are above 255 after adding are set to 255.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns A new Color object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr Color operator+(
+		const Color& left, const Color& right);
+
+	/*
+	 * This operator creates an new Color object, calculates the subtracting of
+	 * two Color objects left and right component-wise and returns the newly
+	 * created object.
+	 * Channel values that are below 0 after subtracting are set to 0.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns A new Color object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr Color operator-(
+		const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator*(
+		const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator+=(
+		const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator-=(
+		const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator*=(
+		const Color& left, const Color& right);
 
 	/*
 	 * This structure represents a color in RGBA32F format.
@@ -206,7 +272,8 @@ namespace ecm
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr explicit ColorF(float32 _r, float32 _g, float32 _b, float32 _a);
+		constexpr explicit ColorF(
+			float32 _r, float32 _g, float32 _b, float32 _a);
 
 		/*
 		 * This is a constructor.
@@ -242,7 +309,7 @@ namespace ecm
 		/*
 		 * Returns the current channel variables in an int32.
 		 *
-		 * \return All channels as int32: 0xred'green'blue'alpha
+		 * \returns All channels as int32: 0xred'green'blue'alpha
 		 *
 		 * \since v1.0.0
 		 */
@@ -251,7 +318,7 @@ namespace ecm
 		/*
 		 * Returns the current object as RGBA8888-Color-Struct.
 		 *
-		 * \return Actual object as Color (RGBA8888 format).
+		 * \returns Actual object as Color (RGBA8888 format).
 		 *
 		 * \since v1.0.0
 		 *
