@@ -147,6 +147,12 @@ namespace ecm
 		const ColorF ToRGBA32F() const;
 	};
 
+	extern ECM_API constexpr bool operator==(const Color& left, const Color& right);
+	extern ECM_API constexpr bool operator!=(const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator+(const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator-(const Color& left, const Color& right);
+	extern ECM_API constexpr Color operator*(const Color& left, const Color& right);
+
 	/*
 	 * This structure represents a color in RGBA32F format.
 	 *

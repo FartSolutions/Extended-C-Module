@@ -2,6 +2,28 @@
 
 namespace ecm
 {
+	namespace
+	{
+		// TODO: In eine Mathematik Lib auslagern
+		inline constexpr uint8 clamped_add(uint8 left, uint8 right)
+		{
+			const int32 res{ left + right };
+			return static_cast<uint8>(res < 255 ? res : 255);
+		}
+		// TODO: In eine Mathematik Lib auslagern
+		inline constexpr uint8 clamped_sub(uint8 left, uint8 right)
+		{
+			const int32 res{ left - right };
+			return static_cast<uint8>(res > 0 ? res : 0);
+		}
+		// TODO: In eine Mathematik Lib auslagern
+		inline constexpr uint8 scaled_mul(uint8 left, uint8 right)
+		{
+			const uint16 res{ static_cast<uint16>(uint16(left) * uint16(right)) };
+			return static_cast<uint8>(res / 255ui16);
+		}
+	} // anonymous namespace
+
 	// #########################################################################
 	// Struct Color
 	// #########################################################################
@@ -45,6 +67,54 @@ namespace ecm
 					   float32(g) / 255.f,
 					   float32(b) / 255.f,
 					   float32(a) / 255.f };
+	}
+
+	// #########################################################################
+	// Struct Color Operatoren
+	// #########################################################################
+
+	constexpr bool operator==(const Color& left, const Color& right)
+	{
+		if (left.r != right.r) return false;
+		if (left.g != right.g) return false;
+		if (left.b != right.b) return false;
+		if (left.a != right.a) return false;
+		return true;
+	}
+	
+	constexpr bool operator!=(const Color& left, const Color& right)
+	{
+		return !(left == right);
+	}
+
+	constexpr Color operator+(const Color& left, const Color& right)
+	{
+		Color col{};
+		col.r = clamped_add(left.r, right.r);
+		col.g = clamped_add(left.g, right.g);
+		col.b = clamped_add(left.b, right.b);
+		col.a = clamped_add(left.a, right.a);
+		return col;
+	}
+
+	constexpr Color operator-(const Color& left, const Color& right)
+	{
+		Color col{};
+		col.r = clamped_sub(left.r, right.r);
+		col.g = clamped_sub(left.g, right.g);
+		col.b = clamped_sub(left.b, right.b);
+		col.a = clamped_sub(left.a, right.a);
+		return col;
+	}
+
+	constexpr Color operator*(const Color& left, const Color& right)
+	{
+		Color col{};
+		col.r = scaled_mul(left.r, right.r);
+		col.g = scaled_mul(left.g, right.g);
+		col.b = scaled_mul(left.b, right.b);
+		col.a = scaled_mul(left.a, right.a);
+		return col;
 	}
 
 	// #########################################################################
