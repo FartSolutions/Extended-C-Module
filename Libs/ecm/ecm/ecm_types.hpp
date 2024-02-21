@@ -3,6 +3,7 @@
 #define _ECM_TYPES_HPP_
 
 #include "types/stdtypes.h"
+#include "types/color.h"
 
 #include <assert.h>
 

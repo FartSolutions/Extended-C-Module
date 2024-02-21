@@ -112,7 +112,7 @@ namespace ecm
 		 * 
 		 * \since v1.0.0
 		 */
-		const int32 ToInt32() const;
+		const int32 ToRGBA32() const;
 
 		/*
 		 * 
@@ -147,13 +147,66 @@ namespace ecm
 		{
 			struct
 			{
+				// Red channel
 				float32 r;
+				// Green channel
 				float32 g;
+				// Blue channel
 				float32 b;
+				// Alpha channel
 				float32 a;
 			};
 			float32 channels[4]{ 0.f, 0.f, 0.f, 0.f };
 		};
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr ColorF();
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \param _r value for red channel: range[0.f, 1.f]
+		 * \param _g value for green channel: range[0.f, 1.f]
+		 * \param _b value for blue channel: range[0.f, 1.f]
+		 * \param _a value for alpha channel: range[0.f, 1.f]
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit ColorF(float32 _r, float32 _g, float32 _b, float32 _a);
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \param rgba32 the int32 value: 0xff'ff'ff'ff
+		 *                             -> red'green'blue'alpha
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit ColorF(uint32 rgba32);
+
+		/*
+		 *
+		 *
+		 * \return All channels as int32: 0xred'green'blue'alpha
+		 *
+		 * \since v1.0.0
+		 */
+		const int32 ToRGBA32() const;
+
+		/*
+		 *
+		 *
+		 * \return Actual object as Color (RGBA8888 format).
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Color
+		 */
+		const Color ToRGBA8888() const;
 	};
 } // namespace ecm
 

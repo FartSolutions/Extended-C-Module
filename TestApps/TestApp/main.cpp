@@ -3,6 +3,7 @@
 #include <ecm/algorithm/random.h>
 #include <ecm/ecm_version.h>
 #include <ecm/ecm_console.h>
+#include <ecm/ecm_types.hpp>
 
 namespace ec = ecm::console;
 
