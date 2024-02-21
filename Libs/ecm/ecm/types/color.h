@@ -45,9 +45,9 @@ namespace ecm
 
 	/*
 	 * This structure represents a color in RGBA8888 format.
-	 * 
+	 *
 	 * \since v1.0.0
-	 * 
+	 *
 	 * \sa ColorF
 	 */
 	struct ECM_API Color
@@ -78,49 +78,70 @@ namespace ecm
 
 		/*
 		 * This is the default constructor.
-		 * 
+		 *
 		 * \since v1.0.0
 		 */
 		constexpr Color();
 
 		/*
-		 * This is the default constructor.
+		 * This is a constructor.
 		 *
 		 * \param _r value for red channel: range[0, 255]
 		 * \param _g value for green channel: range[0, 255]
 		 * \param _b value for blue channel: range[0, 255]
 		 * \param _a value for alpha channel: range[0, 255]
-		 * 
+		 *
 		 * \since v1.0.0
 		 */
 		constexpr explicit Color(uint8 _r, uint8 _g, uint8 _b, uint8 _a);
 
 		/*
-		 * This is the default constructor.
+		 * This is a constructor.
+		 *
+		 * \param _r value for red channel: range[0.f, 1.f]
+		 * \param _g value for green channel: range[0.f, 1.f]
+		 * \param _b value for blue channel: range[0.f, 1.f]
+		 * \param _a value for alpha channel: range[0.f, 1.f]
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit Color(float32 _r, float32 _g, float32 _b, float32 _a);
+
+		/*
+		 * This is a constructor.
 		 *
 		 * \param rgba32 the int32 value: 0xff'ff'ff'ff
 		 *                             -> red'green'blue'alpha
-		 * 
+		 *
 		 * \since v1.0.0
 		 */
 		constexpr explicit Color(uint32 rgba32);
 
 		/*
-		 * 
-		 * 
+		 * This is a constructor.
+		 *
+		 * \param col an object of an RGBA32F-Color-Struct.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit Color(const ColorF col);
+
+		/*
+		 * Returns the current channel variables in an int32.
+		 *
 		 * \return All channels as int32: 0xred'green'blue'alpha
-		 * 
+		 *
 		 * \since v1.0.0
 		 */
 		const int32 ToRGBA32() const;
 
 		/*
-		 * 
-		 * 
+		 * Returns the current object as RGBA32F-Color-Struct.
+		 *
 		 * \return Actual object as ColorF (RGBA32F format).
-		 * 
+		 *
 		 * \since v1.0.0
-		 * 
+		 *
 		 * \sa ColorF
 		 */
 		const ColorF ToRGBA32F() const;
@@ -128,9 +149,9 @@ namespace ecm
 
 	/*
 	 * This structure represents a color in RGBA32F format.
-	 * 
+	 *
 	 * \since v1.0.0
-	 * 
+	 *
 	 * \sa Color
 	 */
 	struct ECM_API ColorF
@@ -167,7 +188,7 @@ namespace ecm
 		constexpr ColorF();
 
 		/*
-		 * This is the default constructor.
+		 * This is a constructor.
 		 *
 		 * \param _r value for red channel: range[0.f, 1.f]
 		 * \param _g value for green channel: range[0.f, 1.f]
@@ -179,7 +200,19 @@ namespace ecm
 		constexpr explicit ColorF(float32 _r, float32 _g, float32 _b, float32 _a);
 
 		/*
-		 * This is the default constructor.
+		 * This is a constructor.
+		 *
+		 * \param _r value for red channel: range[0, 255]
+		 * \param _g value for green channel: range[0, 255]
+		 * \param _b value for blue channel: range[0, 255]
+		 * \param _a value for alpha channel: range[0, 255]
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit ColorF(uint8 _r, uint8 _g, uint8 _b, uint8 _a);
+
+		/*
+		 * This is a constructor.
 		 *
 		 * \param rgba32 the int32 value: 0xff'ff'ff'ff
 		 *                             -> red'green'blue'alpha
@@ -189,7 +222,16 @@ namespace ecm
 		constexpr explicit ColorF(uint32 rgba32);
 
 		/*
+		 * This is a constructor.
 		 *
+		 * \param col an object of an RGBA8888-Color-Struct.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr explicit ColorF(const Color col);
+
+		/*
+		 * Returns the current channel variables in an int32.
 		 *
 		 * \return All channels as int32: 0xred'green'blue'alpha
 		 *
@@ -198,7 +240,7 @@ namespace ecm
 		const int32 ToRGBA32() const;
 
 		/*
-		 *
+		 * Returns the current object as RGBA8888-Color-Struct.
 		 *
 		 * \return Actual object as Color (RGBA8888 format).
 		 *
