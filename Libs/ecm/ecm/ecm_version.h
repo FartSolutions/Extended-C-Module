@@ -26,10 +26,10 @@
 */
 
 /*
-* \file ecm_version.h
-* 
-* \brief This header defines the current ECM version.
-*/
+ * \file ecm_version.h
+ *
+ * \brief This header defines the current ECM version.
+ */
 
 #pragma once
 #ifndef _ECM_VERSION_H_
@@ -52,11 +52,11 @@
  * you might have a slightly newer or older version at runtime. You can get the
  * version of dynamically linked library if you use ecm::GetVersion(), which,
  * unlike ECM_VERSION(), is not a macro.
- * 
+ *
  * \param v A pointer to a ecm::version struct to initialize.
- * 
- * \sa ecm::version
- * \sa ecm::GetVersion
+ *
+ * \sa version
+ * \sa GetVersion
  */
 #define ECM_VERSION(v) {				\
 	(v)->Major = ECM_VERSION_MAJOR;		\
@@ -66,14 +66,18 @@
 /*
  * This macro turns the version numbers into a numeric value.
  * (1, 2, 3) -> 0x1000203
+ *
+ * \sa GetVersionNumber
  */
 #define ECM_VERSIONNUM(major, minor, patch)		\
 	((major) << 24 | (minor) << 8 | (patch) << 0)
 
- /*
-  * This macro turns the version structure into a numeric value.
-  * (1, 2, 3) -> 0x1000203
-  */
+/*
+ * This macro turns the version structure into a numeric value.
+ * (1, 2, 3) -> 0x1000203
+ *
+ * \sa GetVersionNumber
+ */
 #define ECM_VERSIONNUMV(v)								\
 	ECM_VERSIONNUM((v).Major, (v).Minor, (v).Patch)
 
@@ -81,11 +85,11 @@ namespace ecm
 {
 	/*
 	 * Stores the current version of the library in use.
-	 * 
+	 *
 	 * \since v1.0.0
-	 * 
+	 *
 	 * \sa ECM_VERSION
-	 * \sa ecm::GetVersion
+	 * \sa GetVersion
 	 */
 	typedef struct version
 	{
@@ -95,23 +99,26 @@ namespace ecm
 	} version;
 
 	/*
-	* Get the version of ECM that is linked against your program.
-	* 
-	* \since v1.0.0
-	* 
-	* \returns current compiled version as version struct
-	* 
-	* \sa \sa ecm::version
-	*/
+	 * Get the version of ECM that is linked against your program.
+	 *
+	 * \since v1.0.0
+	 * 
+	 * \returns current compiled version as version struct
+	 *
+	 * \sa version
+	 * \sa GetVersionNumber
+	 */
 	extern ECM_API version GetVersion(void);
 
 	/*
-	* Get the version number of ECM that is linked against your program.
-	* 
-	* \since v1.0.0
-	* 
-	* \returns current compiled version as verion number
-	*/
+	 * Get the version number of ECM that is linked against your program.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \returns current compiled version as verion number
+	 *
+	 * \sa GetVersion
+	 */
 	extern ECM_API int32 GetVersionNumber(void);
 } // namespace ecm
 
