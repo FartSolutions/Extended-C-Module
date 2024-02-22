@@ -4,6 +4,7 @@
 
 #include "types/stdtypes.h"
 #include "types/color.h"
+#include "types/id.h"
 
 #include <assert.h>
 
@@ -13,7 +14,7 @@
 #define ECM_ASSERT(ex) assert(ex)
 #define ECM_NODISCARD [[nodiscard]]
 
-#ifdef _DEBUG
+#if ECM_DEBUG
 #define ECM_DEBUGOP(op) op
 #else
 #define ECM_DEBUGOP(op)

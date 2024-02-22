@@ -4,6 +4,12 @@
 
 #include "ecm_configs.h"
 
+#if _DEBUG
+#define ECM_DEBUG 1
+#else
+#define ECM_DEBUG 0
+#endif
+
 #if _WIN32
 #define ECM_OS_WINDOWS 1
 #if _WIN64

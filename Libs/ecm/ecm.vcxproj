@@ -179,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="source\color.cpp" />
     <ClCompile Include="source\console.cpp" />
+    <ClCompile Include="source\id.cpp" />
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
   </ItemGroup>
@@ -191,6 +192,7 @@
     <ClInclude Include="ecm\ecm_types.hpp" />
     <ClInclude Include="ecm\ecm_version.h" />
     <ClInclude Include="ecm\types\color.h" />
+    <ClInclude Include="ecm\types\id.h" />
     <ClInclude Include="ecm\types\stdtypes.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
