@@ -56,10 +56,6 @@ namespace ecm::console
 
 	// CONSOLE WRITER
 
-	/*
-	Sagst du mir bitte wie ich von meiner Funktion aus alle werte des
-	Arguments ... der funktion printf_s(str.c_str(), ) übergeben kann?
-	*/
 	int32 Write(string str, ...)
 	{
 		int32 retCode{ ECM_FAILED };
@@ -71,23 +67,39 @@ namespace ecm::console
 		return retCode;
 	}
 
-	int32 WriteLine(string str)
+	int32 WriteLine(string str, ...)
 	{
-		return Write(str + "\n");
+		str += "\n";
+		int32 retCode{ ECM_FAILED };
+		va_list args;
+		va_start(args, str); // Initialize va_list
+		if (!(vprintf_s(str.c_str(), args) > 0))
+			retCode = ECM_SUCCESS;
+		va_end(args); // Clean va_list
+		return retCode;
 	}
 
-	int32 Write(wstring str)
+	int32 Write(wstring str, ...)
 	{
-		if (wprintf_s(str.c_str()) > 0)
-		{
-			return ECM_FAILED;
-		}
-		return ECM_SUCCESS;
+		int32 retCode{ ECM_FAILED };
+		va_list args;
+		va_start(args, str); // Initialize va_list
+		if (!(vwprintf_s(str.c_str(), args) > 0))
+			retCode = ECM_SUCCESS;
+		va_end(args); // Clean va_list
+		return retCode;
 	}
 
-	int32 WriteLine(wstring str)
+	int32 WriteLine(wstring str, ...)
 	{
-		return Write(str + L"\n");
+		str += L"\n";
+		int32 retCode{ ECM_FAILED };
+		va_list args;
+		va_start(args, str); // Initialize va_list
+		if (!(vwprintf_s(str.c_str(), args) > 0))
+			retCode = ECM_SUCCESS;
+		va_end(args); // Clean va_list
+		return retCode;
 	}
 
 	// CONSOLE READER
@@ -95,7 +107,7 @@ namespace ecm::console
 	int8 ReadKey(void)
 	{
 		uint16 wChr{ _getwch() };
-		wstring wStr = L"";
+		wstring wStr{ L"" };
 		wStr += wChr;
 		Write(wStr);
 		int8 chr{ '\0' };
@@ -128,5 +140,16 @@ namespace ecm::console
 			return res.substr(0, res.size() - 2);
 		}
 		return "\0";
+	}
+
+	wstring ReadLineW(void)
+	{
+		wchar_t buf[MAX_PATH]{ L"\0" };
+		if (fgetws(buf, MAX_PATH, stdin))
+		{
+			wstring res{ buf };
+			return res.substr(0, res.size() - 2);
+		}
+		return L"\0";
 	}
 } // namespace ecm::console

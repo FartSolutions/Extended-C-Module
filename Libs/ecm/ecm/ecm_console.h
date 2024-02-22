@@ -140,7 +140,7 @@ namespace ecm::console
 	 * \sa SetBackround
 	 * \sa SetForeround
 	 */
-	extern ECM_API int32 WriteLine(string str);
+	extern ECM_API int32 WriteLine(string str, ...);
 
 	/*
 	 * \param str the string that is output in the console.
@@ -153,7 +153,7 @@ namespace ecm::console
 	 * \sa SetBackround
 	 * \sa SetForeround
 	 */
-	extern ECM_API int32 Write(wstring str);
+	extern ECM_API int32 Write(wstring str, ...);
 
 	/*
 	 * \param str the string that is output in the console.
@@ -166,7 +166,7 @@ namespace ecm::console
 	 * \sa SetBackround
 	 * \sa SetForeround
 	 */
-	extern ECM_API int32 WriteLine(wstring str);
+	extern ECM_API int32 WriteLine(wstring str, ...);
 
 	/*
 	 * \returns the key as int8 that was pressed after this funtion was called.
@@ -188,6 +188,17 @@ namespace ecm::console
 	 * \sa WriteLine
 	 */
 	extern ECM_API string ReadLine(void);
+
+	/*
+	 * \returns everything that was entered in the console when this function
+	 *          was called, until the Return key is pressed, without '\n'.
+	 * 
+	 * \since v1.0.0
+	 * 
+	 * \sa Write
+	 * \sa WriteLine
+	 */
+	extern ECM_API wstring ReadLineW(void);
 } // namespace ecm::console
 
 #endif // !_ECM_CONSOLE_H_
