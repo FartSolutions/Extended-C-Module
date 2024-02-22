@@ -23,6 +23,10 @@ int main()
 
 	ec::WriteLine(line + " " + std::to_string(key));
 
+	ecm::Color test1{};
+	ecm::Color test2{};
+	test1 = test1 += test2;
+
 	system("pause");
 	return 0;
 }

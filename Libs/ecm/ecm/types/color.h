@@ -213,14 +213,75 @@ namespace ecm
 	 */
 	extern ECM_API constexpr Color operator-(
 		const Color& left, const Color& right);
+
+	/*
+	 * This operator creates an new Color object, calculates the multiplication
+	 * of two Color objects left and right component-wise and returns the newly
+	 * created object.
+	 * Channel values are then divided by 255.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns A new Color object calculated by multiplying left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
 	extern ECM_API constexpr Color operator*(
 		const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator+=(
-		const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator-=(
-		const Color& left, const Color& right);
-	extern ECM_API constexpr Color operator*=(
-		const Color& left, const Color& right);
+
+	/*
+	 * This operator adds the two Color objects left and right together and
+	 * returns a reference to left.
+	 * Channel values that are above 255 after adding are set to 255.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns After calculation a reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr Color& operator+=(
+		Color& left, const Color& right);
+
+	/*
+	 * This operator subtracts the Color object left with right and returns a
+	 * reference to left.
+	 * Channel values that are below 0 after subtracting are set to 0.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns After calculation a reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr Color& operator-=(
+		Color& left, const Color& right);
+
+	/*
+	 * This operator multiplies the two Color objects left with right and
+	 * returns a reference to left.
+	 * Channel values are then divided by 255.
+	 *
+	 * \param left Left color operand.
+	 * \param left right color operand.
+	 *
+	 * \returns After calculation a reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Color
+	 */
+	extern ECM_API constexpr Color& operator*=(
+		Color& left, const Color& right);
 
 	/*
 	 * This structure represents a color in RGBA32F format.

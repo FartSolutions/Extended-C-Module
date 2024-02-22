@@ -117,19 +117,22 @@ namespace ecm
 		return col;
 	}
 
-	constexpr Color operator+=(const Color& left, const Color& right)
+	constexpr Color& operator+=(Color& left, const Color& right)
 	{
-		return left + right;
+		left = left + right;
+		return left;
 	}
 
-	constexpr Color operator-=(const Color& left, const Color& right)
+	constexpr Color& operator-=(Color& left, const Color& right)
 	{
-		return left - right;
+		left = left - right;
+		return left;
 	}
 
-	constexpr Color operator*=(const Color& left, const Color& right)
+	constexpr Color& operator*=(Color& left, const Color& right)
 	{
-		return left * right;
+		left = left * right;
+		return left;
 	}
 
 	// #########################################################################
