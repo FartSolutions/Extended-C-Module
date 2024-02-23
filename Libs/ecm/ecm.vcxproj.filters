@@ -29,6 +29,7 @@
     <ClInclude Include="ecm\ecm_console.h" />
     <ClInclude Include="ecm\types\color.h" />
     <ClInclude Include="ecm\types\id.h" />
+    <ClInclude Include="ecm\ecm.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />

@@ -99,7 +99,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,7 +121,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,7 +143,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -165,7 +165,7 @@
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -186,6 +186,7 @@
   <ItemGroup>
     <ClInclude Include="ecm\container\iterator.hpp" />
     <ClInclude Include="ecm\container\vector.hpp" />
+    <ClInclude Include="ecm\ecm.hpp" />
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="ecm\ecm_console.h" />
