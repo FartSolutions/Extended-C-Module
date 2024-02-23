@@ -43,6 +43,16 @@
 #define ECM_ALG_API
 #endif // ECM_ALG_DYNAMIC_BUILD
 
+#if ECM_GFX_DYNAMIC_BUILD
+#if ECM_GFX_DYNAMIC_EXPORT
+#define ECM_GFX_API __declspec(dllexport)
+#else
+#define ECM_GFX_API __declspec(dllimport)
+#endif // ECM_GFX_DYNAMIC_EXPORT
+#else
+#define ECM_GFX_API
+#endif // ECM_GFX_DYNAMIC_BUILD
+
 #endif
 
 #endif // !_ECM_API_H_

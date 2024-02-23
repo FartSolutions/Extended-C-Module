@@ -21,7 +21,7 @@ int main()
 	ec::Write("\nSchreib mal nen Satz: ");
 	ecm::string line = ec::ReadLine();
 
-	ec::WriteLine(line + " %s %c %% " + std::to_string(key), "(was das denn hier)", "test");
+	ec::WriteLine(line + " %s %c", "(was das denn hier)", key);
 
 	ecm::Color test1{};
 	ecm::Color test2{};
