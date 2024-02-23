@@ -89,8 +89,17 @@ int main()
 	ec::WriteLine("%sHello World! LightBlue",		ec::ANSI::FG_LightBlue);
 	ec::WriteLine("%sHello World! LightMagenta",	ec::ANSI::FG_LightMagenta);
 	ec::WriteLine("%sHello World! LightCyan",		ec::ANSI::FG_LightCyan);
-	ec::WriteLine("%sHello World! White,%s",		ec::ANSI::FG_White, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! White%s",			ec::ANSI::FG_White, ec::ANSI::Reset);
 
+	ec::WriteLine("%sHello World! Bold%s",			ec::ANSI::Bold, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Semi-Transparent%s", ec::ANSI::SemiTransparent, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Italic%s",		ec::ANSI::Italic, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Underlined%s",	ec::ANSI::Underlined, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Blinking%s",		ec::ANSI::SlowBlink, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Rapid Blink%s",	ec::ANSI::RapidBlink, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Swaped%s",		ec::ANSI::Swapped, ec::ANSI::Reset);
+	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
+	
 	system("pause");
 	return 0;
 }
