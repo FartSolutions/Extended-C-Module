@@ -73,6 +73,48 @@ namespace ecm::console
 	} ConsoleColor;
 
 	/*
+	 * \since v1.0.0
+	 */
+	struct ANSI
+	{
+		static inline constexpr const char* Reset = "\033[0m";
+
+		static inline constexpr const char* FG_Black = "\033[30m";
+		static inline constexpr const char* FG_Blue = "\033[34m";
+		static inline constexpr const char* FG_Green = "\033[32m";
+		static inline constexpr const char* FG_Cyan = "\033[36m";
+		static inline constexpr const char* FG_Red = "\033[31m";
+		static inline constexpr const char* FG_Magenta = "\033[35m";
+		static inline constexpr const char* FG_Brown = "\033[33m";
+		static inline constexpr const char* FG_LightGray = "\033[37m";
+		static inline constexpr const char* FG_DarkGray = "\033[90m";
+		static inline constexpr const char* FG_LightBlue = "\033[94m";
+		static inline constexpr const char* FG_LightGreen = "\033[92m";
+		static inline constexpr const char* FG_LightCyan = "\033[96m";
+		static inline constexpr const char* FG_LightRed = "\033[91m";
+		static inline constexpr const char* FG_LightMagenta = "\033[95m";
+		static inline constexpr const char* FG_Yellow = "\033[93m";
+		static inline constexpr const char* FG_White = "\033[97m";
+
+		static inline constexpr const char* BG_Black = "\033[40m";
+		static inline constexpr const char* BG_Blue = "\033[44m";
+		static inline constexpr const char* BG_Green = "\033[42m";
+		static inline constexpr const char* BG_Cyan = "\033[46m";
+		static inline constexpr const char* BG_Red = "\033[41m";
+		static inline constexpr const char* BG_Magenta = "\033[45m";
+		static inline constexpr const char* BG_Brown = "\033[43m";
+		static inline constexpr const char* BG_LightGray = "\033[47m";
+		static inline constexpr const char* BG_DarkGray = "\033[100m";
+		static inline constexpr const char* BG_LightBlue = "\033[104m";
+		static inline constexpr const char* BG_LightGreen = "\033[102m";
+		static inline constexpr const char* BG_LightCyan = "\033[106m";
+		static inline constexpr const char* BG_LightRed = "\033[101m";
+		static inline constexpr const char* BG_LightMagenta = "\033[105m";
+		static inline constexpr const char* BG_Yellow = "\033[103m";
+		static inline constexpr const char* BG_White = "\033[107m";
+	};
+
+	/*
 	 * \param color the color you set for the console foreground.
 	 * 
 	 * \returns 0 on success or 1 on failure.
