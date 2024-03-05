@@ -2,10 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="source\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_window.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ecm\window\window.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.window.rc" />
