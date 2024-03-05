@@ -36,7 +36,8 @@
 #define _ECM_ID_H_
 
 #include <ecm/ecm_api.h>
-#include <ecm/ecm_types.hpp>
+#include <type_traits>
+#include <cassert>
 
 namespace ecm
 {
@@ -51,7 +52,7 @@ namespace ecm
 	 * \sa ID_Generation
 	 * \sa ID_NewGeneration
 	 */
-	using id_type = uint32;
+	using id_type = ECM_ID_TYPE;
 
 	/*
 	 * A special value for invalid or unassigned IDs.
@@ -61,7 +62,45 @@ namespace ecm
 	 * \sa id_type
 	 * \sa ID_IsValid
 	 */
-	constexpr id_type ID_Invalid{ id_type(-1) };
+	constexpr id_type ID_Invalid{ ECM_ID_TYPE(-1) };
+
+	namespace detail
+	{
+		/*
+		 * These constants divide the id_type into two parts: one for the "generation"
+		 * of an ID and one for the "index". This makes it possible to recycle objects
+		 * by increasing the generation when an object is reused, while the index
+		 * remains the same.
+		 */
+		constexpr uint32 generation_bits{ ECM_ID_GENERATIONBITS };
+		constexpr uint32 index_bits{
+			sizeof(id_type) * 8 - generation_bits };
+
+		/*
+		 * Bit masks for extracting the index or generation from an ID.
+		 */
+		constexpr id_type index_mask{
+			(id_type{1} << index_bits) - 1 };
+		constexpr id_type generation_mask{
+			(id_type{1} << generation_bits) - 1 };
+
+		/*
+		 * A threshold that specifies how many deleted items must be present before a
+		 * purge or reorganization is performed.
+		 */
+		constexpr uint32 min_deleted_elements{ ECM_ID_MINDELELEMENTS };
+
+		/*
+		 * Defines a type for the generation based on the number of bits reserved for
+		 * the generation. This type is dynamically selected as u8, u16 or u32,
+		 * depending on the number of reserved bits.
+		 */
+		using generation_type = std::conditional_t<generation_bits <= 16,
+			std::conditional_t<generation_bits <= 8, uint8, uint16>, uint32>;
+
+		static_assert(sizeof(generation_type) * 8 >= generation_bits);
+		static_assert((sizeof(id_type) - sizeof(generation_type)) > 0);
+	}
 
 	/*
 	 * Checks whether a given Id is valid, i.e. does not equal invalid_id.
@@ -78,7 +117,10 @@ namespace ecm
 	 * \sa ID_Generation
 	 * \sa ID_NewGeneration
 	 */
-	extern ECM_API constexpr bool ID_IsValid(const id_type id);
+	inline constexpr bool ID_IsValid(const id_type id)
+	{
+		return id != ID_Invalid;
+	}
 
 	/*
 	 * Extracts the index part of an ID.
@@ -95,7 +137,12 @@ namespace ecm
 	 * \sa ID_Generation
 	 * \sa ID_NewGeneration
 	 */
-	extern ECM_API constexpr id_type ID_Index(const id_type id);
+	inline constexpr id_type ID_Index(const id_type id)
+	{
+		id_type index{ id & detail::index_mask };
+		assert(index != detail::index_mask);
+		return index;
+	}
 
 	/*
 	 * Extracts the generation part of an ID.
@@ -112,7 +159,10 @@ namespace ecm
 	 * \sa ID_Index
 	 * \sa ID_NewGeneration
 	 */
-	extern ECM_API constexpr id_type ID_Generation(const id_type id);
+	inline constexpr id_type ID_Generation(const id_type id)
+	{
+		return (id >> detail::index_bits) & detail::generation_mask;
+	}
 
 	/*
 	 * Increases the generation of an ID by 1, but retains the index.
@@ -130,7 +180,12 @@ namespace ecm
 	 * \sa ID_Index
 	 * \sa ID_Generation
 	 */
-	extern ECM_API constexpr id_type ID_NewGeneration(const id_type id);
+	inline constexpr id_type ID_NewGeneration(const id_type id)
+	{
+		const id_type generation{ ID_Generation(id) + 1 };
+		assert(generation < ((uint64)1 << detail::generation_bits) - 1);
+		return ID_Index(id) | (generation << detail::index_bits);
+	}
 
 #if ECM_DEBUG
 	/*

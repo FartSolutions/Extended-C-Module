@@ -21,34 +21,34 @@ namespace ecm
 		 * by increasing the generation when an object is reused, while the index
 		 * remains the same.
 		 */
-		constexpr uint32 generation_bits{ 8 };
-		constexpr uint32 index_bits{
-			sizeof(id_type) * 8 - generation_bits };
+		//constexpr uint32 generation_bits{ 8 };
+		//constexpr uint32 index_bits{
+		//	sizeof(id_type) * 8 - generation_bits };
 
 		/*
 		 * Bit masks for extracting the index or generation from an ID.
 		 */
-		constexpr id_type index_mask{
-			(id_type{1} << index_bits) - 1 };
-		constexpr id_type generation_mask{
-			(id_type{1} << generation_bits) - 1 };
+		//constexpr id_type index_mask{
+		//	(id_type{1} << index_bits) - 1 };
+		//constexpr id_type generation_mask{
+		//	(id_type{1} << generation_bits) - 1 };
 
 		/*
 		 * A threshold that specifies how many deleted items must be present before a
 		 * purge or reorganization is performed.
 		 */
-		constexpr uint32 min_deleted_elements{ 1024 };
+		//constexpr uint32 min_deleted_elements{ 1024 };
 
 		/*
 		 * Defines a type for the generation based on the number of bits reserved for
 		 * the generation. This type is dynamically selected as u8, u16 or u32,
 		 * depending on the number of reserved bits.
 		 */
-		using generation_type = std::conditional_t<generation_bits <= 16,
-			std::conditional_t<generation_bits <= 8, uint8, uint16>, uint32>;
+		//using generation_type = std::conditional_t<generation_bits <= 16,
+		//	std::conditional_t<generation_bits <= 8, uint8, uint16>, uint32>;
 
-		static_assert(sizeof(generation_type) * 8 >= generation_bits);
-		static_assert((sizeof(id_type) - sizeof(generation_type)) > 0);
+		//static_assert(sizeof(generation_type) * 8 >= generation_bits);
+		//static_assert((sizeof(id_type) - sizeof(generation_type)) > 0);
 	} // anonymous namespace
 
 	constexpr bool ID_IsValid(const id_type id)

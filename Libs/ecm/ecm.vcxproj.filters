@@ -15,7 +15,6 @@
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="source\color.cpp" />
-    <ClCompile Include="source\id.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
