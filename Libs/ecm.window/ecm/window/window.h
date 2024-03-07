@@ -75,21 +75,109 @@ namespace ecm
 	 */
 	struct ECM_WIN_API Window
 	{
+		/*
+		 * \since v1.0.0
+		 * 
+		 * \sa Window
+		 */
 		constexpr explicit Window(id_type id);
+		/*
+		 * \since v1.0.0
+		 * 
+		 * \sa Window
+		 */
 		constexpr Window();
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		constexpr bool IsValid() const;
+		/*
+		 * \returns
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		constexpr id_type GetID() const;
-
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void* GetHandle() const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		uint8 GetWindowMode() const;
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void SetWindowMode(uint8 mode) const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		bool IsFocused() const;
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void SetFocused() const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		const char* GetTitle() const;
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void SetTitle(const char* title) const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		math::PointF GetPosition() const;
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void SetPosition(math::PointF pos) const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		math::PointF GetSize() const;
+		/*
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		void SetSize(math::PointF size) const;
 	private:
 		id_type _id;

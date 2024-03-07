@@ -35,6 +35,6 @@
 #ifndef _ECM_WINDOW_HPP_
 #define _ECM_WINDOW_HPP_
 
-
+#include <ecm/window/window.h>
 
 #endif // !_ECM_WINDOW_HPP_
