@@ -53,6 +53,11 @@ namespace ecm
 			return ID_Invalid;
 		}
 
+		inline void* get_handle(id_type id)
+		{
+			return windows[id].handle;
+		}
+
 		inline void set_window_mode(id_type id, uint8 mode)
 		{
 			auto info{ windows[id] };
@@ -161,56 +166,73 @@ namespace ecm
 
 	void* Window::GetHandle() const
 	{
+		if (IsValid() && _id < windows.size())
+			return get_handle(_id);
 		return 0;
 	}
 
 	uint8 Window::GetWindowMode() const
 	{
-		return 0;
+		if (IsValid() && _id < windows.size())
+			return get_window_mode(_id);
+		return uint8(-1);
 	}
 
 	void Window::SetWindowMode(uint8 mode) const
 	{
-
+		if (IsValid() && _id < windows.size())
+			set_window_mode(_id, mode);
 	}
 
 	bool Window::IsFocused() const
 	{
+		if (IsValid() && _id < windows.size())
+			return get_focused(_id);
 		return false;
 	}
 
 	void Window::SetFocused() const
 	{
-
+		if (IsValid() && _id < windows.size())
+			set_focused(_id);
 	}
 
 	const char* Window::GetTitle() const
 	{
+		if (IsValid() && _id < windows.size())
+			return get_title(_id);
 		return 0;
 	}
 
 	void Window::SetTitle(const char* title) const
 	{
-
+		if (IsValid() && _id < windows.size())
+			set_title(_id, title);
 	}
 
 	math::PointF Window::GetPosition() const
 	{
+		if (IsValid() && _id < windows.size())
+			return get_position(_id);
 		return math::PointF{};
 	}
 
 	void Window::SetPosition(math::PointF pos) const
 	{
-
+		if (IsValid() && _id < windows.size())
+			set_position(_id, pos);
 	}
 
 	math::PointF Window::GetSize() const
 	{
+		if (IsValid() && _id < windows.size())
+			return get_size(_id);
 		return math::PointF{};
 	}
 
 	void Window::SetSize(math::PointF size) const
 	{
-
+		if (IsValid() && _id < windows.size())
+			set_size(_id, size);
 	}
 } // namespace ecm
