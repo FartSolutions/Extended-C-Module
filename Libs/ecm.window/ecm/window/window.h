@@ -37,6 +37,7 @@
 
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
+#include <ecm/math/Vector2.h>
 
 namespace ecm
 {
@@ -86,6 +87,10 @@ namespace ecm
 		void SetFocused() const;
 		const char* GetTitle() const;
 		void SetTitle(const char* title) const;
+		math::PointF GetPosition() const;
+		void SetPosition(math::PointF pos) const;
+		math::PointF GetSize() const;
+		void SetSize(math::PointF size) const;
 	private:
 		id_type _id;
 	};

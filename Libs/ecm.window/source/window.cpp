@@ -107,4 +107,24 @@ namespace ecm
 	{
 
 	}
+
+	math::PointF Window::GetPosition() const
+	{
+		return math::PointF{};
+	}
+
+	void Window::SetPosition(math::PointF pos) const
+	{
+
+	}
+
+	math::PointF Window::GetSize() const
+	{
+		return math::PointF{};
+	}
+
+	void Window::SetSize(math::PointF size) const
+	{
+
+	}
 } // namespace ecm

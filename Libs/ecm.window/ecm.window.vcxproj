@@ -188,6 +188,11 @@
   <ItemGroup>
     <ResourceCompile Include="ecm.window.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ecm\ecm.vcxproj">
+      <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
