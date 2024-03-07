@@ -259,6 +259,42 @@ namespace ecm::container
 			}
 			return item;
 		}
+		// 
+		constexpr void pop(uint64 index)
+		{
+			if (index < _size)
+			{
+				erase(index);
+			}
+		}
+		// 
+		constexpr void pop_front()
+		{
+			if (!empty())
+			{
+				if constexpr (destruct)
+				{
+					_data[0].~_Ty();
+				}
+				_size--;
+				if (_size > 0)
+				{
+					memmove(_data, _data + 1, _size * sizeof(_Ty));
+				}
+			}
+		}
+		// 
+		constexpr void pop_back()
+		{
+			if (_size > 0)
+			{
+				--_size;
+				if constexpr (destruct)
+				{
+					_data[_size].~_Ty();
+				}
+			}
+		}
 		// Clears the vector and destructs items as specified in template
 		// argument.
 		constexpr void clear()
@@ -292,7 +328,7 @@ namespace ecm::container
 		// Returns true if vector is empty.
 		ECM_NODISCARD constexpr bool empty() const
 		{
-			return _size = 0;
+			return _size == 0;
 		}
 		// Returns the number of items in the vector.
 		ECM_NODISCARD constexpr uint64 size() const
