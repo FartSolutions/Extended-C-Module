@@ -11,8 +11,10 @@ namespace ecm
 		struct window_info
 		{
 			bool is_active{ false };
+			bool is_focused{ false };
 			SDL_Window* handle{ nullptr };
 			uint32 sdl_id{ ID_Invalid };
+			uint8 mode{ WINDOWMODE_NONE };
 		};
 
 		container::vector<window_info>	windows;
@@ -49,6 +51,90 @@ namespace ecm
 				if (windows[i].is_active && i == windows[id].sdl_id) return i;
 			}
 			return ID_Invalid;
+		}
+
+		inline void set_window_mode(id_type id, uint8 mode)
+		{
+			auto info{ windows[id] };
+			if (info.mode == mode) return;
+			uint32 flag{ 0 };
+			switch (mode)
+			{
+			case WINDOWMODE_NONE: flag = SDL_WINDOW_SHOWN; break;
+			case WINDOWMODE_MINIMIZED: flag = SDL_WINDOW_MINIMIZED; break;
+			case WINDOWMODE_MAXIMIZED: flag = SDL_WINDOW_MAXIMIZED; break;
+			case WINDOWMODE_FULLSCREEN: flag = SDL_WINDOW_FULLSCREEN; break;
+			case WINDOWMODE_FULLSCREEN_WINDOWED: flag = SDL_WINDOW_FULLSCREEN_DESKTOP; break;
+			}
+			SDL_SetWindowFullscreen(
+				static_cast<SDL_Window*>(windows[id].handle), flag);
+		}
+
+		inline uint8 get_window_mode(id_type id)
+		{
+			return windows[id].mode;
+		}
+
+		inline void set_focused(id_type id)
+		{
+			auto info{ windows[id] };
+			if (info.is_focused == true) return;
+			SDL_RaiseWindow(static_cast<SDL_Window*>(windows[id].handle));
+		}
+
+		inline bool get_focused(id_type id)
+		{
+			return windows[id].is_focused;
+		}
+
+		inline void set_title(id_type id, const char* title)
+		{
+			SDL_SetWindowTitle(
+				static_cast<SDL_Window*>(windows[id].handle), title);
+		}
+
+		inline const char* get_title(id_type id)
+		{
+			return SDL_GetWindowTitle(
+				static_cast<SDL_Window*>(windows[id].handle));
+		}
+
+		inline void set_position(id_type id, math::PointF pos)
+		{
+			SDL_SetWindowPosition(
+				static_cast<SDL_Window*>(windows[id].handle),
+				static_cast<int32>(pos.x),
+				static_cast<int32>(pos.y));
+		}
+
+		inline math::PointF get_position(id_type id)
+		{
+			int32 x{ 0 }, y{ 0 };
+			SDL_GetWindowPosition(
+				static_cast<SDL_Window*>(windows[id].handle),
+				&x, &y);
+			return math::PointF{
+				static_cast<float32>(x),
+				static_cast<float32>(y) };
+		}
+
+		inline void set_size(id_type id, math::PointF size)
+		{
+			SDL_SetWindowSize(
+				static_cast<SDL_Window*>(windows[id].handle),
+				static_cast<int32>(size.x),
+				static_cast<int32>(size.y));
+		}
+
+		inline math::PointF get_size(id_type id)
+		{
+			int32 w{ 0 }, h{ 0 };
+			SDL_GetWindowSize(
+				static_cast<SDL_Window*>(windows[id].handle),
+				&w, &h);
+			return math::PointF{
+				static_cast<float32>(w),
+				static_cast<float32>(h) };
 		}
 	} // anonymous namespace
 
