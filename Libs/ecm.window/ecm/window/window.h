@@ -42,6 +42,35 @@ namespace ecm
 {
 	/*
 	 * \since v1.0.0
+	 * 
+	 * \sa Window
+	 * \sa WindowInitInfo
+	 */
+	enum WindowModes : uint8
+	{
+		WINDOWMODE_NONE = 0,
+		WINDOWMODE_MINIMIZED,
+		WINDOWMODE_MAXIMIZED,
+		WINDOWMODE_FULLSCREEN_WINDOWED,
+		WINDOWMODE_FULLSCREEN,
+	} WINDOWMODE_;
+
+	/*
+	 * \since v1.0.0
+	 * 
+	 * \sa WindowModes
+	 * \sa Window
+	 */
+	struct WindowInitInfo
+	{
+
+	};
+
+	/*
+	 * \since v1.0.0
+	 * 
+	 * \sa WindowModes
+	 * \sa WindowInitInfo
 	 */
 	struct ECM_WIN_API Window
 	{
@@ -49,6 +78,14 @@ namespace ecm
 		constexpr Window();
 		constexpr bool IsValid() const;
 		constexpr id_type GetID() const;
+
+		void* GetHandle() const;
+		uint8 GetWindowMode() const;
+		void SetWindowMode(uint8 mode) const;
+		bool IsFocused() const;
+		void SetFocused() const;
+		const char* GetTitle() const;
+		void SetTitle(const char* title) const;
 	private:
 		id_type _id;
 	};

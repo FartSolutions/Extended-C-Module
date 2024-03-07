@@ -16,17 +16,30 @@ namespace ecm
 		};
 
 		container::vector<window_info>	windows;
-		container::vector<id_type>		windows_available_ids;
+		container::vector<id_type>		windows_available_slots;
 
-		inline id_type add_to_windows()
+		inline id_type add_to_windows(window_info info)
 		{
 			id_type id{ ID_Invalid };
+			if (windows_available_slots.empty())
+			{
+				id = id_type(windows.size());
+				windows.emplace_back(info);
+			}
+			else
+			{
+				id = windows_available_slots.back();
+				windows_available_slots.pop_back();
+				ECM_ASSERT(id != ID_Invalid);
+				windows[id] = info;
+			}
 			return id;
 		}
 
 		inline void remove_from_windows(id_type id)
 		{
-
+			ECM_ASSERT(id < windows.size());
+			windows_available_slots.emplace_back(id);
 		}
 
 		inline id_type get_id_from_sdl_id(const id_type id)
@@ -58,5 +71,40 @@ namespace ecm
 	constexpr id_type Window::GetID() const
 	{
 		return _id;
+	}
+
+	void* Window::GetHandle() const
+	{
+		return 0;
+	}
+
+	uint8 Window::GetWindowMode() const
+	{
+		return 0;
+	}
+
+	void Window::SetWindowMode(uint8 mode) const
+	{
+
+	}
+
+	bool Window::IsFocused() const
+	{
+		return false;
+	}
+
+	void Window::SetFocused() const
+	{
+
+	}
+
+	const char* Window::GetTitle() const
+	{
+		return 0;
+	}
+
+	void Window::SetTitle(const char* title) const
+	{
+
 	}
 } // namespace ecm
