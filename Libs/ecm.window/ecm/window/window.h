@@ -47,7 +47,7 @@ namespace ecm
 	 * \sa Window
 	 * \sa WindowInitInfo
 	 */
-	enum WindowModes : uint8
+	enum WindowMode : uint8
 	{
 		WINDOWMODE_NONE = 0,
 		WINDOWMODE_MINIMIZED,
@@ -59,12 +59,20 @@ namespace ecm
 	/*
 	 * \since v1.0.0
 	 * 
-	 * \sa WindowModes
 	 * \sa Window
 	 */
-	struct WindowInitInfo
+	enum WindowFlag : uint8
 	{
+	};
 
+	/*
+	 * \since v1.0.0
+	 * 
+	 * \sa Window
+	 */
+	enum GraphicsAPI : uint8
+	{
+		GRAPHICSAPI_SDLRENDERER = 0,
 	};
 
 	/*
@@ -182,6 +190,22 @@ namespace ecm
 	private:
 		id_type _id;
 	};
-} // namespace ecm
 
+	/*
+	 * \since v1.0.0
+	 *
+	 * \param title 
+	 * \param size 
+	 * \param flags 
+	 * \param mode 
+	 * \param graphicsApi 
+	 *
+	 * \returns 
+	 */
+	extern ECM_WIN_API Window CreateWindow(string title,
+		math::PointF size, uint64 flags = 0, WindowMode mode = WINDOWMODE_NONE,
+		GraphicsAPI graphicsApi = GRAPHICSAPI_SDLRENDERER);
+	// TODO: CreateWindow: replace PointF with Point
+
+} // namespace ecm
 #endif // !_ECM_WINDOW_H_

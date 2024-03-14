@@ -1,6 +1,7 @@
 ﻿#include <crtdbg.h>
 #include <ecm/ecm.hpp>
 #include <ecm/algorithm/random.h>
+#include <ecm/ecm_window.hpp>
 
 #pragma warning(disable : 4996)
 
@@ -99,6 +100,8 @@ int main()
 	ec::WriteLine("%sHello World! Rapid Blink%s",	ec::ANSI::RapidBlink, ec::ANSI::Reset);
 	ec::WriteLine("%sHello World! Swaped%s",		ec::ANSI::Swapped, ec::ANSI::Reset);
 	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
+
+	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 });
 	
 	system("pause");
 	return 0;

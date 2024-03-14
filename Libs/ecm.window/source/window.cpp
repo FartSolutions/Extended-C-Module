@@ -235,4 +235,28 @@ namespace ecm
 		if (IsValid() && _id < windows.size())
 			set_size(_id, size);
 	}
+
+	Window CreateWindow(string title, math::PointF size, uint64 flags,
+		WindowMode mode, GraphicsAPI graphicsApi)
+	{
+		if (title.empty()) title = "ECM Window";
+		if (size.x <= 0.f) size.x = 800;
+		if (size.y <= 0.f) size.y = 600;
+
+		uint32 sdlFlags{ 0 };
+		// Set flags for GraphicsApi
+		// TODO: Check graphicsApi (SDL flags for OpenGL or Vulkan)
+
+		// Set flags for WindowMode
+
+		// Set flags for Window
+
+		SDL_Window* window = SDL_CreateWindow(
+			title.c_str(),
+			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+			static_cast<int32>(size.x), static_cast<int32>(size.y),
+			sdlFlags);
+
+		return Window{};
+	}
 } // namespace ecm
