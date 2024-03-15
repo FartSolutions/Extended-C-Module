@@ -61,8 +61,45 @@ namespace ecm
 	 * 
 	 * \sa Window
 	 */
-	enum WindowFlag : uint8
+	enum WindowFlag : uint32
 	{
+		/* fullscreen window */
+		WINDOWFLAG_FULLSCREEN = ECM_BIT(0),
+		/* window is not visible */
+		WINDOWFLAG_HIDDEN = ECM_BIT(1),
+		/* window is minimized */
+		WINDOWFLAG_MINIMIZED = ECM_BIT(2),
+		/* window is maximized */
+		WINDOWFLAG_MAXIMIZED = ECM_BIT(3),
+		/* window not created by SDL */
+		WINDOWFLAG_FOREIGN = ECM_BIT(4),
+		/* no window decoration */
+		WINDOWFLAG_BORDERLESS = ECM_BIT(5),
+		/* window can be resized */
+		WINDOWFLAG_RESIZABLE = ECM_BIT(6),
+		/* window should be treated as a utility window */
+		WINDOWFLAG_UTILITY = ECM_BIT(7),
+		/* window should be treated as a tooltip */
+		WINDOWFLAG_TOOLTIP = ECM_BIT(8),
+		/* window should be treated as a popup menu */
+		WINDOWFLAG_POPUP_MENU = ECM_BIT(9),
+		WINDOWFLAG_ALLOW_HIGHDPI = ECM_BIT(10),
+		/* window should always be above others */
+		WINDOWFLAG_ALWAYS_ON_TOP = ECM_BIT(11),
+		/* window should not be added to the taskbar */
+		WINDOWFLAG_SKIP_TASKBAR = ECM_BIT(12),
+		/* window has input focus */
+		WINDOWFLAG_INPUT_FOCUS = ECM_BIT(13),
+		/* window has mouse focus */
+		WINDOWFLAG_MOUSE_FOCUS = ECM_BIT(14),
+		/* window has grabbed mouse input */
+		WINDOWFLAG_MOUSE_GRABBED = ECM_BIT(15),
+		/* window has mouse captured (unrelated to MOUSE_GRABBED) */
+		WINDOWFLAG_MOUSE_CAPTURE = ECM_BIT(16),
+		/* window has grabbed keyboard input */
+		WINDOWFLAG_KEYBOARD_GRABBED = ECM_BIT(17),
+		/* equivalent to SDL_WINDOW_MOUSE_GRABBED for compatibility */
+		WINDOWFLAG_INPUT_GRABBED = WINDOWFLAG_MOUSE_GRABBED
 	};
 
 	/*

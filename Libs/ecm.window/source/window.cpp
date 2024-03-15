@@ -251,12 +251,23 @@ namespace ecm
 
 		// Set flags for Window
 
-		SDL_Window* window = SDL_CreateWindow(
+		window_info info{};
+
+		info.handle = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			static_cast<int32>(size.x), static_cast<int32>(size.y),
 			sdlFlags);
 
-		return Window{};
+		if (!info.handle) {
+			// TODO: ErrorLogging
+			return Window{ ID_Invalid };
+		}
+
+		info.is_active = true;
+		info.mode = mode;
+		info.sdl_id = SDL_GetWindowID(info.handle);
+
+		return Window{ add_to_windows(info) };
 	}
 } // namespace ecm
