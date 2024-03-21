@@ -1,4 +1,5 @@
 #include "ecm/window/window.h"
+#include "ecm/window/events.h"
 
 #include <ecm/container/vector.hpp>
 #include <SDL2/SDL.h>
@@ -10,11 +11,13 @@ namespace ecm
 	{
 		struct window_info
 		{
-			bool is_active{ false };
+			bool is_closed{ true };
 			bool is_focused{ false };
+			bool is_fullscreen{ false };
 			SDL_Window* handle{ nullptr };
 			uint32 sdl_id{ ID_Invalid };
 			uint8 mode{ WINDOWMODE_NONE };
+			uint32 style{ 0 };
 		};
 
 		container::vector<window_info>	windows;
@@ -44,11 +47,18 @@ namespace ecm
 			windows_available_slots.emplace_back(id);
 		}
 
+		inline window_info get_info_from_id(id_type id)
+		{
+			if (ID_IsValid(id) && id < windows.size())
+				return windows[id];
+			return window_info{};
+		}
+
 		inline id_type get_id_from_sdl_id(const id_type id)
 		{
 			for (id_type i{ 0 }; i < windows.size(); i++)
 			{
-				if (windows[i].is_active && i == windows[id].sdl_id) return i;
+				if (!windows[i].is_closed && i == windows[id].sdl_id) return i;
 			}
 			return ID_Invalid;
 		}
@@ -140,6 +150,26 @@ namespace ecm
 			return math::PointF{
 				static_cast<float32>(w),
 				static_cast<float32>(h) };
+		}
+
+		inline void internal_window_proc(SDL_Event e, uint32 sdlId)
+		{
+			id_type id{ get_id_from_sdl_id(sdlId) };
+			window_info info{ get_info_from_id(id) };
+			if (info.is_closed) return;
+
+			if (e.window.event == SDL_WINDOWEVENT_FOCUS_GAINED)
+				info.is_focused = true;
+			else if (e.window.event == SDL_WINDOWEVENT_FOCUS_LOST)
+				info.is_focused = false;
+			else if (e.window.event == SDL_WINDOWEVENT_HIDDEN)
+				info.mode = WINDOWMODE_NONE;
+			else if (e.window.event == SDL_WINDOWEVENT_SHOWN)
+				info.mode = WINDOWMODE_SHOWN;
+			else if (e.window.event == SDL_WINDOWEVENT_MINIMIZED)
+				info.mode = WINDOWMODE_MINIMIZED;
+			else if (e.window.event == SDL_WINDOWEVENT_MAXIMIZED)
+				info.mode = WINDOWMODE_MAXIMIZED;
 		}
 	} // anonymous namespace
 
@@ -248,6 +278,12 @@ namespace ecm
 		// TODO: Check graphicsApi (SDL flags for OpenGL or Vulkan)
 
 		// Set flags for WindowMode
+		if (mode == WINDOWMODE_NONE) sdlFlags |= SDL_WINDOW_HIDDEN;
+		else if (mode == WINDOWMODE_SHOWN) sdlFlags |= SDL_WINDOW_SHOWN;
+		else if (mode == WINDOWMODE_MINIMIZED) sdlFlags |= SDL_WINDOW_MINIMIZED;
+		else if (mode == WINDOWMODE_MAXIMIZED) sdlFlags |= SDL_WINDOW_MAXIMIZED;
+		else if (mode == WINDOWMODE_FULLSCREEN) sdlFlags |= SDL_WINDOW_FULLSCREEN;
+		else if (mode == WINDOWMODE_FULLSCREEN_WINDOWED) sdlFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		// Set flags for Window
 
@@ -264,10 +300,29 @@ namespace ecm
 			return Window{ ID_Invalid };
 		}
 
-		info.is_active = true;
+		info.is_closed = false;
 		info.mode = mode;
 		info.sdl_id = SDL_GetWindowID(info.handle);
 
 		return Window{ add_to_windows(info) };
+	}
+
+	void DestroyWindow(Window& window)
+	{
+		window_info info{ get_info_from_id(window.GetID()) };
+		if (info.handle && !info.is_closed)
+		{
+			SDL_DestroyWindow(info.handle);
+			remove_from_windows(window.GetID());
+			window = Window{};
+		}
+	}
+
+	int32 PollEvent(Event& e)
+	{
+		int32 sdlRes{ SDL_PollEvent(&e) };
+		if (e.type == SDL_WINDOWEVENT)
+			internal_window_proc(e, e.window.windowID);
+		return sdlRes;
 	}
 } // namespace ecm

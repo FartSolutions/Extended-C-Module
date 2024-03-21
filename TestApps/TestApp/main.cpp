@@ -102,6 +102,7 @@ int main()
 	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
 
 	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 });
+	ecm::DestroyWindow(window);
 	
 	system("pause");
 	return 0;

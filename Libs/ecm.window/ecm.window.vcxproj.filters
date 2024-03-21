@@ -8,6 +8,7 @@
     <ClInclude Include="ecm\ecm_window.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ecm\window\window.h" />
+    <ClInclude Include="ecm\window\events.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.window.rc" />

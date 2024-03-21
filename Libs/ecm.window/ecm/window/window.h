@@ -50,6 +50,7 @@ namespace ecm
 	enum WindowMode : uint8
 	{
 		WINDOWMODE_NONE = 0,
+		WINDOWMODE_SHOWN,
 		WINDOWMODE_MINIMIZED,
 		WINDOWMODE_MAXIMIZED,
 		WINDOWMODE_FULLSCREEN_WINDOWED,
@@ -244,5 +245,11 @@ namespace ecm
 		GraphicsAPI graphicsApi = GRAPHICSAPI_SDLRENDERER);
 	// TODO: CreateWindow: replace PointF with Point
 
+	/*
+	 * \since v1.0.0
+	 *
+	 * \param window 
+	 */
+	extern ECM_WIN_API void DestroyWindow(Window& window);
 } // namespace ecm
 #endif // !_ECM_WINDOW_H_
