@@ -13,9 +13,6 @@ namespace ec = ecm::console;
 std::atomic<bool> thread1_ready{ false };
 std::atomic<bool> thread2_ready{ false };
 
-inline const char* farbcode_empty = "\033[0m";
-inline const char* farbcode = "\033[33m";
-
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -100,8 +97,22 @@ int main()
 	ec::WriteLine("%sHello World! Rapid Blink%s",	ec::ANSI::RapidBlink, ec::ANSI::Reset);
 	ec::WriteLine("%sHello World! Swaped%s",		ec::ANSI::Swapped, ec::ANSI::Reset);
 	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
+	ec::WriteLine();
 
-	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 });
+	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 }, 0ui64, ecm::WINDOWMODE_SHOWN);
+
+	bool isRunning{ true };
+	while (isRunning)
+	{
+		ecm::Event e{};
+		while (ecm::PollEvent(e))
+		{
+			if (e.type == SDL_WINDOWEVENT)
+			{
+				if (e.window.event == SDL_WINDOWEVENT_CLOSE) isRunning = false;
+			}
+		}
+	}
 	ecm::DestroyWindow(window);
 	
 	system("pause");

@@ -58,7 +58,7 @@ namespace ecm
 		{
 			for (id_type i{ 0 }; i < windows.size(); i++)
 			{
-				if (!windows[i].is_closed && i == windows[id].sdl_id) return i;
+				if (!windows[i].is_closed && id == windows[i].sdl_id) return i;
 			}
 			return ID_Invalid;
 		}

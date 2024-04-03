@@ -47,7 +47,7 @@ namespace ecm
 	/*
 	 * \since v1.0.0
 	 */
-	extern ECM_WIN_API int32 PollEvent(Event* event);
+	extern ECM_WIN_API int32 PollEvent(Event& event);
 } // namespace ecm
 
 #endif // !_ECM_EVENTS_H_
