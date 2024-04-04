@@ -99,7 +99,11 @@ int main()
 	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
 	ec::WriteLine();
 
-	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 }, 0ui64, ecm::WINDOWMODE_SHOWN);
+	ecm::Window window = ecm::CreateWindow(
+		"Test window", 
+		{ 800, 600 }, 
+		ecm::WINDOWFLAG_RESIZABLE, 
+		ecm::WINDOWMODE_SHOWN);
 
 	bool isRunning{ true };
 	while (isRunning)

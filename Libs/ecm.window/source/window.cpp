@@ -63,7 +63,7 @@ namespace ecm
 			return ID_Invalid;
 		}
 
-		inline void* get_handle(id_type id)
+		inline SDL_Window* get_handle(id_type id)
 		{
 			return windows[id].handle;
 		}
@@ -194,7 +194,7 @@ namespace ecm
 		return _id;
 	}
 
-	void* Window::GetHandle() const
+	SDL_Window* Window::GetHandle() const
 	{
 		if (IsValid() && _id < windows.size())
 			return get_handle(_id);
@@ -273,27 +273,39 @@ namespace ecm
 		if (size.x <= 0.f) size.x = 800;
 		if (size.y <= 0.f) size.y = 600;
 
-		uint32 sdlFlags{ 0 };
+		window_info info{};
 		// Set flags for GraphicsApi
 		// TODO: Check graphicsApi (SDL flags for OpenGL or Vulkan)
 
 		// Set flags for WindowMode
-		if (mode == WINDOWMODE_NONE) sdlFlags |= SDL_WINDOW_HIDDEN;
-		else if (mode == WINDOWMODE_SHOWN) sdlFlags |= SDL_WINDOW_SHOWN;
-		else if (mode == WINDOWMODE_MINIMIZED) sdlFlags |= SDL_WINDOW_MINIMIZED;
-		else if (mode == WINDOWMODE_MAXIMIZED) sdlFlags |= SDL_WINDOW_MAXIMIZED;
-		else if (mode == WINDOWMODE_FULLSCREEN) sdlFlags |= SDL_WINDOW_FULLSCREEN;
-		else if (mode == WINDOWMODE_FULLSCREEN_WINDOWED) sdlFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		if (mode == WINDOWMODE_NONE) info.style |= SDL_WINDOW_HIDDEN;
+		else if (mode == WINDOWMODE_SHOWN) info.style |= SDL_WINDOW_SHOWN;
+		else if (mode == WINDOWMODE_MINIMIZED) info.style |= SDL_WINDOW_MINIMIZED;
+		else if (mode == WINDOWMODE_MAXIMIZED) info.style |= SDL_WINDOW_MAXIMIZED;
+		else if (mode == WINDOWMODE_FULLSCREEN) info.style |= SDL_WINDOW_FULLSCREEN;
+		else if (mode == WINDOWMODE_FULLSCREEN_WINDOWED) info.style |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		// Set flags for Window
-
-		window_info info{};
+		if (flags & WINDOWFLAG_FOREIGN) info.style |= SDL_WINDOW_FOREIGN;
+		if (flags & WINDOWFLAG_BORDERLESS) info.style |= SDL_WINDOW_BORDERLESS;
+		if (flags & WINDOWFLAG_RESIZABLE) info.style |= SDL_WINDOW_RESIZABLE;
+		if (flags & WINDOWFLAG_UTILITY) info.style |= SDL_WINDOW_UTILITY;
+		if (flags & WINDOWFLAG_TOOLTIP) info.style |= SDL_WINDOW_TOOLTIP;
+		if (flags & WINDOWFLAG_POPUP_MENU) info.style |= SDL_WINDOW_POPUP_MENU;
+		if (flags & WINDOWFLAG_ALLOW_HIGHDPI) info.style |= SDL_WINDOW_ALLOW_HIGHDPI;
+		if (flags & WINDOWFLAG_ALWAYS_ON_TOP) info.style |= SDL_WINDOW_ALWAYS_ON_TOP;
+		if (flags & WINDOWFLAG_SKIP_TASKBAR) info.style |= SDL_WINDOW_SKIP_TASKBAR;
+		if (flags & WINDOWFLAG_INPUT_FOCUS) info.style |= SDL_WINDOW_INPUT_FOCUS;
+		if (flags & WINDOWFLAG_MOUSE_FOCUS) info.style |= SDL_WINDOW_MOUSE_FOCUS;
+		if (flags & WINDOWFLAG_MOUSE_GRABBED) info.style |= SDL_WINDOW_MOUSE_GRABBED;
+		if (flags & WINDOWFLAG_MOUSE_CAPTURE) info.style |= SDL_WINDOW_MOUSE_CAPTURE;
+		if (flags & WINDOWFLAG_KEYBOARD_GRABBED) info.style |= SDL_WINDOW_KEYBOARD_GRABBED;
 
 		info.handle = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			static_cast<int32>(size.x), static_cast<int32>(size.y),
-			sdlFlags);
+			info.style);
 
 		if (!info.handle) {
 			// TODO: ErrorLogging
