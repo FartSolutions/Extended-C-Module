@@ -105,18 +105,12 @@ int main()
 		ecm::WINDOWFLAG_RESIZABLE, 
 		ecm::WINDOWMODE_SHOWN);
 
-	bool isRunning{ true };
-	while (isRunning)
+	while (!window.IsClosed())
 	{
 		ecm::Event e{};
-		while (ecm::PollEvent(e))
-		{
-			if (e.type == SDL_WINDOWEVENT)
-			{
-				if (e.window.event == SDL_WINDOWEVENT_CLOSE) isRunning = false;
-			}
-		}
+		while (ecm::PollEvent(e));
 	}
+
 	ecm::DestroyWindow(window);
 	
 	system("pause");

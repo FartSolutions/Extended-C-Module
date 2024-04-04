@@ -175,6 +175,14 @@ namespace ecm
 		 *
 		 * \sa Window
 		 */
+		bool IsClosed() const;
+		/*
+		 * \returns 
+		 *
+		 * \since v1.0.0
+		 *
+		 * \sa Window
+		 */
 		bool IsFocused() const;
 		/*
 		 * \since v1.0.0

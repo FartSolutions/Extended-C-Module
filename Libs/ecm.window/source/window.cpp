@@ -13,7 +13,6 @@ namespace ecm
 		{
 			bool is_closed{ true };
 			bool is_focused{ false };
-			bool is_fullscreen{ false };
 			SDL_Window* handle{ nullptr };
 			uint32 sdl_id{ ID_Invalid };
 			uint8 mode{ WINDOWMODE_NONE };
@@ -97,6 +96,11 @@ namespace ecm
 			SDL_RaiseWindow(static_cast<SDL_Window*>(windows[id].handle));
 		}
 
+		inline bool get_closed(id_type id)
+		{
+			return windows[id].is_closed;
+		}
+		
 		inline bool get_focused(id_type id)
 		{
 			return windows[id].is_focused;
@@ -170,6 +174,8 @@ namespace ecm
 				info.mode = WINDOWMODE_MINIMIZED;
 			else if (e.window.event == SDL_WINDOWEVENT_MAXIMIZED)
 				info.mode = WINDOWMODE_MAXIMIZED;
+			else if (e.window.event == SDL_WINDOWEVENT_CLOSE)
+				windows[id].is_closed = true;
 		}
 	} // anonymous namespace
 
@@ -212,6 +218,13 @@ namespace ecm
 	{
 		if (IsValid() && _id < windows.size())
 			set_window_mode(_id, mode);
+	}
+
+	bool Window::IsClosed() const
+	{
+		if (IsValid() && _id < windows.size())
+			return get_closed(_id);
+		return true;
 	}
 
 	bool Window::IsFocused() const
@@ -322,7 +335,7 @@ namespace ecm
 	void DestroyWindow(Window& window)
 	{
 		window_info info{ get_info_from_id(window.GetID()) };
-		if (info.handle && !info.is_closed)
+		if (info.handle)
 		{
 			SDL_DestroyWindow(info.handle);
 			remove_from_windows(window.GetID());
