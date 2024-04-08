@@ -109,7 +109,8 @@ namespace ecm
 	 */
 	enum GraphicsAPI : uint8
 	{
-		GRAPHICSAPI_SDLRENDERER = 0,
+		GRAPHICSAPI_NONE = 0,
+		GRAPHICSAPI_SDLRENDERER,
 	};
 
 	/*
@@ -249,7 +250,7 @@ namespace ecm
 	 */
 	extern ECM_WIN_API Window CreateWindow(string title,
 		math::PointF size, uint64 flags = 0, WindowMode mode = WINDOWMODE_NONE,
-		GraphicsAPI graphicsApi = GRAPHICSAPI_SDLRENDERER);
+		GraphicsAPI graphicsApi = GRAPHICSAPI_NONE);
 	// TODO: CreateWindow: replace PointF with Point
 
 	/*
