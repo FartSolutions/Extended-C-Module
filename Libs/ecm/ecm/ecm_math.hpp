@@ -26,88 +26,15 @@
 */
 
 /*
- * \file Vector2.h
+ * \file ecm_types.hpp
  *
- * \brief This header defines a two dimensional vector and functionalities.
+ * \brief This header includes all the public math header.
  */
 
 #pragma once
-#ifndef _ECM_VECTOR2_H_
-#define _ECM_VECTOR2_H_
+#ifndef _ECM_MATH_HPP_
+#define _ECM_MATH_HPP_
 
-#include <ecm/ecm_api.h>
-#include <ecm/ecm_types.hpp>
+#include <ecm/math/Vector2.h>
 
-namespace ecm::math
-{
-	/*
-	 * This structure represents a 2d vector.
-	 *
-	 * \since v1.0.0
-	 */
-	struct ECM_API Vector2
-	{
-		enum Axis : uint8
-		{
-			AXIS_X = 0,
-			AXIS_Y,
-			AXIS_COUNT
-		};
-		union
-		{
-			struct
-			{
-				union
-				{
-					// X coordinate
-					float32 x;
-					// Value for width
-					float32 width;
-				};
-				union
-				{
-					// Y coordinate
-					float32 y;
-					// Value for height
-					float32 height;
-				};
-			};
-			float32 coord[2]{ 0.f };
-		};
-
-		/*
-		 * This is the default constructor.
-		 *
-		 * \since v1.0.0
-		 */
-		constexpr Vector2();
-
-		/*
-		 * This is a constructor.
-		 *
-		 * \param x the x coordinate or width.
-		 * \param y the y coordinate or height.
-		 *
-		 * \since v1.0.0
-		 */
-		constexpr Vector2(float32 x, float32 y);
-
-		/*
-		 * This is a constructor.
-		 *
-		 * \param coord the coordinates as array with two values.
-		 *
-		 * \since v1.0.0
-		 */
-		constexpr Vector2(float32 coord[2]);
-	};
-
-	/*
-	 * This structure represents a 2d position.
-	 *
-	 * \since v1.0.0
-	 */
-	using PointF = Vector2;
-} // namespace ecm::math
-
-#endif // !_ECM_VECTOR2_H_
+#endif // !_ECM_MATH_HPP_

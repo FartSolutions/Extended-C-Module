@@ -1,5 +1,6 @@
 ﻿#include <crtdbg.h>
 #include <ecm/ecm.hpp>
+#include <ecm/ecm_math.hpp>
 #include <ecm/algorithm/random.h>
 #include <ecm/ecm_window.hpp>
 
@@ -13,10 +14,8 @@ namespace ec = ecm::console;
 std::atomic<bool> thread1_ready{ false };
 std::atomic<bool> thread2_ready{ false };
 
-int main()
+void test_Threading()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
 	std::thread thread1{
 		[]() {
 			int i{ 0 };
@@ -54,7 +53,10 @@ int main()
 		_sleep(100);
 		if (thread1_ready && thread2_ready) succeeded = true;
 	}
+}
 
+void test_ConsoleSystem()
+{
 	ec::WriteLine("%sHello World! Black",			ec::ANSI::BG_Black);
 	ec::WriteLine("%sHello World! Red",				ec::ANSI::BG_Red);
 	ec::WriteLine("%sHello World! Green",			ec::ANSI::BG_Green);
@@ -98,7 +100,10 @@ int main()
 	ec::WriteLine("%sHello World! Swaped%s",		ec::ANSI::Swapped, ec::ANSI::Reset);
 	ec::WriteLine("%sHello World! Invisible%s",		ec::ANSI::Invisible, ec::ANSI::Reset);
 	ec::WriteLine();
+}
 
+void test_WindowSystem()
+{
 	ecm::Window window = ecm::CreateWindow(
 		"Test window", 
 		{ 800, 600 }, 
@@ -112,6 +117,22 @@ int main()
 	}
 
 	ecm::DestroyWindow(window);
+}
+
+void test_Math()
+{
+	ecm::math::Vector2 test_vec2d1{ 720.f, 1280.f };
+	ecm::math::Vector2 test_vec2d2{ 800.f, 600.f };
+}
+
+int main()
+{
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+	test_Threading();
+	test_ConsoleSystem();
+	test_WindowSystem();
+	test_Math();
 	
 	system("pause");
 	return 0;
