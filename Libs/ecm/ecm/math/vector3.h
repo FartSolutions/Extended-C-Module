@@ -95,6 +95,169 @@ namespace ecm::math
 		 */
 		constexpr Vector3(float32 coord[3]);
 	};
+
+	/*
+	 * This operator checks if the two Vector3 are the same.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns true if left is same as right, or false if not.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr bool operator==(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator checks if the two Vector3 are not the same.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns true if left is not same as right, or false.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr bool operator!=(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator creates an new Vector3 object, calculates the addition of
+	 * two Vector3 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3 operator+(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator creates a new Vector3 object, calculates the subtracting of
+	 * two Vector3 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3 operator-(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator creates an new Vector3 object, calculates the
+	 * multiplication of two Vector3 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3 operator*(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator creates a new Vector3 object, calculates the division of
+	 * two Vector3 objects left and right component by component and returns the
+	 * newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3 operator/(
+		const Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator adds the two Vector3 objects left and right together and
+	 * returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3& operator+=(
+		Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator subtracts the two Vector3 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3& operator-=(
+		Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator multiplies the two Vector3 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3& operator*=(
+		Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator devides the two Vector3 objects left and right together and
+	 * returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param left right Vector3 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	extern ECM_API constexpr Vector3& operator/=(
+		Vector3& left, const Vector3& right);
 } // namespace ecm::math
 
 #endif // !_ECM_VECTOR3_H_
