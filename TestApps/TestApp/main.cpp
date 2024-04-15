@@ -123,6 +123,16 @@ void test_Math()
 {
 	ecm::math::Vector2 test_vec2d1{ 720.f, 1280.f };
 	ecm::math::Vector2 test_vec2d2{ 800.f, 600.f };
+
+	ecm::math::Vector2 test_vec2d3{ test_vec2d1 + test_vec2d2 };
+	ecm::math::Vector2 test_vec2d4{ test_vec2d1 - test_vec2d2 };
+	ecm::math::Vector2 test_vec2d5{ test_vec2d1 * test_vec2d2 };
+	ecm::math::Vector2 test_vec2d6{ test_vec2d1 / test_vec2d2 };
+
+	test_vec2d3 += test_vec2d1;
+	test_vec2d4 -= test_vec2d2;
+	test_vec2d5 *= test_vec2d3;
+	test_vec2d6 /= test_vec2d4;
 }
 
 int main()
