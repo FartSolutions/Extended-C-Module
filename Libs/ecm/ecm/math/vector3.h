@@ -26,16 +26,75 @@
 */
 
 /*
- * \file ecm_types.hpp
+ * \file Vector3.h
  *
- * \brief This header includes all the public math header.
+ * \brief This header defines a three dimensional vector and functionalities.
  */
 
 #pragma once
-#ifndef _ECM_MATH_HPP_
-#define _ECM_MATH_HPP_
+#ifndef _ECM_VECTOR3_H_
+#define _ECM_VECTOR3_H_
 
-#include <ecm/math/vector2.h>
-#include <ecm/math/vector3.h>
+#include <ecm/ecm_api.h>
+#include <ecm/ecm_types.hpp>
 
-#endif // !_ECM_MATH_HPP_
+namespace ecm::math
+{
+	/*
+	 * This structure represents a 3d vector.
+	 *
+	 * \since v1.0.0
+	 */
+	struct ECM_API Vector3
+	{
+		enum Axis : uint8
+		{
+			AXIS_X = 0,
+			AXIS_Y,
+			AXIS_Z,
+			AXIS_COUNT
+		};
+		union
+		{
+			struct
+			{
+				// X coordinate
+				float32 x;
+				// Y coordinate
+				float32 y;
+				// Z coordinate
+				float32 z;
+			};
+			float32 coord[3]{ 0.f };
+		};
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3();
+
+		/*
+		 * This is a constructor.
+		 *
+		 * \param x the x coordinate.
+		 * \param y the y coordinate.
+		 * \param z the z coordinate.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3(float32 x, float32 y, float32 z);
+
+		/*
+		 * This is a constructor.
+		 *
+		 * \param coord the coordinates as array with three values.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3(float32 coord[3]);
+	};
+} // namespace ecm::math
+
+#endif // !_ECM_VECTOR3_H_
