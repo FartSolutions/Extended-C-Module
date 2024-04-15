@@ -119,20 +119,24 @@ void test_WindowSystem()
 	ecm::DestroyWindow(window);
 }
 
-void test_Math()
+template<typename _Ty>
+void test_vector(_Ty v1, _Ty v2)
 {
-	ecm::math::Vector2 test_vec2d1{ 720.f, 1280.f };
-	ecm::math::Vector2 test_vec2d2{ 800.f, 600.f };
+	_Ty test_vec2d3{ v1 + v2 };
+	_Ty test_vec2d4{ v1 - v2 };
+	_Ty test_vec2d5{ v1 * v2 };
+	_Ty test_vec2d6{ v1 / v2 };
 
-	ecm::math::Vector2 test_vec2d3{ test_vec2d1 + test_vec2d2 };
-	ecm::math::Vector2 test_vec2d4{ test_vec2d1 - test_vec2d2 };
-	ecm::math::Vector2 test_vec2d5{ test_vec2d1 * test_vec2d2 };
-	ecm::math::Vector2 test_vec2d6{ test_vec2d1 / test_vec2d2 };
-
-	test_vec2d3 += test_vec2d1;
-	test_vec2d4 -= test_vec2d2;
+	test_vec2d3 += v1;
+	test_vec2d4 -= v2;
 	test_vec2d5 *= test_vec2d3;
 	test_vec2d6 /= test_vec2d4;
+}
+
+void test_Math()
+{
+	test_vector<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
+	test_vector<ecm::math::Vector3>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
 }
 
 int main()

@@ -15,7 +15,8 @@
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="source\color.cpp" />
-    <ClCompile Include="source\math\Vector2.cpp" />
+    <ClCompile Include="source\math\vector2.cpp" />
+    <ClCompile Include="source\math\vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
@@ -30,8 +31,9 @@
     <ClInclude Include="ecm\types\color.h" />
     <ClInclude Include="ecm\types\id.h" />
     <ClInclude Include="ecm\ecm.hpp" />
-    <ClInclude Include="ecm\math\Vector2.h" />
+    <ClInclude Include="ecm\math\vector2.h" />
     <ClInclude Include="ecm\ecm_math.hpp" />
+    <ClInclude Include="ecm\math\vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
