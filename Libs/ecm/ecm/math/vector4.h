@@ -99,6 +99,169 @@ namespace ecm::math
 		 */
 		constexpr Vector4(float32 coord[4]);
 	};
+
+	/*
+	 * This operator checks if the two Vector4 are the same.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns true if left is same as right, or false if not.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr bool operator==(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator checks if the two Vector4 are not the same.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns true if left is not same as right, or false.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr bool operator!=(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator creates an new Vector4 object, calculates the addition of
+	 * two Vector4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4 operator+(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator creates a new Vector4 object, calculates the subtracting of
+	 * two Vector4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4 operator-(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator creates an new Vector4 object, calculates the
+	 * multiplication of two Vector4 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4 operator*(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator creates a new Vector4 object, calculates the division of
+	 * two Vector4 objects left and right component by component and returns the
+	 * newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4 operator/(
+		const Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator adds the two Vector4 objects left and right together and
+	 * returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4& operator+=(
+		Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator subtracts the two Vector4 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4& operator-=(
+		Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator multiplies the two Vector4 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4& operator*=(
+		Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator devides the two Vector4 objects left and right together and
+	 * returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param left right Vector4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	extern ECM_API constexpr Vector4& operator/=(
+		Vector4& left, const Vector4& right);
 } // namespace ecm::math
 
 #endif // !_ECM_VECTOR4_H_

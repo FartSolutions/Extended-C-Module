@@ -14,4 +14,91 @@ namespace ecm::math
 		: x{ _coord[AXIS_X] }, y{ _coord[AXIS_Y] },
 		  z{ _coord[AXIS_Z] }, w{ _coord[AXIS_W] }
 	{ }
+
+	constexpr bool operator==(const Vector4& left, const Vector4& right)
+	{
+		if (left.x == right.x)
+		{
+			if (left.y == right.y)
+			{
+				if (left.z == right.z)
+				{
+					if (left.w == right.w)
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	constexpr bool operator!=(const Vector4& left, const Vector4& right)
+	{
+		return !(left == right);
+	}
+
+	constexpr Vector4 operator+(const Vector4& left, const Vector4& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x + right.x;
+		vec.y = left.y + right.y;
+		vec.z = left.z + right.z;
+		vec.w = left.w + right.w;
+		return vec;
+	}
+
+	constexpr Vector4 operator-(const Vector4& left, const Vector4& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x - right.x;
+		vec.y = left.y - right.y;
+		vec.z = left.z - right.z;
+		vec.w = left.w - right.w;
+		return vec;
+	}
+
+	constexpr Vector4 operator*(const Vector4& left, const Vector4& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x * right.x;
+		vec.y = left.y * right.y;
+		vec.z = left.z * right.z;
+		vec.w = left.w * right.w;
+		return vec;
+	}
+
+	constexpr Vector4 operator/(const Vector4& left, const Vector4& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x / right.x;
+		vec.y = left.y / right.y;
+		vec.z = left.z / right.z;
+		vec.w = left.w / right.w;
+		return vec;
+	}
+
+	constexpr Vector4& operator+=(Vector4& left, const Vector4& right)
+	{
+		left = left + right;
+		return left;
+	}
+
+	constexpr Vector4& operator-=(Vector4& left, const Vector4& right)
+	{
+		left = left - right;
+		return left;
+	}
+
+	constexpr Vector4& operator*=(Vector4& left, const Vector4& right)
+	{
+		left = left * right;
+		return left;
+	}
+
+	constexpr Vector4& operator/=(Vector4& left, const Vector4& right)
+	{
+		left = left / right;
+		return left;
+	}
 } // namespace ecm::math
