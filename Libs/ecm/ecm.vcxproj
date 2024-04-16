@@ -181,6 +181,7 @@
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="source\math\vector2.cpp" />
     <ClCompile Include="source\math\vector3.cpp" />
+    <ClCompile Include="source\math\vector4.cpp" />
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
   </ItemGroup>
@@ -196,6 +197,7 @@
     <ClInclude Include="ecm\ecm_version.h" />
     <ClInclude Include="ecm\math\vector2.h" />
     <ClInclude Include="ecm\math\vector3.h" />
+    <ClInclude Include="ecm\math\vector4.h" />
     <ClInclude Include="ecm\types\color.h" />
     <ClInclude Include="ecm\types\id.h" />
     <ClInclude Include="ecm\types\stdtypes.h" />

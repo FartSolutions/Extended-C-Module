@@ -37,5 +37,6 @@
 
 #include <ecm/math/vector2.h>
 #include <ecm/math/vector3.h>
+#include <ecm/math/vector4.h>
 
 #endif // !_ECM_MATH_HPP_
