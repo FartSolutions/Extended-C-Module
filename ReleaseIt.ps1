@@ -41,6 +41,11 @@ $releases = @(
 )
 
 ################################################################################
+# Static data
+
+$licenseText = [IO.File]::ReadAllText("LICENSE");
+
+################################################################################
 # Functions
 
 function CopyAllFileExtensions {
@@ -68,7 +73,11 @@ function CopyAllFileExtensions {
         }
         Write-Host "Kopiere $relativePath nach $destinationPath"
         # Kopiert eine Datei ins Ziel(unter)verzeichnis
-        Copy-Item -Path $_.FullName -Destination $destinationPath -Force
+        # Copy-Item -Path $_.FullName -Destination $destinationPath -Force
+
+        $srcFileContent = [IO.File]::ReadAllText($_.FullName);
+        $outContent = "/*`n" + $licenseText + "*/`n`n" + $srcFileContent;
+        Set-Content -Path $destinationPath -Value $outContent -Force;
     }
 }
 
@@ -106,7 +115,7 @@ foreach ($release in $releases) {
     }
 }
 
-Write-Host "Release-Tool vollständig durchgelaufen"
+Write-Host "`nRelease-Tool vollständig durchgelaufen"
 Start-Sleep -Seconds (60 * 1)
 
 
