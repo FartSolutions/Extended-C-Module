@@ -179,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="source\color.cpp" />
     <ClCompile Include="source\console.cpp" />
+    <ClCompile Include="source\math\matrix4x4.cpp" />
     <ClCompile Include="source\math\vector2.cpp" />
     <ClCompile Include="source\math\vector3.cpp" />
     <ClCompile Include="source\math\vector4.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="ecm\ecm_math.hpp" />
     <ClInclude Include="ecm\ecm_types.hpp" />
     <ClInclude Include="ecm\ecm_version.h" />
+    <ClInclude Include="ecm\math\matrix4x4.h" />
     <ClInclude Include="ecm\math\vector2.h" />
     <ClInclude Include="ecm\math\vector3.h" />
     <ClInclude Include="ecm\math\vector4.h" />
