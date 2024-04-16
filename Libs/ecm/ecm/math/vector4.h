@@ -26,17 +26,79 @@
 */
 
 /*
- * \file ecm_types.hpp
+ * \file Vector4.h
  *
- * \brief This header includes all the public math header.
+ * \brief This header defines a four dimensional vector and functionalities.
  */
 
 #pragma once
-#ifndef _ECM_MATH_HPP_
-#define _ECM_MATH_HPP_
+#ifndef _ECM_VECTOR4_H_
+#define _ECM_VECTOR4_H_
 
-#include <ecm/math/vector2.h>
-#include <ecm/math/vector3.h>
-#include <ecm/math/vector4.h>
+#include <ecm/ecm_api.h>
+#include <ecm/ecm_types.hpp>
 
-#endif // !_ECM_MATH_HPP_
+namespace ecm::math
+{
+	/*
+	 * This structure represents a 4d vector.
+	 *
+	 * \since v1.0.0
+	 */
+	struct ECM_API Vector4
+	{
+		enum Axis : uint8
+		{
+			AXIS_X = 0,
+			AXIS_Y,
+			AXIS_Z,
+			AXIS_W,
+			AXIS_COUNT
+		};
+		union
+		{
+			struct
+			{
+				// X coordinate
+				float32 x;
+				// Y coordinate
+				float32 y;
+				// Z coordinate
+				float32 z;
+				// W coordinate
+				float32 w;
+			};
+			float32 coord[4]{ 0.f };
+		};
+
+		/*
+		 * This is the default constructor.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4();
+
+		/*
+		 * This is a constructor.
+		 *
+		 * \param x the x coordinate.
+		 * \param y the y coordinate.
+		 * \param z the z coordinate.
+		 * \param w the w coordinate.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4(float32 x, float32 y, float32 z, float32 w);
+
+		/*
+		 * This is a constructor.
+		 *
+		 * \param coord the coordinates as array with four values.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4(float32 coord[4]);
+	};
+} // namespace ecm::math
+
+#endif // !_ECM_VECTOR4_H_

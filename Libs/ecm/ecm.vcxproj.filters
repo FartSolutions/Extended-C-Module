@@ -17,6 +17,7 @@
     <ClCompile Include="source\color.cpp" />
     <ClCompile Include="source\math\vector2.cpp" />
     <ClCompile Include="source\math\vector3.cpp" />
+    <ClCompile Include="source\math\vector4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_api.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="ecm\math\vector2.h" />
     <ClInclude Include="ecm\ecm_math.hpp" />
     <ClInclude Include="ecm\math\vector3.h" />
+    <ClInclude Include="ecm\math\vector4.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
