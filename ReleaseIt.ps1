@@ -52,7 +52,8 @@ function CopyAllFileExtensions {
     param (
         [string]$path,
         [string]$targetPath,
-        [string[]]$extensions
+        [string[]]$extensions,
+        [bool]$copyrightSign = 0
     )
     # Überprüft , ob das Zielpfadverzeichnis existiert, andernfalls erstellen
     if (-not (Test-Path $targetPath)) {
@@ -72,12 +73,18 @@ function CopyAllFileExtensions {
             New-Item -ItemType Directory -Path $destinationDir -Force
         }
         Write-Host "Kopiere $relativePath nach $destinationPath"
-        # Kopiert eine Datei ins Ziel(unter)verzeichnis
-        # Copy-Item -Path $_.FullName -Destination $destinationPath -Force
 
-        $srcFileContent = [IO.File]::ReadAllText($_.FullName);
-        $outContent = "/*`n" + $licenseText + "*/`n`n" + $srcFileContent;
-        Set-Content -Path $destinationPath -Value $outContent -Force;
+        # Prüfe ob Copyright-Text hinzugefügt werden soll
+        if ($copyrightSign -eq 1) {
+            # Füge Copyright-Text hinzu
+            $srcFileContent = [IO.File]::ReadAllText($_.FullName);
+            $outContent = "/*`n" + $licenseText + "*/`n`n" + $srcFileContent;
+            # Kopiere Datei
+            Set-Content -Path $destinationPath -Value $outContent -Force;
+        } else {
+            # Kopiert eine Datei ins Ziel(unter)verzeichnis
+            Copy-Item -Path $_.FullName -Destination $destinationPath -Force
+        }
     }
 }
 
