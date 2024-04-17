@@ -40,4 +40,132 @@ namespace ecm::math
 		  m20{ val[8] }, m21{ val[9] }, m22{ val[10] }, m23{ val[11] },
 		  m30{ val[12] }, m31{ val[13] }, m32{ val[14] }, m33{ val[15] }
 	{ }
+
+	constexpr bool operator==(const Matrix4x4& left, const Matrix4x4& right)
+	{
+		if (left.m00 == right.m00
+			&& left.m01 == right.m01
+			&& left.m02 == right.m02
+			&& left.m03 == right.m03)
+		{
+			if (left.m10 == right.m10
+				&& left.m11 == right.m11
+				&& left.m12 == right.m12
+				&& left.m13 == right.m13)
+			{
+				if (left.m20 == right.m20
+					&& left.m21 == right.m21
+					&& left.m22 == right.m22
+					&& left.m23 == right.m23)
+				{
+					if (left.m30 == right.m30
+						&& left.m31 == right.m31
+						&& left.m32 == right.m32
+						&& left.m33 == right.m33)
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	constexpr bool operator!=(const Matrix4x4& left, const Matrix4x4& right)
+	{
+		return !(left == right);
+	}
+
+	constexpr Matrix4x4 operator+(const Matrix4x4& left, const Matrix4x4& right)
+	{
+		Matrix4x4 mat{};
+		mat.m00 = left.m00 + right.m00;
+		mat.m01 = left.m01 + right.m01;
+		mat.m02 = left.m02 + right.m02;
+		mat.m03 = left.m03 + right.m03;
+
+		mat.m10 = left.m10 + right.m10;
+		mat.m11 = left.m11 + right.m11;
+		mat.m12 = left.m12 + right.m12;
+		mat.m13 = left.m13 + right.m13;
+
+		mat.m20 = left.m20 + right.m20;
+		mat.m21 = left.m21 + right.m21;
+		mat.m22 = left.m22 + right.m22;
+		mat.m23 = left.m23 + right.m23;
+
+		mat.m30 = left.m30 + right.m30;
+		mat.m31 = left.m31 + right.m31;
+		mat.m32 = left.m32 + right.m32;
+		mat.m33 = left.m33 + right.m33;
+		return mat;
+	}
+
+	constexpr Matrix4x4 operator-(const Matrix4x4& left, const Matrix4x4& right)
+	{
+		Matrix4x4 mat{};
+		mat.m00 = left.m00 - right.m00;
+		mat.m01 = left.m01 - right.m01;
+		mat.m02 = left.m02 - right.m02;
+		mat.m03 = left.m03 - right.m03;
+
+		mat.m10 = left.m10 - right.m10;
+		mat.m11 = left.m11 - right.m11;
+		mat.m12 = left.m12 - right.m12;
+		mat.m13 = left.m13 - right.m13;
+
+		mat.m20 = left.m20 - right.m20;
+		mat.m21 = left.m21 - right.m21;
+		mat.m22 = left.m22 - right.m22;
+		mat.m23 = left.m23 - right.m23;
+
+		mat.m30 = left.m30 - right.m30;
+		mat.m31 = left.m31 - right.m31;
+		mat.m32 = left.m32 - right.m32;
+		mat.m33 = left.m33 - right.m33;
+		return mat;
+	}
+
+	constexpr Matrix4x4 operator*(const Matrix4x4& left, const Matrix4x4& right)
+	{
+		Matrix4x4 mat{};
+		mat.m00 = left.m00 * right.m00;
+		mat.m01 = left.m01 * right.m01;
+		mat.m02 = left.m02 * right.m02;
+		mat.m03 = left.m03 * right.m03;
+
+		mat.m10 = left.m10 * right.m10;
+		mat.m11 = left.m11 * right.m11;
+		mat.m12 = left.m12 * right.m12;
+		mat.m13 = left.m13 * right.m13;
+
+		mat.m20 = left.m20 * right.m20;
+		mat.m21 = left.m21 * right.m21;
+		mat.m22 = left.m22 * right.m22;
+		mat.m23 = left.m23 * right.m23;
+
+		mat.m30 = left.m30 * right.m30;
+		mat.m31 = left.m31 * right.m31;
+		mat.m32 = left.m32 * right.m32;
+		mat.m33 = left.m33 * right.m33;
+		return mat;
+	}
+
+	constexpr Matrix4x4& operator+=(Matrix4x4& left, const Matrix4x4& right)
+	{
+		left = left + right;
+		return left;
+	}
+
+	constexpr Matrix4x4& operator-=(Matrix4x4& left, const Matrix4x4& right)
+	{
+		left = left - right;
+		return left;
+	}
+
+	constexpr Matrix4x4& operator*=(Matrix4x4& left, const Matrix4x4& right)
+	{
+		left = left * right;
+		return left;
+	}
 } // namespace ecm::math
