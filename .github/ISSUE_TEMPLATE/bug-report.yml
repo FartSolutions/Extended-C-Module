@@ -1,5 +1,5 @@
 name: Bug report
-description: 
+description: Reports a bug.
 title: "[BUG]: "
 labels: ["bug"]
 projects: Fuerth-ORG/19
