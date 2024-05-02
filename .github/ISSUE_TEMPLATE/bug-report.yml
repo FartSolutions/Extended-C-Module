@@ -21,8 +21,6 @@ body:
       label: Project
       description: |
         Select the project associated with this bug report.
-      placeholder: |
-        Select a project...
       options:
         - ecm.dll
         - ecm.algorithm.dll
@@ -50,7 +48,7 @@ body:
           - **OS**: Windows 11
           - **C++**: ISO C++ 20
           - **Compiler**: VisualC
-      values: |
+      value: |
         - OS: Windows
         - C++: 
         - Compiler: 
