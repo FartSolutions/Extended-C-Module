@@ -106,6 +106,136 @@ namespace ecm::math
 	{
 		using Matrix4x4::Matrix4x4;
 	};
+
+	/*
+	 * This operator checks if the two Matrix4x4 are the same.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns true if left is same as right, or false if not.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr bool operator==(
+		const Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator checks if the two Matrix4x4 are not the same.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns true if left is not same as right, or false.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr bool operator!=(
+		const Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator creates an new Matrix4x4 object, calculates the addition of
+	 * two Matrix4x4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns A new Matrix4x4 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4 operator+(
+		const Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator creates a new Matrix4x4 object, calculates the subtracting of
+	 * two Matrix4x4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns A new Matrix4x4 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4 operator-(
+		const Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator creates an new Matrix4x4 object, calculates the
+	 * multiplication of two Matrix4x4 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns A new Matrix4x4 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4 operator*(
+		const Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator adds the two Matrix4x4 objects left and right together and
+	 * returns the new value of left.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4& operator+=(
+		Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator subtracts the two Matrix4x4 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4& operator-=(
+		Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This operator multiplies the two Matrix4x4 objects left and right together
+	 * and returns the new value of left.
+	 *
+	 * \param left Left Matrix4x4 operand.
+	 * \param left right Matrix4x4 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	extern ECM_API constexpr Matrix4x4& operator*=(
+		Matrix4x4& left, const Matrix4x4& right);
 } // namespace ecm::math
 
 #endif // !_ECM_MATRIX4X4_H_

@@ -137,6 +137,16 @@ void test_Math()
 {
 	test_vector<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
 	test_vector<ecm::math::Vector3>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
+
+	ecm::math::Matrix4x4 mat1{ 5, 7, 9, 10, 2, 3, 3, 8, 8, 10, 2, 3, 3, 3, 4, 8 };
+	ecm::math::Matrix4x4 mat2{ 3, 10, 12, 18, 12, 1, 4, 9, 9, 10, 12, 2, 3, 12, 4, 10 };
+	ecm::math::Matrix4x4 matRes = mat1 * mat2;
+
+	if (mat1 == mat1)
+	{
+		mat1 *= mat1;
+		ecm::console::WriteLine("Upps, da passt was nicht!");
+	}
 }
 
 int main()
