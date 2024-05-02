@@ -5,6 +5,22 @@ labels: ["bug"]
 projects: Fuerth-ORG/19
 
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug and for completing this form.
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details
+      description: |
+        How can we get in touch with you if we need more info?
+      placeholder: |
+        ex. email@example.com or Discord name (easiest via our Discord server)
+    validations:
+      required: true
+
   - type: checkboxes
     id: no-existing-issues
     attributes:
