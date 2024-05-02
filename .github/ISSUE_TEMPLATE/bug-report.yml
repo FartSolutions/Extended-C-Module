@@ -1,28 +1,33 @@
 name: Bug report
-description: 
+description: Use this template to report a bug in the software. Provide detailed information to help us identify and resolve the issue.
 title: "[BUG]: "
 labels: ["bug"]
 projects: Fuerth-ORG/19
+assignees: 
 
 body:
-  - type: input
-    id: title
+  - type: checkboxes
+    id: no-existing-issues
     attributes:
-      label: Title
-#      description: |
-      placeholder: |
-        Title...
-    validations:
-      required: true
+      label: Is there an existing issue for this?
+      description: |
+        Please search to see if an issue already exists for the bug you encountered.
+      options:
+      - label: I have searched the existing issues
+        required: true
 
-  - type: input
-    id: version
+  - type: dropdown
+    id: project
     attributes:
-      label: Version
-#      description: |
+      label: Project
+      description: |
+        Select the project associated with this bug report.
       placeholder: |
-        Example: v1.0.0
-      value: v1.0.0
+        Select a project...
+      options:
+        - ecm.dll
+        - ecm.algorithm.dll
+        - ecm.window.dll
     validations:
       required: true
 
@@ -30,9 +35,27 @@ body:
     id: location
     attributes:
       label: Location
-#      description: |
+      description: |
+        Specify the file and the function, method, or structure where the bug occurs.
       placeholder: |
-        Example: core.h function/method/struct/... do_something()
+        Example: path/core.h function/method/struct/... do_something()
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        examples:
+          - **OS**: Windows 11
+          - **C++**: ISO C++ 20
+          - **Compiler**: VisualC
+      values: |
+        - OS: Windows
+        - C++: 
+        - Compiler: 
+      render: markdown
     validations:
       required: true
 
@@ -40,7 +63,22 @@ body:
     id: issue-description
     attributes:
       label: Issue description
-#      description: |
-#      placeholder: |
+      description: |
+        Describe the bug in detail. Include steps to reproduce, excepted outcomes, and actual outcomes.
+      Tip: |
+        You can attach images or log files by clicking this area to highlight it and then dragging files in.
+      placeholder: |
+        Detailed description of the issue...
     validations:
       required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Anything else?
+      description: |
+        Links? References? Anything that will give us more context about the issue you are encountering!
+      Tip: |
+        You can attach images or log files by clicking this area to highlight it and then dragging files in.
+    validations:
+      required: false

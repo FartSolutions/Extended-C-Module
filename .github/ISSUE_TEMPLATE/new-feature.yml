@@ -1,0 +1,34 @@
+name: New feature
+description: Proposes a new feature.
+title: "[NEW]: "
+labels: ["enhancement"]
+projects: Fuerth-ORG/19
+assignees: 
+
+body:
+  - type: markdown
+      attributes:
+        value: |
+          Thank you for taking the time to suggest another feature and for completing the form.
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact details
+      description: |
+        How can we get in touch with you if we need more info?
+      placeholder: |
+        ex. email@example.com or Discord name (easiest via our Discord server)
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal-description
+    attributes:
+      label: Proposal description
+      description: |
+        Will you tell us what you want as a new feature?
+      placeholder: |
+        Tell us what you want!
+    validations:
+      required: true
