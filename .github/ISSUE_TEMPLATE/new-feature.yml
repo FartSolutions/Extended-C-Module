@@ -3,13 +3,12 @@ description: Proposes a new feature.
 title: "[NEW]: "
 labels: ["enhancement"]
 projects: Fuerth-ORG/19
-assignees: 
 
 body:
   - type: markdown
-      attributes:
-        value: |
-          Thank you for taking the time to suggest another feature and for completing the form.
+    attributes:
+      value: |
+        Thank you for taking the time to suggest another feature and for completing the form.
 
   - type: input
     id: contact
