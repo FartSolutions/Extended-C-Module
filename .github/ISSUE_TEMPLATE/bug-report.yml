@@ -1,0 +1,46 @@
+name: Bug report
+description: 
+title: "[BUG]: "
+labels: ["bug"]
+projects: Fuerth-ORG/19
+
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+#      description: |
+      placeholder: |
+        Title...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+#      description: |
+      placeholder: |
+        Example: v1.0.0
+      value: v1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+#      description: |
+      placeholder: |
+        Example: core.h function/method/struct/... do_something()
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue description
+#      description: |
+#      placeholder: |
+    validations:
+      required: true
