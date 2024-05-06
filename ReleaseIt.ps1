@@ -10,7 +10,8 @@ $libraryNames = @(
 # Die Dateien, die für das Include-Release benötigt werden
 $incExtensions = @(
     ".h",
-    ".hpp"
+    ".hpp",
+	".inl"
 )
 #Konfiguration für Windows Release-Extensions
 $windowsReleaseExtensions = @(
@@ -77,7 +78,7 @@ function CopyAllFileExtensions {
         # Prüfe ob Copyright-Text hinzugefügt werden soll
         if ($copyrightSign -eq 1) {
             # Füge Copyright-Text hinzu
-            $srcFileContent = [IO.File]::ReadAllText($_.FullName);
+            $srcFileContent = [IO.File]::ReadAllText($_.FullName).Trim();
             $outContent = "/*`n" + $licenseText + "*/`n`n" + $srcFileContent;
             # Kopiere Datei
             Set-Content -Path $destinationPath -Value $outContent -Force;
@@ -110,7 +111,7 @@ function AddFullDirectoryToZip {
 # Kopiere die Include-Dateien
 foreach ($libName in $libraryNames) {
     Write-Host "Kopiere dateien von $libName"
-    CopyAllFileExtensions -path "libs\$libName\ecm" -targetPath "RELEASE\include\ecm" -extensions $incExtensions
+    CopyAllFileExtensions -path "libs\$libName\ecm" -targetPath "RELEASE\include\ecm" -extensions $incExtensions -copyrightSign 1
 }
 # Kopiere die Binaries und Packe die Release-Zips
 foreach ($release in $releases) {
