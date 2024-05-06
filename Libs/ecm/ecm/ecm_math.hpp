@@ -8,10 +8,11 @@
 #ifndef _ECM_MATH_HPP_
 #define _ECM_MATH_HPP_
 
-#include <ecm/math/vector2.h>
-#include <ecm/math/vector3.h>
-#include <ecm/math/vector4.h>
+#include "math/vector2.h"
+#include "math/vector3.h"
+#include "math/vector4.h"
 
-#include <ecm/math/matrix4x4.h>
+#include "math/matrix4x4.hpp"
+#include "math/matrix4x4.inl"
 
 #endif // !_ECM_MATH_HPP_
