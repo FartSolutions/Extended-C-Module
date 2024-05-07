@@ -1,4 +1,4 @@
-#include <ecm/math/Vector2.h>
+#include "vector2.hpp"
 
 namespace ecm::math
 {
