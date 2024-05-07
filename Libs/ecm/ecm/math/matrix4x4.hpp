@@ -102,7 +102,7 @@ namespace ecm::math
 		inline constexpr Matrix4x4(float32 val[16]);
 	};
 
-	__declspec(align(16)) struct ECM_API Matrix4x4A : public Matrix4x4
+	__declspec(align(16)) struct Matrix4x4A : public Matrix4x4
 	{
 		using Matrix4x4::Matrix4x4;
 	};

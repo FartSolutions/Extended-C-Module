@@ -53,7 +53,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector2();
+		inline constexpr Vector2();
 
 		/*
 		 * This is a constructor.
@@ -63,7 +63,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector2(float32 x, float32 y);
+		inline constexpr Vector2(float32 x, float32 y);
 
 		/*
 		 * This is a constructor.
@@ -72,7 +72,12 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector2(float32 coord[2]);
+		inline constexpr Vector2(float32 coord[2]);
+	};
+
+	__declspec(align(16)) struct Vector2A : public Vector2
+	{
+		using Vector2::Vector2;
 	};
 
 	/*
@@ -87,7 +92,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr bool operator==(
+	inline constexpr bool operator==(
 		const Vector2& left, const Vector2& right);
 	
 	/*
@@ -102,7 +107,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr bool operator!=(
+	inline constexpr bool operator!=(
 		const Vector2& left, const Vector2& right);
 
 	/*
@@ -119,7 +124,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2 operator+(
+	inline constexpr Vector2 operator+(
 		const Vector2& left, const Vector2& right);
 	
 	/*
@@ -136,7 +141,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2 operator-(
+	inline constexpr Vector2 operator-(
 		const Vector2& left, const Vector2& right);
 	
 	/*
@@ -154,7 +159,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2 operator*(
+	inline constexpr Vector2 operator*(
 		const Vector2& left, const Vector2& right);
 	
 	/*
@@ -171,7 +176,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2 operator/(
+	inline constexpr Vector2 operator/(
 		const Vector2& left, const Vector2& right);
 
 	/*
@@ -187,7 +192,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2& operator+=(
+	inline constexpr Vector2& operator+=(
 		Vector2& left, const Vector2& right);
 	
 	/*
@@ -203,7 +208,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2& operator-=(
+	inline constexpr Vector2& operator-=(
 		Vector2& left, const Vector2& right);
 	
 	/*
@@ -219,7 +224,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2& operator*=(
+	inline constexpr Vector2& operator*=(
 		Vector2& left, const Vector2& right);
 	
 	/*
@@ -235,7 +240,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector2
 	 */
-	extern ECM_API constexpr Vector2& operator/=(
+	inline constexpr Vector2& operator/=(
 		Vector2& left, const Vector2& right);
 
 	/*

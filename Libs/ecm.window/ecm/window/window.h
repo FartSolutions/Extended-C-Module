@@ -10,7 +10,7 @@
 
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
-#include <ecm/math/Vector2.h>
+#include <ecm/math/vector2.hpp>
 
 /*
  * \brief For SDL_Window from sdl2.dll.
