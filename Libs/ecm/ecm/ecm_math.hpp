@@ -9,11 +9,9 @@
 #define _ECM_MATH_HPP_
 
 #include "math/vector2.hpp"
-#include "math/vector2.inl"
-#include "math/vector3.h"
+#include "math/vector3.hpp"
 #include "math/vector4.h"
 
 #include "math/matrix4x4.hpp"
-#include "math/matrix4x4.inl"
 
 #endif // !_ECM_MATH_HPP_

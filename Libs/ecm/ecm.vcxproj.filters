@@ -16,7 +16,6 @@
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="source\color.cpp" />
     <ClCompile Include="ecm\math\vector2.inl" />
-    <ClCompile Include="source\math\vector3.cpp" />
     <ClCompile Include="source\math\vector4.cpp" />
     <ClCompile Include="ecm\math\matrix4x4.inl" />
   </ItemGroup>
@@ -35,11 +34,14 @@
     <ClInclude Include="ecm\ecm.hpp" />
     <ClInclude Include="ecm\math\vector2.hpp" />
     <ClInclude Include="ecm\ecm_math.hpp" />
-    <ClInclude Include="ecm\math\vector3.h" />
     <ClInclude Include="ecm\math\vector4.h" />
     <ClInclude Include="ecm\math\matrix4x4.hpp" />
+    <ClInclude Include="ecm\math\vector3.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ecm\math\vector3.inl" />
   </ItemGroup>
 </Project>

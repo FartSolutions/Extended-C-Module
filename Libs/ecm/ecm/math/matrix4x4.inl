@@ -1,3 +1,5 @@
+#pragma once
+
 #include "matrix4x4.hpp"
 
 namespace ecm::math

@@ -18,7 +18,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	struct ECM_API Matrix4x4
+	struct Matrix4x4
 	{
 		union
 		{
@@ -237,5 +237,7 @@ namespace ecm::math
 	inline constexpr Matrix4x4& operator*=(
 		Matrix4x4& left, const Matrix4x4& right);
 } // namespace ecm::math
+
+#include "matrix4x4.inl"
 
 #endif // !_ECM_MATRIX4X4_H_
