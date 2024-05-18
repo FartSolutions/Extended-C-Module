@@ -181,7 +181,6 @@
     <ClCompile Include="source\console.cpp" />
     <ClCompile Include="ecm\math\matrix4x4.inl" />
     <ClCompile Include="ecm\math\vector2.inl" />
-    <ClCompile Include="source\math\vector3.cpp" />
     <ClCompile Include="source\math\vector4.cpp" />
     <ClCompile Include="source\version.cpp" />
     <ClCompile Include="source\win32\dllmain.cpp" />
@@ -198,7 +197,7 @@
     <ClInclude Include="ecm\ecm_version.h" />
     <ClInclude Include="ecm\math\matrix4x4.hpp" />
     <ClInclude Include="ecm\math\vector2.hpp" />
-    <ClInclude Include="ecm\math\vector3.h" />
+    <ClInclude Include="ecm\math\vector3.hpp" />
     <ClInclude Include="ecm\math\vector4.h" />
     <ClInclude Include="ecm\types\color.h" />
     <ClInclude Include="ecm\types\id.h" />
@@ -207,6 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ecm.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ecm\math\vector3.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

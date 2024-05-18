@@ -18,7 +18,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	struct ECM_API Vector3
+	struct Vector3
 	{
 		enum Axis : uint8
 		{
@@ -46,7 +46,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector3();
+		inline constexpr Vector3();
 
 		/*
 		 * This is a constructor.
@@ -57,7 +57,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector3(float32 x, float32 y, float32 z);
+		inline constexpr Vector3(float32 x, float32 y, float32 z);
 
 		/*
 		 * This is a constructor.
@@ -66,7 +66,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector3(float32 coord[3]);
+		inline constexpr Vector3(float32 coord[3]);
 	};
 
 	/*
@@ -81,7 +81,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr bool operator==(
+	inline constexpr bool operator==(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -96,7 +96,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr bool operator!=(
+	inline constexpr bool operator!=(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -113,7 +113,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3 operator+(
+	inline constexpr Vector3 operator+(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -130,7 +130,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3 operator-(
+	inline constexpr Vector3 operator-(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -148,7 +148,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3 operator*(
+	inline constexpr Vector3 operator*(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -165,7 +165,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3 operator/(
+	inline constexpr Vector3 operator/(
 		const Vector3& left, const Vector3& right);
 
 	/*
@@ -181,7 +181,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3& operator+=(
+	inline constexpr Vector3& operator+=(
 		Vector3& left, const Vector3& right);
 
 	/*
@@ -197,7 +197,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3& operator-=(
+	inline constexpr Vector3& operator-=(
 		Vector3& left, const Vector3& right);
 
 	/*
@@ -213,7 +213,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3& operator*=(
+	inline constexpr Vector3& operator*=(
 		Vector3& left, const Vector3& right);
 
 	/*
@@ -229,8 +229,10 @@ namespace ecm::math
 	 *
 	 * \sa Vector3
 	 */
-	extern ECM_API constexpr Vector3& operator/=(
+	inline constexpr Vector3& operator/=(
 		Vector3& left, const Vector3& right);
 } // namespace ecm::math
+
+#include "vector3.inl"
 
 #endif // !_ECM_VECTOR3_H_

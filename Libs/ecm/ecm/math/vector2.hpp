@@ -18,7 +18,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	struct ECM_API Vector2
+	struct Vector2
 	{
 		enum Axis : uint8
 		{
@@ -250,5 +250,7 @@ namespace ecm::math
 	 */
 	using PointF = Vector2;
 } // namespace ecm::math
+
+#include "vector2.inl"
 
 #endif // !_ECM_VECTOR2_H_
