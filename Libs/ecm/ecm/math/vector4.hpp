@@ -18,7 +18,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	struct ECM_API Vector4
+	struct Vector4
 	{
 		enum Axis : uint8
 		{
@@ -49,7 +49,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector4();
+		inline constexpr Vector4();
 
 		/*
 		 * This is a constructor.
@@ -61,7 +61,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector4(float32 x, float32 y, float32 z, float32 w);
+		inline constexpr Vector4(float32 x, float32 y, float32 z, float32 w);
 
 		/*
 		 * This is a constructor.
@@ -70,7 +70,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector4(float32 coord[4]);
+		inline constexpr Vector4(float32 coord[4]);
 	};
 
 	/*
@@ -85,7 +85,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr bool operator==(
+	inline constexpr bool operator==(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -100,7 +100,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr bool operator!=(
+	inline constexpr bool operator!=(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -117,7 +117,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4 operator+(
+	inline constexpr Vector4 operator+(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -134,7 +134,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4 operator-(
+	inline constexpr Vector4 operator-(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -152,7 +152,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4 operator*(
+	inline constexpr Vector4 operator*(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -169,7 +169,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4 operator/(
+	inline constexpr Vector4 operator/(
 		const Vector4& left, const Vector4& right);
 
 	/*
@@ -185,7 +185,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4& operator+=(
+	inline constexpr Vector4& operator+=(
 		Vector4& left, const Vector4& right);
 
 	/*
@@ -201,7 +201,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4& operator-=(
+	inline constexpr Vector4& operator-=(
 		Vector4& left, const Vector4& right);
 
 	/*
@@ -217,7 +217,7 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4& operator*=(
+	inline constexpr Vector4& operator*=(
 		Vector4& left, const Vector4& right);
 
 	/*
@@ -233,8 +233,10 @@ namespace ecm::math
 	 *
 	 * \sa Vector4
 	 */
-	extern ECM_API constexpr Vector4& operator/=(
+	inline constexpr Vector4& operator/=(
 		Vector4& left, const Vector4& right);
 } // namespace ecm::math
+
+#include "vector4.inl"
 
 #endif // !_ECM_VECTOR4_H_

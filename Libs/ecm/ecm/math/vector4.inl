@@ -1,4 +1,6 @@
-#include <ecm/math/vector4.h>
+#pragma once
+
+#include "vector4.hpp"
 
 namespace ecm::math
 {
