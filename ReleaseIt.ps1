@@ -1,6 +1,7 @@
 ################################################################################
 # Configs
 
+$libVersion = "1.0";
 $libraryNames = @(
     "ecm",
     "ecm.algorithm",
@@ -21,8 +22,32 @@ $windowsReleaseExtensions = @(
 # Konfiguration für Platformunabhängige Releaseordner
 $releases = @(
     @{
+        "name"              = "includes";
+        "zipFile"           = ".\RELEASE\ecm-$libVersion-includes.7z";
+        "src_dir"           = "";
+        "src_extensions"    = @();
+        "dirs" = @(
+            ".\RELEASE\include\"
+        )
+    }, @{
         "name"              = "win32_x64";
-        "zipfile"           = ".\RELEASE\ecm_win32_x64_full.7z";
+        "zipfile"           = ".\RELEASE\ecm-$libVersion-win32-x64.7z";
+        "src_dir"           = "Release-x64\";
+        "src_extensions"    = $windowsReleaseExtensions;
+        "dirs" = @(
+            ".\RELEASE\Release-x64\"
+        )
+    }, @{
+        "name"              = "win32_x86";
+        "zipfile"           = ".\RELEASE\ecm-$libVersion-win32-x86.7z";
+        "src_dir"           = "Release-Win32\";
+        "src_extensions"    = $windowsReleaseExtensions;
+        "dirs" = @(
+            ".\RELEASE\Release-Win32\"
+        )
+    }, @{
+        "name"              = "win32_x64_dev";
+        "zipfile"           = ".\RELEASE\ecm-$libVersion-dev-win32-x64.7z";
         "src_dir"           = "Release-x64\";
         "src_extensions"    = $windowsReleaseExtensions;
         "dirs" = @(
@@ -30,8 +55,8 @@ $releases = @(
             ".\RELEASE\include\"
         )
     }, @{
-        "name"              = "win32_x86";
-        "zipfile"           = ".\RELEASE\ecm_win32_x86_full.7z";
+        "name"              = "win32_x86_dev";
+        "zipfile"           = ".\RELEASE\ecm-$libVersion-dev-win32-x86.7z";
         "src_dir"           = "Release-Win32\";
         "src_extensions"    = $windowsReleaseExtensions;
         "dirs" = @(
