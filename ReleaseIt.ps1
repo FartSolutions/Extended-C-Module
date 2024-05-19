@@ -117,6 +117,7 @@ foreach ($libName in $libraryNames) {
 foreach ($release in $releases) {
     $srcDir = $release.src_dir
     $zipFile = $release.zipfile
+    Remove-Item -Path $zipfile
     CopyAllFileExtensions -path $srcDir -targetPath "RELEASE\$srcDir" -extensions $release.src_extensions
     foreach ($dir in $release.dirs) {
         AddFullDirectoryToZip -zipFile $zipFile -dir $dir
