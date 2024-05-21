@@ -244,6 +244,139 @@ namespace ecm::math
 		Vector2& left, const Vector2& right);
 
 	/*
+	 * This operator creates an new Vector2 object, calculates the addition of a
+	 * Vector2 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector2 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2 operator+(
+		const Vector2& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector2 object, calculates the subtracting of a
+	 * Vector2 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector2 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2 operator-(
+		const Vector2& left, const float32& right);
+
+	/*
+	 * This operator creates an new Vector2 object, calculates the
+	 * multiplication of a Vector2 object and a Float32 object, left and right
+	 * component-wise and returns the newly created object.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector2 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2 operator*(
+		const Vector2& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector2 object, calculates the division of a
+	 * Vector2 object and a Float32 object, left and right component by
+	 * component and returns the newly created object.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector2 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2 operator/(
+		const Vector2& left, const float32& right);
+
+	/*
+	 * This operator adds a Float32 object to a Vector2 object, left and right
+	 * together and returns the new value of left.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2& operator+=(
+		Vector2& left, float32& right);
+
+	/*
+	 * This operator subtracts a Float32 object from a Vector2 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2& operator-=(
+		Vector2& left, float32& right);
+
+	/*
+	 * This operator multiplies a Float32 object with a Vector2 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2& operator*=(
+		Vector2& left, float32& right);
+
+	/*
+	 * This operator devides a Float32 object with a Vector2 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector2 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2
+	 */
+	inline constexpr Vector2& operator/=(
+		Vector2& left, float32& right);
+
+	/*
 	 * This structure represents a 2d position.
 	 *
 	 * \since v1.0.0
