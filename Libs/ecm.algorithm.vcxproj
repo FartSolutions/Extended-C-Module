@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{49a18b56-b187-4f1e-ae63-c2d2a9a51bba}</ProjectGuid>
-    <RootNamespace>ecmwindow</RootNamespace>
+    <ProjectGuid>{94053112-848b-47e9-86e1-2b67e9452863}</ProjectGuid>
+    <RootNamespace>ecmalgorithm</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,13 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)32</TargetName>
+    <IntDir>$(SolutionDir)temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
     <TargetName>$(ProjectName)32</TargetName>
+    <IntDir>$(SolutionDir)temp\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Configuration)-$(Platform)\</OutDir>
@@ -92,14 +92,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ECM_WIN_DYNAMIC_EXPORT;WIN32;_DEBUG;ECMWINDOW_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECM_ALG_DYNAMIC_EXPORT;WIN32;_DEBUG;ECMALGORITHM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -114,14 +114,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ECM_WIN_DYNAMIC_EXPORT;WIN32;NDEBUG;ECMWINDOW_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECM_ALG_DYNAMIC_EXPORT;WIN32;NDEBUG;ECMALGORITHM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,14 +136,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ECM_WIN_DYNAMIC_EXPORT;_DEBUG;ECMWINDOW_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECM_ALG_DYNAMIC_EXPORT;_DEBUG;ECMALGORITHM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,14 +158,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>ECM_WIN_DYNAMIC_EXPORT;NDEBUG;ECMWINDOW_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECM_ALG_DYNAMIC_EXPORT;NDEBUG;ECMALGORITHM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\ecm\;$(SolutionDir)Libs\ecm.algorithm\;$(SolutionDir)Libs\ecm.window\</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(SolutionDir)vendor\;$(SolutionDir)Libs\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -177,22 +177,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="source\window.cpp" />
+    <ClCompile Include="source\algorithm\random.cpp" />
+    <ClCompile Include="source\win32\dllmain_ecm.algorithm.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ecm\ecm_window.hpp" />
-    <ClInclude Include="ecm\window\events.h" />
-    <ClInclude Include="ecm\window\window.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="ecm\algorithm\random.h" />
+    <ClInclude Include="rsc\ecm.algorithm.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ecm.window.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ecm\ecm.vcxproj">
-      <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
-    </ProjectReference>
+    <ResourceCompile Include="rsc\ecm.algorithm.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

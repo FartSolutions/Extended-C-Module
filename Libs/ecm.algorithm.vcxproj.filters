@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="source\win32\dllmain.cpp" />
-    <ClCompile Include="source\random.cpp" />
+    <ClCompile Include="source\win32\dllmain_ecm.algorithm.cpp" />
+    <ClCompile Include="source\algorithm\random.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="rsc\ecm.algorithm.h" />
     <ClInclude Include="ecm\algorithm\random.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ecm.algorithm.rc" />
+    <ResourceCompile Include="rsc\ecm.algorithm.rc" />
   </ItemGroup>
 </Project>
