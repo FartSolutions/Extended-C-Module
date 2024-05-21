@@ -1,6 +1,6 @@
 # VisualStudio
 .vs/
-tmep*/
+temp*/
 [Dd]ebug*/
 [Rr]elease*/
 *.exp
