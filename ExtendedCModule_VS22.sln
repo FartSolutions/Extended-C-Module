@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{32
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{25980BF8-0D7A-4EF6-B935-CEEE06CC2240}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm", "Libs\ecm\ecm.vcxproj", "{B2EE1486-2DD9-441C-8C02-A27280A38B13}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm", "Libs\ecm.vcxproj", "{B2EE1486-2DD9-441C-8C02-A27280A38B13}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApps\TestApp\TestApp.vcxproj", "{1D812071-3CC7-4747-B087-E3FDDF3F476D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.algorithm", "Libs\ecm.algorithm\ecm.algorithm.vcxproj", "{94053112-848B-47E9-86E1-2B67E9452863}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.algorithm", "Libs\ecm.algorithm.vcxproj", "{94053112-848B-47E9-86E1-2B67E9452863}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.window", "Libs\ecm.window\ecm.window.vcxproj", "{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.window", "Libs\ecm.window.vcxproj", "{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

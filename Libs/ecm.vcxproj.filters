@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="source\win32\dllmain_ecm.cpp" />
+    <ClCompile Include="source\version.cpp" />
+    <ClCompile Include="source\console.cpp" />
+    <ClCompile Include="source\color.cpp" />
+    <ClCompile Include="ecm\math\vector2.inl" />
+    <ClCompile Include="ecm\math\vector4.inl" />
+    <ClCompile Include="ecm\math\matrix4x4.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rsc\ecm.h" />
+    <ClInclude Include="ecm\ecm_api.h" />
+    <ClInclude Include="ecm\ecm_configs.h" />
+    <ClInclude Include="ecm\types\stdtypes.h" />
+    <ClInclude Include="ecm\ecm_types.hpp" />
+    <ClInclude Include="ecm\ecm_version.h" />
+    <ClInclude Include="ecm\container\vector.hpp" />
+    <ClInclude Include="ecm\container\iterator.hpp" />
+    <ClInclude Include="ecm\ecm_console.h" />
+    <ClInclude Include="ecm\types\color.h" />
+    <ClInclude Include="ecm\types\id.h" />
+    <ClInclude Include="ecm\ecm.hpp" />
+    <ClInclude Include="ecm\math\vector2.hpp" />
+    <ClInclude Include="ecm\ecm_math.hpp" />
+    <ClInclude Include="ecm\math\vector4.hpp" />
+    <ClInclude Include="ecm\math\matrix4x4.hpp" />
+    <ClInclude Include="ecm\math\vector3.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rsc\ecm.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ecm\math\vector3.inl" />
+  </ItemGroup>
+</Project>
