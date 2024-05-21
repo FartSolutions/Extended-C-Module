@@ -88,4 +88,60 @@ namespace ecm::math
 		left = left / right;
 		return left;
 	}
+
+	constexpr Vector2 operator+(const Vector2& left, const float32& right)
+	{
+		Vector2 vec{};
+		vec.x = left.x + right;
+		vec.x = left.y + right;
+		return vec;
+	}
+
+	constexpr Vector2 operator-(const Vector2& left, const float32& right)
+	{
+		Vector2 vec{};
+		vec.x = left.x - right;
+		vec.x = left.y - right;
+		return vec;
+	}
+
+	constexpr Vector2 operator*(const Vector2& left, const float32& right)
+	{
+		Vector2 vec{};
+		vec.x = left.x * right;
+		vec.x = left.y * right;
+		return vec;
+	}
+
+	constexpr Vector2 operator/(const Vector2& left, const float32& right)
+	{
+		Vector2 vec{};
+		vec.x = left.x / right;
+		vec.x = left.y / right;
+		return vec;
+	}
+
+	constexpr Vector2 operator+=(Vector2& left, const float32& right)
+	{
+		left = left + right;
+		return left;
+	}
+
+	constexpr Vector2 operator-=(Vector2& left, const float32& right)
+	{
+		left = left - right;
+		return left;
+	}
+
+	constexpr Vector2 operator*=(Vector2& left, const float32& right)
+	{
+		left = left * right;
+		return left;
+	}
+
+	constexpr Vector2 operator/=(Vector2& left, const float32& right)
+	{
+		left = left / right;
+		return left;
+	}
 } // namespace ecm::math
