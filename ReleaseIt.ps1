@@ -2,17 +2,15 @@
 # Configs
 
 $libVersion = "1.0";
-$libraryNames = @(
-    "ecm",
-    "ecm.algorithm",
-    "ecm.window"#,
-    #"ecm.graphics"
-)
 # Die Dateien, die für das Include-Release benötigt werden
 $incExtensions = @(
     ".h",
     ".hpp",
 	".inl"
+)
+$srcExtensions = @(
+    ".c",
+    ".cpp"
 )
 #Konfiguration für Windows Release-Extensions
 $windowsReleaseExtensions = @(
@@ -134,10 +132,11 @@ function AddFullDirectoryToZip {
 # Application
 
 # Kopiere die Include-Dateien
-foreach ($libName in $libraryNames) {
-    Write-Host "Kopiere dateien von $libName"
-    CopyAllFileExtensions -path "libs\$libName\ecm" -targetPath "RELEASE\include\ecm" -extensions $incExtensions -copyrightSign 1
-}
+Write-Host "Copy include files..."
+CopyAllFileExtensions -path "libs\ecm" -targetPath "RELEASE\include\ecm" -extensions $incExtensions -copyrightSign 1
+# Kopiere die Source-Dateien
+Write-Host "Copy source files..."
+CopyAllFileExtensions -path "libs\source" -targetPath "RELEASE\source" -extensions $srcExtensions -copyrightSign 1
 # Kopiere die Binaries und Packe die Release-Zips
 foreach ($release in $releases) {
     $srcDir = $release.src_dir
@@ -147,6 +146,7 @@ foreach ($release in $releases) {
     foreach ($dir in $release.dirs) {
         AddFullDirectoryToZip -zipFile $zipFile -dir $dir
     }
+    AddFileToZip -zipFile $zipFile -file "LICENSE"
 }
 
 Write-Host "`nRelease-Tool vollständig durchgelaufen"
