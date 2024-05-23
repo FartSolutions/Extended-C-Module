@@ -95,4 +95,64 @@ namespace ecm::math
 		left = left / right;
 		return left;
 	}
+
+	constexpr Vector3 operator+(const Vector3& left, const float32& right)
+	{
+		Vector3 vec{};
+		vec.x = left.x + right;
+		vec.y = left.y + right;
+		vec.z = left.z + right;
+		return vec;
+	}
+
+	constexpr Vector3 operator-(const Vector3& left, const float32& right)
+	{
+		Vector3 vec{};
+		vec.x = left.x - right;
+		vec.y = left.y - right;
+		vec.z = left.z - right;
+		return vec;
+	}
+
+	constexpr Vector3 operator*(const Vector3& left, const float32& right)
+	{
+		Vector3 vec{};
+		vec.x = left.x * right;
+		vec.y = left.y * right;
+		vec.z = left.z * right;
+		return vec;
+	}
+
+	constexpr Vector3 operator/(const Vector3& left, const float32& right)
+	{
+		Vector3 vec{};
+		vec.x = left.x / right;
+		vec.y = left.y / right;
+		vec.z = left.z / right;
+		return vec;
+	}
+
+	constexpr Vector3 operator+=(Vector3& left, const float32& right)
+	{
+		left = left + right;
+		return left;
+	}
+
+	constexpr Vector3 operator-=(Vector3& left, const float32& right)
+	{
+		left = left - right;
+		return left;
+	}
+
+	constexpr Vector3 operator*=(Vector3& left, const float32& right)
+	{
+		left = left * right;
+		return left;
+	}
+
+	constexpr Vector3 operator/=(Vector3& left, const float32& right)
+	{
+		left = left / right;
+		return left;
+	}
 } // namespace ecm::math

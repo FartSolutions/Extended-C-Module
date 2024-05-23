@@ -69,11 +69,16 @@ namespace ecm::math
 		inline constexpr Vector3(float32 coord[3]);
 	};
 
+	__declspec(align(16)) struct Vector3A : public Vector3
+	{
+		using Vector3::Vector3;
+	};
+
 	/*
 	 * This operator checks if the two Vector3 are the same.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns true if left is same as right, or false if not.
 	 *
@@ -88,7 +93,7 @@ namespace ecm::math
 	 * This operator checks if the two Vector3 are not the same.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns true if left is not same as right, or false.
 	 *
@@ -105,7 +110,7 @@ namespace ecm::math
 	 * created object.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns A new Vector3 object, which is the sum of left and right.
 	 *
@@ -122,7 +127,7 @@ namespace ecm::math
 	 * created object.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns A new Vector3 object calculated by subtracting left by right.
 	 *
@@ -139,7 +144,7 @@ namespace ecm::math
 	 * returns the newly created object.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns A new Vector3 object, which is the multiplicate of left and
 	 *          right.
@@ -157,7 +162,7 @@ namespace ecm::math
 	 * newly created object.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns A new Vector3 object calculated by divide left by right.
 	 *
@@ -173,7 +178,7 @@ namespace ecm::math
 	 * returns the new value of left.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -189,7 +194,7 @@ namespace ecm::math
 	 * and returns the new value of left.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -205,7 +210,7 @@ namespace ecm::math
 	 * and returns the new value of left.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -221,7 +226,7 @@ namespace ecm::math
 	 * returns the new value of left.
 	 *
 	 * \param left Left Vector3 operand.
-	 * \param left right Vector3 operand.
+	 * \param right Right Vector3 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -231,6 +236,139 @@ namespace ecm::math
 	 */
 	inline constexpr Vector3& operator/=(
 		Vector3& left, const Vector3& right);
+
+	/*
+	 * This operator creates an new Vector3 object, calculates the addition of a
+	 * Vector3 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3 operator+(
+		const Vector3& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector3 object, calculates the subtracting of a
+	 * Vector3 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3 operator-(
+		const Vector3& left, const float32& right);
+
+	/*
+	 * This operator creates an new Vector3 object, calculates the
+	 * multiplication of a Vector3 object and a Float32 object, left and right
+	 * component-wise and returns the newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3 operator*(
+		const Vector3& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector3 object, calculates the division of a
+	 * Vector3 object and a Float32 object, left and right component by
+	 * component and returns the newly created object.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3 operator/(
+		const Vector3& left, const float32& right);
+
+	/*
+	 * This operator adds a Float32 object to a Vector3 object, left and right
+	 * together and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3& operator+=(
+		Vector3& left, float32& right);
+
+	/*
+	 * This operator subtracts a Float32 object from a Vector3 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3& operator-=(
+		Vector3& left, float32& right);
+
+	/*
+	 * This operator multiplies a Float32 object with a Vector3 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3& operator*=(
+		Vector3& left, float32& right);
+
+	/*
+	 * This operator devides a Float32 object with a Vector3 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector3 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3
+	 */
+	inline constexpr Vector3& operator/=(
+		Vector3& left, float32& right);
 } // namespace ecm::math
 
 #include "vector3.inl"
