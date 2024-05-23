@@ -93,7 +93,7 @@ namespace ecm::math
 	{
 		Vector2 vec{};
 		vec.x = left.x + right;
-		vec.x = left.y + right;
+		vec.y = left.y + right;
 		return vec;
 	}
 
@@ -101,7 +101,7 @@ namespace ecm::math
 	{
 		Vector2 vec{};
 		vec.x = left.x - right;
-		vec.x = left.y - right;
+		vec.y = left.y - right;
 		return vec;
 	}
 
@@ -109,7 +109,7 @@ namespace ecm::math
 	{
 		Vector2 vec{};
 		vec.x = left.x * right;
-		vec.x = left.y * right;
+		vec.y = left.y * right;
 		return vec;
 	}
 
@@ -117,7 +117,7 @@ namespace ecm::math
 	{
 		Vector2 vec{};
 		vec.x = left.x / right;
-		vec.x = left.y / right;
+		vec.y = left.y / right;
 		return vec;
 	}
 
