@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.algorithm", "Libs\ecm.a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.window", "Libs\ecm.window.vcxproj", "{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ecm.math", "Libs\ecm.math.vcxproj", "{E86FB754-590E-4D28-B5BB-BE344AC043B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -55,6 +57,14 @@ Global
 		{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}.Release|x64.Build.0 = Release|x64
 		{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}.Release|x86.ActiveCfg = Release|Win32
 		{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA}.Release|x86.Build.0 = Release|Win32
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Debug|x64.ActiveCfg = Debug|x64
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Debug|x64.Build.0 = Debug|x64
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Debug|x86.ActiveCfg = Debug|Win32
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Debug|x86.Build.0 = Debug|Win32
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Release|x64.ActiveCfg = Release|x64
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Release|x64.Build.0 = Release|x64
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Release|x86.ActiveCfg = Release|Win32
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +74,7 @@ Global
 		{1D812071-3CC7-4747-B087-E3FDDF3F476D} = {32F7E4A6-FC11-4D79-B824-B54FD9AB31A9}
 		{94053112-848B-47E9-86E1-2B67E9452863} = {25980BF8-0D7A-4EF6-B935-CEEE06CC2240}
 		{49A18B56-B187-4F1E-AE63-C2D2A9A51BBA} = {25980BF8-0D7A-4EF6-B935-CEEE06CC2240}
+		{E86FB754-590E-4D28-B5BB-BE344AC043B4} = {25980BF8-0D7A-4EF6-B935-CEEE06CC2240}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B6EB90A-279D-4E4B-A044-2093628F28FE}
