@@ -77,7 +77,7 @@ namespace ecm::math
 	 * This operator checks if the two Vector4 are the same.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns true if left is same as right, or false if not.
 	 *
@@ -92,7 +92,7 @@ namespace ecm::math
 	 * This operator checks if the two Vector4 are not the same.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns true if left is not same as right, or false.
 	 *
@@ -109,7 +109,7 @@ namespace ecm::math
 	 * created object.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns A new Vector4 object, which is the sum of left and right.
 	 *
@@ -126,7 +126,7 @@ namespace ecm::math
 	 * created object.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns A new Vector4 object calculated by subtracting left by right.
 	 *
@@ -143,7 +143,7 @@ namespace ecm::math
 	 * returns the newly created object.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns A new Vector4 object, which is the multiplicate of left and
 	 *          right.
@@ -161,7 +161,7 @@ namespace ecm::math
 	 * newly created object.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns A new Vector4 object calculated by divide left by right.
 	 *
@@ -177,7 +177,7 @@ namespace ecm::math
 	 * returns the new value of left.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -193,7 +193,7 @@ namespace ecm::math
 	 * and returns the new value of left.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -209,7 +209,7 @@ namespace ecm::math
 	 * and returns the new value of left.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -225,7 +225,7 @@ namespace ecm::math
 	 * returns the new value of left.
 	 *
 	 * \param left Left Vector4 operand.
-	 * \param left right Vector4 operand.
+	 * \param right Right Vector4 operand.
 	 *
 	 * \returns After calculation reference to left.
 	 *
@@ -235,6 +235,139 @@ namespace ecm::math
 	 */
 	inline constexpr Vector4& operator/=(
 		Vector4& left, const Vector4& right);
+
+	/*
+	 * This operator creates an new Vector4 object, calculates the addition of a
+	 * Vector4 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4 operator+(
+		const Vector4& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector4 object, calculates the subtracting of a
+	 * Vector4 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4 operator-(
+		const Vector4& left, const float32& right);
+
+	/*
+	 * This operator creates an new Vector4 object, calculates the
+	 * multiplication of a Vector4 object and a Float32 object, left and right
+	 * component-wise and returns the newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4 operator*(
+		const Vector4& left, const float32& right);
+
+	/*
+	 * This operator creates a new Vector4 object, calculates the division of a
+	 * Vector4 object and a Float32 object, left and right component by
+	 * component and returns the newly created object.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4 operator/(
+		const Vector4& left, const float32& right);
+
+	/*
+	 * This operator adds a Float32 object to a Vector4 object, left and right
+	 * together and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4& operator+=(
+		Vector4& left, float32& right);
+
+	/*
+	 * This operator subtracts a Float32 object from a Vector4 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4& operator-=(
+		Vector4& left, float32& right);
+
+	/*
+	 * This operator multiplies a Float32 object with a Vector4 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4& operator*=(
+		Vector4& left, float32& right);
+
+	/*
+	 * This operator devides a Float32 object with a Vector4 object, left and
+	 * right together and returns the new value of left.
+	 *
+	 * \param left Left Vector4 operand.
+	 * \param right Right Float32 operand.
+	 *
+	 * \returns After calculation reference to left.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4
+	 */
+	inline constexpr Vector4& operator/=(
+		Vector4& left, float32& right);
 } // namespace ecm::math
 
 #include "vector4.inl"

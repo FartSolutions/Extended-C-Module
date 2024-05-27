@@ -103,4 +103,68 @@ namespace ecm::math
 		left = left / right;
 		return left;
 	}
+
+	constexpr Vector4 operator+(const Vector4& left, const float32& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x + right;
+		vec.y = left.y + right;
+		vec.z = left.z + right;
+		vec.w = left.w + right;
+		return vec;
+	}
+
+	constexpr Vector4 operator-(const Vector4& left, const float32& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x - right;
+		vec.y = left.y - right;
+		vec.z = left.z - right;
+		vec.w = left.w - right;
+		return vec;
+	}
+
+	constexpr Vector4 operator*(const Vector4& left, const float32& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x * right;
+		vec.y = left.y * right;
+		vec.z = left.z * right;
+		vec.w = left.w * right;
+		return vec;
+	}
+
+	constexpr Vector4 operator/(const Vector4& left, const float32& right)
+	{
+		Vector4 vec{};
+		vec.x = left.x / right;
+		vec.y = left.y / right;
+		vec.z = left.z / right;
+		vec.w = left.w / right;
+		return vec;
+	}
+
+	constexpr Vector4 operator+=(Vector4& left, const float32& right)
+	{
+		left = left + right;
+		return left;
+	}
+
+	constexpr Vector4 operator-=(Vector4& left, const float32& right)
+	{
+		left = left - right;
+		return left;
+	}
+
+	constexpr Vector4 operator*=(Vector4& left, const float32& right)
+	{
+		left = left * right;
+		return left;
+	}
+
+	constexpr Vector4 operator/=(Vector4& left, const float32& right)
+	{
+		left = left / right;
+		return left;
+	}
 } // namespace ecm::math
