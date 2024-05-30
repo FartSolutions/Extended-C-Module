@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</ProjectGuid>
+    <ProjectGuid>{E86FB754-590E-4D28-B5BB-BE344AC043B4}</ProjectGuid>
     <RootNamespace>ecm_math</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
