@@ -8,6 +8,8 @@
 #ifndef _ECM_MATH_HPP_
 #define _ECM_MATH_HPP_
 
+#include "math/functions.hpp"
+
 #include "math/vector2.hpp"
 #include "math/vector3.hpp"
 #include "math/vector4.hpp"
