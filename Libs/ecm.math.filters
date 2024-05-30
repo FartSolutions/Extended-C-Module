@@ -13,4 +13,7 @@
     <None Include="ecm\math\vector3.inl" />
     <None Include="ecm\math\vector4.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rsc\ecm.math.rc" />
+  </ItemGroup>
 </Project>
