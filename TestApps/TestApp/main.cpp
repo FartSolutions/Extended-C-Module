@@ -160,6 +160,7 @@ void test_Math()
 	}
 
 	ecm::uint64 fact{ ecm::math::Fact(2536) };
+	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
 }
 
 int main()
