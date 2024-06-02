@@ -178,12 +178,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_math.hpp" />
+    <ClInclude Include="ecm\math\functions.hpp" />
     <ClInclude Include="ecm\math\matrix4x4.hpp" />
     <ClInclude Include="ecm\math\vector2.hpp" />
     <ClInclude Include="ecm\math\vector3.hpp" />
     <ClInclude Include="ecm\math\vector4.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ecm\math\functions.inl" />
     <None Include="ecm\math\matrix4x4.inl" />
     <None Include="ecm\math\vector2.inl" />
     <None Include="ecm\math\vector3.inl" />
