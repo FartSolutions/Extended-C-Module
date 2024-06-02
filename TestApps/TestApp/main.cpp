@@ -158,6 +158,9 @@ void test_Math()
 		mat1 *= mat1;
 		ecm::console::WriteLine("Upps, da passt was nicht!");
 	}
+
+	ecm::uint64 fact{ ecm::math::Fact(2536) };
+	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
 }
 
 int main()
