@@ -14,23 +14,42 @@
 namespace ecm::math
 {
 	/*
+	 * This function calculates the absolute value of a given input.
 	 *
+	 * \param x Input value of type _Ty.
 	 *
-	 * \param n
+	 * \returns The absolute value of the input x.
 	 *
-	 * \return uint64
+	 * \since v1.0.0
 	 */
-	inline constexpr uint64 Fact(int32 n);
+	template<typename _Ty>
+	inline _Ty ECM_CALL Abs(_Ty const x) noexcept;
 
 	/*
+	 * This function calculates the factorial of a given input.
 	 *
+	 * \param n Input value of type _Ty.
 	 *
-	 * \param base
-	 * \param expo
+	 * \returns The factorial of the input n.
 	 *
-	 * \return float128
+	 * \since v1.0.0
 	 */
-	inline constexpr float128 Pow(float128 base, int32 expo);
+	template<typename _Ty>
+	inline _Ty ECM_CALL Fact(_Ty const n) noexcept;
+
+	/*
+	 * This function calculates the power of a base raised to an exponent.
+	 *
+	 * \param base The base value of type _Ty_Base.
+	 * \param exp The exponent value of type _Ty_Exp.
+	 *
+	 * \returns The result of raising base to the power of exp.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename _Ty_Base, typename _Ty_Exp>
+	inline _Ty_Base ECM_CALL Pow(_Ty_Base const base,
+		_Ty_Exp const exp) noexcept;
 } // namespace ecm::math
 
 #include "functions.inl"
