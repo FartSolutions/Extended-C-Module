@@ -20,6 +20,7 @@
 #define ECM_BIT(x) (1 << x)
 #define ECM_ASSERT(ex) assert(ex)
 #define ECM_NODISCARD [[nodiscard]]
+#define ECM_CALL __cdecl
 
 #if ECM_DEBUG
 #define ECM_DEBUGOP(op) op

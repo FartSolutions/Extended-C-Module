@@ -159,7 +159,12 @@ void test_Math()
 		ecm::console::WriteLine("Upps, da passt was nicht!");
 	}
 
-	ecm::uint64 fact{ ecm::math::Fact(2536) };
+	ecm::int8 abs1{ ecm::math::Abs<ecm::int8>(-108) };
+	ecm::int16 abs2{ ecm::math::Abs<ecm::int16>(-1286) };
+	ecm::int32 abs3{ ecm::math::Abs(-12839566) };
+	ecm::int64 abs4{ ecm::math::Abs(-12873565635685) };
+
+	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(2536) };
 	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
 }
 
