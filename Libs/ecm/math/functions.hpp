@@ -26,6 +26,19 @@ namespace ecm::math
 	inline _Ty ECM_CALL Abs(_Ty const x) noexcept;
 
 	/*
+	 * This function truncates the decimal part of the number and returns the
+	 * integer part.
+	 *
+	 * \param x The input value to be truncated.
+	 *
+	 * \returns The truncated integer part of the input value.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename _Ty>
+	inline _Ty ECM_CALL Trunc(_Ty const x) noexcept;
+
+	/*
 	 * This function calculates the factorial of a given input.
 	 *
 	 * \param n Input value of type _Ty.
@@ -50,6 +63,20 @@ namespace ecm::math
 	template<typename _Ty_Base, typename _Ty_Exp>
 	inline _Ty_Base ECM_CALL Pow(_Ty_Base const base,
 		_Ty_Exp const exp) noexcept;
+
+	/*
+	 * Computes the floating-point remainder of the division operation x/y.
+	 *
+	 * \param x The dividend in the division operation.
+	 * \param y The divisor in the division operation.
+	 *
+	 * \returns The reminder of the division operation x/y.
+	 *          If the divisor y is less than 0, returns a QuietNaN.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename _Ty>
+	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
 } // namespace ecm::math
 
 #include "functions.inl"

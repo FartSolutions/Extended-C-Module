@@ -143,6 +143,7 @@ void test_vector(_Ty v1, _Ty v2)
 	test_vec2d6 /= 3.f;
 }
 
+#pragma comment(lib, "sdl2.lib")
 void test_Math()
 {
 	test_vector<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
@@ -166,6 +167,9 @@ void test_Math()
 
 	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(2536) };
 	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
+	std::cout << "My: " << pow << ", SDLs: " << SDL_pow(21.4, 5) << std::endl;
+	ecm::float128 fmod{ ecm::math::Fmod(21.4, 54.8) };
+	std::cout << "My: " << fmod << ", SDLs: " << SDL_fmod(21.4, 54.8) << std::endl;
 }
 
 int main()
