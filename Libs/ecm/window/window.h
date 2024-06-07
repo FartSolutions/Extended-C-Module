@@ -233,4 +233,5 @@ namespace ecm
 	 */
 	extern ECM_WIN_API void DestroyWindow(Window& window);
 } // namespace ecm
+
 #endif // !_ECM_WINDOW_H_

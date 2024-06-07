@@ -9,6 +9,7 @@
     <ClInclude Include="ecm\ecm_window.hpp" />
     <ClInclude Include="ecm\window\window.h" />
     <ClInclude Include="ecm\window\events.h" />
+    <ClInclude Include="ecm\window\context.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsc\ecm.window.rc" />

@@ -102,20 +102,75 @@ void test_ConsoleSystem()
 	ec::WriteLine();
 }
 
+#include <SDL2/SDL.h>
 void test_WindowSystem()
 {
+	class SDLRendererContext : public ecm::ContextBase
+	{
+	public:
+		SDLRendererContext() {}
+		~SDLRendererContext() {}
+
+		virtual void Initialize(const ecm::Window window) override {
+			_rendererContext = SDL_CreateRenderer((SDL_Window*)window.GetHandle(), -1, SDL_RENDERER_ACCELERATED);
+		}
+		virtual void Shutdown() override {
+			SDL_DestroyRenderer(static_cast<SDL_Renderer*>(_rendererContext));
+		}
+
+		virtual void ClearBuffers() override {
+			SDL_SetRenderDrawColor(static_cast<SDL_Renderer*>(_rendererContext),
+				_color.r, _color.g, _color.b, _color.a);
+			SDL_RenderClear(static_cast<SDL_Renderer*>(_rendererContext));
+		}
+		virtual void SwapBuffers() override {
+			SDL_RenderPresent(static_cast<SDL_Renderer*>(_rendererContext));
+		}
+
+		virtual void SetColor(const ecm::ColorF& color) override {
+			_color = color.ToRGBA8888();
+		}
+		virtual void SetVsync(const ecm::int32 vsyncMode) override {
+			_vsync = vsyncMode;
+			ecm::int32 vsync{ 0 };
+			if (vsyncMode == ecm::VSYNC_ENABLED) vsync = 1;
+			SDL_RenderSetVSync(static_cast<SDL_Renderer*>(_rendererContext), vsync);
+		}
+		virtual void SetViewport(const ecm::math::Vector2& size, const ecm::math::Vector2& pos) override {
+			SDL_Rect rc{};
+			rc.x = (int)pos.x;
+			rc.y = (int)pos.y;
+			rc.w = (int)size.width;
+			rc.h = (int)size.height;
+			SDL_RenderSetViewport(static_cast<SDL_Renderer*>(_rendererContext), &rc);
+		}
+	private:
+		void* _rendererContext = nullptr;
+		ecm::Color _color{ 0x0 };
+		ecm::int32 _vsync = 0;
+	};
+
 	ecm::Window window = ecm::CreateWindow(
 		"Test window", 
 		{ 800, 600 }, 
 		ecm::WINDOWFLAG_RESIZABLE, 
 		ecm::WINDOWMODE_SHOWN);
-
+	SDLRendererContext* context = new SDLRendererContext();
+	context->Initialize(window);
+	context->SetColor(ecm::ColorF(0x00ff00ff));
+	context->SetVsync(ecm::VSYNC_ENABLED);
+	
 	while (!window.IsClosed())
 	{
 		ecm::Event e{};
 		while (ecm::PollEvent(e));
+
+		context->ClearBuffers();
+		context->SwapBuffers();
 	}
 
+	context->Shutdown();
+	delete context;
 	ecm::DestroyWindow(window);
 }
 
@@ -172,6 +227,7 @@ void test_Math()
 	std::cout << "My: " << fmod << ", SDLs: " << SDL_fmod(21.4, 54.8) << std::endl;
 }
 
+#undef main
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);

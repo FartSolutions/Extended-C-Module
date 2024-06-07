@@ -10,5 +10,6 @@
 
 #include <ecm/window/window.h>
 #include <ecm/window/events.h>
+#include <ecm/window/context.h>
 
 #endif // !_ECM_WINDOW_HPP_

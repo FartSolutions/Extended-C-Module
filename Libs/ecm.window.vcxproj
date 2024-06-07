@@ -182,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_window.hpp" />
+    <ClInclude Include="ecm\window\context.h" />
     <ClInclude Include="ecm\window\events.h" />
     <ClInclude Include="ecm\window\window.h" />
     <ClInclude Include="rsc\ecm.window.h" />
