@@ -119,19 +119,16 @@ void test_WindowSystem()
 		}
 
 		virtual void ClearBuffers() override {
-			SDL_SetRenderDrawColor(static_cast<SDL_Renderer*>(_rendererContext),
-				_color.r, _color.g, _color.b, _color.a);
+			ecm::Color c{ FrameColor };
+			SDL_SetRenderDrawColor(static_cast<SDL_Renderer*>(_rendererContext), c.r, c.g, c.b, c.a);
 			SDL_RenderClear(static_cast<SDL_Renderer*>(_rendererContext));
 		}
 		virtual void SwapBuffers() override {
 			SDL_RenderPresent(static_cast<SDL_Renderer*>(_rendererContext));
+			this->HandleTimings();
 		}
-
-		virtual void SetColor(const ecm::ColorF& color) override {
-			_color = color.ToRGBA8888();
-		}
-		virtual void SetVsync(const ecm::int32 vsyncMode) override {
-			_vsync = vsyncMode;
+		virtual void SetVSyncMode(const ecm::int32 vsyncMode) override {
+			ecm::ContextBase::SetVSyncMode(vsyncMode);
 			ecm::int32 vsync{ 0 };
 			if (vsyncMode == ecm::VSYNC_ENABLED) vsync = 1;
 			SDL_RenderSetVSync(static_cast<SDL_Renderer*>(_rendererContext), vsync);
@@ -146,8 +143,6 @@ void test_WindowSystem()
 		}
 	private:
 		void* _rendererContext = nullptr;
-		ecm::Color _color{ 0x0 };
-		ecm::int32 _vsync = 0;
 	};
 
 	ecm::Window window = ecm::CreateWindow(
@@ -158,7 +153,8 @@ void test_WindowSystem()
 	SDLRendererContext* context = new SDLRendererContext();
 	context->Initialize(window);
 	context->SetColor(ecm::ColorF(0x00ff00ff));
-	context->SetVsync(ecm::VSYNC_ENABLED);
+	context->SetVSyncMode(ecm::VSYNC_ENABLED);
+	context->SetFPSLimit(5);
 	
 	while (!window.IsClosed())
 	{

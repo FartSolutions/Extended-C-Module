@@ -3,13 +3,14 @@
   <ItemGroup>
     <ClCompile Include="source\window\window.cpp" />
     <ClCompile Include="source\win32\dllmain_ecm.window.cpp" />
+    <ClCompile Include="ecm\window\context.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rsc\ecm.window.h" />
     <ClInclude Include="ecm\ecm_window.hpp" />
     <ClInclude Include="ecm\window\window.h" />
     <ClInclude Include="ecm\window\events.h" />
-    <ClInclude Include="ecm\window\context.h" />
+    <ClInclude Include="ecm\window\context.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsc\ecm.window.rc" />

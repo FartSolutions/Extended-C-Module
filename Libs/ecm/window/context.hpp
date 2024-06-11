@@ -1,0 +1,76 @@
+/*
+ * \file context.h
+ *
+ * \brief This header defines base graphics functionalitites.
+ */
+
+#pragma once
+#ifndef _ECM_CONTEXTBASE_H_
+#define _ECM_CONTEXTBASE_H_
+
+#include <ecm/ecm_api.h>
+#include <ecm/ecm_types.hpp>
+#include <ecm/math/vector2.hpp>
+#include <ecm/types/color.h>
+
+// TODO: Change to own or boost or other
+#include <chrono>
+
+namespace ecm
+{
+	struct Window;
+
+	/*
+	 * \since v1.0.0
+	 */
+	enum VSyncMode {
+		VSYNC_DISABLED,
+		VSYNC_ENABLED,
+		VSYNC_ADAPTIVE
+	};
+
+	/*
+	 * \since v1.0.0
+	 */
+	struct ContextBase
+	{
+		virtual ~ContextBase() = default;
+		virtual void Initialize(const Window window) = 0;
+		virtual void Shutdown() = 0;
+
+		virtual void ClearBuffers() = 0;
+		virtual void SwapBuffers() = 0;
+
+		virtual inline void SetColor(const ColorF& color);
+		virtual inline void SetFPSLimit(const uint32 limit);
+		virtual inline void SetVSyncMode(const int32 vsyncMode);
+		virtual inline void SetViewport(const math::Vector2& size,
+			const math::Vector2& pos) = 0;
+
+		inline ColorF GetColor() const;
+		inline uint32 GetFPSLimit() const;
+		inline int32 GetVSyncMode() const;
+		inline float64 GetDeltaTime() const;
+	protected:
+		inline ContextBase();
+
+		/*
+		 * Limits the FPS if a limit is set and calculates deltatime.
+		 *
+		 * \since v1.0.0
+		 */
+		virtual inline void HandleTimings();
+	protected:
+		ColorF FrameColor;
+		uint32 FPSLimit;
+		int32 VSyncMode;
+		float64 DeltaTime;
+	private:
+		std::chrono::milliseconds _frameDuration;
+		std::chrono::steady_clock::time_point _frameStartTime;
+	};
+} // namespace ecm
+
+#include "context.inl"
+
+#endif // !_ECM_CONTEXTBASE_H_
