@@ -102,60 +102,18 @@ void test_ConsoleSystem()
 	ec::WriteLine();
 }
 
-#include <SDL2/SDL.h>
 void test_WindowSystem()
 {
-	class SDLRendererContext : public ecm::ContextBase
-	{
-	public:
-		SDLRendererContext() {}
-		~SDLRendererContext() {}
-
-		virtual void Initialize(const ecm::Window window) override {
-			_rendererContext = SDL_CreateRenderer((SDL_Window*)window.GetHandle(), -1, SDL_RENDERER_ACCELERATED);
-		}
-		virtual void Shutdown() override {
-			SDL_DestroyRenderer(static_cast<SDL_Renderer*>(_rendererContext));
-		}
-
-		virtual void ClearBuffers() override {
-			ecm::Color c{ FrameColor };
-			SDL_SetRenderDrawColor(static_cast<SDL_Renderer*>(_rendererContext), c.r, c.g, c.b, c.a);
-			SDL_RenderClear(static_cast<SDL_Renderer*>(_rendererContext));
-		}
-		virtual void SwapBuffers() override {
-			SDL_RenderPresent(static_cast<SDL_Renderer*>(_rendererContext));
-			this->HandleTimings();
-		}
-		virtual void SetVSyncMode(const ecm::int32 vsyncMode) override {
-			ecm::ContextBase::SetVSyncMode(vsyncMode);
-			ecm::int32 vsync{ 0 };
-			if (vsyncMode == ecm::VSYNC_ENABLED) vsync = 1;
-			SDL_RenderSetVSync(static_cast<SDL_Renderer*>(_rendererContext), vsync);
-		}
-		virtual void SetViewport(const ecm::math::Vector2& size, const ecm::math::Vector2& pos) override {
-			SDL_Rect rc{};
-			rc.x = (int)pos.x;
-			rc.y = (int)pos.y;
-			rc.w = (int)size.width;
-			rc.h = (int)size.height;
-			SDL_RenderSetViewport(static_cast<SDL_Renderer*>(_rendererContext), &rc);
-		}
-	private:
-		void* _rendererContext = nullptr;
-	};
-
 	ecm::Window window = ecm::CreateWindow(
 		"Test window", 
 		{ 800, 600 }, 
 		ecm::WINDOWFLAG_RESIZABLE, 
 		ecm::WINDOWMODE_SHOWN);
-	SDLRendererContext* context = new SDLRendererContext();
+	ecm::ContextBase* context = new ecm::SDLRendererContext();
 	context->Initialize(window);
-	context->SetColor(ecm::ColorF(0x00ff00ff));
+	context->SetColor(ecm::ColorF(0x1A304Cff));
 	context->SetVSyncMode(ecm::VSYNC_ENABLED);
-	context->SetFPSLimit(5);
-	
+
 	while (!window.IsClosed())
 	{
 		ecm::Event e{};

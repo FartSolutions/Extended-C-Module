@@ -1,4 +1,6 @@
 #pragma once
+//#ifndef _ECM_CONTEXTBASE_INL_
+//#define _ECM_CONTEXTBASE_INL_
 
 #ifndef _ECM_CONTEXTBASE_H_
 #include "context.hpp"
@@ -27,6 +29,12 @@ namespace ecm
 	inline void ContextBase::SetVSyncMode(const int32 vsyncMode)
 	{
 		VSyncMode = vsyncMode;
+	}
+
+	inline void ContextBase::SetViewport(const math::PointF& size, const math::PointF& pos)
+	{
+		ViewportSize = size;
+		ViewportPosition = pos;
 	}
 
 	inline ColorF ContextBase::GetColor() const
@@ -78,3 +86,5 @@ namespace ecm
 		_frameStartTime = std::chrono::high_resolution_clock::now();
 	}
 } // namespace ecm
+
+//#endif // _ECM_CONTEXTBASE_INL_

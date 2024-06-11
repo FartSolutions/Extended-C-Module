@@ -44,8 +44,8 @@ namespace ecm
 		virtual inline void SetColor(const ColorF& color);
 		virtual inline void SetFPSLimit(const uint32 limit);
 		virtual inline void SetVSyncMode(const int32 vsyncMode);
-		virtual inline void SetViewport(const math::Vector2& size,
-			const math::Vector2& pos) = 0;
+		virtual inline void SetViewport(const math::PointF& size,
+			const math::PointF& pos = { 0.f, 0.f });
 
 		inline ColorF GetColor() const;
 		inline uint32 GetFPSLimit() const;
@@ -65,10 +65,26 @@ namespace ecm
 		uint32 FPSLimit;
 		int32 VSyncMode;
 		float64 DeltaTime;
+		math::PointF ViewportPosition;
+		math::PointF ViewportSize;
 	private:
 		std::chrono::milliseconds _frameDuration;
 		std::chrono::steady_clock::time_point _frameStartTime;
 	};
+
+	/*
+	 *
+	 *
+	 * \since v1.0.0
+	 */
+	ECM_WIN_API ContextBase* GetCurrentContext();
+
+	/*
+	 *
+	 *
+	 * \since v1.0.0
+	 */
+	ECM_WIN_API void SetCurrentContext(ContextBase* context);
 } // namespace ecm
 
 #include "context.inl"

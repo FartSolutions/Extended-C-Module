@@ -27,7 +27,7 @@ namespace ecm
 	 * \sa Window
 	 * \sa WindowInitInfo
 	 */
-	enum WindowMode : uint8
+	typedef enum WindowMode : uint8
 	{
 		WINDOWMODE_NONE = 0,
 		WINDOWMODE_SHOWN,
@@ -222,7 +222,7 @@ namespace ecm
 	 * \returns 
 	 */
 	extern ECM_WIN_API Window CreateWindow(string title,
-		math::PointF size, uint64 flags = 0, WindowMode mode = WINDOWMODE_NONE,
+		math::PointF size, uint64 flags = 0, uint8 mode = WINDOWMODE_NONE,
 		GraphicsAPI graphicsApi = GRAPHICSAPI_NONE);
 	// TODO: CreateWindow: replace PointF with Point
 

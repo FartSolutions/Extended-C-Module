@@ -280,7 +280,7 @@ namespace ecm
 	}
 
 	Window CreateWindow(string title, math::PointF size, uint64 flags,
-		WindowMode mode, GraphicsAPI graphicsApi)
+		uint8 mode, GraphicsAPI graphicsApi)
 	{
 		if (title.empty()) title = "ECM Window";
 		if (size.x <= 0.f) size.x = 800;
