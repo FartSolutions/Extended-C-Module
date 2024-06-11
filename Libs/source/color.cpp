@@ -38,10 +38,10 @@ namespace ecm
 
 	constexpr Color::Color(float32 _r, float32 _g, float32 _b, float32 _a)
 	{
-		r = uint8(r * 255ui8);
-		g = uint8(g * 255ui8);
-		b = uint8(b * 255ui8);
-		a = uint8(a * 255ui8);
+		r = uint8(_r * 255ui8);
+		g = uint8(_g * 255ui8);
+		b = uint8(_b * 255ui8);
+		a = uint8(_a * 255ui8);
 	}
 
 	constexpr Color::Color(uint32 rgba32)
