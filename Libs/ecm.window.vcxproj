@@ -177,12 +177,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\window\context.cpp" />
+    <ClCompile Include="source\window\sdlrenderer.cpp" />
     <ClCompile Include="source\win32\dllmain_ecm.window.cpp" />
     <ClCompile Include="source\window\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ecm\ecm_window.hpp" />
+    <ClInclude Include="ecm\window\context.hpp" />
     <ClInclude Include="ecm\window\events.h" />
+    <ClInclude Include="ecm\window\sdlrenderer.h" />
     <ClInclude Include="ecm\window\window.h" />
     <ClInclude Include="rsc\ecm.window.h" />
   </ItemGroup>
@@ -193,6 +197,9 @@
     <ProjectReference Include="ecm.vcxproj">
       <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ecm\window\context.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

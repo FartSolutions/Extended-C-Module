@@ -11,4 +11,7 @@
 #include <ecm/window/window.h>
 #include <ecm/window/events.h>
 
+#include <ecm/window/context.hpp>
+#include <ecm/window/sdlrenderer.h>
+
 #endif // !_ECM_WINDOW_HPP_

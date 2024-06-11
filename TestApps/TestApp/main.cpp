@@ -109,13 +109,22 @@ void test_WindowSystem()
 		{ 800, 600 }, 
 		ecm::WINDOWFLAG_RESIZABLE, 
 		ecm::WINDOWMODE_SHOWN);
+	ecm::ContextBase* context = new ecm::SDLRendererContext();
+	context->Initialize(window);
+	context->SetColor(ecm::ColorF(0x1A304Cff));
+	context->SetVSyncMode(ecm::VSYNC_ENABLED);
 
 	while (!window.IsClosed())
 	{
 		ecm::Event e{};
 		while (ecm::PollEvent(e));
+
+		context->ClearBuffers();
+		context->SwapBuffers();
 	}
 
+	context->Shutdown();
+	delete context;
 	ecm::DestroyWindow(window);
 }
 
@@ -172,6 +181,7 @@ void test_Math()
 	std::cout << "My: " << fmod << ", SDLs: " << SDL_fmod(21.4, 54.8) << std::endl;
 }
 
+#undef main
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
