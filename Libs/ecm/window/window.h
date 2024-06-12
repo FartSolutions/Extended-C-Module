@@ -84,6 +84,7 @@ namespace ecm
 	{
 		GRAPHICSAPI_NONE = 0,
 		GRAPHICSAPI_SDLRENDERER,
+		GRAPHICSAPI_OPENGL,
 	};
 
 	/*

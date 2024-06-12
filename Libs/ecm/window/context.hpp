@@ -35,7 +35,7 @@ namespace ecm
 	struct ContextBase
 	{
 		virtual ~ContextBase() = default;
-		virtual void Initialize(const Window window) = 0;
+		virtual int32 Initialize(const Window window) = 0;
 		virtual void Shutdown() = 0;
 
 		virtual void ClearBuffers() = 0;

@@ -22,7 +22,22 @@ namespace ecm::gl
 	 */
 	class ECM_GL_API OpenGLContext : public ContextBase
 	{
+	public:
+		OpenGLContext();
+		~OpenGLContext();
 
+		int32 Initialize(const Window window) override;
+		void Shutdown() override;
+
+		void ClearBuffers() override;
+		void SwapBuffers() override;
+
+		void SetVSyncMode(const int32 vsyncMode);
+		void SetViewport(const math::PointF& size,
+			const math::PointF& pos = { 0.f, 0.f });
+	private:
+		void* _glContext;
+		void* _parentWindow;
 	};
 } // namespace ecm::gl
 
