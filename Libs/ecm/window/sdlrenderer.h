@@ -29,7 +29,7 @@ namespace ecm
 		SDLRendererContext();
 		~SDLRendererContext();
 
-		void Initialize(const Window window) override;
+		int32 Initialize(const Window window) override;
 		void Shutdown() override;
 
 		void ClearBuffers() override;

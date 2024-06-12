@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="source\win32\dllmain_ecm.opengl.cpp" />
     <ClCompile Include="source\opengl\glcontext.cpp" />
+    <ClCompile Include="source\opengl\glad_gl4.6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rsc\ecm.opengl.h" />
@@ -10,6 +11,8 @@
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="ecm\opengl\glcontext.h" />
     <ClInclude Include="ecm\ecm_opengl.hpp" />
+    <ClInclude Include="ecm\opengl\glad_khrplatform.h" />
+    <ClInclude Include="ecm\opengl\glad_gl4.6.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="rsc\ecm.opengl.rc" />

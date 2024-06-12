@@ -15,11 +15,12 @@ namespace ecm
 	{
 	}
 
-	void SDLRendererContext::Initialize(const Window window)
+	int32 SDLRendererContext::Initialize(const Window window)
 	{
 		_rendererContext = SDL_CreateRenderer(
 			window.GetHandle(), -1, SDL_RENDERER_ACCELERATED);
 		SetCurrentContext(this);
+		return 0;
 	}
 
 	void SDLRendererContext::Shutdown()
@@ -46,7 +47,8 @@ namespace ecm
 	{
 		ContextBase::SetVSyncMode(vsyncMode);
 		int32 vsync{ 0 };
-		if (vsyncMode == ecm::VSYNC_ENABLED) vsync = 1;
+		if (vsyncMode == VSYNC_ENABLED) vsync = 1;
+		else if (vsyncMode == VSYNC_ADAPTIVE) vsync = 1;
 		SDL_RenderSetVSync(_rendererContext, vsync);
 	}
 

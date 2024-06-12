@@ -105,12 +105,16 @@ void test_ConsoleSystem()
 
 void test_WindowSystem()
 {
-	ecm::Window window = ecm::CreateWindow(
-		"Test window", 
-		{ 800, 600 }, 
-		ecm::WINDOWFLAG_RESIZABLE, 
-		ecm::WINDOWMODE_SHOWN);
-	ecm::ContextBase* context = new ecm::SDLRendererContext();
+	ecm::GraphicsAPI gApi{ ecm::GRAPHICSAPI_OPENGL };
+
+	ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 },
+		ecm::WINDOWFLAG_RESIZABLE, ecm::WINDOWMODE_SHOWN, gApi);
+
+	ecm::ContextBase* context = nullptr;
+	if (gApi == ecm::GRAPHICSAPI_SDLRENDERER) context = new ecm::SDLRendererContext();
+	else if (gApi == ecm::GRAPHICSAPI_OPENGL) context = new ecm::gl::OpenGLContext();
+	else context = new ecm::SDLRendererContext();
+
 	context->Initialize(window);
 	context->SetColor(ecm::ColorF(0x1A304Cff));
 	context->SetVSyncMode(ecm::VSYNC_ENABLED);

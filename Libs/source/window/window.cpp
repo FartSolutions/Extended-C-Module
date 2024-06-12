@@ -288,6 +288,7 @@ namespace ecm
 
 		window_info info{};
 		// Set flags for GraphicsApi
+		if (graphicsApi == GRAPHICSAPI_OPENGL) info.style |= SDL_WINDOW_OPENGL;
 		// TODO: Check graphicsApi (SDL flags for OpenGL or Vulkan)
 
 		// Set flags for WindowMode

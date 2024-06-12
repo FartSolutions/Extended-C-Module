@@ -184,6 +184,8 @@
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="ecm\ecm_opengl.hpp" />
+    <ClInclude Include="ecm\opengl\glad_gl4.6.h" />
+    <ClInclude Include="ecm\opengl\glad_khrplatform.h" />
     <ClInclude Include="rsc\ecm.opengl.h" />
     <ClInclude Include="ecm\opengl\glcontext.h" />
   </ItemGroup>
@@ -194,6 +196,12 @@
     <ProjectReference Include="ecm.vcxproj">
       <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
     </ProjectReference>
+    <ProjectReference Include="ecm.window.vcxproj">
+      <Project>{49a18b56-b187-4f1e-ae63-c2d2a9a51bba}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\opengl\glad_gl4.6.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
