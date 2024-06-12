@@ -167,6 +167,9 @@
     <ProjectReference Include="..\..\Libs\ecm.algorithm.vcxproj">
       <Project>{94053112-848b-47e9-86e1-2b67e9452863}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libs\ecm.opengl.vcxproj">
+      <Project>{259699bf-2edf-430e-85db-0b429255bfc4}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libs\ecm.vcxproj">
       <Project>{b2ee1486-2dd9-441c-8c02-a27280a38b13}</Project>
     </ProjectReference>

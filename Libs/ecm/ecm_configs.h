@@ -11,12 +11,12 @@
 #define ECM_DYNAMIC_BUILD 1
 #define ECM_ALG_DYNAMIC_BUILD 1
 #define ECM_WIN_DYNAMIC_BUILD 1
-#define ECM_GFX_DYNAMIC_BUILD 1
+#define ECM_GL_DYNAMIC_BUILD 1
 #else
 #define ECM_DYNAMIC_BUILD 0
 #define ECM_ALG_DYNAMIC_BUILD 0
 #define ECM_WIN_DYNAMIC_BUILD 0
-#define ECM_GFX_DYNAMIC_BUILD 0
+#define ECM_GL_DYNAMIC_BUILD 0
 #endif // ECM_ALL_DYNAMIC_BUILD
 
 // #############################################################################

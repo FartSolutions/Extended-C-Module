@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="source\win32\dllmain_ecm.opengl.cpp" />
+    <ClCompile Include="source\opengl\glcontext.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rsc\ecm.opengl.h" />
+    <ClInclude Include="ecm\ecm_api.h" />
+    <ClInclude Include="ecm\ecm_configs.h" />
+    <ClInclude Include="ecm\opengl\glcontext.h" />
+    <ClInclude Include="ecm\ecm_opengl.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rsc\ecm.opengl.rc" />
+  </ItemGroup>
+</Project>

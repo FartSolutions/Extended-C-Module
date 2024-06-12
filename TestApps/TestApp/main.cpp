@@ -3,6 +3,7 @@
 #include <ecm/ecm_math.hpp>
 #include <ecm/algorithm/random.h>
 #include <ecm/ecm_window.hpp>
+#include <ecm/ecm_opengl.hpp>
 
 #pragma warning(disable : 4996)
 
