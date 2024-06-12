@@ -53,15 +53,15 @@
 #define ECM_WIN_API
 #endif // ECM_WIN_DYNAMIC_BUILD
 
-#if ECM_GFX_DYNAMIC_BUILD
-#if ECM_GFX_DYNAMIC_EXPORT
-#define ECM_GFX_API __declspec(dllexport)
+#if ECM_GL_DYNAMIC_BUILD
+#if ECM_GL_DYNAMIC_EXPORT
+#define ECM_GL_API __declspec(dllexport)
 #else
-#define ECM_GFX_API __declspec(dllimport)
-#endif // ECM_GFX_DYNAMIC_EXPORT
+#define ECM_GL_API __declspec(dllimport)
+#endif // ECM_GL_DYNAMIC_EXPORT
 #else
-#define ECM_GFX_API
-#endif // ECM_GFX_DYNAMIC_BUILD
+#define ECM_GL_API
+#endif // ECM_GL_DYNAMIC_BUILD
 
 #endif
 
