@@ -33,8 +33,8 @@ namespace ecm::gl
 		void SwapBuffers() override;
 
 		void SetVSyncMode(const int32 vsyncMode);
-		void SetViewport(const math::PointF& size,
-			const math::PointF& pos = { 0.f, 0.f });
+		void SetViewport(const math::PointI& size,
+			const math::PointI& pos = { 0, 0 });
 	private:
 		void* _glContext;
 		void* _parentWindow;

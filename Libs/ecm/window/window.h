@@ -186,13 +186,13 @@ namespace ecm
 		 *
 		 * \sa Window
 		 */
-		math::PointF GetPosition() const;
+		math::PointI GetPosition() const;
 		/*
 		 * \since v1.0.0
 		 *
 		 * \sa Window
 		 */
-		void SetPosition(math::PointF pos) const;
+		void SetPosition(math::PointI pos) const;
 		/*
 		 * \returns 
 		 *
@@ -200,13 +200,13 @@ namespace ecm
 		 *
 		 * \sa Window
 		 */
-		math::PointF GetSize() const;
+		math::PointI GetSize() const;
 		/*
 		 * \since v1.0.0
 		 *
 		 * \sa Window
 		 */
-		void SetSize(math::PointF size) const;
+		void SetSize(math::PointI size) const;
 	private:
 		id_type _id;
 	};
@@ -223,7 +223,7 @@ namespace ecm
 	 * \returns 
 	 */
 	extern ECM_WIN_API Window CreateWindow(string title,
-		math::PointF size, uint64 flags = 0, uint8 mode = WINDOWMODE_NONE,
+		math::PointI size, uint64 flags = 0, uint8 mode = WINDOWMODE_NONE,
 		GraphicsAPI graphicsApi = GRAPHICSAPI_NONE);
 	// TODO: CreateWindow: replace PointF with Point
 

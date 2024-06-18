@@ -36,7 +36,7 @@ namespace ecm
 		void SwapBuffers() override;
 
 		void SetVSyncMode(const int32 vsyncMode) override;
-		void SetViewport(const math::Vector2& size, const math::Vector2& pos) override;
+		void SetViewport(const math::PointI& size, const math::PointI& pos) override;
 	private:
 		SDL_Renderer* _rendererContext;
 	};
