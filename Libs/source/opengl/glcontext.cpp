@@ -10,6 +10,7 @@ namespace ecm::gl
 	OpenGLContext::OpenGLContext()
 	{
 		_glContext = nullptr;
+		_parentWindow = nullptr;
 	}
 
 	OpenGLContext::~OpenGLContext()
