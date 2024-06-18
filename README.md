@@ -19,4 +19,37 @@ A library to extend the Cpp functionalities. It is intended to provide simple us
 |ecm.window.dll|ecm.dll|sdl2.dll
 |ecm.opengl.dll|ecm.dll, ecm.window.dll|sdl2.dll
 
+# Examples
+## Window and graphics context
+```cpp
+int main()
+{
+  ecm::GraphicsAPI gApi{ ecm::GRAPHICSAPI_OPENGL };
+  ecm::Window window = ecm::CreateWindow("Test window", { 800, 600 },
+    ecm::WINDOWFLAG_RESIZABLE, ecm::WINDOWMODE_SHOWN, gApi);
+
+  ecm::ContextBase* context = nullptr;
+  if (gApi == ecm::GRAPHICSAPI_OPENGL)
+    context = new ecm::gl::OpenGLContext();
+  else context = new ecm::SDLRendererContext();
+
+  context->Initialize(window);
+  context->SetColor(ecm::ColorF(0x1A304Cff));
+  context->SetVSyncMode(ecm::VSYNC_ENABLED);
+
+  while (!window.IsClosed())
+  {
+    ecm::Event e{};
+    while (ecm::PollEvent(e));
+
+    context->ClearBuffers();
+    context->SwapBuffers();
+  }
+
+  context->Shutdown();
+  delete context;
+  ecm::DestroyWindow(window);
+}
+```
+
 &uarr; [Back to top](#top)
