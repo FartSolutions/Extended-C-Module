@@ -69,7 +69,7 @@ namespace ecm
 
 		inline void set_window_mode(id_type id, uint8 mode)
 		{
-			auto info{ windows[id] };
+			auto& info{ windows[id] };
 			if (info.mode == mode) return;
 			uint32 flag{ 0 };
 			switch (mode)
@@ -91,7 +91,7 @@ namespace ecm
 
 		inline void set_focused(id_type id)
 		{
-			auto info{ windows[id] };
+			auto& info{ windows[id] };
 			if (info.is_focused == true) return;
 			SDL_RaiseWindow(static_cast<SDL_Window*>(windows[id].handle));
 		}
@@ -118,42 +118,36 @@ namespace ecm
 				static_cast<SDL_Window*>(windows[id].handle));
 		}
 
-		inline void set_position(id_type id, math::PointF pos)
+		inline void set_position(id_type id, math::PointI pos)
 		{
 			SDL_SetWindowPosition(
 				static_cast<SDL_Window*>(windows[id].handle),
-				static_cast<int32>(pos.x),
-				static_cast<int32>(pos.y));
+				pos.x, pos.y);
 		}
 
-		inline math::PointF get_position(id_type id)
+		inline math::PointI get_position(id_type id)
 		{
-			int32 x{ 0 }, y{ 0 };
+			math::PointI pos{ 0, 0 };
 			SDL_GetWindowPosition(
 				static_cast<SDL_Window*>(windows[id].handle),
-				&x, &y);
-			return math::PointF{
-				static_cast<float32>(x),
-				static_cast<float32>(y) };
+				&pos.x, &pos.y);
+			return pos;
 		}
 
-		inline void set_size(id_type id, math::PointF size)
+		inline void set_size(id_type id, math::PointI size)
 		{
 			SDL_SetWindowSize(
 				static_cast<SDL_Window*>(windows[id].handle),
-				static_cast<int32>(size.x),
-				static_cast<int32>(size.y));
+				size.x, size.y);
 		}
 
-		inline math::PointF get_size(id_type id)
+		inline math::PointI get_size(id_type id)
 		{
-			int32 w{ 0 }, h{ 0 };
+			math::PointI size{ 0, 0 };
 			SDL_GetWindowSize(
 				static_cast<SDL_Window*>(windows[id].handle),
-				&w, &h);
-			return math::PointF{
-				static_cast<float32>(w),
-				static_cast<float32>(h) };
+				&size.width, &size.height);
+			return size;
 		}
 
 		inline void internal_window_proc(SDL_Event e, uint32 sdlId)
@@ -253,38 +247,38 @@ namespace ecm
 			set_title(_id, title);
 	}
 
-	math::PointF Window::GetPosition() const
+	math::PointI Window::GetPosition() const
 	{
 		if (IsValid() && _id < windows.size())
 			return get_position(_id);
-		return math::PointF{};
+		return math::PointI{};
 	}
 
-	void Window::SetPosition(math::PointF pos) const
+	void Window::SetPosition(math::PointI pos) const
 	{
 		if (IsValid() && _id < windows.size())
 			set_position(_id, pos);
 	}
 
-	math::PointF Window::GetSize() const
+	math::PointI Window::GetSize() const
 	{
 		if (IsValid() && _id < windows.size())
 			return get_size(_id);
-		return math::PointF{};
+		return math::PointI{};
 	}
 
-	void Window::SetSize(math::PointF size) const
+	void Window::SetSize(math::PointI size) const
 	{
 		if (IsValid() && _id < windows.size())
 			set_size(_id, size);
 	}
 
-	Window CreateWindow(string title, math::PointF size, uint64 flags,
+	Window CreateWindow(string title, math::PointI size, uint64 flags,
 		uint8 mode, GraphicsAPI graphicsApi)
 	{
 		if (title.empty()) title = "ECM Window";
-		if (size.x <= 0.f) size.x = 800;
-		if (size.y <= 0.f) size.y = 600;
+		if (size.x <= 0) size.x = 800;
+		if (size.y <= 0) size.y = 600;
 
 		window_info info{};
 		// Set flags for GraphicsApi
@@ -318,7 +312,7 @@ namespace ecm
 		info.handle = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			static_cast<int32>(size.x), static_cast<int32>(size.y),
+			size.x, size.y,
 			info.style);
 
 		if (!info.handle) {

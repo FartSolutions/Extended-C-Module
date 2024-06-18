@@ -67,13 +67,9 @@ namespace ecm::gl
 		SDL_GL_SetSwapInterval(vsync);
 	}
 
-	void OpenGLContext::SetViewport(const math::PointF& size, const math::PointF& pos)
+	void OpenGLContext::SetViewport(const math::PointI& size, const math::PointI& pos)
 	{
 		ContextBase::SetViewport(size, pos);
-		glViewport(
-			static_cast<int32>(pos.x),
-			static_cast<int32>(pos.y),
-			static_cast<int32>(size.width),
-			static_cast<int32>(size.height));
+		glViewport(pos.x, pos.y, size.width, size.height);
 	}
 } // namespace ecm::gl

@@ -44,8 +44,8 @@ namespace ecm
 		virtual inline void SetColor(const ColorF& color);
 		virtual inline void SetFPSLimit(const uint32 limit);
 		virtual inline void SetVSyncMode(const int32 vsyncMode);
-		virtual inline void SetViewport(const math::PointF& size,
-			const math::PointF& pos = { 0.f, 0.f });
+		virtual inline void SetViewport(const math::PointI& size,
+			const math::PointI& pos = { 0, 0 });
 
 		inline ColorF GetColor() const;
 		inline uint32 GetFPSLimit() const;
@@ -65,8 +65,8 @@ namespace ecm
 		uint32 FPSLimit;
 		int32 VSyncMode;
 		float64 DeltaTime;
-		math::PointF ViewportPosition;
-		math::PointF ViewportSize;
+		math::PointI ViewportPosition;
+		math::PointI ViewportSize;
 	private:
 		std::chrono::milliseconds _frameDuration;
 		std::chrono::steady_clock::time_point _frameStartTime;

@@ -31,7 +31,7 @@ namespace ecm
 		VSyncMode = vsyncMode;
 	}
 
-	inline void ContextBase::SetViewport(const math::PointF& size, const math::PointF& pos)
+	inline void ContextBase::SetViewport(const math::PointI& size, const math::PointI& pos)
 	{
 		ViewportSize = size;
 		ViewportPosition = pos;

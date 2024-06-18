@@ -52,15 +52,15 @@ namespace ecm
 		SDL_RenderSetVSync(_rendererContext, vsync);
 	}
 
-	void SDLRendererContext::SetViewport(const math::Vector2& size,
-		const math::Vector2& pos)
+	void SDLRendererContext::SetViewport(const math::PointI& size,
+		const math::PointI& pos)
 	{
 		ContextBase::SetViewport(size, pos);
 		SDL_Rect rc{};
-		rc.x = static_cast<int32>(pos.x);
-		rc.y = static_cast<int32>(pos.y);
-		rc.w = static_cast<int32>(size.width);
-		rc.h = static_cast<int32>(size.height);
+		rc.x = pos.x;
+		rc.y = pos.y;
+		rc.w = size.width;
+		rc.h = size.height;
 		SDL_RenderSetViewport(_rendererContext, &rc);
 	}
 } // namespace ecm

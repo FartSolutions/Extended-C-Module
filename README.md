@@ -14,9 +14,9 @@ A library to extend the Cpp functionalities. It is intended to provide simple us
 |Library|Internal dependencies|3rd party dependencies
 |-|-|-
 |ecm.dll|-|-
-|ecm.math.lib|ecm.dll|-
+|ecm.math.dll|ecm.dll|-
 |ecm.algorithm.dll|ecm.dll|-
 |ecm.window.dll|ecm.dll|sdl2.dll
-|ecm.graphics.dll|ecm.dll|sdl2.dll, glad.dll
+|ecm.opengl.dll|ecm.dll, ecm.window.dll|sdl2.dll
 
 &uarr; [Back to top](#top)
