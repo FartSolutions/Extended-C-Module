@@ -14,12 +14,18 @@
 namespace ecm::math
 {
 	/*
-	 * This structure represents a 3d vector.
+	 * This structure represents a 3d vector template.
 	 *
 	 * \since v1.0.0
 	 */
-	struct Vector3
+	template<typename _Ty>
+	struct Vector3_Base
 	{
+		/*
+		 * Enum representing the axes of the vector.
+		 *
+		 * \since v1.0.0
+		 */
 		enum Axis : uint8
 		{
 			AXIS_X = 0,
@@ -32,24 +38,24 @@ namespace ecm::math
 			struct
 			{
 				// X coordinate
-				float32 x;
+				_Ty x;
 				// Y coordinate
-				float32 y;
+				_Ty y;
 				// Z coordinate
-				float32 z;
+				_Ty z;
 			};
-			float32 coord[3]{ 0.f };
+			_Ty coord[3]{ 0 };
 		};
 
 		/*
-		 * This is the default constructor.
+		 * Default constructor.
 		 *
 		 * \since v1.0.0
 		 */
-		inline constexpr Vector3();
+		constexpr Vector3_Base();
 
 		/*
-		 * This is a constructor.
+		 * Constructor initializing width x, y and z coordinates.
 		 *
 		 * \param x the x coordinate.
 		 * \param y the y coordinate.
@@ -57,21 +63,89 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		inline constexpr Vector3(float32 x, float32 y, float32 z);
+		constexpr Vector3_Base(_Ty x, _Ty y, _Ty z);
 
 		/*
-		 * This is a constructor.
+		 * Constructor initializing with an array of two coordinates.
 		 *
 		 * \param coord the coordinates as array with three values.
 		 *
 		 * \since v1.0.0
 		 */
-		inline constexpr Vector3(float32 coord[3]);
+		constexpr Vector3_Base(_Ty coord[3]);
+
+		/*
+		 * Subscript operator to access vector elements by axes.
+		 *
+		 * \param axis The axes of the element to access.
+		 *
+		 * \returns The element at the given axes.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr _Ty& operator[](const uint8 axis) const;
 	};
 
+	/*
+	 * This structure represents a 3D vector with float32 elements.
+	 *
+	 * \since v1.0.0
+	 */
+	struct Vector3 : public Vector3_Base<float32>
+	{
+		using Vector3_Base<float32>::Vector3_Base;
+
+		/*
+		 * Constructor to initialize from a Vector3_Base<float32>
+		 *
+		 * \param base The base vector to initialize from.
+		 *
+		 * \since v1.0.0
+		 */
+		Vector3(const Vector3_Base<float32>& base)
+			: Vector3_Base{ base.x, base.y, base.z } {}
+	};
+
+	/*
+	 * This structure represents a 3D vector with float32 elements, aligned to
+	 * 16 bytes.
+	 *
+	 * \since v1.0.0
+	 */
 	__declspec(align(16)) struct Vector3A : public Vector3
 	{
 		using Vector3::Vector3;
+	};
+
+	/*
+	 * This structure represents a 3D vector with int32 elements.
+	 *
+	 * \since v1.0.0
+	 */
+	struct Vector3i : public Vector3_Base<int32>
+	{
+		using Vector3_Base<int32>::Vector3_Base;
+
+		/*
+		 * Constructor to initialize from a Vector3_Base<int32>.
+		 *
+		 * \param base The base vector to initialize from.
+		 *
+		 * \since v1.0.0
+		 */
+		Vector3i(const Vector3_Base<int32>& base)
+			: Vector3_Base{ base.x, base.y, base.z } {}
+	};
+
+	/*
+	 * This structure represents a 3D vector with int32 elements, aligned to 16
+	 * bytes.
+	 *
+	 * \since v1.0.0
+	 */
+	__declspec(align(16)) struct Vector3iA : public Vector3i
+	{
+		using Vector3i::Vector3i;
 	};
 
 	/*

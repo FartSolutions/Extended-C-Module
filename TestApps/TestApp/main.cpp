@@ -179,7 +179,7 @@ void test_Math()
 	ecm::int32 abs3{ ecm::math::Abs(-12839566) };
 	ecm::int64 abs4{ ecm::math::Abs(-12873565635685) };
 
-	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(2536) };
+	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(10) };
 	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
 	std::cout << "My: " << pow << ", SDLs: " << SDL_pow(21.4, 5) << std::endl;
 	ecm::float128 fmod{ ecm::math::Fmod(21.4, 54.8) };

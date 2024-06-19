@@ -89,7 +89,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr _Ty operator[](const uint8 axis) const;
+		constexpr _Ty& operator[](const uint8 axis) const;
 	};
 
 	/*
