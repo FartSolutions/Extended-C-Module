@@ -4,26 +4,48 @@
 
 namespace ecm::math
 {
-	constexpr Vector3::Vector3()
-		: x{ 0.f }, y{ 0.f }, z{ 0.f }
-	{ }
-
-	constexpr Vector3::Vector3(float32 _x, float32 _y, float32 _z)
-		: x{ _x }, y{ _y }, z{ _z }
-	{ }
-
-	constexpr Vector3::Vector3(float32 _coord[3])
-		: x{ _coord[AXIS_X] }, y{ _coord[AXIS_Y] }, z{ _coord[AXIS_Z] }
-	{ }
-
-	constexpr bool operator==(const Vector3& left, const Vector3& right)
+	template<typename _Ty>
+	constexpr Vector3_Base<_Ty>::Vector3_Base()
 	{
-		if (left.x == right.y)
-		{
-			if (left.y == right.y)
-			{
-				if (left.z == right.z)
-				{
+		this->coord[AXIS_X] = 0;
+		this->coord[AXIS_Y] = 0;
+		this->coord[AXIS_Z] = 0;
+	}
+
+	template<typename _Ty>
+	constexpr Vector3_Base<_Ty>::Vector3_Base(_Ty _x, _Ty _y, _Ty _z)
+	{
+		this->coord[AXIS_X] = _x;
+		this->coord[AXIS_Y] = _y;
+		this->coord[AXIS_Z] = _z;
+	}
+
+	template<typename _Ty>
+	constexpr Vector3_Base<_Ty>::Vector3_Base(_Ty _coord[3])
+	{
+		this->coord[AXIS_X] = _coord[AXIS_X];
+		this->coord[AXIS_Y] = _coord[AXIS_Y];
+		this->coord[AXIS_Z] = _coord[AXIS_Z];
+	}
+
+	template<typename _Ty>
+	constexpr _Ty& Vector3_Base<_Ty>::operator[](const uint8 axis)
+	{
+		return this->coord[axis];
+	}
+	
+	template<typename _Ty>
+	constexpr const _Ty& Vector3_Base<_Ty>::operator[](const uint8 axis) const
+	{
+		return this->coord[axis];
+	}
+
+	template<typename _Ty> constexpr bool operator==(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
+	{
+		if (left.x == right.y) {
+			if (left.y == right.y) {
+				if (left.z == right.z) {
 					return true;
 				}
 			}
@@ -31,128 +53,145 @@ namespace ecm::math
 		return false;
 	}
 
-	constexpr bool operator!=(const Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr bool operator!=(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
 		return !(left == right);
 	}
 
-	constexpr Vector3 operator+(const Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
-		Vector3 vec{};
+		Vector3_Base<_Ty> vec{};
 		vec.x = left.x + right.x;
 		vec.y = left.y + right.y;
 		vec.z = left.z + right.z;
 		return vec;
 	}
 
-	constexpr Vector3 operator-(const Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
-		Vector3 vec{};
+		Vector3_Base<_Ty> vec{};
 		vec.x = left.x - right.x;
 		vec.y = left.y - right.y;
 		vec.z = left.z - right.z;
 		return vec;
 	}
 
-	constexpr Vector3 operator*(const Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
-		Vector3 vec{};
+		Vector3_Base<_Ty> vec{};
 		vec.x = left.x * right.x;
 		vec.y = left.y * right.y;
 		vec.z = left.z * right.z;
 		return vec;
 	}
 
-	constexpr Vector3 operator/(const Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
+		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
-		Vector3 vec{};
+		Vector3_Base<_Ty> vec{};
 		vec.x = left.x / right.x;
 		vec.y = left.y / right.y;
 		vec.z = left.z / right.z;
 		return vec;
 	}
 
-	constexpr Vector3& operator+=(Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator+=(
+		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
 		left = left + right;
 		return left;
 	}
 
-	constexpr Vector3& operator-=(Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator-=(
+		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
 		left = left - right;
 		return left;
 	}
 
-	constexpr Vector3& operator*=(Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator*=(
+		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
 		left = left * right;
 		return left;
 	}
 
-	constexpr Vector3& operator/=(Vector3& left, const Vector3& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator/=(
+		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
 	{
 		left = left / right;
 		return left;
 	}
 
-	constexpr Vector3 operator+(const Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
+		const Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		Vector3 vec{};
-		vec.x = left.x + right;
-		vec.y = left.y + right;
-		vec.z = left.z + right;
+		Vector3_Base<_Ty> vec{};
+		vec.x = left.x + scalar;
+		vec.y = left.y + scalar;
+		vec.z = left.z + scalar;
 		return vec;
 	}
 
-	constexpr Vector3 operator-(const Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
+		const Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		Vector3 vec{};
-		vec.x = left.x - right;
-		vec.y = left.y - right;
-		vec.z = left.z - right;
+		Vector3_Base<_Ty> vec{};
+		vec.x = left.x - scalar;
+		vec.y = left.y - scalar;
+		vec.z = left.z - scalar;
 		return vec;
 	}
 
-	constexpr Vector3 operator*(const Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
+		const Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		Vector3 vec{};
-		vec.x = left.x * right;
-		vec.y = left.y * right;
-		vec.z = left.z * right;
+		Vector3_Base<_Ty> vec{};
+		vec.x = left.x * scalar;
+		vec.y = left.y * scalar;
+		vec.z = left.z * scalar;
 		return vec;
 	}
 
-	constexpr Vector3 operator/(const Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
+		const Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		Vector3 vec{};
-		vec.x = left.x / right;
-		vec.y = left.y / right;
-		vec.z = left.z / right;
+		Vector3_Base<_Ty> vec{};
+		vec.x = left.x / scalar;
+		vec.y = left.y / scalar;
+		vec.z = left.z / scalar;
 		return vec;
 	}
 
-	constexpr Vector3 operator+=(Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+=(
+		Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		left = left + right;
+		left = left + scalar;
 		return left;
 	}
 
-	constexpr Vector3 operator-=(Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-=(
+		Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		left = left - right;
+		left = left - scalar;
 		return left;
 	}
 
-	constexpr Vector3 operator*=(Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*=(
+		Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		left = left * right;
+		left = left * scalar;
 		return left;
 	}
 
-	constexpr Vector3 operator/=(Vector3& left, const float32& right)
+	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/=(
+		Vector3_Base<_Ty>& left, const _Ty& scalar)
 	{
-		left = left / right;
+		left = left / scalar;
 		return left;
 	}
 } // namespace ecm::math
