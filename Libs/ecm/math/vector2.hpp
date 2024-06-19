@@ -1,4 +1,4 @@
-/*
+/**
  * \file Vector2.h
  *
  * \brief This header defines a two dimensional vector and functionalities.
@@ -13,7 +13,7 @@
 
 namespace ecm::math
 {
-	/*
+	/**
 	 * This structure represents a 2d vector template.
 	 *
 	 * \since v1.0.0
@@ -21,7 +21,7 @@ namespace ecm::math
 	template<typename _Ty>
 	struct Vector2_Base
 	{
-		/*
+		/**
 		 * Enum representing the axes of the vector.
 		 *
 		 * \since v1.0.0
@@ -54,14 +54,14 @@ namespace ecm::math
 			_Ty coord[2]{ 0 };
 		};
 
-		/*
+		/**
 		 * Default constructor.
 		 *
 		 * \since v1.0.0
 		 */
 		constexpr Vector2_Base();
 
-		/*
+		/**
 		 * Constructor initializing with x and y coordinates.
 		 *
 		 * \param x the x coordinate or width.
@@ -71,7 +71,7 @@ namespace ecm::math
 		 */
 		constexpr Vector2_Base(_Ty x, _Ty y);
 
-		/*
+		/**
 		 * Constructor initializing with an array of two coordinates.
 		 *
 		 * \param coord the coordinates as array with two values.
@@ -80,7 +80,7 @@ namespace ecm::math
 		 */
 		constexpr Vector2_Base(_Ty coord[2]);
 
-		/*
+		/**
 		 * Subscript operator to access vector elements by axes.
 		 *
 		 * \param axis The axes of the element to access.
@@ -89,10 +89,21 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr _Ty& operator[](const uint8 axis) const;
+		constexpr _Ty& operator[](const uint8 axis);
+
+		/**
+		 * Subscript operator to access vector elements by axes.
+		 *
+		 * \param axis The axes of the element to access.
+		 *
+		 * \returns The element at the given axes.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr const _Ty& operator[](const uint8 axis) const;
 	};
 
-	/*
+	/**
 	 * This structure represents a 2D vector with float32 elements.
 	 *
 	 * \since v1.0.0
@@ -101,7 +112,7 @@ namespace ecm::math
 	{
 		using Vector2_Base<float32>::Vector2_Base;
 
-		/*
+		/**
 		 * Constructor to initialize from a Vector2_Base<float32>.
 		 *
 		 * \param base The base vector to initialize from.
@@ -112,7 +123,7 @@ namespace ecm::math
 			: Vector2_Base{ base.x, base.y } {}
 	};
 
-	/*
+	/**
 	 * This structure represents a 2D vector with float32 elements, aligned to
 	 * 16 bytes.
 	 *
@@ -123,7 +134,7 @@ namespace ecm::math
 		using Vector2::Vector2;
 	};
 
-	/*
+	/**
 	 * This structure represents a 2D point with float32 elements.
 	 *
 	 * \since v1.0.0
@@ -133,7 +144,7 @@ namespace ecm::math
 		using Vector2::Vector2;
 	};
 	
-	/*
+	/**
 	 * This structure represents a 2D vector with int32 elements.
 	 *
 	 * \since v1.0.0
@@ -142,7 +153,7 @@ namespace ecm::math
 	{
 		using Vector2_Base<int32>::Vector2_Base;
 
-		/*
+		/**
 		 * Constructor to initialize from a Vector2_Base<int32>
 		 *
 		 * \param base The base vector to initialize from.
@@ -153,7 +164,7 @@ namespace ecm::math
 			: Vector2_Base{ base.x, base.y } {}
 	};
 
-	/*
+	/**
 	 * This structure represents a 2D vector with int32 elements, aligned to 16
 	 * bytes.
 	 *
@@ -164,7 +175,7 @@ namespace ecm::math
 		using Vector2i::Vector2i;
 	};
 
-	/*
+	/**
 	 * This structure represents a 2D point with int32 elements.
 	 *
 	 * \since v1.0.0
@@ -174,7 +185,7 @@ namespace ecm::math
 		using Vector2i::Vector2i;
 	};
 
-	/*
+	/**
 	 * This operator checks if the two Vector2 are the same.
 	 *
 	 * \param left Left Vector2 operand.
@@ -184,12 +195,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr bool operator==(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator checks if the two Vector2 are not the same.
 	 *
 	 * \param left Left Vector2 operand.
@@ -199,12 +210,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr bool operator!=(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 
-	/*
+	/**
 	 * This operator creates an new Vector2 object, calculates the addition of
 	 * two Vector2 objects left and right component-wise and returns the newly
 	 * created object.
@@ -216,12 +227,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator creates a new Vector2 object, calculates the subtracting of
 	 * two Vector2 objects left and right component-wise and returns the newly
 	 * created object.
@@ -233,12 +244,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator creates an new Vector2 object, calculates the
 	 * multiplication of two Vector2 objects left and right component-wise and
 	 * returns the newly created object.
@@ -251,12 +262,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator creates a new Vector2 object, calculates the division of
 	 * two Vector2 objects left and right component by component and returns the
 	 * newly created object.
@@ -268,12 +279,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 
-	/*
+	/**
 	 * This operator adds the two Vector2 objects left and right together and
 	 * returns the new value of left.
 	 *
@@ -284,12 +295,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator+=(
 		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator subtracts the two Vector2 objects left and right together
 	 * and returns the new value of left.
 	 *
@@ -300,12 +311,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator-=(
 		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator multiplies the two Vector2 objects left and right together
 	 * and returns the new value of left.
 	 *
@@ -316,12 +327,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator*=(
 		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 	
-	/*
+	/**
 	 * This operator devides the two Vector2 objects left and right together and
 	 * returns the new value of left.
 	 *
@@ -332,12 +343,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator/=(
 		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 
-	/*
+	/**
 	 * This operator creates an new Vector2 object, calculates the addition of a
 	 * Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
@@ -349,12 +360,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
 		const Vector2_Base<_Ty>& left, const _Ty& scalar);
 
-	/*
+	/**
 	 * This operator creates a new Vector2 object, calculates the subtracting of a
 	 * Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
@@ -366,12 +377,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
 		const Vector2_Base<_Ty>& left, const _Ty& scalar);
 
-	/*
+	/**
 	 * This operator creates an new Vector2 object, calculates the
 	 * multiplication of a Vector2 object and a Float32 object, left and right
 	 * component-wise and returns the newly created object.
@@ -384,12 +395,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
 		const Vector2_Base<_Ty>& left, const _Ty& scalar);
 
-	/*
+	/**
 	 * This operator creates a new Vector2 object, calculates the division of a
 	 * Vector2 object and a Float32 object, left and right component by
 	 * component and returns the newly created object.
@@ -401,12 +412,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
 		const Vector2_Base<_Ty>& left, const _Ty& scalar);
 
-	/*
+	/**
 	 * This operator adds a Float32 object to a Vector2 object, left and right
 	 * together and returns the new value of left.
 	 *
@@ -417,12 +428,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator+=(
 		Vector2_Base<_Ty>& left, _Ty& scalar);
 
-	/*
+	/**
 	 * This operator subtracts a Float32 object from a Vector2 object, left and
 	 * right together and returns the new value of left.
 	 *
@@ -433,12 +444,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator-=(
 		Vector2_Base<_Ty>& left, _Ty& scalar);
 
-	/*
+	/**
 	 * This operator multiplies a Float32 object with a Vector2 object, left and
 	 * right together and returns the new value of left.
 	 *
@@ -449,12 +460,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator*=(
 		Vector2_Base<_Ty>& left, _Ty& scalar);
 
-	/*
+	/**
 	 * This operator devides a Float32 object with a Vector2 object, left and
 	 * right together and returns the new value of left.
 	 *
@@ -465,7 +476,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Vector2
+	 * \sa Vector2_Base
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator/=(
 		Vector2_Base<_Ty>& left, _Ty& scalar);

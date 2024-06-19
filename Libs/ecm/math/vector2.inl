@@ -26,7 +26,13 @@ namespace ecm::math
 	}
 
 	template<typename _Ty>
-	constexpr _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis) const
+	constexpr _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis)
+	{
+		return this->coord[axis];
+	}
+	
+	template<typename _Ty>
+	constexpr const _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}
