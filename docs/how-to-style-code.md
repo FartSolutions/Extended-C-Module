@@ -6,8 +6,14 @@
     - [Constants and macros](#constants-and-macros)
     - [Type traits and template metaprogramming](#type-traits-and-template-metaprogramming)
 - [Code style](#code-style)
+    - [Indentations](#indentations)
+    - [Brackets](#brackets)
+    - [Spaces](#spaces)
+    - [Line length](#line-length)
+    - [Comments](#comments)
 
 ## Foreword
+A graphic that briefly and concisely describes the difference between the used naming conventions.
 ![Camel-/Snake-/Pascal-Case](https://khalilstemmler.com/img/blog/camel-snake-pascal-case/camel-case-snake-case-pascal-case.png)
 
 ## Naming conventions
@@ -62,3 +68,68 @@ struct is_lvalue_reference {
     bool value = false;
 };
 ```
+
+## Code style
+### Indentations
+Indentations are always with 4 spaces per tab.
+
+### Brackets
+Opening brackets are on the same line as the control structure or declaration, unless it is a class, structure, function or method definition.
+```cpp
+class ExampleClass
+{
+    void DoSomething()
+    {
+        if (condition) {
+            return;
+        }
+        while (true) {
+            break;
+        }
+    }
+};
+```
+
+### Spaces
+Spaces always follow commas and keywords such as `if`, `for`, `while` and so on.
+
+### Line length
+There are nor more than 80 characters in a line; a line break must be inserted from the 81th character.
+
+### Comments
+Documentation comments are written in Doxygen style.
+```cpp
+/**
+ * Here the function or method is explained in basic terms and, if necessary,
+ * how to use it and what needs to be observed.
+ *
+ * \param param Description of the parameter.
+ *
+ * \returns Description of the return value.
+ *
+ * \since v1.0.0
+ *
+ * \sa ExampleType
+ */
+int ExampleFunction(ExampleType param);
+```
+
+Documentation comments at the beginning of a file are written written in Doxygen style.
+```cpp
+/**
+ * \file example_file.h
+ *
+ * \brief Briefly describes the content of a file.
+ */
+```
+
+|Parameter|Description
+|-|-
+|param|Describes the parameter
+|returns|Describes the return value
+|since|Indicates the version in which the function/structure was
+|sa|Shows the dependencies
+|file|Specifies a file name
+|brief|Briefly describes the content of a file
+
+&uarr; [Back to top](#top)
