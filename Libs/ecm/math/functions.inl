@@ -88,6 +88,17 @@ namespace ecm::math
 			u.i = 0x7ff8000000000000;
 			return u.f;
 		}
+		template<>
+		inline float128 QuietNaN() noexcept {
+			struct _Float128 {
+				uint64 high;
+				uint64 low;
+			};
+			_Float128 nan = { 0x7FFF800000000000, 0x0000000000000000 };
+			float128 result;
+			memcpy(&result, &nan, sizeof(result));
+			return result;
+		}
 		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	} // anonymous namespace
 
@@ -135,7 +146,7 @@ namespace ecm::math
 	{
 		static_assert(IsFloatingPoint<_Ty>::Value,
 			"Type must be a floating type");
-		if (y < 0.0) {
+		if (y == 0.0) {
 			return QuietNaN<_Ty>();
 		}
 		return x - Trunc(x / y) * y;

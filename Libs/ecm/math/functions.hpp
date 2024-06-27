@@ -13,6 +13,9 @@
 
 namespace ecm::math
 {
+	constexpr float64 PI = 3.14159265358979323846;
+	constexpr float64 PI2 = 6.28318530717958647692;
+
 	/*
 	 * This function calculates the absolute value of a given input.
 	 *
@@ -77,6 +80,11 @@ namespace ecm::math
 	 */
 	template<typename _Ty>
 	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
+
+	extern ECM_MATH_API float64 ECM_CALL Sin(float64 x);
+	extern ECM_MATH_API float64 ECM_CALL SinT(float64 x);
+
+	extern ECM_MATH_API float32 ECM_CALL Sin(float32 x);
 } // namespace ecm::math
 
 #include "functions.inl"

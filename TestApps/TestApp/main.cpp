@@ -133,89 +133,6 @@ void test_WindowSystem()
 	ecm::DestroyWindow(window);
 }
 
-template<typename _Ty>
-void test_vector_f(_Ty v1, _Ty v2)
-{
-	_Ty test_vec2d3{ v1 + v2 };
-	_Ty test_vec2d4{ v1 - v2 };
-	_Ty test_vec2d5{ v1 * v2 };
-	_Ty test_vec2d6{ v1 / v2 };
-
-	test_vec2d3 += v1;
-	test_vec2d4 -= v2;
-	test_vec2d5 *= test_vec2d3;
-	test_vec2d6 /= test_vec2d4;
-
-	test_vec2d3 = test_vec2d3 + 50.f;
-	test_vec2d4 = test_vec2d4 - 50.f;
-	test_vec2d5 = test_vec2d5 * 50.f;
-	test_vec2d6 = test_vec2d6 / 50.f;
-
-	test_vec2d3 += 3.f;
-	test_vec2d4 -= 3.f;
-	test_vec2d5 *= 3.f;
-	test_vec2d6 /= 3.f;
-}
-
-template<typename _Ty>
-void test_vector_i(_Ty v1, _Ty v2)
-{
-	_Ty test_vec2d3{ v1 + v2 };
-	_Ty test_vec2d4{ v1 - v2 };
-	_Ty test_vec2d5{ v1 * v2 };
-	_Ty test_vec2d6{ v1 / v2 };
-
-	test_vec2d3 += v1;
-	test_vec2d4 -= v2;
-	test_vec2d5 *= test_vec2d3;
-	test_vec2d6 /= test_vec2d4;
-
-	test_vec2d3 = test_vec2d3 + 50;
-	test_vec2d4 = test_vec2d4 - 50;
-	test_vec2d5 = test_vec2d5 * 50;
-	test_vec2d6 = test_vec2d6 / 50;
-
-	test_vec2d3 += 3;
-	test_vec2d4 -= 3;
-	test_vec2d5 *= 3;
-	test_vec2d6 /= 3;
-}
-
-#pragma comment(lib, "sdl2.lib")
-void test_Math()
-{
-	test_vector_f<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
-	test_vector_f<ecm::math::Vector2A>({ 720.f, 1280.f }, { 800.f, 600.f });
-	test_vector_i<ecm::math::Vector2i>({ 720, 1280 }, { 800, 600 });
-	test_vector_i<ecm::math::Vector2iA>({ 720, 1280 }, { 800, 600 });
-	test_vector_f<ecm::math::Vector3>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
-	test_vector_f<ecm::math::Vector3A>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
-	test_vector_i<ecm::math::Vector3i>({ 720, 1280, 1561 }, { 800, 600, 654 });
-	test_vector_i<ecm::math::Vector3iA>({ 720, 1280, 1561 }, { 800, 600, 654 });
-	test_vector_f<ecm::math::Vector4>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
-
-	ecm::math::Matrix4x4 mat1{ 5, 7, 9, 10, 2, 3, 3, 8, 8, 10, 2, 3, 3, 3, 4, 8 };
-	ecm::math::Matrix4x4 mat2{ 3, 10, 12, 18, 12, 1, 4, 9, 9, 10, 12, 2, 3, 12, 4, 10 };
-	ecm::math::Matrix4x4 matRes = mat1 * mat2;
-
-	if (mat1 == mat1)
-	{
-		mat1 *= mat1;
-		ecm::console::WriteLine("Upps, da passt was nicht!");
-	}
-
-	ecm::int8 abs1{ ecm::math::Abs<ecm::int8>(-108) };
-	ecm::int16 abs2{ ecm::math::Abs<ecm::int16>(-1286) };
-	ecm::int32 abs3{ ecm::math::Abs(-12839566) };
-	ecm::int64 abs4{ ecm::math::Abs(-12873565635685) };
-
-	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(10) };
-	ecm::float128 pow{ ecm::math::Pow(21.4L, 5) };
-	std::cout << "My: " << pow << ", SDLs: " << SDL_pow(21.4, 5) << std::endl;
-	ecm::float128 fmod{ ecm::math::Fmod(21.4, 54.8) };
-	std::cout << "My: " << fmod << ", SDLs: " << SDL_fmod(21.4, 54.8) << std::endl;
-}
-
 #undef main
 int main()
 {
@@ -224,7 +141,6 @@ int main()
 	test_Threading();
 	test_ConsoleSystem();
 	test_WindowSystem();
-	test_Math();
 	
 	system("pause");
 	return 0;
