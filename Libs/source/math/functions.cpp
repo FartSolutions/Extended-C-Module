@@ -69,4 +69,14 @@ namespace ecm::math
 	{
 		return sinf(x);
 	}
+
+	float64 Cos(float64 x)
+	{
+		return cos(x);
+	}
+
+	float32 Cos(float32 x)
+	{
+		return cosf(x);
+	}
 } // namespace ecm::math
