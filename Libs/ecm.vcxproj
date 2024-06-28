@@ -189,6 +189,7 @@
     <ClInclude Include="ecm\ecm_api.h" />
     <ClInclude Include="ecm\ecm_configs.h" />
     <ClInclude Include="ecm\ecm_console.h" />
+    <ClInclude Include="ecm\ecm_stdinc.h" />
     <ClInclude Include="ecm\ecm_types.hpp" />
     <ClInclude Include="ecm\ecm_version.h" />
     <ClInclude Include="ecm\types\color.h" />

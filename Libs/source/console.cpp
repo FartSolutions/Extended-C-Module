@@ -16,7 +16,7 @@ namespace ecm::console
 			HANDLE hConsole{ GetStdHandle(STD_OUTPUT_HANDLE) };
 			if (SetConsoleTextAttribute(hConsole, attrib) == 0)
 			{
-				return ECM_FAILED;
+				return -1;
 			}
 			return ECM_SUCCESS;
 		}
@@ -58,7 +58,7 @@ namespace ecm::console
 
 	int32 Write(string str, ...)
 	{
-		int32 retCode{ ECM_FAILED };
+		int32 retCode{ -1 };
 		va_list args;
 		va_start(args, str); // Initialize va_list
 		if (!(vprintf_s(str.c_str(), args) > 0))
@@ -70,7 +70,7 @@ namespace ecm::console
 	int32 WriteLine(string str, ...)
 	{
 		str += "\n";
-		int32 retCode{ ECM_FAILED };
+		int32 retCode{ -1 };
 		va_list args;
 		va_start(args, str); // Initialize va_list
 		if (!(vprintf_s(str.c_str(), args) > 0))
@@ -81,7 +81,7 @@ namespace ecm::console
 
 	int32 Write(wstring str, ...)
 	{
-		int32 retCode{ ECM_FAILED };
+		int32 retCode{ -1 };
 		va_list args;
 		va_start(args, str); // Initialize va_list
 		if (!(vwprintf_s(str.c_str(), args) > 0))
@@ -93,7 +93,7 @@ namespace ecm::console
 	int32 WriteLine(wstring str, ...)
 	{
 		str += L"\n";
-		int32 retCode{ ECM_FAILED };
+		int32 retCode{ -1 };
 		va_list args;
 		va_start(args, str); // Initialize va_list
 		if (!(vwprintf_s(str.c_str(), args) > 0))
