@@ -16,7 +16,7 @@ namespace ecm::math
 	constexpr float64 PI = 3.14159265358979323846;
 	constexpr float64 PI2 = 6.28318530717958647692;
 
-	/*
+	/**
 	 * This function calculates the absolute value of a given input.
 	 *
 	 * \param x Input value of type _Ty.
@@ -28,7 +28,7 @@ namespace ecm::math
 	template<typename _Ty>
 	inline _Ty ECM_CALL Abs(_Ty const x) noexcept;
 
-	/*
+	/**
 	 * This function truncates the decimal part of the number and returns the
 	 * integer part.
 	 *
@@ -41,7 +41,7 @@ namespace ecm::math
 	template<typename _Ty>
 	inline _Ty ECM_CALL Trunc(_Ty const x) noexcept;
 
-	/*
+	/**
 	 * This function calculates the factorial of a given input.
 	 *
 	 * \param n Input value of type _Ty.
@@ -53,7 +53,7 @@ namespace ecm::math
 	template<typename _Ty>
 	inline _Ty ECM_CALL Fact(_Ty const n) noexcept;
 
-	/*
+	/**
 	 * This function calculates the power of a base raised to an exponent.
 	 *
 	 * \param base The base value of type _Ty_Base.
@@ -67,7 +67,7 @@ namespace ecm::math
 	inline _Ty_Base ECM_CALL Pow(_Ty_Base const base,
 		_Ty_Exp const exp) noexcept;
 
-	/*
+	/**
 	 * Computes the floating-point remainder of the division operation x/y.
 	 *
 	 * \param x The dividend in the division operation.
@@ -81,17 +81,71 @@ namespace ecm::math
 	template<typename _Ty>
 	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
 
-	extern ECM_MATH_API float64 ECM_CALL Sin(float64 x);
+	/**
+	 * Computes the sine of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The sine of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float64 ECM_CALL Sin(float64 angle);
 
-	extern ECM_MATH_API float32 ECM_CALL Sin(float32 x);
+	/**
+	 * Computes the sine of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The sine of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float32 ECM_CALL Sin(float32 angle);
 
-	extern ECM_MATH_API float64 ECM_CALL Cos(float64 x);
+	/**
+	 * Computes the cosine of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The cosine of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float64 ECM_CALL Cos(float64 angle);
 
-	extern ECM_MATH_API float32 ECM_CALL Cos(float32 x);
+	/**
+	 * Computes the cosine of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The cosine of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float32 ECM_CALL Cos(float32 angle);
 
-	extern ECM_MATH_API float64 ECM_CALL Tan(float64 x);
+	/**
+	 * Computes the tangent of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The tangent of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float64 ECM_CALL Tan(float64 angle);
 
-	extern ECM_MATH_API float32 ECM_CALL Tan(float32 x);
+	/**
+	 * Computes the tangent of the given angle.
+	 * 
+	 * \param x The angle in radians.
+	 * 
+	 * \returns The tangent of the angle.
+	 * 
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float32 ECM_CALL Tan(float32 angle);
 } // namespace ecm::math
 
 #include "functions.inl"
