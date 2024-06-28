@@ -80,23 +80,20 @@ void test_basics()
 	ecm::int32 abs3{ ecm::math::Abs(-12839566) };
 	ecm::int64 abs4{ ecm::math::Abs(-12873565635685) };
 	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(10) };
-	printf("Pow: [ sdl2: %f, ecm: %f ]\n", SDL_pow(21.4, 5), ecm::math::Pow(21.4, 5));
-	printf("Fmod: [ sdl2: %f, ecm: %f ]\n", SDL_fmod(21.4, 54.8), ecm::math::Fmod(21.4, 54.8));
+	printf("Pow: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_pow(21.4, 5), ecm::math::Pow(21.4, 5));
+	printf("Fmod: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_fmod(21.4, 54.8), ecm::math::Fmod(21.4, 54.8));
 
 	auto start = std::chrono::high_resolution_clock::now();
 	for (int i{ 0 }; i < 1000; ++i) {
 		for (int deg{ 0 }; deg < 360; deg++) {
 			// Deg2Rad
-			volatile ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
-			//volatile auto resSdl{ SDL_sin(rad) };
-			//volatile auto resEcm{ ecm::math::Sin(rad) };
-			volatile auto resStl{ std::sin(rad) };
-			//printf("Sin %f: [ sdl2: %f, stl: %f, ecm: %f, same: %d ]\n", rad, resSdl, resStl, resEcm, resSdl == resEcm);
+			ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
+			volatile auto resEcm{ ecm::math::Sin(rad) };
 		}
 	}
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = end - start;
-	printf("Time elapsed: %f\n", elapsed.count());
+	printf("%i sin operations, time elapsed: %0.80f\n", 1000 * 360, elapsed.count());
 }
 
 #undef main

@@ -1,5 +1,7 @@
 #include "ecm/math/functions.hpp"
 
+#include <cmath>
+
 namespace ecm::math
 {
 	namespace
@@ -8,16 +10,9 @@ namespace ecm::math
 		{
 			const int terms{ 20 };
 			x = Fmod(x + PI, PI2) - PI;
-			float64 result{ 0.0l };
-			/*const int terms{10};
-			for (int32 i{ 0 }; i < terms; ++i) {
-				int32 sign{ (i % 2 == 0) ? 1 : -1 };
-				result += sign * Pow(x, 2 * i + 1) / Fact(2 * i + 1);
-			}*/
-			float64 term{ x };
-			for (int32 i{ 0 }; i < terms; ++i) {
-				result += term;
-				term *= -x * x / ((2 * i + 2) * (2 * i + 3));
+			float64 result{ 0.0 };
+			for (int32 n{ 0 }; n < terms; ++n) {
+				result += (Pow(-1, n) * Pow(x, 2 * n + 1) / Fact(2 * n + 1));
 			}
 			return result;
 		}
@@ -28,20 +23,50 @@ namespace ecm::math
 			const float128 x2 = x * x;
 			return x * (1 - x2 / 6 * (1 - x2 / 20 * (1 - x2 / 42)));
 		}
+
+		__forceinline float64 _reduce_angle(float64 x)
+		{
+			x = Fmod(x, PI2);
+			if (x > PI) {
+				x -= 2 * PI;
+			} else if (x < -PI) {
+				x += PI2;
+			}
+			return x;
+		}
+
+		__forceinline float64 _sin_fast(float64 x)
+		{
+			x = _reduce_angle(x);
+			float64 x2 = x * x;
+			float64 result = x;
+			float64 term = x;
+			term *= -x2 / (2 * 3);
+			result += term;
+			term *= -x2 / (4 * 5);
+			result += term;
+			term *= -x2 / (6 * 7);
+			result += term;
+			term *= -x2 / (8 * 9);
+			result += term;
+			term *= -x2 / (10 * 11);
+			result += term;
+			return result;
+		}
+
+		__forceinline float64 _sin_internal(float64 x)
+		{
+			return _sin_fast(x);
+		}
 	} // anonymous namespace
 
 	float64 Sin(float64 x)
 	{
-		return _sin_with_polynomiable_approximation(x);
+		return sin(x);
 	}
 	
-	float64 SinT(float64 x)
-	{
-		return _sin_with_taylor(x);
-	}
-
 	float32 Sin(float32 x)
 	{
-		return static_cast<float32>(_sin_with_polynomiable_approximation(static_cast<float64>(x)));
+		return sinf(x);
 	}
 } // namespace ecm::math

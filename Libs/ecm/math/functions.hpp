@@ -82,7 +82,6 @@ namespace ecm::math
 	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
 
 	extern ECM_MATH_API float64 ECM_CALL Sin(float64 x);
-	extern ECM_MATH_API float64 ECM_CALL SinT(float64 x);
 
 	extern ECM_MATH_API float32 ECM_CALL Sin(float32 x);
 } // namespace ecm::math
