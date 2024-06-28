@@ -88,6 +88,10 @@ namespace ecm::math
 	extern ECM_MATH_API float64 ECM_CALL Cos(float64 x);
 
 	extern ECM_MATH_API float32 ECM_CALL Cos(float32 x);
+
+	extern ECM_MATH_API float64 ECM_CALL Tan(float64 x);
+
+	extern ECM_MATH_API float32 ECM_CALL Tan(float32 x);
 } // namespace ecm::math
 
 #include "functions.inl"

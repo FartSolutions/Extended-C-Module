@@ -79,4 +79,14 @@ namespace ecm::math
 	{
 		return cosf(x);
 	}
+
+	float64 Tan(float64 x)
+	{
+		return sin(x) / cos(x);
+	}
+
+	float32 Tan(float32 x)
+	{
+		return sinf(x) / cosf(x);
+	}
 } // namespace ecm::math

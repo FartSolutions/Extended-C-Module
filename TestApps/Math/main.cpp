@@ -103,6 +103,21 @@ void test_cos()
 	printf("%i cos operations, time elapsed: %0.80f\n", 1000 * 360, elapsed.count());
 }
 
+void test_tan()
+{
+	auto start = std::chrono::high_resolution_clock::now();
+	for (int i{ 0 }; i < 1000; ++i) {
+		for (int deg{ 0 }; deg < 360; deg++) {
+			// Deg2Rad
+			ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
+			volatile auto resEcm{ ecm::math::Tan(rad) };
+		}
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> elapsed = end - start;
+	printf("%i tan operations, time elapsed: %0.80f\n", 1000 * 360, elapsed.count());
+}
+
 void test_basics()
 {
 	ecm::int8 abs1{ ecm::math::Abs<ecm::int8>(-108) };
@@ -115,6 +130,7 @@ void test_basics()
 
 	test_sin();
 	test_cos();
+	test_tan();
 }
 
 #undef main
