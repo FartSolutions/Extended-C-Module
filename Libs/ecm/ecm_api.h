@@ -33,6 +33,16 @@
 #define ECM_API
 #endif // ECM_DYNAMIC_BUILD
 
+#if ECM_MATH_DYNAMIC_BUILD
+#if ECM_MATH_DYNAMIC_EXPORT
+#define ECM_MATH_API __declspec(dllexport)
+#else
+#define ECM_MATH_API __declspec(dllimport)
+#endif // ECM_MATH_DYNAMIC_EXPORT
+#else
+#define ECM_MATH_API
+#endif // ECM_MATH_DYNAMIC_BUILD
+
 #if ECM_ALG_DYNAMIC_BUILD
 #if ECM_ALG_DYNAMIC_EXPORT
 #define ECM_ALG_API __declspec(dllexport)
