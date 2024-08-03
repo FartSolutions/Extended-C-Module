@@ -236,6 +236,273 @@ namespace ecm::math
 	 */
 	inline constexpr Matrix4x4& operator*=(
 		Matrix4x4& left, const Matrix4x4& right);
+
+	/*
+	 * This function sets a translation matrix with given translation values.
+	 *
+	 * \param tx Translation along the x-axis.
+	 * \param ty Translation along the y-axis.
+	 * \param tz Translation along the z-axis.
+	 *
+	 * \returns The translation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetTranslation(float32 tx, float32 ty, float32 tz);
+
+	/*
+	 * This function sets a translation matrix with a given vector.
+	 *
+	 * \param t Vector3 containing translation values.
+	 *
+	 * \returns The translation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 * \sa Vector3
+	 */
+	ECM_INLINE Matrix4x4 SetTranslation(const Vector3& t);
+
+	/*
+	 * This function translates a matrix with given translation values.
+	 *
+	 * \param mat The matrix to be translated.
+	 * \param tx Translation along the x-axis.
+	 * \param ty Translation along the y-axis.
+	 * \param tz Translation along the z-axis.
+	 *
+	 * \returns The translated matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 Translate(const Matrix4x4& mat, float32 tx, float32 ty, float32 tz);
+
+	/*
+	 * This function translates a matrix with a given vector.
+	 *
+	 * \param mat The matrix to be translated.
+	 * \param t Vector3 containing translation values.
+	 *
+	 * \returns The translated matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 * \sa Vector3
+	 */
+	ECM_INLINE Matrix4x4 Translate(const Matrix4x4& mat, const Vector3& t);
+
+	/*
+	 * This function sets a scale matrix with given scale values.
+	 *
+	 * \param sx Scale along the x-axis.
+	 * \param sy Scale along the y-axis.
+	 * \param sz Scale along the z-axis.
+	 *
+	 * \returns The scale matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetScale(float32 sx, float32 sy, float32 sz);
+
+	/*
+	 * This function sets a scale matrix with a given vector.
+	 *
+	 * \param s Vector3 containing scale values.
+	 *
+	 * \returns The scale matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 * \sa Vector3
+	 */
+	ECM_INLINE Matrix4x4 SetScale(const Vector3& s);
+
+	/*
+	 * This function scales a matrix with given scale values.
+	 *
+	 * \param mat The matrix to be scaled.
+	 * \param sx Scale along the x-axis.
+	 * \param sy Scale along the y-axis.
+	 * \param sz Scale along the z-axis.
+	 *
+	 * \returns The scaled matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 Scale(const Matrix4x4& mat, float32 sx, float32 sy, float32 sz);
+
+	/*
+	 * This function scales a matrix with a given vector.
+	 *
+	 * \param mat The matrix to be scaled.
+	 * \param s Vector3 containing scale values.
+	 *
+	 * \returns The scaled matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 * \sa Vector3
+	 */
+	ECM_INLINE Matrix4x4 Scale(const Matrix4x4& mat, const Vector3& s);
+
+	/*
+	 * This function sets a rotation matrix around the x-axis with a given angle.
+	 *
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetRotationX(float32 angle);
+
+	/*
+	 * This function rotates a matrix around the x-axis with a given angle.
+	 *
+	 * \param mat The matrix to be rotated.
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 RotateX(const Matrix4x4& mat, float32 angle);
+
+	/*
+	 * This function sets a rotation matrix around the y-axis with a given angle.
+	 *
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetRotationY(float32 angle);
+
+	/*
+	 * This function rotates a matrix around the y-axis with a given angle.
+	 *
+	 * \param mat The matrix to be rotated.
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 RotateY(const Matrix4x4& mat, float32 angle);
+
+	/*
+	 * This function sets a rotation matrix around the z-axis with a given angle.
+	 *
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetRotationZ(float32 angle);
+
+	/*
+	 * This function rotates a matrix around the z-axis with a given angle.
+	 *
+	 * \param mat The matrix to be rotated.
+	 * \param angle Angle in radians to rotate.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 RotateZ(const Matrix4x4& mat, float32 angle);
+
+	/*
+	 * This function sets a rotation matrix around an arbitrary axis with a
+	 * given angle.
+	 *
+	 * \param angle Angle in radians to rotate.
+	 * \param x X component of the axis.
+	 * \param y Y component of the axis.
+	 * \param z Z component of the axis.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 SetRotation(float32 angle, float32 x, float32 y, float32 z);
+
+	/*
+	 * This function sets a rotation matrix around an arbitrary axis with a
+	 * given angle and vector.
+	 *
+	 * \param angle Angle in radians to rotate.
+	 * \param r Vector3 representing the axis of rotation.
+	 *
+	 * \returns The rotation matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 * \sa Vector3
+	 */
+	ECM_INLINE Matrix4x4 SetRotation(float32 angle, const Vector3& r);
+
+	/*
+	 * This function rotates a matrix around an arbitrary axis with given axis
+	 * components.
+	 *
+	 * \param mat The matrix to be rotated.
+	 * \param angle Angle in radians to rotate.
+	 * \param x X component of the axis.
+	 * \param y Y component of the axis.
+	 * \param z Z component of the axis.
+	 *
+	 * \returns The rotated matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, float32 x, float32 y, float32 z);
+
+	/*
+	 * This function rotates a matrix around an arbitrary axis with given vector.
+	 *
+	 * \param mat The matrix to be rotated.
+	 * \param angle Angle in radians to rotate.
+	 * \param r Vector3 representing the axis of rotation.
+	 *
+	 * \returns The rotated matrix.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Matrix4x4
+	 */
+	ECM_INLINE Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, const Vector3& r);
 } // namespace ecm::math
 
 #include "matrix4x4.inl"

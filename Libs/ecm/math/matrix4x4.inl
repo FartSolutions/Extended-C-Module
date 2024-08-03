@@ -43,6 +43,9 @@ namespace ecm::math
 		m30{ val[12] }, m31{ val[13] }, m32{ val[14] }, m33{ val[15] }
 	{ }
 
+	// ##########################################################################
+	// Operators
+
 	constexpr bool operator==(const Matrix4x4& left, const Matrix4x4& right)
 	{
 		if (left.m00 == right.m00
@@ -160,5 +163,98 @@ namespace ecm::math
 	{
 		left = left * right;
 		return left;
+	}
+
+	// ##########################################################################
+	// Translation Methods
+
+	Matrix4x4 SetTranslation(float32 tx, float32 ty, float32 tz)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetTranslation(const Vector3& t)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Translate(const Matrix4x4& mat, float32 tx, float32 ty, float32 tz)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Translate(const Matrix4x4& mat, const Vector3& t)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetScale(float32 sx, float32 sy, float32 sz)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetScale(const Vector3& s)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Scale(const Matrix4x4& mat, float32 sx, float32 sy, float32 sz)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Scale(const Matrix4x4& mat, const Vector3& s)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetRotationX(float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 RotateX(const Matrix4x4& mat, float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetRotationY(float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 RotateY(const Matrix4x4& mat, float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetRotationZ(float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 RotateZ(const Matrix4x4& mat, float32 angle)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetRotation(float32 angle, float32 x, float32 y, float32 z)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 SetRotation(float32 angle, const Vector3& r)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, float32 x, float32 y, float32 z)
+	{
+		return Matrix4x4();
+	}
+
+	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, const Vector3& r)
+	{
+		return Matrix4x4();
 	}
 } // namespace ecm::math
