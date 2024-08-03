@@ -1,6 +1,7 @@
 #pragma once
 
 #include "matrix4x4.hpp"
+#include "functions.hpp"
 
 namespace ecm::math
 {
@@ -170,91 +171,151 @@ namespace ecm::math
 
 	Matrix4x4 SetTranslation(float32 tx, float32 ty, float32 tz)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		result.m30 = tx;
+		result.m31 = ty;
+		result.m32 = tz;
+		return result;
 	}
 
 	Matrix4x4 SetTranslation(const Vector3& t)
 	{
-		return Matrix4x4();
+		return SetTranslation(t.x, t.y, t.z);
 	}
 
 	Matrix4x4 Translate(const Matrix4x4& mat, float32 tx, float32 ty, float32 tz)
 	{
-		return Matrix4x4();
+		Matrix4x4 translation = SetTranslation(tx, ty, tz);
+		return mat * translation;
 	}
 
 	Matrix4x4 Translate(const Matrix4x4& mat, const Vector3& t)
 	{
-		return Matrix4x4();
+		return Translate(mat, t.x, t.y, t.z);
 	}
 
 	Matrix4x4 SetScale(float32 sx, float32 sy, float32 sz)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		result.m00 = sx;
+		result.m11 = sy;
+		result.m22 = sz;
+		return result;
 	}
 
 	Matrix4x4 SetScale(const Vector3& s)
 	{
-		return Matrix4x4();
+		return SetScale(s.x, s.y, s.z);
 	}
 
 	Matrix4x4 Scale(const Matrix4x4& mat, float32 sx, float32 sy, float32 sz)
 	{
-		return Matrix4x4();
+		Matrix4x4 scaling = SetScale(sx, sy, sz);
+		return mat * scaling;
 	}
 
 	Matrix4x4 Scale(const Matrix4x4& mat, const Vector3& s)
 	{
-		return Matrix4x4();
+		return Scale(mat, s.x, s.y, s.z);
 	}
 
 	Matrix4x4 SetRotationX(float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		float32 c = Cos(angle);
+		float32 s = Sin(angle);
+		result.m11 = c;
+		result.m12 = -s;
+		result.m21 = s;
+		result.m22 = c;
+		return result;
 	}
 
 	Matrix4x4 RotateX(const Matrix4x4& mat, float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 rotation = SetRotationX(angle);
+		return mat * rotation;
 	}
 
 	Matrix4x4 SetRotationY(float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		float32 c = Cos(angle);
+		float32 s = Sin(angle);
+		result.m00 = c;
+		result.m02 = s;
+		result.m20 = -s;
+		result.m22 = c;
+		return result;
 	}
 
 	Matrix4x4 RotateY(const Matrix4x4& mat, float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 rotation = SetRotationY(angle);
+		return mat * rotation;
 	}
 
 	Matrix4x4 SetRotationZ(float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		float32 c = Cos(angle);
+		float32 s = Sin(angle);
+		result.m00 = c;
+		result.m01 = -s;
+		result.m10 = s;
+		result.m11 = c;
+		return result;
 	}
 
 	Matrix4x4 RotateZ(const Matrix4x4& mat, float32 angle)
 	{
-		return Matrix4x4();
+		Matrix4x4 rotation = SetRotationZ(angle);
+		return mat * rotation;
 	}
 
 	Matrix4x4 SetRotation(float32 angle, float32 x, float32 y, float32 z)
 	{
-		return Matrix4x4();
+		Matrix4x4 result(1.0f);
+		float32 c = Cos(angle);
+		float32 s = Sin(angle);
+		float32 t = 1 - c;
+
+		result.m00 = t * x * x + c;
+		result.m01 = t * x * y - z * s;
+		result.m02 = t * x * z + y * s;
+		result.m03 = 0;
+
+		result.m10 = t * x * y + z * s;
+		result.m11 = t * y * y + c;
+		result.m12 = t * y * z - x * s;
+		result.m13 = 0;
+
+		result.m20 = t * x * z - y * s;
+		result.m21 = t * y * z + x * s;
+		result.m22 = t * z * z + c;
+		result.m23 = 0;
+
+		result.m30 = 0;
+		result.m31 = 0;
+		result.m32 = 0;
+		result.m33 = 1;
+
+		return result;
 	}
 
 	Matrix4x4 SetRotation(float32 angle, const Vector3& r)
 	{
-		return Matrix4x4();
+		return SetRotation(angle, r.x, r.y, r.z);
 	}
 
 	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, float32 x, float32 y, float32 z)
 	{
-		return Matrix4x4();
+		Matrix4x4 rotation = SetRotation(angle, x, y, z);
+		return mat * rotation;
 	}
 
 	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, const Vector3& r)
 	{
-		return Matrix4x4();
+		return Rotate(mat, angle, r.x, r.y, r.z);
 	}
 } // namespace ecm::math

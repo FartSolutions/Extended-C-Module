@@ -13,6 +13,8 @@
 
 namespace ecm::math
 {
+	struct Vector3;
+
 	/*
 	 * This structure represents a 4x4 matrix.
 	 *
