@@ -107,7 +107,7 @@ namespace ecm::math
 		using Vector3_Base<float32>::Vector3_Base;
 
 		/**
-		 * Constructor to initialize from a Vector3_Base<float32>
+		 * Constructor to initialize from a Vector3_Base<float32>.
 		 *
 		 * \param base The base vector to initialize from.
 		 *
