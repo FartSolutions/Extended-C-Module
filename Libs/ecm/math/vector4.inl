@@ -4,29 +4,55 @@
 
 namespace ecm::math
 {
-	constexpr Vector4::Vector4()
-		: x{ 0.f }, y{ 0.f }, z{ 0.f }, w{ 0.f }
-	{ }
-
-	constexpr Vector4::Vector4(float32 _x, float32 _y, float32 _z, float32 _w)
-		: x{ _x }, y{ _y }, z{ _z }, w{ _w }
-	{ }
-
-	constexpr Vector4::Vector4(float32 _coord[4])
-		: x{ _coord[AXIS_X] }, y{ _coord[AXIS_Y] },
-		  z{ _coord[AXIS_Z] }, w{ _coord[AXIS_W] }
-	{ }
-
-	constexpr bool operator==(const Vector4& left, const Vector4& right)
+	template<typename _Ty>
+	constexpr Vector4_Base<_Ty>::Vector4_Base()
 	{
-		if (left.x == right.x)
-		{
-			if (left.y == right.y)
-			{
-				if (left.z == right.z)
-				{
-					if (left.w == right.w)
-					{
+		this->coord[AXIS_X] = 0;
+		this->coord[AXIS_Y] = 0;
+		this->coord[AXIS_Z] = 0;
+		this->coord[AXIS_W] = 0;
+	}
+
+	template<typename _Ty>
+	constexpr Vector4_Base<_Ty>::Vector4_Base(_Ty _x, _Ty _y, _Ty _z, _Ty _w)
+	{
+		this->coord[AXIS_X] = _x;
+		this->coord[AXIS_Y] = _y;
+		this->coord[AXIS_Z] = _z;
+		this->coord[AXIS_W] = _w;
+	}
+
+	template<typename _Ty>
+	constexpr Vector4_Base<_Ty>::Vector4_Base(_Ty _coord[4])
+	{
+		this->coord[AXIS_X] = _coord[AXIS_X];
+		this->coord[AXIS_Y] = _coord[AXIS_Y];
+		this->coord[AXIS_Z] = _coord[AXIS_Z];
+		this->coord[AXIS_W] = _coord[AXIS_W];
+	}
+
+	template<typename _Ty>
+	constexpr _Ty& Vector4_Base<_Ty>::operator[](const uint8 axis)
+	{
+		return this->coord[axis];
+	}
+	
+	template<typename _Ty>
+	constexpr const _Ty& Vector4_Base<_Ty>::operator[](const uint8 axis) const
+	{
+		return this->coord[axis];
+	}
+
+	// ##########################################################################
+	// External operators
+
+	template<typename _Ty> constexpr bool operator==(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	{
+		if (left.x == right.x) {
+			if (left.y == right.y) {
+				if (left.z == right.z) {
+					if (left.w == right.w) {
 						return true;
 					}
 				}
@@ -35,14 +61,16 @@ namespace ecm::math
 		return false;
 	}
 
-	constexpr bool operator!=(const Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr bool operator!=(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
 		return !(left == right);
 	}
 
-	constexpr Vector4 operator+(const Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x + right.x;
 		vec.y = left.y + right.y;
 		vec.z = left.z + right.z;
@@ -50,9 +78,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator-(const Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x - right.x;
 		vec.y = left.y - right.y;
 		vec.z = left.z - right.z;
@@ -60,9 +89,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator*(const Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x * right.x;
 		vec.y = left.y * right.y;
 		vec.z = left.z * right.z;
@@ -70,9 +100,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator/(const Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
+		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x / right.x;
 		vec.y = left.y / right.y;
 		vec.z = left.z / right.z;
@@ -80,33 +111,38 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4& operator+=(Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator+=(
+		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
 		left = left + right;
 		return left;
 	}
 
-	constexpr Vector4& operator-=(Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator-=(
+		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
 		left = left - right;
 		return left;
 	}
 
-	constexpr Vector4& operator*=(Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator*=(
+		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
 		left = left * right;
 		return left;
 	}
 
-	constexpr Vector4& operator/=(Vector4& left, const Vector4& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator/=(
+		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
 	{
 		left = left / right;
 		return left;
 	}
 
-	constexpr Vector4 operator+(const Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
+		const Vector4_Base<_Ty>& left, const _Ty& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x + right;
 		vec.y = left.y + right;
 		vec.z = left.z + right;
@@ -114,9 +150,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator-(const Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
+		const Vector4_Base<_Ty>& left, const _Ty& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x - right;
 		vec.y = left.y - right;
 		vec.z = left.z - right;
@@ -124,9 +161,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator*(const Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
+		const Vector4_Base<_Ty>& left, const _Ty& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x * right;
 		vec.y = left.y * right;
 		vec.z = left.z * right;
@@ -134,9 +172,10 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator/(const Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
+		const Vector4_Base<_Ty>& left, const _Ty& right)
 	{
-		Vector4 vec{};
+		Vector4_Base<_Ty> vec{};
 		vec.x = left.x / right;
 		vec.y = left.y / right;
 		vec.z = left.z / right;
@@ -144,25 +183,29 @@ namespace ecm::math
 		return vec;
 	}
 
-	constexpr Vector4 operator+=(Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+=(
+		Vector4_Base<_Ty>& left, const _Ty& right)
 	{
 		left = left + right;
 		return left;
 	}
 
-	constexpr Vector4 operator-=(Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-=(
+		Vector4_Base<_Ty>& left, const _Ty& right)
 	{
 		left = left - right;
 		return left;
 	}
 
-	constexpr Vector4 operator*=(Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*=(
+		Vector4_Base<_Ty>& left, const _Ty& right)
 	{
 		left = left * right;
 		return left;
 	}
 
-	constexpr Vector4 operator/=(Vector4& left, const float32& right)
+	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/=(
+		Vector4_Base<_Ty>& left, const _Ty& right)
 	{
 		left = left / right;
 		return left;
