@@ -84,46 +84,26 @@ namespace ecm::math
 
 	constexpr Matrix4x4 operator+(const Matrix4x4& left, const Matrix4x4& right)
 	{
-		return Matrix4x4(
-			left.m00 + right.m00,
-			left.m01 + right.m01,
-			left.m02 + right.m02,
-			left.m03 + right.m03,
-			left.m10 + right.m10,
-			left.m11 + right.m11,
-			left.m12 + right.m12,
-			left.m13 + right.m13,
-			left.m20 + right.m20,
-			left.m21 + right.m21,
-			left.m22 + right.m22,
-			left.m23 + right.m23,
-			left.m30 + right.m30,
-			left.m31 + right.m31,
-			left.m32 + right.m32,
-			left.m33 + right.m33
-		);
+		Matrix4x4 result;
+		for (int32 row{ 0 }; row < 4; ++row) {
+			for (int32 col{ 0 }; col < 4; ++col) {
+				result.matrix[row][col] =
+					left.matrix[row][col] + right.matrix[row][col];
+			}
+		}
+		return result;
 	}
 
 	constexpr Matrix4x4 operator-(const Matrix4x4& left, const Matrix4x4& right)
 	{
-		return Matrix4x4(
-			left.m00 - right.m00,
-			left.m01 - right.m01,
-			left.m02 - right.m02,
-			left.m03 - right.m03,
-			left.m10 - right.m10,
-			left.m11 - right.m11,
-			left.m12 - right.m12,
-			left.m13 - right.m13,
-			left.m20 - right.m20,
-			left.m21 - right.m21,
-			left.m22 - right.m22,
-			left.m23 - right.m23,
-			left.m30 - right.m30,
-			left.m31 - right.m31,
-			left.m32 - right.m32,
-			left.m33 - right.m33
-		);
+		Matrix4x4 result;
+		for (int32 row{ 0 }; row < 4; ++row) {
+			for (int32 col{ 0 }; col < 4; ++col) {
+				result.matrix[row][col] =
+					left.matrix[row][col] - right.matrix[row][col];
+			}
+		}
+		return result;
 	}
 
 	constexpr Matrix4x4 operator*(const Matrix4x4& left, const Matrix4x4& right)
