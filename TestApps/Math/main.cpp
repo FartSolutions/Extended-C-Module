@@ -130,6 +130,9 @@ void test_basics()
 	ecm::int32 abs3{ ecm::math::Abs(-12839566) };
 	ecm::int64 abs4{ ecm::math::Abs(-12873565635685) };
 	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(10) };
+	ecm::float32 lerp1{ ecm::math::Lerp(0.245f, 0.589f, 21.f) };
+	ecm::float64 lerp2{ ecm::math::Lerp(0.245, 0.589, 21.0) };
+
 	printf("Pow: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_pow(21.4, 5), ecm::math::Pow(21.4, 5));
 	printf("Fmod: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_fmod(21.4, 54.8), ecm::math::Fmod(21.4, 54.8));
 

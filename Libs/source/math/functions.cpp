@@ -89,4 +89,14 @@ namespace ecm::math
 	{
 		return sinf(x) / cosf(x);
 	}
+
+	float64 Lerp(float64 a, float64 b, float64 t)
+	{
+		return a + t * (b - a);
+	}
+
+	float32 Lerp(float32 a, float32 b, float32 t)
+	{
+		return a + t * (b - a);
+	}
 } // namespace ecm::math

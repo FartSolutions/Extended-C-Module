@@ -83,69 +83,97 @@ namespace ecm::math
 
 	/**
 	 * Computes the sine of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The sine of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float64 ECM_CALL Sin(float64 angle);
 
 	/**
 	 * Computes the sine of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The sine of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float32 ECM_CALL Sin(float32 angle);
 
 	/**
 	 * Computes the cosine of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The cosine of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float64 ECM_CALL Cos(float64 angle);
 
 	/**
 	 * Computes the cosine of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The cosine of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float32 ECM_CALL Cos(float32 angle);
 
 	/**
 	 * Computes the tangent of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The tangent of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float64 ECM_CALL Tan(float64 angle);
 
 	/**
 	 * Computes the tangent of the given angle.
-	 * 
+	 *
 	 * \param x The angle in radians.
-	 * 
+	 *
 	 * \returns The tangent of the angle.
-	 * 
+	 *
 	 * \since v1.0.0
 	 */
 	extern ECM_MATH_API float32 ECM_CALL Tan(float32 angle);
+
+	/**
+	 * Linearly interpolates between two values, a and b, based on a fraction t.
+	 *
+	 * \param a The starting value (at t = 0.0, this function will return a).
+	 * \param b The ending value (at t = 1.0, this function will return b).
+	 * \param t Interpolation factor between 0.0 and 1.0. Values outside this
+	 *          range will extrapolate beyond a and b.
+	 *
+	 * \returns The interpolated value between a and b based on the fraction t.
+	 *
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float64 ECM_CALL Lerp(float64 a, float64 b, float64 t);
+
+	/**
+	 * Linearly interpolates between two values, a and b, based on a fraction t.
+	 *
+	 * \param a The starting value (at t = 0.0, this function will return a).
+	 * \param b The ending value (at t = 1.0, this function will return b).
+	 * \param t Interpolation factor between 0.0 and 1.0. Values outside this
+	 *          range will extrapolate beyond a and b.
+	 *
+	 * \returns The interpolated value between a and b based on the fraction t.
+	 *
+	 * \since v1.0.0
+	 */
+	extern ECM_MATH_API float32 ECM_CALL Lerp(float32 a, float32 b, float32 t);
 } // namespace ecm::math
 
 #include "functions.inl"
