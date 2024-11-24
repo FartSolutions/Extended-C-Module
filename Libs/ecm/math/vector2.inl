@@ -211,78 +211,84 @@ namespace ecm::math
 		return Vector2_Base<bool>(v1.x || v2.x, v1.y || v2.y);
 	}
 
+	// Unary arithmetic operators
 
-
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x + right.x;
-		vec.y = left.y + right.y;
-		return vec;
+		return v;
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x - right.x;
-		vec.y = left.y - right.y;
-		return vec;
+		return Vector2_Base<T>(-v.x, -v.y);
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	// Binary operators
+
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v, U scalar)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x * right.x;
-		vec.y = left.y * right.y;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x + scalar),
+				static_cast<T>(v.y + scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x / right.x;
-		vec.y = left.y / right.y;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x + v2.x),
+				static_cast<T>(v1.y + v2.y));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v, U scalar)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x + scalar;
-		vec.y = left.y + scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x - scalar),
+				static_cast<T>(v.y - scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x - scalar;
-		vec.y = left.y - scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x - v2.x),
+				static_cast<T>(v1.y - v2.y));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v, U scalar)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x * scalar;
-		vec.y = left.y * scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x * scalar),
+				static_cast<T>(v.y * scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x / scalar;
-		vec.y = left.y / scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x * v2.x),
+				static_cast<T>(v1.y * v2.y));
+	}
+
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v, U scalar)
+	{
+		return Vector2_Base<T>(
+				static_cast<T>(v.x / scalar),
+				static_cast<T>(v.y / scalar));
+	}
+
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
+	{
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x / v2.x),
+				static_cast<T>(v1.y / v2.y));
 	}
 } // namespace ecm::math
 

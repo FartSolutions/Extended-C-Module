@@ -59,6 +59,8 @@ namespace ecm::math
 			T coord[2]{ 0 };
 		};
 
+		// Basic constructors
+
 		/**
 		 * Default constructor.
 		 *
@@ -89,8 +91,12 @@ namespace ecm::math
 		 */
 		constexpr Vector2_Base(const T coord[2]);
 
+		// Conversion constructors
+
 		template<typename U>
 		explicit constexpr Vector2_Base(Vector2_Base<U> const& v);
+
+		// Component access
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -113,6 +119,8 @@ namespace ecm::math
 		 * \since v1.0.0
 		 */
 		constexpr T const& operator[](const uint8 axis) const;
+
+		// Unary arithmetic operators
 
 		constexpr Vector2_Base<T>& operator=(Vector2_Base<T> const& v);
 
@@ -142,6 +150,8 @@ namespace ecm::math
 
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator/=(Vector2_Base<U> const& v);
+
+		// Increment and decrement operators
 
 		constexpr Vector2_Base<T>& operator++();
 
@@ -234,11 +244,13 @@ namespace ecm::math
 		using Vector2i::Vector2i;
 	};
 
+	// Boolean operators
+
 	/**
 	 * This operator checks if the two Vector2 are the same.
 	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
 	 *
 	 * \returns true if left is same as right, or false if not.
 	 *
@@ -252,8 +264,8 @@ namespace ecm::math
 	/**
 	 * This operator checks if the two Vector2 are not the same.
 	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
 	 *
 	 * \returns true if left is not same as right, or false.
 	 *
@@ -268,81 +280,22 @@ namespace ecm::math
 
 	constexpr Vector2_Base<bool> operator||(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2);
 
-	/**
-	 * This operator creates an new Vector2 object, calculates the addition of
-	 * two Vector2 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns A new Vector2 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v);
 	
-	/**
-	 * This operator creates a new Vector2 object, calculates the subtracting of
-	 * two Vector2 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns A new Vector2 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-	
-	/**
-	 * This operator creates an new Vector2 object, calculates the
-	 * multiplication of two Vector2 objects left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns A new Vector2 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-	
-	/**
-	 * This operator creates a new Vector2 object, calculates the division of
-	 * two Vector2 objects left and right component by component and returns the
-	 * newly created object.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns A new Vector2 object calculated by divide left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
+	template<typename T>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v);
+
+	// Binary operators
 
 	/**
 	 * This operator creates an new Vector2 object, calculates the addition of a
 	 * Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
 	 *
-	 * \param left Left Vector2 operand.
+	 * \param v Left Vector2 operand.
 	 * \param scalar Right Float32 operand.
 	 *
 	 * \returns A new Vector2 object, which is the sum of left and right.
@@ -351,15 +304,32 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar);
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector2 object, calculates the addition of
+	 * two Vector2 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
+	 *
+	 * \returns A new Vector2 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 
 	/**
 	 * This operator creates a new Vector2 object, calculates the subtracting of a
 	 * Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
 	 *
-	 * \param left Left Vector2 operand.
+	 * \param v Left Vector2 operand.
 	 * \param scalar Right Float32 operand.
 	 *
 	 * \returns A new Vector2 object calculated by subtracting left by right.
@@ -368,15 +338,32 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar);
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector2 object, calculates the subtracting of
+	 * two Vector2 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
+	 *
+	 * \returns A new Vector2 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 
 	/**
 	 * This operator creates an new Vector2 object, calculates the
 	 * multiplication of a Vector2 object and a Float32 object, left and right
 	 * component-wise and returns the newly created object.
 	 *
-	 * \param left Left Vector2 operand.
+	 * \param v Left Vector2 operand.
 	 * \param scalar Right Float32 operand.
 	 *
 	 * \returns A new Vector2 object, which is the multiplicate of left and
@@ -386,15 +373,33 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar);
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector2 object, calculates the
+	 * multiplication of two Vector2 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
+	 *
+	 * \returns A new Vector2 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 
 	/**
 	 * This operator creates a new Vector2 object, calculates the division of a
 	 * Vector2 object and a Float32 object, left and right component by
 	 * component and returns the newly created object.
 	 *
-	 * \param left Left Vector2 operand.
+	 * \param v Left Vector2 operand.
 	 * \param scalar Right Float32 operand.
 	 *
 	 * \returns A new Vector2 object calculated by divide left by right.
@@ -403,8 +408,25 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar);
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector2 object, calculates the division of
+	 * two Vector2 objects left and right component by component and returns the
+	 * newly created object.
+	 *
+	 * \param v1 Left Vector2 operand.
+	 * \param v2 Right Vector2 operand.
+	 *
+	 * \returns A new Vector2 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector2_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 } // namespace ecm::math
 
 #include "vector2.inl"
