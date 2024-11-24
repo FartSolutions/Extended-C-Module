@@ -67,6 +67,9 @@ void test_vector2()
 	v4 -= v2;
 	v5 *= v1;
 	v6 /= v2;
+
+	v3++;
+	v5--;
 }
 
 void test_vectors()

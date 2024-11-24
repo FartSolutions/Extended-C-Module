@@ -142,6 +142,14 @@ namespace ecm::math
 
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator/=(Vector2_Base<U> const& v);
+
+		constexpr Vector2_Base<T>& operator++();
+
+		constexpr Vector2_Base<T>& operator--();
+
+		constexpr Vector2_Base<T> operator++(int);
+
+		constexpr Vector2_Base<T> operator--(int);
 	};
 
 	/**
