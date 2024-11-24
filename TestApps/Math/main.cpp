@@ -68,8 +68,17 @@ void test_vector2()
 	v5 *= v1;
 	v6 /= v2;
 
+	v3 += 3;
+	v4 -= 3.f;
+	v5 *= 3;
+	v6 /= 3.f;
+
 	v3++;
 	v5--;
+
+	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
+		v3 *= v5;
+	}
 }
 
 void test_vectors()

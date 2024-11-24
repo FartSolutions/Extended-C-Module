@@ -246,8 +246,8 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr bool operator==(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
+	template<typename T>
+	constexpr bool operator==(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2);
 	
 	/**
 	 * This operator checks if the two Vector2 are not the same.
@@ -261,8 +261,12 @@ namespace ecm::math
 	 *
 	 * \sa Vector2_Base
 	 */
-	template<typename _Ty> constexpr bool operator!=(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
+	template<typename T>
+	constexpr bool operator!=(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2);
+
+	constexpr Vector2_Base<bool> operator&&(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2);
+
+	constexpr Vector2_Base<bool> operator||(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2);
 
 	/**
 	 * This operator creates an new Vector2 object, calculates the addition of

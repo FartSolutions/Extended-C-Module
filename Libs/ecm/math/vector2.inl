@@ -182,24 +182,36 @@ namespace ecm::math
 		return result;
 	}
 
+	// Boolean operators
 
-
-	template<typename _Ty> constexpr bool operator==(
-			const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr bool operator==(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2)
 	{
-		if (left.x == right.x) {
-			if (left.y == right.y) {
+		if (v1.x == v2.x) {
+			if (v1.y == v2.y) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	template<typename _Ty> constexpr bool operator!=(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr bool operator!=(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2)
 	{
-		return !(left == right);
+		return !(v1 == v2);
 	}
+
+	constexpr Vector2_Base<bool> operator&&(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2)
+	{
+		return Vector2_Base<bool>(v1.x && v2.x, v1.y && v2.y);
+	}
+
+	constexpr Vector2_Base<bool> operator||(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2)
+	{
+		return Vector2_Base<bool>(v1.x || v2.x, v1.y || v2.y);
+	}
+
+
 
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
