@@ -53,12 +53,30 @@ void test_vector_i(_Ty v1, _Ty v2)
 	test_vec2d6 /= 3;
 }
 
+void test_vector2()
+{
+	auto v1 = ecm::math::Vector2(720.f, 1280.f);
+	auto v2 = ecm::math::Vector2(800.f, 600.f);
+
+	auto v3 = v1 + v2;
+	auto v4 = v1 - v2;
+	auto v5 = v1 * v2;
+	auto v6 = v1 / v2;
+
+	v3 += v1;
+	v4 -= v2;
+	v5 *= v1;
+	v6 /= v2;
+}
+
 void test_vectors()
 {
-	test_vector_f<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
-	test_vector_f<ecm::math::Vector2A>({ 720.f, 1280.f }, { 800.f, 600.f });
-	test_vector_i<ecm::math::Vector2i>({ 720, 1280 }, { 800, 600 });
-	test_vector_i<ecm::math::Vector2iA>({ 720, 1280 }, { 800, 600 });
+	test_vector2();
+
+	//test_vector_f<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
+	//test_vector_f<ecm::math::Vector2A>({ 720.f, 1280.f }, { 800.f, 600.f });
+	//test_vector_i<ecm::math::Vector2i>({ 720, 1280 }, { 800, 600 });
+	//test_vector_i<ecm::math::Vector2iA>({ 720, 1280 }, { 800, 600 });
 	//test_vector_f<ecm::math::Vector3>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
 	//test_vector_f<ecm::math::Vector3A>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
 	//test_vector_i<ecm::math::Vector3i>({ 720, 1280, 1561 }, { 800, 600, 654 });

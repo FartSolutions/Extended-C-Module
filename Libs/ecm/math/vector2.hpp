@@ -11,6 +11,8 @@
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
 
+#include <type_traits>
+
 namespace ecm::math
 {
 	/**
@@ -21,6 +23,9 @@ namespace ecm::math
 	template<typename T>
 	struct Vector2_Base
 	{
+		typedef T value_type;
+		typedef Vector2_Base<T> type;
+
 		/**
 		 * Enum representing the axes of the vector.
 		 *
@@ -85,7 +90,7 @@ namespace ecm::math
 		constexpr Vector2_Base(const T coord[2]);
 
 		template<typename U>
-		constexpr Vector2_Base(Vector2_Base<U> const& v);
+		explicit constexpr Vector2_Base(Vector2_Base<U> const& v);
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -107,7 +112,36 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr const T& operator[](const uint8 axis) const;
+		constexpr T const& operator[](const uint8 axis) const;
+
+		constexpr Vector2_Base<T>& operator=(Vector2_Base<T> const& v);
+
+		template<typename U>
+		constexpr Vector2_Base<T>& operator=(Vector2_Base<U> const& v);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator+=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator+=(Vector2_Base<U> const& v);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator-=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator-=(Vector2_Base<U> const& v);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator*=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator*=(Vector2_Base<U> const& v);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator/=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector2_Base<T>& operator/=(Vector2_Base<U> const& v);
 	};
 
 	/**
@@ -292,70 +326,6 @@ namespace ecm::math
 		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
 
 	/**
-	 * This operator adds the two Vector2 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator+=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-	
-	/**
-	 * This operator subtracts the two Vector2 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator-=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-	
-	/**
-	 * This operator multiplies the two Vector2 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator*=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-	
-	/**
-	 * This operator devides the two Vector2 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param left right Vector2 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator/=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right);
-
-	/**
 	 * This operator creates an new Vector2 object, calculates the addition of a
 	 * Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
@@ -423,70 +393,6 @@ namespace ecm::math
 	 */
 	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
 		const Vector2_Base<_Ty>& left, const _Ty& scalar);
-
-	/**
-	 * This operator adds a Float32 object to a Vector2 object, left and right
-	 * together and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator+=(
-		Vector2_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator subtracts a Float32 object from a Vector2 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator-=(
-		Vector2_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator multiplies a Float32 object with a Vector2 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator*=(
-		Vector2_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator devides a Float32 object with a Vector2 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector2 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector2_Base
-	 */
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator/=(
-		Vector2_Base<_Ty>& left, _Ty& scalar);
 } // namespace ecm::math
 
 #include "vector2.inl"
