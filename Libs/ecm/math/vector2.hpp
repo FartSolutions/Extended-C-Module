@@ -18,7 +18,7 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
+	template<typename T>
 	struct Vector2_Base
 	{
 		/**
@@ -39,19 +39,19 @@ namespace ecm::math
 				union
 				{
 					// X coordinate
-					_Ty x;
+					T x;
 					// Value for width
-					_Ty width;
+					T width;
 				};
 				union
 				{
 					// Y coordinate
-					_Ty y;
+					T y;
 					// Value for height
-					_Ty height;
+					T height;
 				};
 			};
-			_Ty coord[2]{ 0 };
+			T coord[2]{ 0 };
 		};
 
 		/**
@@ -61,6 +61,10 @@ namespace ecm::math
 		 */
 		constexpr Vector2_Base();
 
+		constexpr Vector2_Base(Vector2_Base<T> const& v);
+
+		constexpr Vector2_Base(T scalar);
+
 		/**
 		 * Constructor initializing with x and y coordinates.
 		 *
@@ -69,7 +73,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector2_Base(_Ty x, _Ty y);
+		constexpr Vector2_Base(T x, T y);
 
 		/**
 		 * Constructor initializing with an array of two coordinates.
@@ -78,7 +82,10 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector2_Base(_Ty coord[2]);
+		constexpr Vector2_Base(const T coord[2]);
+
+		template<typename U>
+		constexpr Vector2_Base(Vector2_Base<U> const& v);
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -89,7 +96,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr _Ty& operator[](const uint8 axis);
+		constexpr T& operator[](const uint8 axis);
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -100,7 +107,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr const _Ty& operator[](const uint8 axis) const;
+		constexpr const T& operator[](const uint8 axis) const;
 	};
 
 	/**

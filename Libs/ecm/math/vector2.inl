@@ -4,38 +4,57 @@
 
 namespace ecm::math
 {
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base()
-	{
-		this->coord[AXIS_X] = 0;
-		this->coord[AXIS_Y] = 0;
-	}
+	// Basic constructors
 
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base(_Ty _x, _Ty _y)
-	{
-		this->coord[AXIS_X] = _x;
-		this->coord[AXIS_Y] = _y;
-	}
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base()
+		: x(0), y(0)
+	{}
 
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base(_Ty _coord[2])
-	{
-		this->coord[AXIS_X] = _coord[AXIS_X];
-		this->coord[AXIS_Y] = _coord[AXIS_Y];
-	}
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(Vector2_Base<T> const& v)
+		: x(v.x), y(v.y)
+	{}
 
-	template<typename _Ty>
-	constexpr _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis)
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(T scalar)
+		: x(scalar), y(scalar)
+	{}
+
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(T x, T y)
+		: x(x), y(y)
+	{}
+
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(const T coord[2])
+		: x(coord[AXIS_X]), y(coord[AXIS_Y])
+	{}
+
+	// Conversion constructors
+
+	template<typename T>
+	template<typename U>
+	constexpr Vector2_Base<T>::Vector2_Base(Vector2_Base<U> const& v)
+		: x(static_cast<T>(v.x)),
+		  y(static_cast<T>(v.y))
+	{}
+
+	// Component access
+
+	template<typename T>
+	constexpr T& Vector2_Base<T>::operator[](const uint8 axis)
 	{
 		return this->coord[axis];
 	}
 	
-	template<typename _Ty>
-	constexpr const _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis) const
+	template<typename T>
+	constexpr const T& Vector2_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}
+
+	// Operators
 
 	template<typename _Ty> constexpr bool operator==(
 			const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
