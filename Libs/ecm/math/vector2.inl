@@ -2,183 +2,294 @@
 
 #include "vector2.hpp"
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
+
 namespace ecm::math
 {
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base()
-	{
-		this->coord[AXIS_X] = 0;
-		this->coord[AXIS_Y] = 0;
-	}
+	// Basic constructors
 
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base(_Ty _x, _Ty _y)
-	{
-		this->coord[AXIS_X] = _x;
-		this->coord[AXIS_Y] = _y;
-	}
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base()
+		: x(0), y(0)
+	{}
 
-	template<typename _Ty>
-	constexpr Vector2_Base<_Ty>::Vector2_Base(_Ty _coord[2])
-	{
-		this->coord[AXIS_X] = _coord[AXIS_X];
-		this->coord[AXIS_Y] = _coord[AXIS_Y];
-	}
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(Vector2_Base<T> const& v)
+		: x(v.x), y(v.y)
+	{}
 
-	template<typename _Ty>
-	constexpr _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis)
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(T scalar)
+		: x(scalar), y(scalar)
+	{}
+
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(T x, T y)
+		: x(x), y(y)
+	{}
+
+	template<typename T>
+	constexpr Vector2_Base<T>::Vector2_Base(const T coord[2])
+		: x(coord[AXIS_X]), y(coord[AXIS_Y])
+	{}
+
+	// Conversion constructors
+
+	template<typename T>
+	template<typename U>
+	constexpr Vector2_Base<T>::Vector2_Base(Vector2_Base<U> const& v)
+		: x(static_cast<T>(v.x)),
+		  y(static_cast<T>(v.y))
+	{}
+
+	// Component access
+
+	template<typename T>
+	constexpr T& Vector2_Base<T>::operator[](const uint8 axis)
 	{
 		return this->coord[axis];
 	}
 	
-	template<typename _Ty>
-	constexpr const _Ty& Vector2_Base<_Ty>::operator[](const uint8 axis) const
+	template<typename T>
+	constexpr T const& Vector2_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}
 
-	template<typename _Ty> constexpr bool operator==(
-			const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator=(Vector2_Base<T> const& v)
 	{
-		if (left.x == right.x) {
-			if (left.y == right.y) {
+		this->x = v.x;
+		this->y = v.y;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator=(Vector2_Base<U> const& v)
+	{
+		this->x = static_cast<T>(v.x);
+		this->y = static_cast<T>(v.y);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator+=(U scalar)
+	{
+		this->x += static_cast<T>(scalar);
+		this->y += static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator+=(Vector2_Base<U> const& v)
+	{
+		this->x += static_cast<T>(v.x);
+		this->y += static_cast<T>(v.y);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator-=(U scalar)
+	{
+		this->x -= static_cast<T>(scalar);
+		this->y -= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator-=(Vector2_Base<U> const& v)
+	{
+		this->x -= static_cast<T>(v.x);
+		this->y -= static_cast<T>(v.y);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator*=(U scalar)
+	{
+		this->x *= static_cast<T>(scalar);
+		this->y *= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator*=(Vector2_Base<U> const& v)
+	{
+		this->x *= static_cast<T>(v.x);
+		this->y *= static_cast<T>(v.y);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator/=(U scalar)
+	{
+		this->x /= static_cast<T>(scalar);
+		this->y /= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator/=(Vector2_Base<U> const& v)
+	{
+		this->x /= static_cast<T>(v.x);
+		this->y /= static_cast<T>(v.y);
+		return *this;
+	}
+
+	// Increment and decrement operators
+
+	template<typename T>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator++()
+	{
+		++this->x;
+		++this->y;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector2_Base<T>& Vector2_Base<T>::operator--()
+	{
+		++this->x;
+		++this->y;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector2_Base<T> Vector2_Base<T>::operator++(int)
+	{
+		Vector2_Base<T> result(*this);
+		++*this;
+		return result;
+	}
+
+	template<typename T>
+	constexpr Vector2_Base<T> Vector2_Base<T>::operator--(int)
+	{
+		Vector2_Base<T> result(*this);
+		--*this;
+		return result;
+	}
+
+	// Boolean operators
+
+	template<typename T>
+	constexpr bool operator==(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2)
+	{
+		if (v1.x == v2.x) {
+			if (v1.y == v2.y) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	template<typename _Ty> constexpr bool operator!=(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr bool operator!=(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2)
 	{
-		return !(left == right);
+		return !(v1 == v2);
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	constexpr Vector2_Base<bool> operator&&(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x + right.x;
-		vec.y = left.y + right.y;
-		return vec;
+		return Vector2_Base<bool>(v1.x && v2.x, v1.y && v2.y);
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	constexpr Vector2_Base<bool> operator||(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x - right.x;
-		vec.y = left.y - right.y;
-		return vec;
+		return Vector2_Base<bool>(v1.x || v2.x, v1.y || v2.y);
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x * right.x;
-		vec.y = left.y * right.y;
-		return vec;
+		return v;
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x / right.x;
-		vec.y = left.y / right.y;
-		return vec;
+		return Vector2_Base<T>(-v.x, -v.y);
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator+=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	// Binary operators
+
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v, U scalar)
 	{
-		left = left + right;
-		return left;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x + scalar),
+				static_cast<T>(v.y + scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator-=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		left = left - right;
-		return left;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x + v2.x),
+				static_cast<T>(v1.y + v2.y));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator*=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v, U scalar)
 	{
-		left = left * right;
-		return left;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x - scalar),
+				static_cast<T>(v.y - scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty>& operator/=(
-		Vector2_Base<_Ty>& left, const Vector2_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		left = left / right;
-		return left;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x - v2.x),
+				static_cast<T>(v1.y - v2.y));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v, U scalar)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x + scalar;
-		vec.y = left.y + scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x * scalar),
+				static_cast<T>(v.y * scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator*(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x - scalar;
-		vec.y = left.y - scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x * v2.x),
+				static_cast<T>(v1.y * v2.y));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v, U scalar)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x * scalar;
-		vec.y = left.y * scalar;
-		return vec;
+		return Vector2_Base<T>(
+				static_cast<T>(v.x / scalar),
+				static_cast<T>(v.y / scalar));
 	}
 
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/(
-		const Vector2_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2)
 	{
-		Vector2_Base<_Ty> vec{};
-		vec.x = left.x / scalar;
-		vec.y = left.y / scalar;
-		return vec;
-	}
-
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator+=(
-		Vector2_Base<_Ty>& left, const _Ty& scalar)
-	{
-		left = left + scalar;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator-=(
-		Vector2_Base<_Ty>& left, const _Ty& scalar)
-	{
-		left = left - scalar;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator*=(
-		Vector2_Base<_Ty>& left, const _Ty& scalar)
-	{
-		left = left * scalar;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector2_Base<_Ty> operator/=(
-		Vector2_Base<_Ty>& left, const _Ty& scalar)
-	{
-		left = left / scalar;
-		return left;
+		return Vector2_Base<T>(
+				static_cast<T>(v1.x / v2.x),
+				static_cast<T>(v1.y / v2.y));
 	}
 } // namespace ecm::math
+
+#pragma warning(pop)
