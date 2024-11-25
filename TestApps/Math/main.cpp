@@ -56,7 +56,7 @@ void test_vector_i(_Ty v1, _Ty v2)
 void test_vector2()
 {
 	auto v1 = ecm::math::Vector2(720.f, 1280.f);
-	auto v2 = ecm::math::Vector2(800.f, 600.f);
+	auto v2 = ecm::math::Vector2i(800, 600);
 
 	auto v3 = v1 + v2;
 	auto v4 = v1 - v2;

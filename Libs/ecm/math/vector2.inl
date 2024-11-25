@@ -68,7 +68,7 @@ namespace ecm::math
 	}
 
 	template<typename T>
-	template<typename U>
+	template<typename U, typename>
 	constexpr Vector2_Base<T>& Vector2_Base<T>::operator=(Vector2_Base<U> const& v)
 	{
 		this->x = static_cast<T>(v.x);

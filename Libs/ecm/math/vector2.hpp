@@ -68,8 +68,23 @@ namespace ecm::math
 		 */
 		constexpr Vector2_Base();
 
+		/**
+		 * Copy constructor initializing from another vector.
+		 *
+		 * \param v The vector to copy from.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base(Vector2_Base<T> const& v);
 
+		/**
+		 * Constructor initializing with a scalar value.
+		 * All components are set to the given scalar.
+		 *
+		 * \param scalar The value to initialize both x and y components.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base(T scalar);
 
 		/**
@@ -93,6 +108,16 @@ namespace ecm::math
 
 		// Conversion constructors
 
+		/**
+		 * Conversion constructor initializing from a vector with a different type.
+		 * Components are cast to the template type T.
+		 *
+		 * \param v The vector with components of type U to initialize from.
+		 *
+		 * \tparam U The type of the source vector's components.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U>
 		explicit constexpr Vector2_Base(Vector2_Base<U> const& v);
 
@@ -122,43 +147,185 @@ namespace ecm::math
 
 		// Unary arithmetic operators
 
+		/**
+		 * Assignment operator.
+		 * Assigns the values of another vector to this one.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base<T>& operator=(Vector2_Base<T> const& v);
 
-		template<typename U>
+		/**
+		 * Assignment operator for a vector with different component type.
+		 * Assigns and casts the components from a vector of type U.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \tparam U The type of the source vector's component.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator=(Vector2_Base<U> const& v);
 
+		/**
+		 * Adds a scalar to each component of the vector.
+		 *
+		 * \param scalar The scalar value to add.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator+=(U scalar);
 
+		/**
+		 * Adds another vector to this one component-wise.
+		 *
+		 * \param v The vector to add.
+		 *
+		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator+=(Vector2_Base<U> const& v);
 
+		/**
+		 * Subtracts a scalar from each component of the vector.
+		 *
+		 * \param scalar The scalar value to subtract.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator-=(U scalar);
 
+		/**
+		 * Subtracts another vector from this one component-wise.
+		 *
+		 * \param v The vector to subtract.
+		 *
+		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator-=(Vector2_Base<U> const& v);
 
+		/**
+		 * Multiplies each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to multiply by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator*=(U scalar);
 
+		/**
+		 * Multiplies this vector component-wise by another vector.
+		 *
+		 * \param v The vector to multiply by.
+		 *
+		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator*=(Vector2_Base<U> const& v);
 
+		/**
+		 * Divides each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to divide by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator/=(U scalar);
 
+		/**
+		 * Divides this vector component-wise by another vector.
+		 *
+		 * \param v The vector to divide by.
+		 *
+		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector2_Base<T>& operator/=(Vector2_Base<U> const& v);
 
 		// Increment and decrement operators
 
+		/**
+		 * Prefix increment operator.
+		 * Increments each component of the vector by 1.
+		 *
+		 * \returns A reference to this vector after the increment.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base<T>& operator++();
 
+		/**
+		 * Prefix decrement operator.
+		 * Decrements each component of the vector by 1.
+		 *
+		 * \returns A reference to this vector after the decrement.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base<T>& operator--();
 
+		/**
+		 * Postfix increment operator.
+		 * Increments each component of the vector by 1.
+		 *
+		 * \returns A copy of the vector before the increment.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base<T> operator++(int);
 
+		/**
+		 * Postfix decrement operator.
+		 * Decrements each component of the vector by 1.
+		 *
+		 * \returns A copy of the vector before the decrement.
+		 *
+		 * \since v1.0.0
+		 */
 		constexpr Vector2_Base<T> operator--(int);
 	};
 
@@ -276,15 +443,55 @@ namespace ecm::math
 	template<typename T>
 	constexpr bool operator!=(Vector2_Base<T> const& v1, Vector2_Base<T> const& v2);
 
+	/**
+	 * Logical AND operator for two boolean vectors.
+	 *
+	 * \param v1 The left operand.
+	 * \param v2 The right operand.
+	 *
+	 * \returns A boolean vector where each component is the logical AND of the corresponding components in the operands.
+	 *
+	 * \since v1.0.0
+	 */
 	constexpr Vector2_Base<bool> operator&&(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2);
 
+	/**
+	 * Logical OR operator for two boolean vectors.
+	 *
+	 * \param v1 The left operand.
+	 * \param v2 The right operand.
+	 *
+	 * \returns A boolean vector where each component is the logical OR of the corresponding components in the operands.
+	 *
+	 * \since v1.0.0
+	 */
 	constexpr Vector2_Base<bool> operator||(Vector2_Base<bool> const& v1, Vector2_Base<bool> const& v2);
 
 	// Unary arithmetic operators
 
+	/**
+	 * Unary plus operator.
+	 * Returns the vector itself.
+	 *
+	 * \param v The vector to apply the operator to.
+	 *
+	 * \returns A copy of the input vector.
+	 *
+	 * \since v1.0.0
+	 */
 	template<typename T>
 	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v);
 	
+	/**
+	 * Unary minus operator.
+	 * Negates each component of the vector.
+	 *
+	 * \param v The vector to apply the operator to.
+	 *
+	 * \returns A new vector with each component negated.
+	 *
+	 * \since v1.0.0
+	 */
 	template<typename T>
 	constexpr Vector2_Base<T> operator-(Vector2_Base<T> const& v);
 
