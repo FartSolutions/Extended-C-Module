@@ -83,6 +83,9 @@ void test_vector2()
 	v5--;
 	-v6;
 
+	v1 = v2;
+	v2 = v1;
+
 	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
 		v3 *= v5;
 	}

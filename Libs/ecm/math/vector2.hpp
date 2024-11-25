@@ -1,5 +1,5 @@
 /**
- * \file Vector2.h
+ * \file vector2.h
  *
  * \brief This header defines a two dimensional vector and functionalities.
  */
@@ -109,8 +109,8 @@ namespace ecm::math
 		// Conversion constructors
 
 		/**
-		 * Conversion constructor initializing from a vector with a different type.
-		 * Components are cast to the template type T.
+		 * Conversion constructor initializing from a vector with a different
+		 * type. Components are cast to the template type T.
 		 *
 		 * \param v The vector with components of type U to initialize from.
 		 *
@@ -193,7 +193,8 @@ namespace ecm::math
 		 *
 		 * \param v The vector to add.
 		 *
-		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
 		 *
 		 * \returns A reference to this vector after addition.
 		 *
@@ -221,7 +222,8 @@ namespace ecm::math
 		 *
 		 * \param v The vector to subtract.
 		 *
-		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
 		 *
 		 * \returns A reference to this vector after subtraction.
 		 *
@@ -249,7 +251,8 @@ namespace ecm::math
 		 *
 		 * \param v The vector to multiply by.
 		 *
-		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
 		 *
 		 * \returns A reference to this vector after multiplication.
 		 *
@@ -277,7 +280,8 @@ namespace ecm::math
 		 *
 		 * \param v The vector to divide by.
 		 *
-		 * \tparam U The type of the other vector's components, must be arithmetic.
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
 		 *
 		 * \returns A reference to this vector after division.
 		 *
@@ -329,88 +333,6 @@ namespace ecm::math
 		constexpr Vector2_Base<T> operator--(int);
 	};
 
-	/**
-	 * This structure represents a 2D vector with float32 elements.
-	 *
-	 * \since v1.0.0
-	 */
-	struct Vector2 : public Vector2_Base<float32>
-	{
-		using Vector2_Base<float32>::Vector2_Base;
-
-		/**
-		 * Constructor to initialize from a Vector2_Base<float32>.
-		 *
-		 * \param base The base vector to initialize from.
-		 *
-		 * \since v1.0.0
-		 */
-		Vector2(const Vector2_Base<float32>& base)
-			: Vector2_Base{ base.x, base.y } {}
-	};
-
-	/**
-	 * This structure represents a 2D vector with float32 elements, aligned to
-	 * 16 bytes.
-	 *
-	 * \since v1.0.0
-	 */
-	__declspec(align(16)) struct Vector2A : public Vector2
-	{
-		using Vector2::Vector2;
-	};
-
-	/**
-	 * This structure represents a 2D point with float32 elements.
-	 *
-	 * \since v1.0.0
-	 */
-	struct PointF : public Vector2
-	{
-		using Vector2::Vector2;
-	};
-	
-	/**
-	 * This structure represents a 2D vector with int32 elements.
-	 *
-	 * \since v1.0.0
-	 */
-	struct Vector2i : public Vector2_Base<int32>
-	{
-		using Vector2_Base<int32>::Vector2_Base;
-
-		/**
-		 * Constructor to initialize from a Vector2_Base<int32>
-		 *
-		 * \param base The base vector to initialize from.
-		 *
-		 * \since v1.0.0
-		 */
-		Vector2i(const Vector2_Base<int32>& base)
-			: Vector2_Base{ base.x, base.y } {}
-	};
-
-	/**
-	 * This structure represents a 2D vector with int32 elements, aligned to 16
-	 * bytes.
-	 *
-	 * \since v1.0.0
-	 */
-	__declspec(align(16)) struct Vector2iA : public Vector2i
-	{
-		using Vector2i::Vector2i;
-	};
-
-	/**
-	 * This structure represents a 2D point with int32 elements.
-	 *
-	 * \since v1.0.0
-	 */
-	struct PointI : public Vector2i
-	{
-		using Vector2i::Vector2i;
-	};
-
 	// Boolean operators
 
 	/**
@@ -449,7 +371,8 @@ namespace ecm::math
 	 * \param v1 The left operand.
 	 * \param v2 The right operand.
 	 *
-	 * \returns A boolean vector where each component is the logical AND of the corresponding components in the operands.
+	 * \returns A boolean vector where each component is the logical AND of the
+	 *          corresponding components in the operands.
 	 *
 	 * \since v1.0.0
 	 */
@@ -461,7 +384,8 @@ namespace ecm::math
 	 * \param v1 The left operand.
 	 * \param v2 The right operand.
 	 *
-	 * \returns A boolean vector where each component is the logical OR of the corresponding components in the operands.
+	 * \returns A boolean vector where each component is the logical OR of the
+	 *          corresponding components in the operands.
 	 *
 	 * \since v1.0.0
 	 */
@@ -532,8 +456,8 @@ namespace ecm::math
 	constexpr Vector2_Base<T> operator+(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 
 	/**
-	 * This operator creates a new Vector2 object, calculates the subtracting of a
-	 * Vector2 object and a Float32 object, left and right component-wise and
+	 * This operator creates a new Vector2 object, calculates the subtracting of
+	 * a Vector2 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
 	 *
 	 * \param v Left Vector2 operand.
