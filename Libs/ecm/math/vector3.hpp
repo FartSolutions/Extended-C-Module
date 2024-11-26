@@ -11,6 +11,8 @@
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
 
+#include <type_traits>
+
 namespace ecm::math
 {
 	/**
@@ -18,9 +20,12 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
+	template<typename T>
 	struct Vector3_Base
 	{
+		typedef T value_type;
+		typedef Vector3_Base<T> type;
+
 		/**
 		 * Enum representing the axes of the vector.
 		 *
@@ -38,14 +43,16 @@ namespace ecm::math
 			struct
 			{
 				// X coordinate
-				_Ty x;
+				T x;
 				// Y coordinate
-				_Ty y;
+				T y;
 				// Z coordinate
-				_Ty z;
+				T z;
 			};
-			_Ty coord[3]{ 0 };
+			T coord[3]{ 0 };
 		};
+
+		// Basic constructors
 
 		/**
 		 * Default constructor.
@@ -55,35 +62,43 @@ namespace ecm::math
 		constexpr Vector3_Base();
 
 		/**
+		 * Copy constructor initializing from another vector.
+		 *
+		 * \param v The vector to copy from.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3_Base(Vector3_Base<T> const& v);
+
+		/**
+		 * Constructor initializing with a scalar value.
+		 * All components are set to the given scalar.
+		 *
+		 * \param scalar The value to initialize both x, y and z components.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3_Base(T scalar);
+
+		/**
 		 * Constructor initializing width x, y and z coordinates.
 		 *
-		 * \param x the x coordinate.
-		 * \param y the y coordinate.
-		 * \param z the z coordinate.
+		 * \param x The x coordinate.
+		 * \param y The y coordinate.
+		 * \param z The z coordinate.
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector3_Base(_Ty x, _Ty y, _Ty z);
+		constexpr Vector3_Base(T x, T y, T z);
 
 		/**
-		 * Constructor initializing with an array of two coordinates.
+		 * Constructor initializing with an array of three coordinates.
 		 *
-		 * \param coord the coordinates as array with three values.
-		 *
-		 * \since v1.0.0
-		 */
-		constexpr Vector3_Base(_Ty coord[3]);
-
-		/**
-		 * Subscript operator to access vector elements by axes.
-		 *
-		 * \param axis The axes of the element to access.
-		 *
-		 * \returns The element at the given axes.
+		 * \param coord The coordinates as array with three values.
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr _Ty& operator[](const uint8 axis);
+		constexpr Vector3_Base(const T coord[3]);
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -94,7 +109,18 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr const _Ty& operator[](const uint8 axis) const;
+		constexpr T& operator[](const uint8 axis);
+
+		/**
+		 * Subscript operator to access vector elements by axes.
+		 *
+		 * \param axis The axes of the element to access.
+		 *
+		 * \returns The element at the given axes.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr const T& operator[](const uint8 axis) const;
 	};
 
 	/**

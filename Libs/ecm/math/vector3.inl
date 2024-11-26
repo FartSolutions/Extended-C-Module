@@ -2,40 +2,46 @@
 
 #include "vector3.hpp"
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
+
 namespace ecm::math
 {
-	template<typename _Ty>
-	constexpr Vector3_Base<_Ty>::Vector3_Base()
-	{
-		this->coord[AXIS_X] = 0;
-		this->coord[AXIS_Y] = 0;
-		this->coord[AXIS_Z] = 0;
-	}
+	// Basic constructors
 
-	template<typename _Ty>
-	constexpr Vector3_Base<_Ty>::Vector3_Base(_Ty _x, _Ty _y, _Ty _z)
-	{
-		this->coord[AXIS_X] = _x;
-		this->coord[AXIS_Y] = _y;
-		this->coord[AXIS_Z] = _z;
-	}
+	template<typename T>
+	constexpr Vector3_Base<T>::Vector3_Base()
+		: x(0), y(0), z(0)
+	{}
 
-	template<typename _Ty>
-	constexpr Vector3_Base<_Ty>::Vector3_Base(_Ty _coord[3])
-	{
-		this->coord[AXIS_X] = _coord[AXIS_X];
-		this->coord[AXIS_Y] = _coord[AXIS_Y];
-		this->coord[AXIS_Z] = _coord[AXIS_Z];
-	}
+	template<typename T>
+	constexpr Vector3_Base<T>::Vector3_Base(Vector3_Base<T> const& v)
+		: x(v.x), y(v.y), z(v.z)
+	{}
 
-	template<typename _Ty>
-	constexpr _Ty& Vector3_Base<_Ty>::operator[](const uint8 axis)
+	template<typename T>
+	constexpr Vector3_Base<T>::Vector3_Base(T scalar)
+		: x(scalar), y(scalar), z(scalar)
+	{}
+
+	template<typename T>
+	constexpr Vector3_Base<T>::Vector3_Base(T x, T y, T z)
+		: x(x), y(y), z(z)
+	{}
+
+	template<typename T>
+	constexpr Vector3_Base<T>::Vector3_Base(const T coord[3])
+		: x(coord[AXIS_X]), y(coord[AXIS_Y]), z(coord[AXIS_Z])
+	{}
+
+	template<typename T>
+	constexpr T& Vector3_Base<T>::operator[](const uint8 axis)
 	{
 		return this->coord[axis];
 	}
 	
-	template<typename _Ty>
-	constexpr const _Ty& Vector3_Base<_Ty>::operator[](const uint8 axis) const
+	template<typename T>
+	constexpr const T& Vector3_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}
@@ -195,3 +201,5 @@ namespace ecm::math
 		return left;
 	}
 } // namespace ecm::math
+
+#pragma warning(pop)

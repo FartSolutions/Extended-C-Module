@@ -91,9 +91,16 @@ void test_vector2()
 	}
 }
 
+void test_vector3()
+{
+	auto v1 = ecm::math::Vector3(720.f, 1280.f, 1561.f);
+	auto v2 = ecm::math::Vector3i(800, 600, 654);
+}
+
 void test_vectors()
 {
 	test_vector2();
+	test_vector3();
 
 	//test_vector_f<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
 	//test_vector_f<ecm::math::Vector2A>({ 720.f, 1280.f }, { 800.f, 600.f });
