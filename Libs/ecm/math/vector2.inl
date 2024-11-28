@@ -161,8 +161,8 @@ namespace ecm::math
 	template<typename T>
 	constexpr Vector2_Base<T>& Vector2_Base<T>::operator--()
 	{
-		++this->x;
-		++this->y;
+		--this->x;
+		--this->y;
 		return *this;
 	}
 

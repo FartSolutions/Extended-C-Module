@@ -159,6 +159,42 @@ namespace ecm::math
 		return *this;
 	}
 
+	// Increment and decrement operators
+
+	template<typename T>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator++()
+	{
+		++this->x;
+		++this->y;
+		++this->z;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator--()
+	{
+		--this->x;
+		--this->y;
+		--this->z;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector3_Base<T> Vector3_Base<T>::operator++(int)
+	{
+		Vector3_Base<T> result(*this);
+		++*this;
+		return result;
+	}
+
+	template<typename T>
+	constexpr Vector3_Base<T> Vector3_Base<T>::operator--(int)
+	{
+		Vector3_Base<T> result(*this);
+		--*this;
+		return result;
+	}
+
 
 
 	template<typename _Ty> constexpr bool operator==(
