@@ -124,13 +124,17 @@ void test_vector3()
 	--v4;
 	v5--;
 	--v6;
-	//-v3;
-	//-v5;
+	-v3;
+	-v5;
 
 	//v1 = v2;
 	//v2 = v1;
 	v1 = ecm::math::Vector3(v2);
 	v2 = ecm::math::Vector3i(v1);
+
+	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
+		v3 *= v5;
+	}
 }
 
 void test_vectors()
