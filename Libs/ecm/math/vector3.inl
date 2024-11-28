@@ -34,6 +34,16 @@ namespace ecm::math
 		: x(coord[AXIS_X]), y(coord[AXIS_Y]), z(coord[AXIS_Z])
 	{}
 
+	// Conversion constructors
+
+	template<typename T>
+	template<typename U>
+	constexpr Vector3_Base<T>::Vector3_Base(Vector3_Base<U> const& v)
+		: x(static_cast<T>(v.x)),
+		  y(static_cast<T>(v.y)),
+		  z(static_cast<T>(v.z))
+	{}
+
 	template<typename T>
 	constexpr T& Vector3_Base<T>::operator[](const uint8 axis)
 	{

@@ -100,6 +100,21 @@ namespace ecm::math
 		 */
 		constexpr Vector3_Base(const T coord[3]);
 
+		// Conversion constructors
+
+		/**
+		 * Conversion constructor initializing from a vector with a different
+		 * type. Components are cast to the template type T.
+		 *
+		 * \param v The vector with components of type U to initialize from.
+		 *
+		 * \tparam U The type of the source vector's components.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U>
+		explicit constexpr Vector3_Base(Vector3_Base<U> const& v);
+
 		/**
 		 * Subscript operator to access vector elements by axes.
 		 *
