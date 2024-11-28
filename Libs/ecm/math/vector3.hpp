@@ -413,6 +413,146 @@ namespace ecm::math
 	template<typename T>
 	constexpr Vector3_Base<T> operator-(Vector3_Base<T> const& v);
 
+	// Binary operators
+
+	/**
+	 * This operator creates an new Vector3 object, calculates the addition of a
+	 * Vector3 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v Left Vector3 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator+(Vector3_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector3 object, calculates the addition of
+	 * two Vector3 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector3 operand.
+	 * \param v2 Right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator+(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2);
+
+	/**
+	 * This operator creates a new Vector3 object, calculates the subtracting of
+	 * a Vector3 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v Left Vector3 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator-(Vector3_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector3 object, calculates the subtracting of
+	 * two Vector3 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector3 operand.
+	 * \param v2 Right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator-(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2);
+
+	/**
+	 * This operator creates an new Vector3 object, calculates the
+	 * multiplication of a Vector3 object and a Float32 object, left and right
+	 * component-wise and returns the newly created object.
+	 *
+	 * \param v Left Vector3 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator*(Vector3_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector3 object, calculates the
+	 * multiplication of two Vector3 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v1 Left Vector3 operand.
+	 * \param v2 Right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator*(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2);
+
+	/**
+	 * This operator creates a new Vector3 object, calculates the division of a
+	 * Vector3 object and a Float32 object, left and right component by
+	 * component and returns the newly created object.
+	 *
+	 * \param v Left Vector3 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector3 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator/(Vector3_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector3 object, calculates the division of
+	 * two Vector3 objects left and right component by component and returns the
+	 * newly created object.
+	 *
+	 * \param v1 Left Vector3 operand.
+	 * \param v2 Right Vector3 operand.
+	 *
+	 * \returns A new Vector3 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector3_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector3_Base<T> operator/(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2);
+
 
 
 	/**
@@ -476,144 +616,6 @@ namespace ecm::math
 	{
 		using Vector3i::Vector3i;
 	};
-
-	/**
-	 * This operator creates an new Vector3 object, calculates the addition of
-	 * two Vector3 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns A new Vector3 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator creates a new Vector3 object, calculates the subtracting of
-	 * two Vector3 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns A new Vector3 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator creates an new Vector3 object, calculates the
-	 * multiplication of two Vector3 objects left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns A new Vector3 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator creates a new Vector3 object, calculates the division of
-	 * two Vector3 objects left and right component by component and returns the
-	 * newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns A new Vector3 object calculated by divide left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator creates an new Vector3 object, calculates the addition of a
-	 * Vector3 object and a Float32 object, left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns A new Vector3 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar);
-
-	/**
-	 * This operator creates a new Vector3 object, calculates the subtracting of a
-	 * Vector3 object and a Float32 object, left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns A new Vector3 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar);
-
-	/**
-	 * This operator creates an new Vector3 object, calculates the
-	 * multiplication of a Vector3 object and a Float32 object, left and right
-	 * component-wise and returns the newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns A new Vector3 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar);
-
-	/**
-	 * This operator creates a new Vector3 object, calculates the division of a
-	 * Vector3 object and a Float32 object, left and right component by
-	 * component and returns the newly created object.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns A new Vector3 object calculated by divide left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar);
 } // namespace ecm::math
 
 #include "vector3.inl"

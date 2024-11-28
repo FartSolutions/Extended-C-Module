@@ -100,20 +100,20 @@ void test_vector3()
 	auto v1 = ecm::math::Vector3(720.f, 1280.f, 1561.f);
 	auto v2 = ecm::math::Vector3i(800, 600, 654);
 
-	auto v3 = v1;// + v2;
-	auto v4 = v1;// - v2;
-	auto v5 = v1;// * v2;
-	auto v6 = v1;// / v2;
+	auto v3 = v1 + v2;
+	auto v4 = v1 - v2;
+	auto v5 = v1 * v2;
+	auto v6 = v1 / v2;
 
 	v3 += v1;
 	v4 -= v2;
 	v5 *= v1;
 	v6 /= v2;
 
-	//v3 = v3 + 50.f;
-	//v4 = v4 - 50;
-	//v5 = v5 * 50.f;
-	//v6 = v6 / 50;
+	v3 = v3 + 50.f;
+	v4 = v4 - 50;
+	v5 = v5 * 50.f;
+	v6 = v6 / 50;
 
 	v3 += 3;
 	v4 -= 3.f;

@@ -240,86 +240,78 @@ namespace ecm::math
 		return Vector3_Base<T>(-v.x, -v.y, -v.z);
 	}
 
+	// Binary operators
 
-
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator+(Vector3_Base<T> const& v, U scalar)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x + right.x;
-		vec.y = left.y + right.y;
-		vec.z = left.z + right.z;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v.x + scalar),
+			static_cast<T>(v.y + scalar),
+			static_cast<T>(v.z + scalar));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator+(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x - right.x;
-		vec.y = left.y - right.y;
-		vec.z = left.z - right.z;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v1.x + v2.x),
+			static_cast<T>(v1.y + v2.y),
+			static_cast<T>(v1.z + v2.z));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator-(Vector3_Base<T> const& v, U scalar)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x * right.x;
-		vec.y = left.y * right.y;
-		vec.z = left.z * right.z;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v.x - scalar),
+			static_cast<T>(v.y - scalar),
+			static_cast<T>(v.z - scalar));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
-		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator-(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x / right.x;
-		vec.y = left.y / right.y;
-		vec.z = left.z / right.z;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v1.x - v2.x),
+			static_cast<T>(v1.y - v2.y),
+			static_cast<T>(v1.z - v2.z));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator+(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator*(Vector3_Base<T> const& v, U scalar)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x + scalar;
-		vec.y = left.y + scalar;
-		vec.z = left.z + scalar;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v.x * scalar),
+			static_cast<T>(v.y * scalar),
+			static_cast<T>(v.z * scalar));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator-(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator*(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x - scalar;
-		vec.y = left.y - scalar;
-		vec.z = left.z - scalar;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v1.x * v2.x),
+			static_cast<T>(v1.y * v2.y),
+			static_cast<T>(v1.z * v2.z));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator*(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator/(Vector3_Base<T> const& v, U scalar)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x * scalar;
-		vec.y = left.y * scalar;
-		vec.z = left.z * scalar;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v.x / scalar),
+			static_cast<T>(v.y / scalar),
+			static_cast<T>(v.z / scalar));
 	}
 
-	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
-		const Vector3_Base<_Ty>& left, const _Ty& scalar)
+	template<typename T, typename U, typename>
+	constexpr Vector3_Base<T> operator/(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2)
 	{
-		Vector3_Base<_Ty> vec{};
-		vec.x = left.x / scalar;
-		vec.y = left.y / scalar;
-		vec.z = left.z / scalar;
-		return vec;
+		return Vector3_Base<T>(
+			static_cast<T>(v1.x / v2.x),
+			static_cast<T>(v1.y / v2.y),
+			static_cast<T>(v1.z / v2.z));
 	}
 } // namespace ecm::math
 
