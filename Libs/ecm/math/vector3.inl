@@ -44,17 +44,122 @@ namespace ecm::math
 		  z(static_cast<T>(v.z))
 	{}
 
+	// Component access
+
 	template<typename T>
 	constexpr T& Vector3_Base<T>::operator[](const uint8 axis)
 	{
 		return this->coord[axis];
 	}
-	
+
 	template<typename T>
-	constexpr const T& Vector3_Base<T>::operator[](const uint8 axis) const
+	constexpr T const& Vector3_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}
+
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator=(Vector3_Base<T> const& v)
+	{
+		this->x = v.x;
+		this->y = v.y;
+		this->z = v.z;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator=(Vector3_Base<U> const& v)
+	{
+		this->x = static_cast<T>(v.x);
+		this->y = static_cast<T>(v.y);
+		this->z = static_cast<T>(v.z);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator+=(U scalar)
+	{
+		this->x += static_cast<T>(scalar);
+		this->y += static_cast<T>(scalar);
+		this->z += static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator+=(Vector3_Base<U>const& v)
+	{
+		this->x += static_cast<T>(v.x);
+		this->x += static_cast<T>(v.y);
+		this->x += static_cast<T>(v.z);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator-=(U scalar)
+	{
+		this->x -= static_cast<T>(scalar);
+		this->y -= static_cast<T>(scalar);
+		this->z -= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator-=(Vector3_Base<U>const& v)
+	{
+		this->x -= static_cast<T>(v.x);
+		this->x -= static_cast<T>(v.y);
+		this->x -= static_cast<T>(v.z);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator*=(U scalar)
+	{
+		this->x *= static_cast<T>(scalar);
+		this->y *= static_cast<T>(scalar);
+		this->z *= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator*=(Vector3_Base<U>const& v)
+	{
+		this->x *= static_cast<T>(v.x);
+		this->x *= static_cast<T>(v.y);
+		this->x *= static_cast<T>(v.z);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator/=(U scalar)
+	{
+		this->x /= static_cast<T>(scalar);
+		this->y /= static_cast<T>(scalar);
+		this->z /= static_cast<T>(scalar);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector3_Base<T>& Vector3_Base<T>::operator/=(Vector3_Base<U>const& v)
+	{
+		this->x /= static_cast<T>(v.x);
+		this->x /= static_cast<T>(v.y);
+		this->x /= static_cast<T>(v.z);
+		return *this;
+	}
+
+
 
 	template<typename _Ty> constexpr bool operator==(
 		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right)

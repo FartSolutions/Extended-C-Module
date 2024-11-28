@@ -115,6 +115,8 @@ namespace ecm::math
 		template<typename U>
 		explicit constexpr Vector3_Base(Vector3_Base<U> const& v);
 
+		// Component access
+
 		/**
 		 * Subscript operator to access vector elements by axes.
 		 *
@@ -135,7 +137,152 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr const T& operator[](const uint8 axis) const;
+		constexpr T const& operator[](const uint8 axis) const;
+
+		// Unary arithmetic operators
+
+		/**
+		 * Assignment operator.
+		 * Assigns the values of another vector to this one.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector3_Base<T>& operator=(Vector3_Base<T> const& v);
+
+		/**
+		 * Assignment operator for a vector with different component type.
+		 * Assigns and casts the components from a vector of type U.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \tparam U The type of the source vector's component.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator=(Vector3_Base<U> const& v);
+
+		/**
+		 * Adds a scalar to each component of the vector.
+		 *
+		 * \param scalar The scalar value to add.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator+=(U scalar);
+
+		/**
+		 * Adds another vector to this one component-wise.
+		 *
+		 * \param v The vector to add.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator+=(Vector3_Base<U> const& scalar);
+
+		/**
+		 * Subtracts a scalar from each component of the vector.
+		 *
+		 * \param scalar The scalar value to subtract.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator-=(U scalar);
+
+		/**
+		 * Subtracts another vector from this one component-wise.
+		 *
+		 * \param v The vector to subtract.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator-=(Vector3_Base<U> const& scalar);
+
+		/**
+		 * Multiplies each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to multiply by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator*=(U scalar);
+
+		/**
+		 * Multiplies this vector component-wise by another vector.
+		 *
+		 * \param v The vector to multiply by.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator*=(Vector3_Base<U> const& scalar);
+
+		/**
+		 * Divides each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to divide by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator/=(U scalar);
+
+		/**
+		 * Divides this vector component-wise by another vector.
+		 *
+		 * \param v The vector to divide by.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector3_Base<T>& operator/=(Vector3_Base<U> const& scalar);
 	};
 
 	/**
@@ -300,70 +447,6 @@ namespace ecm::math
 		const Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
 
 	/**
-	 * This operator adds the two Vector3 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator+=(
-		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator subtracts the two Vector3 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator-=(
-		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator multiplies the two Vector3 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator*=(
-		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
-	 * This operator devides the two Vector3 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param right Right Vector3 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator/=(
-		Vector3_Base<_Ty>& left, const Vector3_Base<_Ty>& right);
-
-	/**
 	 * This operator creates an new Vector3 object, calculates the addition of a
 	 * Vector3 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
@@ -431,70 +514,6 @@ namespace ecm::math
 	 */
 	template<typename _Ty> constexpr Vector3_Base<_Ty> operator/(
 		const Vector3_Base<_Ty>& left, const _Ty& scalar);
-
-	/**
-	 * This operator adds a Float32 object to a Vector3 object, left and right
-	 * together and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator+=(
-		Vector3_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator subtracts a Float32 object from a Vector3 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator-=(
-		Vector3_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator multiplies a Float32 object with a Vector3 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator*=(
-		Vector3_Base<_Ty>& left, _Ty& scalar);
-
-	/**
-	 * This operator devides a Float32 object with a Vector3 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector3 operand.
-	 * \param scalar Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector3_Base
-	 */
-	template<typename _Ty> constexpr Vector3_Base<_Ty>& operator/=(
-		Vector3_Base<_Ty>& left, _Ty& scalar);
 } // namespace ecm::math
 
 #include "vector3.inl"
