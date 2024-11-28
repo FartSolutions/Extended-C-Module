@@ -90,8 +90,8 @@ namespace ecm::math
 		/**
 		 * Constructor initializing with x and y coordinates.
 		 *
-		 * \param x the x coordinate or width.
-		 * \param y the y coordinate or height.
+		 * \param x The x coordinate or width.
+		 * \param y The y coordinate or height.
 		 *
 		 * \since v1.0.0
 		 */
@@ -100,7 +100,7 @@ namespace ecm::math
 		/**
 		 * Constructor initializing with an array of two coordinates.
 		 *
-		 * \param coord the coordinates as array with two values.
+		 * \param coord The coordinates as array with two values.
 		 *
 		 * \since v1.0.0
 		 */
