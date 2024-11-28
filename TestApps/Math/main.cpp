@@ -5,59 +5,9 @@
 
 #pragma comment(lib, "sdl2.lib")
 
-template<typename _Ty>
-void test_vector_f(_Ty v1, _Ty v2)
+template<typename V1, typename V2>
+void test_vector(V1 v1, V2 v2)
 {
-	_Ty test_vec2d3{ v1 + v2 };
-	_Ty test_vec2d4{ v1 - v2 };
-	_Ty test_vec2d5{ v1 * v2 };
-	_Ty test_vec2d6{ v1 / v2 };
-
-	test_vec2d3 += v1;
-	test_vec2d4 -= v2;
-	test_vec2d5 *= test_vec2d3;
-	test_vec2d6 /= test_vec2d4;
-
-	test_vec2d3 = test_vec2d3 + 50.f;
-	test_vec2d4 = test_vec2d4 - 50.f;
-	test_vec2d5 = test_vec2d5 * 50.f;
-	test_vec2d6 = test_vec2d6 / 50.f;
-
-	test_vec2d3 += 3.f;
-	test_vec2d4 -= 3.f;
-	test_vec2d5 *= 3.f;
-	test_vec2d6 /= 3.f;
-}
-
-template<typename _Ty>
-void test_vector_i(_Ty v1, _Ty v2)
-{
-	_Ty test_vec2d3{ v1 + v2 };
-	_Ty test_vec2d4{ v1 - v2 };
-	_Ty test_vec2d5{ v1 * v2 };
-	_Ty test_vec2d6{ v1 / v2 };
-
-	test_vec2d3 += v1;
-	test_vec2d4 -= v2;
-	test_vec2d5 *= test_vec2d3;
-	test_vec2d6 /= test_vec2d4;
-
-	test_vec2d3 = test_vec2d3 + 50;
-	test_vec2d4 = test_vec2d4 - 50;
-	test_vec2d5 = test_vec2d5 * 50;
-	test_vec2d6 = test_vec2d6 / 50;
-
-	test_vec2d3 += 3;
-	test_vec2d4 -= 3;
-	test_vec2d5 *= 3;
-	test_vec2d6 /= 3;
-}
-
-void test_vector2()
-{
-	auto v1 = ecm::math::Vector2(720.f, 1280.f);
-	auto v2 = ecm::math::Vector2i(800, 600);
-
 	auto v3 = v1 + v2;
 	auto v4 = v1 - v2;
 	auto v5 = v1 * v2;
@@ -87,50 +37,8 @@ void test_vector2()
 
 	v1 = v2;
 	v2 = v1;
-	v1 = ecm::math::Vector2(v2);
-	v2 = ecm::math::Vector2i(v1);
-
-	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
-		v3 *= v5;
-	}
-}
-
-void test_vector3()
-{
-	auto v1 = ecm::math::Vector3(720.f, 1280.f, 1561.f);
-	auto v2 = ecm::math::Vector3i(800, 600, 654);
-
-	auto v3 = v1 + v2;
-	auto v4 = v1 - v2;
-	auto v5 = v1 * v2;
-	auto v6 = v1 / v2;
-
-	v3 += v1;
-	v4 -= v2;
-	v5 *= v1;
-	v6 /= v2;
-
-	v3 = v3 + 50.f;
-	v4 = v4 - 50;
-	v5 = v5 * 50.f;
-	v6 = v6 / 50;
-
-	v3 += 3;
-	v4 -= 3.f;
-	v5 *= 3;
-	v6 /= 3.f;
-
-	v3++;
-	--v4;
-	v5--;
-	--v6;
-	-v3;
-	-v5;
-
-	//v1 = v2;
-	//v2 = v1;
-	v1 = ecm::math::Vector3(v2);
-	v2 = ecm::math::Vector3i(v1);
+	v1 = V1(v2);
+	v2 = V2(v1);
 
 	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
 		v3 *= v5;
@@ -139,17 +47,9 @@ void test_vector3()
 
 void test_vectors()
 {
-	test_vector2();
-	test_vector3();
+	test_vector(ecm::math::Vector2(720.f, 1280.f), ecm::math::Vector2i(800, 600));
+	test_vector(ecm::math::Vector3(720.f, 1280.f, 1561.f), ecm::math::Vector3i(800, 600, 654));
 
-	//test_vector_f<ecm::math::Vector2>({ 720.f, 1280.f }, { 800.f, 600.f });
-	//test_vector_f<ecm::math::Vector2A>({ 720.f, 1280.f }, { 800.f, 600.f });
-	//test_vector_i<ecm::math::Vector2i>({ 720, 1280 }, { 800, 600 });
-	//test_vector_i<ecm::math::Vector2iA>({ 720, 1280 }, { 800, 600 });
-	//test_vector_f<ecm::math::Vector3>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
-	//test_vector_f<ecm::math::Vector3A>({ 720.f, 1280.f, 1561.f }, { 800.f, 600.f, 654.f });
-	//test_vector_i<ecm::math::Vector3i>({ 720, 1280, 1561 }, { 800, 600, 654 });
-	//test_vector_i<ecm::math::Vector3iA>({ 720, 1280, 1561 }, { 800, 600, 654 });
 	//test_vector_f<ecm::math::Vector4>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
 	//test_vector_f<ecm::math::Vector4A>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
 	//test_vector_i<ecm::math::Vector4i>({ 720, 1280, 1561, 12 }, { 800, 600, 654, 53 });

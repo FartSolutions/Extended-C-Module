@@ -11,10 +11,10 @@
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
 
+#include "vector.hpp"
+
 namespace ecm::math
 {
-	struct Vector3;
-
 	/*
 	 * This structure represents a 4x4 matrix.
 	 *

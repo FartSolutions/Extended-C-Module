@@ -9,6 +9,7 @@
 #define _ECM_VECTOR_H_
 
 #include "vector2.hpp"
+#include "vector3.hpp"
 
 namespace ecm::math
 {
@@ -102,6 +103,77 @@ namespace ecm::math
 	 * \since v1.0.0
 	 */
 	using Vector2uA = ECM_ALIGN(16) Vector2u;
+
+	// Vector3 definitions
+
+	/**
+	 * A general-purpose 3D vector with single-precision floating-point
+	 * components.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3 = Vector3_Base<float32>;
+
+	/**
+	 * A general-purpose 3D vector with single-precision floating-point
+	 * components and 16-byte alignment.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space where
+	 * SIMD alignment is required.
+	 *
+	 * \note Requires SIMD alignment for efficient vectorized operations.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3A = ECM_ALIGN(16) Vector3;
+
+	/**
+	 * A general-purpose 3D vector with 32-bit integer components.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space using
+	 * integers.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3i = Vector3_Base<int32>;
+
+	/**
+	 * A general-purpose 3D vector with 32-bit integer components and 16-byte
+	 * alignment.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space using
+	 * integers, optimized for SIMD alignment.
+	 *
+	 * \note Requires SIMD alignment for efficient vectorized operations.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3iA = ECM_ALIGN(16) Vector3i;
+
+	/**
+	 * A general-purpose 3D vector with unsigned 32-bit integer components.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space using
+	 * unsigned integers.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3u = Vector3_Base<uint32>;
+
+	/**
+	 * A general-purpose 3D vector with unsigned 32-bit integer components and
+	 * 16-byte alignment.
+	 *
+	 * This type alias is used for mathematical operations in a 3D space using
+	 * unsigned integers, optimized for SIMD alignment.
+	 *
+	 * \note Requires SIMD alignment for efficient vectorized operations.
+	 *
+	 * \since v1.0.0
+	 */
+	using Vector3uA = ECM_ALIGN(16) Vector3u;
 } // namespace ecm::math
 
 #endif // !_ECM_VECTOR_H_
