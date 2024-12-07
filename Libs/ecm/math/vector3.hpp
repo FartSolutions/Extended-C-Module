@@ -74,7 +74,7 @@ namespace ecm::math
 		 * Constructor initializing with a scalar value.
 		 * All components are set to the given scalar.
 		 *
-		 * \param scalar The value to initialize both x, y and z components.
+		 * \param scalar The value to initialize all x, y and z components.
 		 *
 		 * \since v1.0.0
 		 */

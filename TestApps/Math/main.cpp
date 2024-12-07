@@ -45,6 +45,15 @@ void test_vector(V1 v1, V2 v2)
 	}
 }
 
+void test_vector4()
+{
+	auto v1 = ecm::math::Vector4_Base<float>(720.f, 1280.f, 1561.f, 12.f);
+	auto v2 = ecm::math::Vector4_Base<int>(800, 600, 654, 53);
+
+	v1 = ecm::math::Vector4_Base<float>(v2);
+	v2 = ecm::math::Vector4_Base<int>(v1);
+}
+
 void test_vectors()
 {
 	test_vector(ecm::math::Vector2(720.f, 1280.f), ecm::math::Vector2i(800, 600));

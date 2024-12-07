@@ -4,41 +4,54 @@
 
 namespace ecm::math
 {
-	template<typename _Ty>
-	constexpr Vector4_Base<_Ty>::Vector4_Base()
-	{
-		this->coord[AXIS_X] = 0;
-		this->coord[AXIS_Y] = 0;
-		this->coord[AXIS_Z] = 0;
-		this->coord[AXIS_W] = 0;
-	}
+	// Basic constructors
 
-	template<typename _Ty>
-	constexpr Vector4_Base<_Ty>::Vector4_Base(_Ty _x, _Ty _y, _Ty _z, _Ty _w)
-	{
-		this->coord[AXIS_X] = _x;
-		this->coord[AXIS_Y] = _y;
-		this->coord[AXIS_Z] = _z;
-		this->coord[AXIS_W] = _w;
-	}
+	template<typename T>
+	constexpr Vector4_Base<T>::Vector4_Base()
+		: x(0), y(0), z(0), w(0)
+	{}
 
-	template<typename _Ty>
-	constexpr Vector4_Base<_Ty>::Vector4_Base(_Ty _coord[4])
-	{
-		this->coord[AXIS_X] = _coord[AXIS_X];
-		this->coord[AXIS_Y] = _coord[AXIS_Y];
-		this->coord[AXIS_Z] = _coord[AXIS_Z];
-		this->coord[AXIS_W] = _coord[AXIS_W];
-	}
+	template<typename T>
+	constexpr Vector4_Base<T>::Vector4_Base(Vector4_Base<T> const& v)
+		: x(v.x), y(v.y), z(v.z), w(v.w)
+	{}
 
-	template<typename _Ty>
-	constexpr _Ty& Vector4_Base<_Ty>::operator[](const uint8 axis)
+	template<typename T>
+	constexpr Vector4_Base<T>::Vector4_Base(T scalar)
+		: x(scalar), y(scalar), z(scalar), w(scalar)
+	{}
+
+	template<typename T>
+	constexpr Vector4_Base<T>::Vector4_Base(T x, T y, T z, T w)
+		: x(x), y(y), z(z), w(w)
+	{}
+
+	template<typename T>
+	constexpr Vector4_Base<T>::Vector4_Base(const T coord[4])
+		: x(coord[AXIS_X]), y(coord[AXIS_Y]), z(coord[AXIS_Z]), w(coord[AXIS_W])
+	{}
+
+	// Conversion constructors
+
+	template<typename T>
+	template<typename U>
+	constexpr Vector4_Base<T>::Vector4_Base(Vector4_Base<U> const& v)
+		: x(static_cast<T>(v.x)),
+		  y(static_cast<T>(v.y)),
+		  z(static_cast<T>(v.z)),
+		  w(static_cast<T>(v.w))
+	{}
+
+	// Component access
+
+	template<typename T>
+	constexpr T& Vector4_Base<T>::operator[](const uint8 axis)
 	{
 		return this->coord[axis];
 	}
 	
-	template<typename _Ty>
-	constexpr const _Ty& Vector4_Base<_Ty>::operator[](const uint8 axis) const
+	template<typename T>
+	constexpr T const& Vector4_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
 	}

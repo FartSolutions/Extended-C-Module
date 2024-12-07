@@ -11,6 +11,8 @@
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
 
+#include <type_traits>
+
 namespace ecm::math
 {
 	/**
@@ -18,9 +20,17 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
+	template<typename T>
 	struct Vector4_Base
 	{
+		typedef T value_type;
+		typedef Vector4_Base<T> type;
+
+		/**
+		 * Enum representing the axes of the vector.
+		 *
+		 * \since v1.0.0
+		 */
 		enum Axis : uint8
 		{
 			AXIS_X = 0,
@@ -34,44 +44,82 @@ namespace ecm::math
 			struct
 			{
 				// X coordinate
-				_Ty x;
+				T x;
 				// Y coordinate
-				_Ty y;
+				T y;
 				// Z coordinate
-				_Ty z;
+				T z;
 				// W coordinate
-				_Ty w;
+				T w;
 			};
-			_Ty coord[4]{ 0 };
+			T coord[4]{ 0 };
 		};
 
+		// Basic constructors
+
 		/**
-		 * This is the default constructor.
+		 * Default constructor.
 		 *
 		 * \since v1.0.0
 		 */
 		constexpr Vector4_Base();
 
 		/**
-		 * This is a constructor.
+		 * Copy constructor initializing from another vector.
 		 *
-		 * \param x the x coordinate.
-		 * \param y the y coordinate.
-		 * \param z the z coordinate.
-		 * \param w the w coordinate.
+		 * \param v The vector to copy from.
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector4_Base(_Ty x, _Ty y, _Ty z, _Ty w);
+		constexpr Vector4_Base(Vector4_Base<T> const& v);
 
 		/**
-		 * This is a constructor.
+		 * Constructor initializing with a scalar value.
+		 * All components are set to the given scalar.
 		 *
-		 * \param coord the coordinates as array with four values.
+		 * \param scalar The value to initialize all x, y, z and w components.
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr Vector4_Base(_Ty coord[4]);
+		constexpr Vector4_Base(T scalar);
+
+		/**
+		 * Constructor initializing with x, y, z and w coordinates.
+		 *
+		 * \param x The x coordinate.
+		 * \param y The y coordinate.
+		 * \param z The z coordinate.
+		 * \param w The w coordinate.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base(T x, T y, T z, T w);
+
+		/**
+		 * Constructor initializing with an array of two coordinates.
+		 *
+		 * \param coord The coordinates as array with two values.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base(const T coord[4]);
+
+		// Conversion constructors
+
+		/**
+		 * Conversion constructor initializing from a vector with a different
+		 * type. Components are cast to the template type T.
+		 *
+		 * \param v The vector with components of type U to initialize from.
+		 *
+		 * \tparam U The type of the source vector's components.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U>
+		explicit constexpr Vector4_Base(Vector4_Base<U> const& v);
+
+		// Component access
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -82,7 +130,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr _Ty& operator[](const uint8 axis);
+		constexpr T& operator[](const uint8 axis);
 
 		/**
 		 * Subscript operator to access vector elements by axes.
@@ -93,7 +141,7 @@ namespace ecm::math
 		 *
 		 * \since v1.0.0
 		 */
-		constexpr const _Ty& operator[](const uint8 axis) const;
+		constexpr T const& operator[](const uint8 axis) const;
 	};
 
 	/**
