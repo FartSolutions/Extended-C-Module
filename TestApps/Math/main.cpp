@@ -50,6 +50,23 @@ void test_vector4()
 	auto v1 = ecm::math::Vector4_Base<float>(720.f, 1280.f, 1561.f, 12.f);
 	auto v2 = ecm::math::Vector4_Base<int>(800, 600, 654, 53);
 
+	auto v3 = v1;
+	auto v4 = v1;
+	auto v5 = v1;
+	auto v6 = v1;
+
+	v3 += v1;
+	v4 -= v2;
+	v5 *= v1;
+	v6 /= v2;
+
+	v3 += 3;
+	v4 -= 3.f;
+	v5 *= 3;
+	v6 /= 3.f;
+
+	v1 = v2;
+	v2 = v1;
 	v1 = ecm::math::Vector4_Base<float>(v2);
 	v2 = ecm::math::Vector4_Base<int>(v1);
 }

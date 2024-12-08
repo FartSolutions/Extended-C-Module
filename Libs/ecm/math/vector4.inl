@@ -2,6 +2,9 @@
 
 #include "vector4.hpp"
 
+#pragma warning(push)
+#pragma warning(disable : 26495)
+
 namespace ecm::math
 {
 	// Basic constructors
@@ -54,6 +57,117 @@ namespace ecm::math
 	constexpr T const& Vector4_Base<T>::operator[](const uint8 axis) const
 	{
 		return this->coord[axis];
+	}
+
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator=(Vector4_Base<T> const& v)
+	{
+		this->x = v.x;
+		this->y = v.y;
+		this->z = v.z;
+		this->w = v.w;
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator=(Vector4_Base<U> const& v)
+	{
+		this->x = static_cast<T>(v.x);
+		this->y = static_cast<T>(v.y);
+		this->z = static_cast<T>(v.z);
+		this->w = static_cast<T>(v.w);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator+=(U scalar)
+	{
+		this->x += static_cast<T>(scalar);
+		this->y += static_cast<T>(scalar);
+		this->z += static_cast<T>(scalar);
+		this->w += static_cast<T>(scalar);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator+=(Vector4_Base<U> const& v)
+	{
+		this->x += static_cast<T>(v.x);
+		this->y += static_cast<T>(v.y);
+		this->z += static_cast<T>(v.z);
+		this->w += static_cast<T>(v.w);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator-=(U scalar)
+	{
+		this->x -= static_cast<T>(scalar);
+		this->y -= static_cast<T>(scalar);
+		this->z -= static_cast<T>(scalar);
+		this->w -= static_cast<T>(scalar);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator-=(Vector4_Base<U> const& v)
+	{
+		this->x -= static_cast<T>(v.x);
+		this->y -= static_cast<T>(v.y);
+		this->z -= static_cast<T>(v.z);
+		this->w -= static_cast<T>(v.w);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator*=(U scalar)
+	{
+		this->x *= static_cast<T>(scalar);
+		this->y *= static_cast<T>(scalar);
+		this->z *= static_cast<T>(scalar);
+		this->w *= static_cast<T>(scalar);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator*=(Vector4_Base<U> const& v)
+	{
+		this->x *= static_cast<T>(v.x);
+		this->y *= static_cast<T>(v.y);
+		this->z *= static_cast<T>(v.z);
+		this->w *= static_cast<T>(v.w);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator/=(U scalar)
+	{
+		this->x /= static_cast<T>(scalar);
+		this->y /= static_cast<T>(scalar);
+		this->z /= static_cast<T>(scalar);
+		this->w /= static_cast<T>(scalar);
+		return *this;
+	}
+	
+	template<typename T>
+	template<typename U, typename>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator/=(Vector4_Base<U> const& v)
+	{
+		this->x /= static_cast<T>(v.x);
+		this->y /= static_cast<T>(v.y);
+		this->z /= static_cast<T>(v.z);
+		this->w /= static_cast<T>(v.w);
+		return *this;
 	}
 
 	// ##########################################################################
@@ -124,34 +238,6 @@ namespace ecm::math
 		return vec;
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator+=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
-	{
-		left = left + right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator-=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
-	{
-		left = left - right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator*=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
-	{
-		left = left * right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator/=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
-	{
-		left = left / right;
-		return left;
-	}
-
 	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
 		const Vector4_Base<_Ty>& left, const _Ty& right)
 	{
@@ -195,32 +281,6 @@ namespace ecm::math
 		vec.w = left.w / right;
 		return vec;
 	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+=(
-		Vector4_Base<_Ty>& left, const _Ty& right)
-	{
-		left = left + right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-=(
-		Vector4_Base<_Ty>& left, const _Ty& right)
-	{
-		left = left - right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*=(
-		Vector4_Base<_Ty>& left, const _Ty& right)
-	{
-		left = left * right;
-		return left;
-	}
-
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/=(
-		Vector4_Base<_Ty>& left, const _Ty& right)
-	{
-		left = left / right;
-		return left;
-	}
 } // namespace ecm::math
+
+#pragma warning(pop)

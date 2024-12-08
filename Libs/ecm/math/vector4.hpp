@@ -142,6 +142,151 @@ namespace ecm::math
 		 * \since v1.0.0
 		 */
 		constexpr T const& operator[](const uint8 axis) const;
+
+		// Unary arithmetic operators
+
+		/**
+		 * Assignment operator.
+		 * Assigns the values of another vector to this one.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base<T>& operator=(Vector4_Base<T> const& v);
+
+		/**
+		 * Assignment operator for a vector with different component type.
+		 * Assigns and casts the components from a vector of type U.
+		 *
+		 * \param v The vector to assign from.
+		 *
+		 * \tparam U The type of the source vector's component.
+		 *
+		 * \returns A reference to this vector after assignment.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator=(Vector4_Base<U> const& v);
+
+		/**
+		 * Adds a scalar to each component of the vector.
+		 *
+		 * \param scalar The scalar value to add.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator+=(U scalar);
+
+		/**
+		 * Adds another vector to this one component-wise.
+		 *
+		 * \param v The vector to add.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after addition.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator+=(Vector4_Base<U> const& v);
+
+		/**
+		 * Subtracts a scalar from each component of the vector.
+		 *
+		 * \param scalar The scalar value to subtract.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator-=(U scalar);
+
+		/**
+		 * Subtracts another vector from this one component-wise.
+		 *
+		 * \param v The vector to subtract.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after subtraction.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator-=(Vector4_Base<U> const& v);
+
+		/**
+		 * Multiplies each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to multiply by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator*=(U scalar);
+
+		/**
+		 * Multiplies this vector component-wise by another vector.
+		 *
+		 * \param v The vector to multiply by.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after multiplication.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator*=(Vector4_Base<U> const& v);
+
+		/**
+		 * Divides each component of the vector by a scalar.
+		 *
+		 * \param scalar The scalar value to divide by.
+		 *
+		 * \tparam U The type of the scalar, must be arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator/=(U scalar);
+
+		/**
+		 * Divides this vector component-wise by another vector.
+		 *
+		 * \param v The vector to divide by.
+		 *
+		 * \tparam U The type of the other vector's components, must be
+		 *           arithmetic.
+		 *
+		 * \returns A reference to this vector after division.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Vector4_Base<T>& operator/=(Vector4_Base<U> const& v);
 	};
 
 	/**
@@ -306,70 +451,6 @@ namespace ecm::math
 		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
 
 	/*
-	 * This operator adds the two Vector4 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator+=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator subtracts the two Vector4 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator-=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator multiplies the two Vector4 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator*=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator devides the two Vector4 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator/=(
-		Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
 	 * This operator creates an new Vector4 object, calculates the addition of a
 	 * Vector4 object and a Float32 object, left and right component-wise and
 	 * returns the newly created object.
@@ -437,70 +518,6 @@ namespace ecm::math
 	 */
 	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
 		const Vector4_Base<_Ty>& left, const _Ty& right);
-
-	/*
-	 * This operator adds a Float32 object to a Vector4 object, left and right
-	 * together and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator+=(
-		Vector4_Base<_Ty>& left, _Ty& right);
-
-	/*
-	 * This operator subtracts a Float32 object from a Vector4 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator-=(
-		Vector4_Base<_Ty>& left, _Ty& right);
-
-	/*
-	 * This operator multiplies a Float32 object with a Vector4 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator*=(
-		Vector4_Base<_Ty>& left, _Ty& right);
-
-	/*
-	 * This operator devides a Float32 object with a Vector4 object, left and
-	 * right together and returns the new value of left.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty>& operator/=(
-		Vector4_Base<_Ty>& left, _Ty& right);
 } // namespace ecm::math
 
 #include "vector4.inl"
