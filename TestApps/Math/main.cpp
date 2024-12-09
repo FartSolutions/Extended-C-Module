@@ -57,15 +57,18 @@ void test_matrices()
 	ecm::math::Matrix4x4 mat1{ 5, 7, 9, 10, 2, 3, 3, 8, 8, 10, 2, 3, 3, 3, 4, 8 };
 	ecm::math::Matrix4x4 mat2{ 3, 10, 12, 18, 12, 1, 4, 9, 9, 10, 12, 2, 3, 12, 4, 10 };
 
-	auto mat3 = mat1;// + mat2;
-	auto mat4 = mat1;// - mat2;
-	auto mat5 = mat1;// * mat2;
-	auto mat6 = mat1;// / mat2;
+	auto mat3 = mat1 + mat2;
+	auto mat4 = mat1 - mat2;
+	auto mat5 = mat1 * mat2;
+	auto mat6 = mat1 / mat2;
 
 	mat3 += mat1;
 	mat4 -= mat2;
 	mat5 *= mat1;
 	mat6 /= mat2;
+
+	/*mat3 =*/ mat3 + 50.f;
+	/*mat4 =*/ mat4 - 50;
 
 	mat3++;
 	++mat4;

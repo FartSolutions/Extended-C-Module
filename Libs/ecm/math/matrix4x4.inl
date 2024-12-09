@@ -262,17 +262,17 @@ namespace ecm::math
 	template<typename T>
 	constexpr Matrix4x4_Base<T> Matrix4x4_Base<T>::operator++(int)
 	{
-		Matrix4x4_Base<T> Result(*this);
+		Matrix4x4_Base<T> result(*this);
 		++*this;
-		return Result;
+		return result;
 	}
 
 	template<typename T>
 	constexpr Matrix4x4_Base<T> Matrix4x4_Base<T>::operator--(int)
 	{
-		Matrix4x4_Base<T> Result(*this);
+		Matrix4x4_Base<T> result(*this);
 		--*this;
-		return Result;
+		return result;
 	}
 
 	// Boolean operators
@@ -303,46 +303,234 @@ namespace ecm::math
 		return Matrix4x4_Base<T>(-m[0], -m[1], -m[2], -m[3]);
 	}
 
-	// ##########################################################################
-	// Operators
+	// Binary operators
 
-	constexpr Matrix4x4 operator+(const Matrix4x4& left, const Matrix4x4& right)
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m, U scalar)
 	{
-		Matrix4x4 result;
-		for (int32 row{ 0 }; row < 4; ++row) {
-			for (int32 col{ 0 }; col < 4; ++col) {
-				result.matrix[row][col] =
-					left.matrix[row][col] + right.matrix[row][col];
-			}
-		}
-		return result;
+		return Matrix4x4_Base<T>(
+			m[0] + scalar,
+			m[1] + scalar,
+			m[2] + scalar,
+			m[3] + scalar);
 	}
 
-	constexpr Matrix4x4 operator-(const Matrix4x4& left, const Matrix4x4& right)
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator+(U scalar, Matrix4x4_Base<T> const& m)
 	{
-		Matrix4x4 result;
-		for (int32 row{ 0 }; row < 4; ++row) {
-			for (int32 col{ 0 }; col < 4; ++col) {
-				result.matrix[row][col] =
-					left.matrix[row][col] - right.matrix[row][col];
-			}
-		}
-		return result;
+		return Matrix4x4_Base<T>(
+			m[0] + scalar,
+			m[1] + scalar,
+			m[2] + scalar,
+			m[3] + scalar);
 	}
 
-	constexpr Matrix4x4 operator*(const Matrix4x4& left, const Matrix4x4& right)
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
 	{
-		Matrix4x4 result;
-		for (int32 row{ 0 }; row < 4; ++row) {
-			for (int32 col{ 0 }; col < 4; ++col) {
-				result.matrix[row][col] =
-					left.matrix[row][0] * right.matrix[0][col] +
-					left.matrix[row][1] * right.matrix[1][col] +
-					left.matrix[row][2] * right.matrix[2][col] +
-					left.matrix[row][3] * right.matrix[3][col];
-			}
+		return Matrix4x4_Base<T>(
+			m1[0] + m2[0],
+			m1[1] + m2[1],
+			m1[2] + m2[2],
+			m1[3] + m2[3]);
+	}
+
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m, U scalar)
+	{
+		return Matrix4x4_Base<T>(
+			m[0] - scalar,
+			m[1] - scalar,
+			m[2] - scalar,
+			m[3] - scalar);
+	}
+
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator-(U scalar, Matrix4x4_Base<T> const& m)
+	{
+		return Matrix4x4_Base<T>(
+			m[0] - scalar,
+			m[1] - scalar,
+			m[2] - scalar,
+			m[3] - scalar);
+	}
+
+	template<typename T, typename U, typename>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
+	{
+		return Matrix4x4_Base<T>(
+			m1[0] - m2[0],
+			m1[1] - m2[1],
+			m1[2] - m2[2],
+			m1[3] - m2[3]);
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m, U scalar)
+	{
+		return Matrix4x4_Base<T>(
+			m[0] * scalar,
+			m[1] * scalar,
+			m[2] * scalar,
+			m[3] * scalar);
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(U scalar, Matrix4x4_Base<T> const& m)
+	{
+		return Matrix4x4_Base<T>(
+			m[0] * scalar,
+			m[1] * scalar,
+			m[2] * scalar,
+			m[3] * scalar);
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::column_type operator*(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v)
+	{
+		typename Matrix4x4_Base<T>::column_type const mov0(v[0]);
+		typename Matrix4x4_Base<T>::column_type const mov1(v[1]);
+		typename Matrix4x4_Base<T>::column_type const mov2(v[2]);
+		typename Matrix4x4_Base<T>::column_type const mov3(v[3]);
+		typename Matrix4x4_Base<T>::column_type const mul0 = m[0] * mov0;
+		typename Matrix4x4_Base<T>::column_type const mul1 = m[1] * mov1;
+		typename Matrix4x4_Base<T>::column_type const mul2 = m[2] * mov2;
+		typename Matrix4x4_Base<T>::column_type const mul3 = m[3] * mov3;
+		typename Matrix4x4_Base<T>::column_type const add0 = mul0 + mul1;
+		typename Matrix4x4_Base<T>::column_type const add1 = mul2 + mul3;
+		return add0 + add1;
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::row_type operator*(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m)
+	{
+		return typename Matrix4x4_Base<T>::row_type(
+			// TODO: Use dot function.
+			/*
+			Dot(m[0], v),
+			Dot(m[1], v),
+			Dot(m[2], v),
+			Dot(m[3], v)
+			*/);
+	}
+
+	namespace detail
+	{
+		template<typename T>
+		struct is_aligned
+		{
+			static constexpr bool value = alignof(T) >= 16;
+		};
+
+		template<typename T>
+		constexpr bool is_aligned_v = is_aligned<T>::value;
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
+	{
+		if constexpr (detail::is_aligned_v<Matrix4x4_Base<T>::type>)
+		{
+			typename Matrix4x4_Base<T>::column_type const sourceA0 = m1[0];
+			typename Matrix4x4_Base<T>::column_type const sourceA1 = m1[1];
+			typename Matrix4x4_Base<T>::column_type const sourceA2 = m1[2];
+			typename Matrix4x4_Base<T>::column_type const sourceA3 = m1[3];
+			typename Matrix4x4_Base<T>::column_type const sourceB0 = m2[0];
+			typename Matrix4x4_Base<T>::column_type const sourceB1 = m2[1];
+			typename Matrix4x4_Base<T>::column_type const sourceB2 = m2[2];
+			typename Matrix4x4_Base<T>::column_type const sourceB3 = m2[3];
+
+			Matrix4x4_Base<T> result;
+			// TODO: Implement this:
+			// result[0] = Fma(srca3, SplatW(srcb0), Fma(srca2, SplatZ(srcb0), Fma(srca1, SplatY(srcb0), srca0 * SplatX(srcb0))));
+			// result[1] = Fma(srca3, SplatW(srcb1), Fma(srca2, SplatZ(srcb1), Fma(srca1, SplatY(srcb1), srca0 * SplatX(srcb1))));
+			// result[2] = Fma(srca3, SplatW(srcb2), Fma(srca2, SplatZ(srcb2), Fma(srca1, SplatY(srcb2), srca0 * SplatX(srcb2))));
+			// result[3] = Fma(srca3, SplatW(srcb3), Fma(srca2, SplatZ(srcb3), Fma(srca1, SplatY(srcb3), srca0 * SplatX(srcb3))));
+			return result;
 		}
-		return left;
+		else
+		{
+			typename Matrix4x4_Base<T>::column_type const& sourceA0 = m1[0];
+			typename Matrix4x4_Base<T>::column_type const& sourceA1 = m1[1];
+			typename Matrix4x4_Base<T>::column_type const& sourceA2 = m1[2];
+			typename Matrix4x4_Base<T>::column_type const& sourceA3 = m1[3];
+			typename Matrix4x4_Base<T>::column_type const& sourceB0 = m2[0];
+			typename Matrix4x4_Base<T>::column_type const& sourceB1 = m2[1];
+			typename Matrix4x4_Base<T>::column_type const& sourceB2 = m2[2];
+			typename Matrix4x4_Base<T>::column_type const& sourceB3 = m2[3];
+
+			Matrix4x4_Base<T> result;
+			typename Matrix4x4_Base<T>::column_type temp;
+
+			temp =  sourceA0 * sourceB0.x;
+			temp += sourceA1 * sourceB0.y;
+			temp += sourceA2 * sourceB0.z;
+			temp += sourceA3 * sourceB0.w;
+			result[0] = temp;
+
+			temp =  sourceA0 * sourceB1.x;
+			temp += sourceA1 * sourceB1.y;
+			temp += sourceA2 * sourceB1.z;
+			temp += sourceA3 * sourceB1.w;
+			result[1] = temp;
+
+			temp =  sourceA0 * sourceB2.x;
+			temp += sourceA1 * sourceB2.y;
+			temp += sourceA2 * sourceB2.z;
+			temp += sourceA3 * sourceB2.w;
+			result[2] = temp;
+
+			temp =  sourceA0 * sourceB3.x;
+			temp += sourceA1 * sourceB3.y;
+			temp += sourceA2 * sourceB3.z;
+			temp += sourceA3 * sourceB3.w;
+			result[3] = temp;
+
+			return result;
+		}
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m, U scalar)
+	{
+		return Matrix4x4_Base<T>(
+			m[0] / scalar,
+			m[1] / scalar,
+			m[2] / scalar,
+			m[3] / scalar);
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(U scalar, Matrix4x4_Base<T> const& m)
+	{
+		return Matrix4x4_Base<T>(
+			scalar / m[0],
+			scalar / m[1],
+			scalar / m[2],
+			scalar / m[3]);
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::column_type operator/(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v)
+	{
+		typename Matrix4x4_Base<T>::column_type temp(1);
+		// TODO: Implement this: return inverse(m) * v;
+		return temp;
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::row_type operator/(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m)
+	{
+		typename Matrix4x4_Base<T>::row_type temp(1);
+		// TODO: Implement this: return v * inverse(m);
+		return temp;
+	}
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
+	{
+		Matrix4x4_Base<T> m1_copy(m1);
+		return m1_copy /= m2;
 	}
 
 	// ##########################################################################

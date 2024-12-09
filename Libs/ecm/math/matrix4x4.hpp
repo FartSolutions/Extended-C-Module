@@ -160,6 +160,58 @@ namespace ecm::math
 	template<typename T>
 	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m);
 
+	// Binary operators
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m, U scalar);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator+(U scalar, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m, U scalar);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator-(U scalar, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m, U scalar);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(U scalar, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::column_type operator*(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::row_type operator*(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m, U scalar);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(U scalar, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::column_type operator/(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr typename Matrix4x4_Base<T>::row_type operator/(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m);
+
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2);
+
+
+
 	// TODO: Only temporary
 	struct Matrix4x4 : public Matrix4x4_Base<float>
 	{
@@ -171,58 +223,6 @@ namespace ecm::math
 	{
 		using Matrix4x4::Matrix4x4;
 	};
-
-	/*
-	 * This operator creates an new Matrix4x4 object, calculates the addition of
-	 * two Matrix4x4 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns A new Matrix4x4 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4 operator+(
-		const Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator creates a new Matrix4x4 object, calculates the subtracting of
-	 * two Matrix4x4 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns A new Matrix4x4 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4 operator-(
-		const Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator creates an new Matrix4x4 object, calculates the
-	 * multiplication of two Matrix4x4 objects left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns A new Matrix4x4 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4 operator*(
-		const Matrix4x4& left, const Matrix4x4& right);
 
 	/*
 	 * This function sets a translation matrix with given translation values.
