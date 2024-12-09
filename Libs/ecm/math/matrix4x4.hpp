@@ -10,7 +10,7 @@
 
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
-#include "vector.hpp"
+#include "vector3.hpp"
 
 #include <type_traits>
 
@@ -105,6 +105,8 @@ namespace ecm::math
 		constexpr column_type const& operator[](uint8 i) const noexcept;
 
 		// Unary arithmetic operators
+
+		constexpr Matrix4x4_Base<T>& operator=(Matrix4x4_Base<T> const& m);
 
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Matrix4x4_Base<T>& operator=(Matrix4x4_Base<U> const& m);
@@ -212,18 +214,6 @@ namespace ecm::math
 
 
 
-	// TODO: Only temporary
-	struct Matrix4x4 : public Matrix4x4_Base<float>
-	{
-		using Matrix4x4_Base<float>::Matrix4x4_Base;
-	};
-
-	// TODO: Only temporary
-	__declspec(align(16)) struct Matrix4x4A : public Matrix4x4
-	{
-		using Matrix4x4::Matrix4x4;
-	};
-
 	/*
 	 * This function sets a translation matrix with given translation values.
 	 *
@@ -235,9 +225,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetTranslation(float32 tx, float32 ty, float32 tz);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetTranslation(float32 tx, float32 ty, float32 tz);
 
 	/*
 	 * This function sets a translation matrix with a given vector.
@@ -248,10 +239,11 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 * \sa Vector3
 	 */
-	ECM_INLINE Matrix4x4 SetTranslation(const Vector3& t);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetTranslation(const Vector3_Base<T>& t);
 
 	/*
 	 * This function translates a matrix with given translation values.
@@ -265,9 +257,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 Translate(const Matrix4x4& mat, float32 tx, float32 ty, float32 tz);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Translate(const Matrix4x4_Base<T>& mat, float32 tx, float32 ty, float32 tz);
 
 	/*
 	 * This function translates a matrix with a given vector.
@@ -279,10 +272,11 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 * \sa Vector3
 	 */
-	ECM_INLINE Matrix4x4 Translate(const Matrix4x4& mat, const Vector3& t);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Translate(const Matrix4x4_Base<T>& mat, const Vector3_Base<T>& t);
 
 	/*
 	 * This function sets a scale matrix with given scale values.
@@ -295,9 +289,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetScale(float32 sx, float32 sy, float32 sz);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetScale(float32 sx, float32 sy, float32 sz);
 
 	/*
 	 * This function sets a scale matrix with a given vector.
@@ -308,10 +303,11 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 * \sa Vector3
 	 */
-	ECM_INLINE Matrix4x4 SetScale(const Vector3& s);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetScale(const Vector3_Base<T>& s);
 
 	/*
 	 * This function scales a matrix with given scale values.
@@ -325,9 +321,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 Scale(const Matrix4x4& mat, float32 sx, float32 sy, float32 sz);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Scale(const Matrix4x4_Base<T>& mat, float32 sx, float32 sy, float32 sz);
 
 	/*
 	 * This function scales a matrix with a given vector.
@@ -339,10 +336,11 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 * \sa Vector3
 	 */
-	ECM_INLINE Matrix4x4 Scale(const Matrix4x4& mat, const Vector3& s);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Scale(const Matrix4x4_Base<T>& mat, const Vector3_Base<T>& s);
 
 	/*
 	 * This function sets a rotation matrix around the x-axis with a given angle.
@@ -353,9 +351,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetRotationX(float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetRotationX(float32 angle);
 
 	/*
 	 * This function rotates a matrix around the x-axis with a given angle.
@@ -367,9 +366,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 RotateX(const Matrix4x4& mat, float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> RotateX(const Matrix4x4_Base<T>& mat, float32 angle);
 
 	/*
 	 * This function sets a rotation matrix around the y-axis with a given angle.
@@ -380,9 +380,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetRotationY(float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetRotationY(float32 angle);
 
 	/*
 	 * This function rotates a matrix around the y-axis with a given angle.
@@ -394,9 +395,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 RotateY(const Matrix4x4& mat, float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> RotateY(const Matrix4x4_Base<T>& mat, float32 angle);
 
 	/*
 	 * This function sets a rotation matrix around the z-axis with a given angle.
@@ -407,9 +409,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetRotationZ(float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetRotationZ(float32 angle);
 
 	/*
 	 * This function rotates a matrix around the z-axis with a given angle.
@@ -421,9 +424,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 RotateZ(const Matrix4x4& mat, float32 angle);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> RotateZ(const Matrix4x4_Base<T>& mat, float32 angle);
 
 	/*
 	 * This function sets a rotation matrix around an arbitrary axis with a
@@ -438,9 +442,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 SetRotation(float32 angle, float32 x, float32 y, float32 z);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetRotation(float32 angle, float32 x, float32 y, float32 z);
 
 	/*
 	 * This function sets a rotation matrix around an arbitrary axis with a
@@ -453,10 +458,11 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 * \sa Vector3
 	 */
-	ECM_INLINE Matrix4x4 SetRotation(float32 angle, const Vector3& r);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> SetRotation(float32 angle, const Vector3_Base<T>& r);
 
 	/*
 	 * This function rotates a matrix around an arbitrary axis with given axis
@@ -472,9 +478,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, float32 x, float32 y, float32 z);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Rotate(const Matrix4x4_Base<T>& mat, float32 angle, float32 x, float32 y, float32 z);
 
 	/*
 	 * This function rotates a matrix around an arbitrary axis with given vector.
@@ -487,9 +494,10 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 *
-	 * \sa Matrix4x4
+	 * \sa Matrix4x4_Base
 	 */
-	ECM_INLINE Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, const Vector3& r);
+	template<typename T>
+	ECM_INLINE Matrix4x4_Base<T> Rotate(const Matrix4x4_Base<T>& mat, float32 angle, const Vector3_Base<T>& r);
 } // namespace ecm::math
 
 #include "matrix4x4.inl"

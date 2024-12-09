@@ -148,6 +148,13 @@ namespace ecm::math
 	// Unary arithmetic operators
 
 	template<typename T>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator=(Matrix4x4_Base<T> const& m)
+	{
+		memcpy(&this->rows, &m.rows, 16 * sizeof(value_type));
+		return *this;
+	}
+
+	template<typename T>
 	template<typename U, typename>
 	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator=(Matrix4x4_Base<U> const& m)
 	{
@@ -365,7 +372,7 @@ namespace ecm::math
 			m1[3] - m2[3]);
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m, U scalar)
 	{
 		return Matrix4x4_Base<T>(
@@ -375,7 +382,7 @@ namespace ecm::math
 			m[3] * scalar);
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator*(U scalar, Matrix4x4_Base<T> const& m)
 	{
 		return Matrix4x4_Base<T>(
@@ -385,7 +392,7 @@ namespace ecm::math
 			m[3] * scalar);
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr typename Matrix4x4_Base<T>::column_type operator*(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v)
 	{
 		typename Matrix4x4_Base<T>::column_type const mov0(v[0]);
@@ -401,7 +408,7 @@ namespace ecm::math
 		return add0 + add1;
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr typename Matrix4x4_Base<T>::row_type operator*(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m)
 	{
 		return typename Matrix4x4_Base<T>::row_type(
@@ -426,19 +433,19 @@ namespace ecm::math
 		constexpr bool is_aligned_v = is_aligned<T>::value;
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator*(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
 	{
-		if constexpr (detail::is_aligned_v<Matrix4x4_Base<T>::type>)
+		if constexpr (detail::is_aligned_v<typename Matrix4x4_Base<T>::type>)
 		{
 			typename Matrix4x4_Base<T>::column_type const sourceA0 = m1[0];
 			typename Matrix4x4_Base<T>::column_type const sourceA1 = m1[1];
 			typename Matrix4x4_Base<T>::column_type const sourceA2 = m1[2];
 			typename Matrix4x4_Base<T>::column_type const sourceA3 = m1[3];
-			typename Matrix4x4_Base<T>::column_type const sourceB0 = m2[0];
-			typename Matrix4x4_Base<T>::column_type const sourceB1 = m2[1];
-			typename Matrix4x4_Base<T>::column_type const sourceB2 = m2[2];
-			typename Matrix4x4_Base<T>::column_type const sourceB3 = m2[3];
+			typename Matrix4x4_Base<U>::column_type const sourceB0 = m2[0];
+			typename Matrix4x4_Base<U>::column_type const sourceB1 = m2[1];
+			typename Matrix4x4_Base<U>::column_type const sourceB2 = m2[2];
+			typename Matrix4x4_Base<U>::column_type const sourceB3 = m2[3];
 
 			Matrix4x4_Base<T> result;
 			// TODO: Implement this:
@@ -454,10 +461,10 @@ namespace ecm::math
 			typename Matrix4x4_Base<T>::column_type const& sourceA1 = m1[1];
 			typename Matrix4x4_Base<T>::column_type const& sourceA2 = m1[2];
 			typename Matrix4x4_Base<T>::column_type const& sourceA3 = m1[3];
-			typename Matrix4x4_Base<T>::column_type const& sourceB0 = m2[0];
-			typename Matrix4x4_Base<T>::column_type const& sourceB1 = m2[1];
-			typename Matrix4x4_Base<T>::column_type const& sourceB2 = m2[2];
-			typename Matrix4x4_Base<T>::column_type const& sourceB3 = m2[3];
+			typename Matrix4x4_Base<U>::column_type const& sourceB0 = m2[0];
+			typename Matrix4x4_Base<U>::column_type const& sourceB1 = m2[1];
+			typename Matrix4x4_Base<U>::column_type const& sourceB2 = m2[2];
+			typename Matrix4x4_Base<U>::column_type const& sourceB3 = m2[3];
 
 			Matrix4x4_Base<T> result;
 			typename Matrix4x4_Base<T>::column_type temp;
@@ -490,7 +497,7 @@ namespace ecm::math
 		}
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m, U scalar)
 	{
 		return Matrix4x4_Base<T>(
@@ -500,7 +507,7 @@ namespace ecm::math
 			m[3] / scalar);
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator/(U scalar, Matrix4x4_Base<T> const& m)
 	{
 		return Matrix4x4_Base<T>(
@@ -510,7 +517,7 @@ namespace ecm::math
 			scalar / m[3]);
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr typename Matrix4x4_Base<T>::column_type operator/(Matrix4x4_Base<T> const& m, typename Matrix4x4_Base<U>::row_type const& v)
 	{
 		typename Matrix4x4_Base<T>::column_type temp(1);
@@ -518,7 +525,7 @@ namespace ecm::math
 		return temp;
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr typename Matrix4x4_Base<T>::row_type operator/(typename Matrix4x4_Base<U>::column_type const& v, Matrix4x4_Base<T> const& m)
 	{
 		typename Matrix4x4_Base<T>::row_type temp(1);
@@ -526,7 +533,7 @@ namespace ecm::math
 		return temp;
 	}
 
-	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	template<typename T, typename U, typename>
 	constexpr Matrix4x4_Base<T> operator/(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<U> const& m2)
 	{
 		Matrix4x4_Base<T> m1_copy(m1);
@@ -534,61 +541,70 @@ namespace ecm::math
 	}
 
 	// ##########################################################################
-	// Translation Methods
+	// Translation Methodsy
 
-	Matrix4x4 SetTranslation(float32 tx, float32 ty, float32 tz)
+	template<typename T>
+	Matrix4x4_Base<T> SetTranslation(float32 tx, float32 ty, float32 tz)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		result.m30 = tx;
 		result.m31 = ty;
 		result.m32 = tz;
 		return result;
 	}
 
-	Matrix4x4 SetTranslation(const Vector3& t)
+	template<typename T>
+	Matrix4x4_Base<T> SetTranslation(const Vector3_Base<T>& t)
 	{
 		return SetTranslation(t.x, t.y, t.z);
 	}
 
-	Matrix4x4 Translate(const Matrix4x4& mat, float32 tx, float32 ty, float32 tz)
+	template<typename T>
+	Matrix4x4_Base<T> Translate(const Matrix4x4_Base<T>& mat, float32 tx, float32 ty, float32 tz)
 	{
-		Matrix4x4 translation = SetTranslation(tx, ty, tz);
+		Matrix4x4_Base<T> translation = SetTranslation<T>(tx, ty, tz);
 		return mat * translation;
 	}
 
-	Matrix4x4 Translate(const Matrix4x4& mat, const Vector3& t)
+	template<typename T>
+	Matrix4x4_Base<T> Translate(const Matrix4x4_Base<T>& mat, const Vector3_Base<T>& t)
 	{
 		return Translate(mat, t.x, t.y, t.z);
 	}
 
-	Matrix4x4 SetScale(float32 sx, float32 sy, float32 sz)
+	template<typename T>
+	Matrix4x4_Base<T> SetScale(float32 sx, float32 sy, float32 sz)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		result.m00 = sx;
 		result.m11 = sy;
 		result.m22 = sz;
 		return result;
 	}
 
-	Matrix4x4 SetScale(const Vector3& s)
+	template<typename T>
+	Matrix4x4_Base<T> SetScale(const Vector3_Base<T>& s)
 	{
 		return SetScale(s.x, s.y, s.z);
 	}
 
-	Matrix4x4 Scale(const Matrix4x4& mat, float32 sx, float32 sy, float32 sz)
+	template<typename T>
+	Matrix4x4_Base<T> Scale(const Matrix4x4_Base<T>& mat, float32 sx, float32 sy, float32 sz)
 	{
-		Matrix4x4 scaling = SetScale(sx, sy, sz);
+		Matrix4x4_Base<T> scaling = SetScale<T>(sx, sy, sz);
 		return mat * scaling;
 	}
 
-	Matrix4x4 Scale(const Matrix4x4& mat, const Vector3& s)
+	template<typename T>
+	Matrix4x4_Base<T> Scale(const Matrix4x4_Base<T>& mat, const Vector3_Base<T>& s)
 	{
 		return Scale(mat, s.x, s.y, s.z);
 	}
 
-	Matrix4x4 SetRotationX(float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> SetRotationX(float32 angle)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		float32 c = Cos(angle);
 		float32 s = Sin(angle);
 		result.m11 = c;
@@ -598,15 +614,17 @@ namespace ecm::math
 		return result;
 	}
 
-	Matrix4x4 RotateX(const Matrix4x4& mat, float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> RotateX(const Matrix4x4_Base<T>& mat, float32 angle)
 	{
-		Matrix4x4 rotation = SetRotationX(angle);
+		Matrix4x4_Base<T> rotation = SetRotationX<T>(angle);
 		return mat * rotation;
 	}
 
-	Matrix4x4 SetRotationY(float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> SetRotationY(float32 angle)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		float32 c = Cos(angle);
 		float32 s = Sin(angle);
 		result.m00 = c;
@@ -616,15 +634,17 @@ namespace ecm::math
 		return result;
 	}
 
-	Matrix4x4 RotateY(const Matrix4x4& mat, float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> RotateY(const Matrix4x4_Base<T>& mat, float32 angle)
 	{
-		Matrix4x4 rotation = SetRotationY(angle);
+		Matrix4x4_Base<T> rotation = SetRotationY<T>(angle);
 		return mat * rotation;
 	}
 
-	Matrix4x4 SetRotationZ(float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> SetRotationZ(float32 angle)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		float32 c = Cos(angle);
 		float32 s = Sin(angle);
 		result.m00 = c;
@@ -634,15 +654,17 @@ namespace ecm::math
 		return result;
 	}
 
-	Matrix4x4 RotateZ(const Matrix4x4& mat, float32 angle)
+	template<typename T>
+	Matrix4x4_Base<T> RotateZ(const Matrix4x4_Base<T>& mat, float32 angle)
 	{
-		Matrix4x4 rotation = SetRotationZ(angle);
+		Matrix4x4_Base<T> rotation = SetRotationZ<T>(angle);
 		return mat * rotation;
 	}
 
-	Matrix4x4 SetRotation(float32 angle, float32 x, float32 y, float32 z)
+	template<typename T>
+	Matrix4x4_Base<T> SetRotation(float32 angle, float32 x, float32 y, float32 z)
 	{
-		Matrix4x4 result(1.0f);
+		Matrix4x4_Base<T> result(1.0f);
 		float32 c = Cos(angle);
 		float32 s = Sin(angle);
 		float32 t = 1 - c;
@@ -670,19 +692,22 @@ namespace ecm::math
 		return result;
 	}
 
-	Matrix4x4 SetRotation(float32 angle, const Vector3& r)
+	template<typename T>
+	Matrix4x4_Base<T> SetRotation(float32 angle, const Vector3_Base<T>& r)
 	{
-		return SetRotation(angle, r.x, r.y, r.z);
+		return SetRotation<T>(angle, r.x, r.y, r.z);
 	}
 
-	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, float32 x, float32 y, float32 z)
+	template<typename T>
+	Matrix4x4_Base<T> Rotate(const Matrix4x4_Base<T>& mat, float32 angle, float32 x, float32 y, float32 z)
 	{
-		Matrix4x4 rotation = SetRotation(angle, x, y, z);
+		Matrix4x4_Base<T> rotation = SetRotation<T>(angle, x, y, z);
 		return mat * rotation;
 	}
 
-	Matrix4x4 Rotate(const Matrix4x4& mat, float32 angle, const Vector3& r)
+	template<typename T>
+	Matrix4x4_Base<T> Rotate(const Matrix4x4_Base<T>& mat, float32 angle, const Vector3_Base<T>& r)
 	{
-		return Rotate(mat, angle, r.x, r.y, r.z);
+		return Rotate<T>(mat, angle, r.x, r.y, r.z);
 	}
 } // namespace ecm::math
