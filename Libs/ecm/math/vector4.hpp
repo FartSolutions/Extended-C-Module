@@ -417,6 +417,146 @@ namespace ecm::math
 	template<typename T>
 	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v);
 
+	// Binary operators
+
+	/**
+	 * This operator creates an new Vector4 object, calculates the addition of a
+	 * Vector4 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v Left Vector4 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector4 object, calculates the addition of
+	 * two Vector4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object, which is the sum of left and right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2);
+
+	/**
+	 * This operator creates a new Vector4 object, calculates the subtracting of
+	 * a Vector4 object and a Float32 object, left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v Left Vector4 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector4 object, calculates the subtracting of
+	 * two Vector4 objects left and right component-wise and returns the newly
+	 * created object.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object calculated by subtracting left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2);
+
+	/**
+	 * This operator creates an new Vector4 object, calculates the
+	 * multiplication of a Vector4 object and a Float32 object, left and right
+	 * component-wise and returns the newly created object.
+	 *
+	 * \param v Left Vector4 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator*(Vector4_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates an new Vector4 object, calculates the
+	 * multiplication of two Vector4 objects left and right component-wise and
+	 * returns the newly created object.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object, which is the multiplicate of left and
+	 *          right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator*(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2);
+
+	/**
+	 * This operator creates a new Vector4 object, calculates the division of a
+	 * Vector4 object and a Float32 object, left and right component by
+	 * component and returns the newly created object.
+	 *
+	 * \param v Left Vector4 operand.
+	 * \param scalar Right Float32 operand.
+	 *
+	 * \returns A new Vector4 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator/(Vector4_Base<T> const& v, U scalar);
+
+	/**
+	 * This operator creates a new Vector4 object, calculates the division of
+	 * two Vector4 objects left and right component by component and returns the
+	 * newly created object.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns A new Vector4 object calculated by divide left by right.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T, typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+	constexpr Vector4_Base<T> operator/(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2);
+
 
 
 	/**
@@ -449,7 +589,7 @@ namespace ecm::math
 	{
 		using Vector4::Vector4;
 	};
-	
+
 	/**
 	 * This structure represents a 4D vector with int32 elements.
 	 *
@@ -480,144 +620,6 @@ namespace ecm::math
 	{
 		using Vector4i::Vector4i;
 	};
-
-	/**
-	 * This operator creates an new Vector4 object, calculates the addition of
-	 * two Vector4 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns A new Vector4 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator creates a new Vector4 object, calculates the subtracting of
-	 * two Vector4 objects left and right component-wise and returns the newly
-	 * created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns A new Vector4 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator creates an new Vector4 object, calculates the
-	 * multiplication of two Vector4 objects left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns A new Vector4 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator creates a new Vector4 object, calculates the division of
-	 * two Vector4 objects left and right component by component and returns the
-	 * newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns A new Vector4 object calculated by divide left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/*
-	 * This operator creates an new Vector4 object, calculates the addition of a
-	 * Vector4 object and a Float32 object, left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns A new Vector4 object, which is the sum of left and right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
-		const Vector4_Base<_Ty>& left, const _Ty& right);
-
-	/*
-	 * This operator creates a new Vector4 object, calculates the subtracting of a
-	 * Vector4 object and a Float32 object, left and right component-wise and
-	 * returns the newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns A new Vector4 object calculated by subtracting left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
-		const Vector4_Base<_Ty>& left, const _Ty& right);
-
-	/*
-	 * This operator creates an new Vector4 object, calculates the
-	 * multiplication of a Vector4 object and a Float32 object, left and right
-	 * component-wise and returns the newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns A new Vector4 object, which is the multiplicate of left and
-	 *          right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
-		const Vector4_Base<_Ty>& left, const _Ty& right);
-
-	/*
-	 * This operator creates a new Vector4 object, calculates the division of a
-	 * Vector4 object and a Float32 object, left and right component by
-	 * component and returns the newly created object.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Float32 operand.
-	 *
-	 * \returns A new Vector4 object calculated by divide left by right.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
-		const Vector4_Base<_Ty>& left, const _Ty& right);
 } // namespace ecm::math
 
 #include "vector4.inl"

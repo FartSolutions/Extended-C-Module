@@ -255,95 +255,86 @@ namespace ecm::math
 		return Vector4_Base<T>(-v.x, -v.y, -v.z, -v.w);
 	}
 
-	// ##########################################################################
-	// External operators
+	// Binary operators
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v, U scalar)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x + right.x;
-		vec.y = left.y + right.y;
-		vec.z = left.z + right.z;
-		vec.w = left.w + right.w;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v.x + scalar),
+			static_cast<T>(v.y + scalar),
+			static_cast<T>(v.z + scalar),
+			static_cast<T>(v.w + scalar));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x - right.x;
-		vec.y = left.y - right.y;
-		vec.z = left.z - right.z;
-		vec.w = left.w - right.w;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v1.x + v2.x),
+			static_cast<T>(v1.y + v2.y),
+			static_cast<T>(v1.z + v2.z),
+			static_cast<T>(v1.w + v2.w));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v, U scalar)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x * right.x;
-		vec.y = left.y * right.y;
-		vec.z = left.z * right.z;
-		vec.w = left.w * right.w;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v.x - scalar),
+			static_cast<T>(v.y - scalar),
+			static_cast<T>(v.z - scalar),
+			static_cast<T>(v.w - scalar));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x / right.x;
-		vec.y = left.y / right.y;
-		vec.z = left.z / right.z;
-		vec.w = left.w / right.w;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v1.x - v2.x),
+			static_cast<T>(v1.y - v2.y),
+			static_cast<T>(v1.z - v2.z),
+			static_cast<T>(v1.w - v2.w));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
-		const Vector4_Base<_Ty>& left, const _Ty& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator*(Vector4_Base<T> const& v, U scalar)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x + right;
-		vec.y = left.y + right;
-		vec.z = left.z + right;
-		vec.w = left.w + right;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v.x * scalar),
+			static_cast<T>(v.y * scalar),
+			static_cast<T>(v.z * scalar),
+			static_cast<T>(v.w * scalar));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator-(
-		const Vector4_Base<_Ty>& left, const _Ty& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator*(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x - right;
-		vec.y = left.y - right;
-		vec.z = left.z - right;
-		vec.w = left.w - right;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v1.x * v2.x),
+			static_cast<T>(v1.y * v2.y),
+			static_cast<T>(v1.z * v2.z),
+			static_cast<T>(v1.w * v2.w));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator*(
-		const Vector4_Base<_Ty>& left, const _Ty& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator/(Vector4_Base<T> const& v, U scalar)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x * right;
-		vec.y = left.y * right;
-		vec.z = left.z * right;
-		vec.w = left.w * right;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v.x / scalar),
+			static_cast<T>(v.y / scalar),
+			static_cast<T>(v.z / scalar),
+			static_cast<T>(v.w / scalar));
 	}
 
-	template<typename _Ty> constexpr Vector4_Base<_Ty> operator/(
-		const Vector4_Base<_Ty>& left, const _Ty& right)
+	template<typename T, typename U, typename>
+	constexpr Vector4_Base<T> operator/(Vector4_Base<T> const& v1, Vector4_Base<U> const& v2)
 	{
-		Vector4_Base<_Ty> vec{};
-		vec.x = left.x / right;
-		vec.y = left.y / right;
-		vec.z = left.z / right;
-		vec.w = left.w / right;
-		return vec;
+		return Vector4_Base<T>(
+			static_cast<T>(v1.x / v2.x),
+			static_cast<T>(v1.y / v2.y),
+			static_cast<T>(v1.z / v2.z),
+			static_cast<T>(v1.w / v2.w));
 	}
 } // namespace ecm::math
 
