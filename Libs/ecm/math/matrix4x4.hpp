@@ -132,6 +132,16 @@ namespace ecm::math
 
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Matrix4x4_Base<T>& operator/=(Matrix4x4_Base<U> const& m);
+
+		// Increment and decrement operators
+
+		constexpr Matrix4x4_Base<T>& operator++();
+
+		constexpr Matrix4x4_Base<T>& operator--();
+
+		constexpr Matrix4x4_Base<T> operator++(int);
+
+		constexpr Matrix4x4_Base<T> operator--(int);
 	};
 
 	// TODO: Only temporary

@@ -237,6 +237,44 @@ namespace ecm::math
 		return *this;
 	}
 
+	// Increment and decrement operators
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator++()
+	{
+		++this->rows[0];
+		++this->rows[1];
+		++this->rows[2];
+		++this->rows[3];
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator--()
+	{
+		--this->rows[0];
+		--this->rows[1];
+		--this->rows[2];
+		--this->rows[3];
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> Matrix4x4_Base<T>::operator++(int)
+	{
+		Matrix4x4_Base<T> Result(*this);
+		++*this;
+		return Result;
+	}
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> Matrix4x4_Base<T>::operator--(int)
+	{
+		Matrix4x4_Base<T> Result(*this);
+		--*this;
+		return Result;
+	}
+
 	// ##########################################################################
 	// Operators
 

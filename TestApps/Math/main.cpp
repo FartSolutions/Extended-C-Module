@@ -29,11 +29,11 @@ void test_vector(V1 v1, V2 v2)
 	v6 /= 3.f;
 
 	v3++;
-	--v4;
+	++v4;
 	v5--;
 	--v6;
 	-v3;
-	-v5;
+	+v5;
 
 	v1 = v2;
 	v2 = v1;
@@ -66,6 +66,11 @@ void test_matrices()
 	mat4 -= mat2;
 	mat5 *= mat1;
 	mat6 /= mat2;
+
+	mat3++;
+	++mat4;
+	mat5--;
+	--mat6;
 
 	ecm::math::Rotate(mat1, 4, ecm::math::Vector3(1, 1, 0));
 }
