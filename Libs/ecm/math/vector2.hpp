@@ -121,6 +121,21 @@ namespace ecm::math
 		template<typename U>
 		explicit constexpr Vector2_Base(Vector2_Base<U> const& v);
 
+		/**
+		 * Constructor initializing with the coordinates x and y, which do
+		 * not have to be of the same data type.
+		 *
+		 * \param x The x coordinate.
+		 * \param y The y coordinate.
+		 *
+		 * \tparam X The type of the x component.
+		 * \tparam Y The type of the y component.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename X, typename Y>
+		constexpr Vector2_Base(X x, Y y);
+
 		// Component access
 
 		/**
