@@ -49,11 +49,7 @@ void test_vectors()
 {
 	test_vector(ecm::math::Vector2(720.f, 1280.f), ecm::math::Vector2i(800, 600));
 	test_vector(ecm::math::Vector3(720.f, 1280.f, 1561.f), ecm::math::Vector3i(800, 600, 654));
-
-	//test_vector_f<ecm::math::Vector4>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
-	//test_vector_f<ecm::math::Vector4A>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
-	//test_vector_i<ecm::math::Vector4i>({ 720, 1280, 1561, 12 }, { 800, 600, 654, 53 });
-	//test_vector_i<ecm::math::Vector4iA>({ 720, 1280, 1561, 12 }, { 800, 600, 654, 53 });
+	test_vector(ecm::math::Vector4(720.f, 1280.f, 1561.f, 12), ecm::math::Vector4i(800, 600, 654, 53));
 }
 
 void test_matrices()
