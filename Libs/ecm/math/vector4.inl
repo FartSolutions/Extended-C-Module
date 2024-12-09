@@ -52,7 +52,7 @@ namespace ecm::math
 	{
 		return this->coord[axis];
 	}
-	
+
 	template<typename T>
 	constexpr T const& Vector4_Base<T>::operator[](const uint8 axis) const
 	{
@@ -70,7 +70,7 @@ namespace ecm::math
 		this->w = v.w;
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator=(Vector4_Base<U> const& v)
@@ -92,7 +92,7 @@ namespace ecm::math
 		this->w += static_cast<T>(scalar);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator+=(Vector4_Base<U> const& v)
@@ -103,7 +103,7 @@ namespace ecm::math
 		this->w += static_cast<T>(v.w);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator-=(U scalar)
@@ -114,7 +114,7 @@ namespace ecm::math
 		this->w -= static_cast<T>(scalar);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator-=(Vector4_Base<U> const& v)
@@ -125,7 +125,7 @@ namespace ecm::math
 		this->w -= static_cast<T>(v.w);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator*=(U scalar)
@@ -136,7 +136,7 @@ namespace ecm::math
 		this->w *= static_cast<T>(scalar);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator*=(Vector4_Base<U> const& v)
@@ -147,7 +147,7 @@ namespace ecm::math
 		this->w *= static_cast<T>(v.w);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator/=(U scalar)
@@ -158,7 +158,7 @@ namespace ecm::math
 		this->w /= static_cast<T>(scalar);
 		return *this;
 	}
-	
+
 	template<typename T>
 	template<typename U, typename>
 	constexpr Vector4_Base<T>& Vector4_Base<T>::operator/=(Vector4_Base<U> const& v)
@@ -168,6 +168,44 @@ namespace ecm::math
 		this->z /= static_cast<T>(v.z);
 		this->w /= static_cast<T>(v.w);
 		return *this;
+	}
+
+	// Increment and decrement operators
+
+	template<typename T>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator++()
+	{
+		++this->x;
+		++this->y;
+		++this->z;
+		++this->w;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector4_Base<T>& Vector4_Base<T>::operator--()
+	{
+		--this->x;
+		--this->y;
+		--this->z;
+		--this->w;
+		return *this;
+	}
+
+	template<typename T>
+	constexpr Vector4_Base<T> Vector4_Base<T>::operator++(int)
+	{
+		Vector4_Base<T> result(*this);
+		++*this;
+		return result;
+	}
+
+	template<typename T>
+	constexpr Vector4_Base<T> Vector4_Base<T>::operator--(int)
+	{
+		Vector4_Base<T> result(*this);
+		--*this;
+		return result;
 	}
 
 	// ##########################################################################

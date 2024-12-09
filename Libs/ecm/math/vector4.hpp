@@ -287,6 +287,48 @@ namespace ecm::math
 		 */
 		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
 		constexpr Vector4_Base<T>& operator/=(Vector4_Base<U> const& v);
+
+		// Increment and decrement operators
+
+		/**
+		 * Prefix increment operator.
+		 * Increments each component of the vector by 1.
+		 *
+		 * \returns A reference to this vector after the increment.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base<T>& operator++();
+
+		/**
+		 * Prefix decrement operator.
+		 * Decrements each component of the vector by 1.
+		 *
+		 * \returns A reference to this vector after the decrement.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base<T>& operator--();
+
+		/**
+		 * Postfix increment operator.
+		 * Increments each component of the vector by 1.
+		 *
+		 * \returns A copy of the vector before the increment.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base<T> operator++(int);
+
+		/**
+		 * Postfix decrement operator.
+		 * Decrements each component of the vector by 1.
+		 *
+		 * \returns A copy of the vector before the decrement.
+		 *
+		 * \since v1.0.0
+		 */
+		constexpr Vector4_Base<T> operator--(int);
 	};
 
 	/**
