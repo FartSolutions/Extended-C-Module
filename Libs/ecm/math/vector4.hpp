@@ -331,6 +331,94 @@ namespace ecm::math
 		constexpr Vector4_Base<T> operator--(int);
 	};
 
+	// Boolean operators
+
+	/**
+	 * This operator checks if the two Vector4 are the same.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns true if left is same as right, or false if not.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T>
+	constexpr bool operator==(Vector4_Base<T> const& v1, Vector4_Base<T> const& v2);
+
+	/**
+	 * This operator checks if the two Vector4 are not the same.
+	 *
+	 * \param v1 Left Vector4 operand.
+	 * \param v2 Right Vector4 operand.
+	 *
+	 * \returns true if left is not same as right, or false.
+	 *
+	 * \since v1.0.0
+	 *
+	 * \sa Vector4_Base
+	 */
+	template<typename T>
+	constexpr bool operator!=(Vector4_Base<T> const& v1, Vector4_Base<T> const& v2);
+
+	/**
+	 * Logical AND operator for two boolean vectors.
+	 *
+	 * \param v1 The left operand.
+	 * \param v2 The right operand.
+	 *
+	 * \returns A boolean vector where each component is the logical AND of the
+	 *          corresponding components in the operands.
+	 *
+	 * \since v1.0.0
+	 */
+	constexpr Vector4_Base<bool> operator&&(Vector4_Base<bool> const& v1, Vector4_Base<bool> const& v2);
+
+	/**
+	 * Logical OR operator for two boolean vectors.
+	 *
+	 * \param v1 The left operand.
+	 * \param v2 The right operand.
+	 *
+	 * \returns A boolean vector where each component is the logical OR of the
+	 *          corresponding components in the operands.
+	 *
+	 * \since v1.0.0
+	 */
+	constexpr Vector4_Base<bool> operator||(Vector4_Base<bool> const& v1, Vector4_Base<bool> const& v2);
+
+	// Unary arithmetic operators
+
+	/**
+	 * Unary plus operator.
+	 * Returns the vector itself.
+	 *
+	 * \param v The vector to apply the operator to.
+	 *
+	 * \returns A copy of the input vector.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename T>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v);
+
+	/**
+	 * Unary minus operator.
+	 * Negates each component of the vector.
+	 *
+	 * \param v The vector to apply the operator to.
+	 *
+	 * \returns A new vector with each component negated.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename T>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v);
+
+
+
 	/**
 	 * This structure represents a 4D vector with float32 elements.
 	 *
@@ -392,36 +480,6 @@ namespace ecm::math
 	{
 		using Vector4i::Vector4i;
 	};
-
-	/**
-	 * This operator checks if the two Vector4 are the same.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns true if left is same as right, or false if not.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr bool operator==(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
-
-	/**
-	 * This operator checks if the two Vector4 are not the same.
-	 *
-	 * \param left Left Vector4 operand.
-	 * \param right Right Vector4 operand.
-	 *
-	 * \returns true if left is not same as right, or false.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Vector4
-	 */
-	template<typename _Ty> constexpr bool operator!=(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right);
 
 	/**
 	 * This operator creates an new Vector4 object, calculates the addition of

@@ -65,10 +65,21 @@ void test_vector4()
 	v5 *= 3;
 	v6 /= 3.f;
 
+	v3++;
+	--v4;
+	v5--;
+	--v6;
+	-v3;
+	-v5;
+
 	v1 = v2;
 	v2 = v1;
 	v1 = ecm::math::Vector4_Base<float>(v2);
 	v2 = ecm::math::Vector4_Base<int>(v1);
+
+	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
+		v3 *= v5;
+	}
 }
 
 void test_vectors()

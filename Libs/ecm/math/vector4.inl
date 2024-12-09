@@ -208,16 +208,15 @@ namespace ecm::math
 		return result;
 	}
 
-	// ##########################################################################
-	// External operators
+	// Boolean operators
 
-	template<typename _Ty> constexpr bool operator==(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T>
+	constexpr bool operator==(Vector4_Base<T> const& v1, Vector4_Base<T> const& v2)
 	{
-		if (left.x == right.x) {
-			if (left.y == right.y) {
-				if (left.z == right.z) {
-					if (left.w == right.w) {
+		if (v1.x == v2.x) {
+			if (v1.y == v2.y) {
+				if (v1.z == v2.z) {
+					if (v1.w == v2.w) {
 						return true;
 					}
 				}
@@ -226,11 +225,38 @@ namespace ecm::math
 		return false;
 	}
 
-	template<typename _Ty> constexpr bool operator!=(
-		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
+	template<typename T>
+	constexpr bool operator!=(Vector4_Base<T> const& v1, Vector4_Base<T> const& v2)
 	{
-		return !(left == right);
+		return !(v1 == v2);
 	}
+
+	constexpr Vector4_Base<bool> operator&&(Vector4_Base<bool> const& v1, Vector4_Base<bool> const& v2)
+	{
+		return Vector4_Base<bool>(v1.x && v2.x, v1.y && v2.y, v1.z && v2.z, v1.w && v2.w);
+	}
+
+	constexpr Vector4_Base<bool> operator||(Vector4_Base<bool> const& v1, Vector4_Base<bool> const& v2)
+	{
+		return Vector4_Base<bool>(v1.x || v2.x, v1.y || v2.y, v1.z || v2.z, v1.w || v2.w);
+	}
+
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Vector4_Base<T> operator+(Vector4_Base<T> const& v)
+	{
+		return v;
+	}
+
+	template<typename T>
+	constexpr Vector4_Base<T> operator-(Vector4_Base<T> const& v)
+	{
+		return Vector4_Base<T>(-v.x, -v.y, -v.z, -v.w);
+	}
+
+	// ##########################################################################
+	// External operators
 
 	template<typename _Ty> constexpr Vector4_Base<_Ty> operator+(
 		const Vector4_Base<_Ty>& left, const Vector4_Base<_Ty>& right)
