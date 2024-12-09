@@ -45,57 +45,11 @@ void test_vector(V1 v1, V2 v2)
 	}
 }
 
-void test_vector4()
-{
-	auto v1 = ecm::math::Vector4_Base<float>(720.f, 1280.f, 1561.f, 12.f);
-	auto v2 = ecm::math::Vector4_Base<int>(800, 600, 654, 53);
-
-	auto v3 = v1 + v2;
-	auto v4 = v1 - v2;
-	auto v5 = v1 * v2;
-	auto v6 = v1 / v2;
-
-	v3 += v1;
-	v4 -= v2;
-	v5 *= v1;
-	v6 /= v2;
-
-	v3 = v3 + 50.f;
-	v4 = v4 - 50;
-	v5 = v5 * 50.f;
-	v6 = v6 / 50;
-
-	v3 += 3;
-	v4 -= 3.f;
-	v5 *= 3;
-	v6 /= 3.f;
-
-	v3++;
-	--v4;
-	v5--;
-	--v6;
-	-v3;
-	-v5;
-
-	v1 = v2;
-	v2 = v1;
-	v1 = ecm::math::Vector4_Base<float>(v2);
-	v2 = ecm::math::Vector4_Base<int>(v1);
-
-	if ((v3 == v4 || v5 == v5) && (v3 != v4 || v5 != v5)) {
-		v3 *= v5;
-	}
-}
-
 void test_vectors()
 {
 	test_vector(ecm::math::Vector2(720.f, 1280.f), ecm::math::Vector2i(800, 600));
 	test_vector(ecm::math::Vector3(720.f, 1280.f, 1561.f), ecm::math::Vector3i(800, 600, 654));
-
-	//test_vector_f<ecm::math::Vector4>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
-	//test_vector_f<ecm::math::Vector4A>({ 720.f, 1280.f, 1561.f, 12.f }, { 800.f, 600.f, 654.f, 53.f });
-	//test_vector_i<ecm::math::Vector4i>({ 720, 1280, 1561, 12 }, { 800, 600, 654, 53 });
-	//test_vector_i<ecm::math::Vector4iA>({ 720, 1280, 1561, 12 }, { 800, 600, 654, 53 });
+	test_vector(ecm::math::Vector4(720.f, 1280.f, 1561.f, 12), ecm::math::Vector4i(800, 600, 654, 53));
 }
 
 void test_matrices()
