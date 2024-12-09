@@ -275,43 +275,36 @@ namespace ecm::math
 		return Result;
 	}
 
+	// Boolean operators
+
+	template<typename T>
+	constexpr bool operator==(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<T> const& m2)
+	{
+		return (m1[0] == m2[0]) && (m1[1] == m2[1]) && (m1[2] == m2[2]) && (m1[3] == m2[3]);
+	}
+
+	template<typename T>
+	constexpr bool operator!=(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<T> const& m2)
+	{
+		return (m1[0] != m2[0]) || (m1[1] != m2[1]) || (m1[2] != m2[2]) || (m1[3] != m2[3]);
+	}
+
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m)
+	{
+		return m;
+	}
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m)
+	{
+		return Matrix4x4_Base<T>(-m[0], -m[1], -m[2], -m[3]);
+	}
+
 	// ##########################################################################
 	// Operators
-
-	constexpr bool operator==(const Matrix4x4& left, const Matrix4x4& right)
-	{
-		if (left.m00 == right.m00
-			&& left.m01 == right.m01
-			&& left.m02 == right.m02
-			&& left.m03 == right.m03)
-		{
-			if (left.m10 == right.m10
-				&& left.m11 == right.m11
-				&& left.m12 == right.m12
-				&& left.m13 == right.m13)
-			{
-				if (left.m20 == right.m20
-					&& left.m21 == right.m21
-					&& left.m22 == right.m22
-					&& left.m23 == right.m23)
-				{
-					if (left.m30 == right.m30
-						&& left.m31 == right.m31
-						&& left.m32 == right.m32
-						&& left.m33 == right.m33)
-					{
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
-
-	constexpr bool operator!=(const Matrix4x4& left, const Matrix4x4& right)
-	{
-		return !(left == right);
-	}
 
 	constexpr Matrix4x4 operator+(const Matrix4x4& left, const Matrix4x4& right)
 	{

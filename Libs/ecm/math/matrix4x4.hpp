@@ -144,6 +144,22 @@ namespace ecm::math
 		constexpr Matrix4x4_Base<T> operator--(int);
 	};
 
+	// Boolean operators
+
+	template<typename T>
+	constexpr bool operator==(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<T> const& m2);
+
+	template<typename T>
+	constexpr bool operator!=(Matrix4x4_Base<T> const& m1, Matrix4x4_Base<T> const& m2);
+
+	// Unary arithmetic operators
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> operator+(Matrix4x4_Base<T> const& m);
+
+	template<typename T>
+	constexpr Matrix4x4_Base<T> operator-(Matrix4x4_Base<T> const& m);
+
 	// TODO: Only temporary
 	struct Matrix4x4 : public Matrix4x4_Base<float>
 	{
@@ -155,36 +171,6 @@ namespace ecm::math
 	{
 		using Matrix4x4::Matrix4x4;
 	};
-
-	/*
-	 * This operator checks if the two Matrix4x4 are the same.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns true if left is same as right, or false if not.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr bool operator==(
-		const Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator checks if the two Matrix4x4 are not the same.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns true if left is not same as right, or false.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr bool operator!=(
-		const Matrix4x4& left, const Matrix4x4& right);
 
 	/*
 	 * This operator creates an new Matrix4x4 object, calculates the addition of

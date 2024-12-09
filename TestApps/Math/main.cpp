@@ -71,6 +71,12 @@ void test_matrices()
 	++mat4;
 	mat5--;
 	--mat6;
+	-mat3;
+	+mat5;
+
+	if ((mat3 == mat4 || mat5 == mat5) && (mat3 != mat4 || mat5 != mat5)) {
+		mat3 *= mat5;
+	}
 
 	ecm::math::Rotate(mat1, 4, ecm::math::Vector3(1, 1, 0));
 }
