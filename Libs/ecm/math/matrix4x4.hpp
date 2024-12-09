@@ -103,6 +103,35 @@ namespace ecm::math
 		constexpr column_type& operator[](uint8 i) noexcept;
 
 		constexpr column_type const& operator[](uint8 i) const noexcept;
+
+		// Unary arithmetic operators
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator=(Matrix4x4_Base<U> const& m);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator+=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator+=(Matrix4x4_Base<U> const& m);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator-=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator-=(Matrix4x4_Base<U> const& m);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator*=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator*=(Matrix4x4_Base<U> const& m);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator/=(U scalar);
+
+		template<typename U, typename = std::enable_if_t<std::is_arithmetic<U>::value>>
+		constexpr Matrix4x4_Base<T>& operator/=(Matrix4x4_Base<U> const& m);
 	};
 
 	// TODO: Only temporary
@@ -198,54 +227,6 @@ namespace ecm::math
 	 */
 	inline constexpr Matrix4x4 operator*(
 		const Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator adds the two Matrix4x4 objects left and right together and
-	 * returns the new value of left.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4& operator+=(
-		Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator subtracts the two Matrix4x4 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4& operator-=(
-		Matrix4x4& left, const Matrix4x4& right);
-
-	/*
-	 * This operator multiplies the two Matrix4x4 objects left and right together
-	 * and returns the new value of left.
-	 *
-	 * \param left Left Matrix4x4 operand.
-	 * \param left right Matrix4x4 operand.
-	 *
-	 * \returns After calculation reference to left.
-	 *
-	 * \since v1.0.0
-	 *
-	 * \sa Matrix4x4
-	 */
-	inline constexpr Matrix4x4& operator*=(
-		Matrix4x4& left, const Matrix4x4& right);
 
 	/*
 	 * This function sets a translation matrix with given translation values.

@@ -145,6 +145,98 @@ namespace ecm::math
 		return this->rows[i];
 	}
 
+	// Unary arithmetic operators
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator=(Matrix4x4_Base<U> const& m)
+	{
+		memcpy(&this->rows, &m.rows, 16 * sizeof(value_type));
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator+=(U scalar)
+	{
+		this->rows[0] += scalar;
+		this->rows[1] += scalar;
+		this->rows[2] += scalar;
+		this->rows[3] += scalar;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator+=(Matrix4x4_Base<U> const& m)
+	{
+		this->rows[0] += m[0];
+		this->rows[1] += m[1];
+		this->rows[2] += m[2];
+		this->rows[3] += m[3];
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator-=(U scalar)
+	{
+		this->rows[0] -= scalar;
+		this->rows[1] -= scalar;
+		this->rows[2] -= scalar;
+		this->rows[3] -= scalar;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator-=(Matrix4x4_Base<U> const& m)
+	{
+		this->rows[0] -= m[0];
+		this->rows[1] -= m[1];
+		this->rows[2] -= m[2];
+		this->rows[3] -= m[3];
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator*=(U scalar)
+	{
+		this->rows[0] *= scalar;
+		this->rows[1] *= scalar;
+		this->rows[2] *= scalar;
+		this->rows[3] *= scalar;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator*=(Matrix4x4_Base<U> const& m)
+	{
+		// TODO: Use this code: return (*this = *this * m);
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator/=(U scalar)
+	{
+		this->rows[0] /= scalar;
+		this->rows[1] /= scalar;
+		this->rows[2] /= scalar;
+		this->rows[3] /= scalar;
+		return *this;
+	}
+
+	template<typename T>
+	template<typename U, typename>
+	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator/=(Matrix4x4_Base<U> const& m)
+	{
+		// TODO: Use this code: return (*this *= inverse(m));
+		return *this;
+	}
+
 	// ##########################################################################
 	// Operators
 
@@ -219,24 +311,6 @@ namespace ecm::math
 					left.matrix[row][3] * right.matrix[3][col];
 			}
 		}
-		return left;
-	}
-
-	constexpr Matrix4x4& operator+=(Matrix4x4& left, const Matrix4x4& right)
-	{
-		//left = left + right;
-		return left;
-	}
-
-	constexpr Matrix4x4& operator-=(Matrix4x4& left, const Matrix4x4& right)
-	{
-		//left = left - right;
-		return left;
-	}
-
-	constexpr Matrix4x4& operator*=(Matrix4x4& left, const Matrix4x4& right)
-	{
-		//left = left * right;
 		return left;
 	}
 
