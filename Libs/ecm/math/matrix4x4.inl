@@ -28,12 +28,12 @@ namespace ecm::math
 	{}
 
 	template<typename T>
-	constexpr Matrix4x4_Base<T>::Matrix4x4_Base(T s)
+	constexpr Matrix4x4_Base<T>::Matrix4x4_Base(T scalar)
 		: rows{
-			column_type(s, 0, 0, 0),
-			column_type(0, s, 0, 0),
-			column_type(0, 0, s, 0),
-			column_type(0, 0, 0, s) }
+			column_type(scalar, 0, 0, 0),
+			column_type(0, scalar, 0, 0),
+			column_type(0, 0, scalar, 0),
+			column_type(0, 0, 0, scalar) }
 	{}
 
 	template<typename T>
