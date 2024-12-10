@@ -119,6 +119,25 @@ namespace ecm::math
 		template<typename U>
 		explicit constexpr Vector4_Base(Vector4_Base<U> const& v);
 
+		/**
+		 * Constructor initializing with the coordinates x, y, z and w, which do
+		 * not have to be of the same data type.
+		 *
+		 * \param x The x coordinate.
+		 * \param y The y coordinate.
+		 * \param z The z coordinate.
+		 * \param w The w coordinate.
+		 *
+		 * \tparam X The type of the x component.
+		 * \tparam Y The type of the y component.
+		 * \tparam Z The type of the z component.
+		 * \tparam W The type of the w component.
+		 *
+		 * \since v1.0.0
+		 */
+		template<typename X, typename Y, typename Z, typename W>
+		constexpr Vector4_Base(X x, Y y, Z z, W w);
+
 		// Component access
 
 		/**

@@ -11,8 +11,6 @@
 #include "math/functions.hpp"
 
 #include "math/vector.hpp"
-#include "math/vector4.hpp"
-
-#include "math/matrix4x4.hpp"
+#include "math/matrix.hpp"
 
 #endif // !_ECM_MATH_HPP_

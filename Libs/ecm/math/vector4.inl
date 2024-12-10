@@ -45,6 +45,15 @@ namespace ecm::math
 		  w(static_cast<T>(v.w))
 	{}
 
+	template<typename T>
+	template<typename X, typename Y, typename Z, typename W>
+	constexpr Vector4_Base<T>::Vector4_Base(X x, Y y, Z z, W w)
+		: x(static_cast<T>(x)),
+		  y(static_cast<T>(y)),
+		  z(static_cast<T>(z)),
+		  w(static_cast<T>(w))
+	{}
+
 	// Component access
 
 	template<typename T>
