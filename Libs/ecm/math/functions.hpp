@@ -81,71 +81,59 @@ namespace ecm::math
 	template<typename _Ty>
 	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
 
-	/**
-	 * Computes the sine of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The sine of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float64 ECM_CALL Sin(float64 angle);
+	template<typename T>
+	constexpr float64 DegToRad(T d);
 
-	/**
-	 * Computes the sine of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The sine of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float32 ECM_CALL Sin(float32 angle);
+	template<typename T>
+	constexpr float64 RadToDeg(T r);
 
-	/**
-	 * Computes the cosine of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The cosine of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float64 ECM_CALL Cos(float64 angle);
+	template<typename T>
+	constexpr T Sin(T x);
 
-	/**
-	 * Computes the cosine of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The cosine of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float32 ECM_CALL Cos(float32 angle);
+	template<typename T>
+	constexpr T Asin(T x);
 
-	/**
-	 * Computes the tangent of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The tangent of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float64 ECM_CALL Tan(float64 angle);
+	template<typename T>
+	constexpr T Sinh(T x);
 
-	/**
-	 * Computes the tangent of the given angle.
-	 * 
-	 * \param x The angle in radians.
-	 * 
-	 * \returns The tangent of the angle.
-	 * 
-	 * \since v1.0.0
-	 */
-	extern ECM_MATH_API float32 ECM_CALL Tan(float32 angle);
+	template<typename T>
+	constexpr T Asinh(T x);
+
+	template<typename T>
+	constexpr T Cos(T x);
+
+	template<typename T>
+	constexpr T Acos(T x);
+
+	template<typename T>
+	constexpr T Cosh(T x);
+
+	template<typename T>
+	constexpr T Acosh(T x);
+
+	template<typename T>
+	constexpr T Tan(T x);
+
+	template<typename T>
+	constexpr T Atan(T x);
+
+	template<typename T>
+	constexpr T Tanh(T x);
+
+	template<typename T>
+	constexpr T Atanh(T x);
+
+	template<typename T>
+	constexpr T Log(T x);
+
+	template<typename T>
+	constexpr T Log2(T x);
+
+	template<typename T>
+	constexpr T Log10(T x);
+
+	template<typename T>
+	constexpr T Log1p(T x);
 } // namespace ecm::math
 
 #include "functions.inl"

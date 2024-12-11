@@ -197,7 +197,6 @@
     <ResourceCompile Include="rsc\ecm.math.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\math\functions.cpp" />
     <ClCompile Include="source\win32\dllmain_ecm.math.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

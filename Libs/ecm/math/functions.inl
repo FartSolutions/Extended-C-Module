@@ -2,6 +2,9 @@
 
 #include "functions.hpp"
 
+#include <cmath>
+#include <type_traits>
+
 namespace ecm::math
 {
 	namespace
@@ -150,5 +153,113 @@ namespace ecm::math
 			return QuietNaN<_Ty>();
 		}
 		return x - Trunc(x / y) * y;
+	}
+
+	template<typename T>
+	constexpr float64 DegToRad(T d)
+	{
+		return static_cast<float64>(d) * (PI / 180.0);
+	}
+
+	template<typename T>
+	constexpr float64 RadToDeg(T r)
+	{
+		return (static_cast<float64>(r) * 180.0) / PI;
+	}
+
+	template<typename T>
+	constexpr T Sin(T x)
+	{
+		return static_cast<T>(std::sin(x));
+	}
+
+	template<typename T>
+	constexpr T Asin(T x)
+	{
+		return static_cast<T>(std::asin(x));
+	}
+
+	template<typename T>
+	constexpr T Sinh(T x)
+	{
+		return static_cast<T>(std::sinh(x));
+	}
+
+	template<typename T>
+	constexpr T Asinh(T x)
+	{
+		return static_cast<T>(std::asinh(x));
+	}
+
+	template<typename T>
+	constexpr T Cos(T x)
+	{
+		return static_cast<T>(std::cos(x));
+	}
+
+	template<typename T>
+	constexpr T Acos(T x)
+	{
+		return static_cast<T>(std::acos(x));
+	}
+
+	template<typename T>
+	constexpr T Cosh(T x)
+	{
+		return static_cast<T>(std::cosh(x));
+	}
+
+	template<typename T>
+	constexpr T Acosh(T x)
+	{
+		return static_cast<T>(std::acosh(x));
+	}
+
+	template<typename T>
+	constexpr T Tan(T x)
+	{
+		return static_cast<T>(std::tan(x));
+	}
+
+	template<typename T>
+	constexpr T Atan(T x)
+	{
+		return static_cast<T>(std::atan(x));
+	}
+
+	template<typename T>
+	constexpr T Tanh(T x)
+	{
+		return static_cast<T>(std::tanh(x));
+	}
+
+	template<typename T>
+	constexpr T Atanh(T x)
+	{
+		return static_cast<T>(std::atanh(x));
+	}
+
+	template<typename T>
+	constexpr T Log(T x)
+	{
+		return static_cast<T>(std::log(x));
+	}
+
+	template<typename T>
+	constexpr T Log2(T x)
+	{
+		return static_cast<T>(std::log2(x));
+	}
+
+	template<typename T>
+	constexpr T Log10(T x)
+	{
+		return static_cast<T>(std::log10(x));
+	}
+
+	template<typename T>
+	constexpr T Log1p(T x)
+	{
+		return static_cast<T>(std::log1p(x));
 	}
 } // namespace ecm::math
