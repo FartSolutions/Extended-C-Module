@@ -9,6 +9,7 @@
 #define _ECM_MATH_HPP_
 
 #include "math/functions.hpp"
+#include "math/functions_simd.hpp"
 
 #include "math/vector.hpp"
 #include "math/matrix.hpp"

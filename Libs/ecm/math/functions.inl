@@ -2,153 +2,255 @@
 
 #include "functions.hpp"
 
+#include <cmath>
+#include <limits>
+
 namespace ecm::math
 {
-	namespace
-	{
-		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		// TODO: Move to another file, like "type_traits.hpp"
-		template<typename _Ty>
-		struct IsIntegral {
-			static constexpr bool value = false;
-		};
-		template<>
-		struct IsIntegral<bool> {
-			static constexpr bool value = false;
-		};
-		template<>
-		struct IsIntegral<int8> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<uint8> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<int16> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<uint16> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<int32> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<uint32> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<int64> {
-			static constexpr bool value = true;
-		};
-		template<>
-		struct IsIntegral<uint64> {
-			static constexpr bool value = true;
-		};
-		template<typename _Ty>
-		struct IsFloatingPoint {
-			static constexpr bool Value = false;
-		};
-		template<>
-		struct IsFloatingPoint<float32> {
-			static constexpr bool Value = true;
-		};
-		template<>
-		struct IsFloatingPoint<float64> {
-			static constexpr bool Value = true;
-		};
-		template<>
-		struct IsFloatingPoint<float128> {
-			static constexpr bool Value = true;
-		};
-		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	// Basic functions
 
-		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		// TODO: Move to another file, like "utils.hpp"
-		template<typename _Ty>
-		inline _Ty QuietNaN() noexcept;
-		template<>
-		inline float32 QuietNaN() noexcept {
-			union {
-				uint32 i;
-				float32 f;
-			} u{};
-			u.i = 0x4fc00000;
-			return u.f;
-		}
-		template<>
-		inline float64 QuietNaN() noexcept {
-			union {
-				uint64 i;
-				float64 f;
-			} u{};
-			u.i = 0x7ff8000000000000;
-			return u.f;
-		}
-		template<>
-		inline float128 QuietNaN() noexcept {
-			struct _Float128 {
-				uint64 high;
-				uint64 low;
-			};
-			_Float128 nan = { 0x7FFF800000000000, 0x0000000000000000 };
-			float128 result;
-			memcpy(&result, &nan, sizeof(result));
-			return result;
-		}
-		// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-	} // anonymous namespace
-
-	template<typename _Ty>
-	_Ty Abs(_Ty const x) noexcept
+	template<typename T>
+	constexpr T Abs(T x) noexcept
 	{
-		return x < static_cast<_Ty>(0) ? -x : x;
+		return x < static_cast<T>(0) ? -x : x;
 	}
 
-	template<typename _Ty>
-	inline _Ty Trunc(_Ty const x) noexcept
+	template<typename T>
+	constexpr T Trunc(T x) noexcept
 	{
-		return x < 0 ?
-			static_cast<_Ty>(static_cast<long long>(x)) :
-			static_cast<_Ty>(static_cast<long long>(x));
+		return static_cast<T>(static_cast<long long>(x));
 	}
 	
-	template<typename _Ty>
-	_Ty Fact(_Ty n) noexcept
+	template<typename T>
+	constexpr T Fact(T n) noexcept
 	{
-		_Ty res{ static_cast<_Ty>(1) };
-		for (_Ty i{ static_cast<_Ty>(1) }; i <= n; ++i) {
+		T res{ static_cast<T>(1) };
+		for (T i{ static_cast<T>(1) }; i <= n; ++i) {
 			res *= i;
 		}
 		return res;
 	}
 
-	template<typename _Ty_Base, typename _Ty_Exp>
-	_Ty_Base Pow(_Ty_Base const base, _Ty_Exp const exp) noexcept
+	template<typename B, typename E>
+	constexpr B Pow(B base, E exp) noexcept
 	{
-		static_assert(IsIntegral<_Ty_Exp>::value,
-			"Exponent must be an integral type");
-		_Ty_Base res{ static_cast<_Ty_Base>(1) };
-		for (_Ty_Exp i{ static_cast<_Ty_Exp>(0) }; i < Abs(exp); ++i) {
-			res *= base;
-		}
-		if (exp < 0) {
-			return static_cast<_Ty_Base>(1) / res;
-		}
-		return res;
+		return static_cast<B>(std::pow(base, exp));
 	}
 
-	template<typename _Ty>
-	inline _Ty Fmod(_Ty const x, _Ty const y) noexcept
+	template<typename T, typename U>
+	constexpr T Fmod(T x, U y) noexcept
 	{
-		static_assert(IsFloatingPoint<_Ty>::Value,
-			"Type must be a floating type");
+		static_assert(std::numeric_limits<T>::is_iec559, "Type must be a floating type.");
 		if (y == 0.0) {
-			return QuietNaN<_Ty>();
+			return std::numeric_limits<T>::quiet_NaN();
 		}
-		return x - Trunc(x / y) * y;
+		return static_cast<T>(x - Trunc(x / y) * y);
+	}
+
+	template<typename T>
+	constexpr T Cbrt(T x) noexcept
+	{
+		return (x < 0 ? -1 : 1) * Pow(Abs(x), static_cast<T>(1) / static_cast<T>(3));
+	}
+
+	template<typename T>
+	constexpr T Sqrt(T x) noexcept
+	{
+		if (x < 0) {
+			return std::numeric_limits<T>::quiet_NaN();
+		}
+		T guess = static_cast<T>(x / 2.0);
+		T previousGuess;
+		const T epsilon = std::numeric_limits<T>::epsilon();
+		do {
+			previousGuess = guess;
+			guess = static_cast<T>((guess + x / guess) / 2.0);
+		} while (Abs(guess - previousGuess) > epsilon);
+		return guess;
+	}
+
+	template<typename T>
+	constexpr T Ceil(T x) noexcept
+	{
+		int64 intPart = static_cast<int64>(x);
+		return static_cast<T>((x > intPart) ? intPart + 1 : intPart);
+	}
+
+	template<typename T>
+	constexpr T Floor(T x) noexcept
+	{
+		int64 intPart = static_cast<int64>(x);
+		return static_cast<T>((x < intPart) ? intPart - 1 : intPart);
+	}
+
+	template<typename T>
+	constexpr T Exp(T x) noexcept
+	{
+		constexpr int32 maxIterations = 100;
+		constexpr float64 epsilon = 1e-15;
+		T term = 1;
+		T sum = 1;
+		for (int32 n{ 1 }; n < maxIterations; ++n) {
+			term *= x / n;
+			sum += term;
+			if (Abs(term) < epsilon) {
+				break;
+			}
+		}
+		return sum;
+	}
+
+	template<typename T>
+	constexpr T Frexp(T x, int32* e) noexcept
+	{
+		if (x == 0) {
+			return 0;
+		}
+		int exponent = 0;
+		T mantissa = x;
+		while (Abs(mantissa) >= 1.0) {
+			mantissa /= 2.0;
+			exponent++;
+		}
+		while (Abs(mantissa) < 0.5) {
+			mantissa *= 2.0;
+			exponent--;
+		}
+		e = &exponent;
+		return static_cast<T>(mantissa);
+	}
+
+	template<typename T, typename U>
+	constexpr T Ldexp(T x, U n) noexcept
+	{
+		return static_cast<T>(x * (1ll << n));
+	}
+
+	template<typename T, typename U>
+	constexpr T Hypot(T x, U y) noexcept
+	{
+		return Sqrt(static_cast<T>(x * x + y * y));
+	}
+
+	template<typename T>
+	constexpr T Min(T x, T y) noexcept
+	{
+		return (x < y) ? x : y;
+	}
+
+	template<typename T>
+	constexpr T Max(T x, T y) noexcept
+	{
+		return (x > y) ? x : y;
+	}
+
+	// Trigonometry functions
+
+	template<typename T>
+	constexpr float64 DegToRad(T d) noexcept
+	{
+		return static_cast<float64>(d) * (DEF_PI / 180.0);
+	}
+
+	template<typename T>
+	constexpr float64 RadToDeg(T r) noexcept
+	{
+		return (static_cast<float64>(r) * 180.0) / DEF_PI;
+	}
+
+	template<typename T>
+	constexpr T Sin(T x) noexcept
+	{
+		return static_cast<T>(std::sin(x));
+	}
+
+	template<typename T>
+	constexpr T Asin(T x) noexcept
+	{
+		return static_cast<T>(std::asin(x));
+	}
+
+	template<typename T>
+	constexpr T Sinh(T x) noexcept
+	{
+		return static_cast<T>(std::sinh(x));
+	}
+
+	template<typename T>
+	constexpr T Asinh(T x) noexcept
+	{
+		return static_cast<T>(std::asinh(x));
+	}
+
+	template<typename T>
+	constexpr T Cos(T x) noexcept
+	{
+		return static_cast<T>(std::cos(x));
+	}
+
+	template<typename T>
+	constexpr T Acos(T x) noexcept
+	{
+		return static_cast<T>(std::acos(x));
+	}
+
+	template<typename T>
+	constexpr T Cosh(T x) noexcept
+	{
+		return static_cast<T>(std::cosh(x));
+	}
+
+	template<typename T>
+	constexpr T Acosh(T x) noexcept
+	{
+		return static_cast<T>(std::acosh(x));
+	}
+
+	template<typename T>
+	constexpr T Tan(T x) noexcept
+	{
+		return static_cast<T>(std::tan(x));
+	}
+
+	template<typename T>
+	constexpr T Atan(T x) noexcept
+	{
+		return static_cast<T>(std::atan(x));
+	}
+
+	template<typename T>
+	constexpr T Tanh(T x) noexcept
+	{
+		return static_cast<T>(std::tanh(x));
+	}
+
+	template<typename T>
+	constexpr T Atanh(T x) noexcept
+	{
+		return static_cast<T>(std::atanh(x));
+	}
+
+	template<typename T>
+	constexpr T Log(T x) noexcept
+	{
+		return static_cast<T>(std::log(x));
+	}
+
+	template<typename T>
+	constexpr T Log2(T x) noexcept
+	{
+		return static_cast<T>(std::log2(x));
+	}
+
+	template<typename T>
+	constexpr T Log10(T x) noexcept
+	{
+		return static_cast<T>(std::log10(x));
+	}
+
+	template<typename T>
+	constexpr T Log1p(T x) noexcept
+	{
+		return static_cast<T>(std::log1p(x));
 	}
 } // namespace ecm::math

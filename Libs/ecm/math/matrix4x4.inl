@@ -2,6 +2,7 @@
 
 #include "matrix4x4.hpp"
 #include "functions.hpp"
+#include "functions_simd.hpp"
 
 #include <limits>
 
@@ -221,8 +222,7 @@ namespace ecm::math
 	template<typename U, typename>
 	constexpr Matrix4x4_Base<T>& Matrix4x4_Base<T>::operator*=(Matrix4x4_Base<U> const& m)
 	{
-		// TODO: Use this code: return (*this = *this * m);
-		return *this;
+		return (*this = *this * m);
 	}
 
 	template<typename T>
@@ -448,11 +448,10 @@ namespace ecm::math
 			typename Matrix4x4_Base<U>::column_type const sourceB3 = m2[3];
 
 			Matrix4x4_Base<T> result;
-			// TODO: Implement this:
-			// result[0] = Fma(srca3, SplatW(srcb0), Fma(srca2, SplatZ(srcb0), Fma(srca1, SplatY(srcb0), srca0 * SplatX(srcb0))));
-			// result[1] = Fma(srca3, SplatW(srcb1), Fma(srca2, SplatZ(srcb1), Fma(srca1, SplatY(srcb1), srca0 * SplatX(srcb1))));
-			// result[2] = Fma(srca3, SplatW(srcb2), Fma(srca2, SplatZ(srcb2), Fma(srca1, SplatY(srcb2), srca0 * SplatX(srcb2))));
-			// result[3] = Fma(srca3, SplatW(srcb3), Fma(srca2, SplatZ(srcb3), Fma(srca1, SplatY(srcb3), srca0 * SplatX(srcb3))));
+			result[0] = Fma(sourceA3, SplatW(sourceB0), Fma(sourceA2, SplatZ(sourceB0), Fma(sourceA1, SplatY(sourceB0), sourceA0 * SplatX(sourceB0))));
+			result[1] = Fma(sourceA3, SplatW(sourceB1), Fma(sourceA2, SplatZ(sourceB1), Fma(sourceA1, SplatY(sourceB1), sourceA0 * SplatX(sourceB1))));
+			result[2] = Fma(sourceA3, SplatW(sourceB2), Fma(sourceA2, SplatZ(sourceB2), Fma(sourceA1, SplatY(sourceB2), sourceA0 * SplatX(sourceB2))));
+			result[3] = Fma(sourceA3, SplatW(sourceB3), Fma(sourceA2, SplatZ(sourceB2), Fma(sourceA1, SplatY(sourceB3), sourceA0 * SplatX(sourceB3))));
 			return result;
 		}
 		else
