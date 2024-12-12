@@ -10,7 +10,6 @@
 
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
-#include <DirectXMath.h>
 
 namespace ecm::math
 {
