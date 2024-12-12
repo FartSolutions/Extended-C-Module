@@ -21,17 +21,19 @@ namespace ecm::math
 	constexpr float64 DEF_PIDIV2 = 1.57079632679489661923;
 	constexpr float64 DEF_PIDIV4 = 0.78539816339744830961;
 
+	// Basic functions
+
 	/**
 	 * This function calculates the absolute value of a given input.
 	 *
-	 * \param x Input value of type _Ty.
+	 * \param x Input value of type T.
 	 *
 	 * \returns The absolute value of the input x.
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
-	inline _Ty ECM_CALL Abs(_Ty const x) noexcept;
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Abs(T x) noexcept;
 
 	/**
 	 * This function truncates the decimal part of the number and returns the
@@ -43,34 +45,33 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
-	inline _Ty ECM_CALL Trunc(_Ty const x) noexcept;
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Trunc(T x) noexcept;
 
 	/**
 	 * This function calculates the factorial of a given input.
 	 *
-	 * \param n Input value of type _Ty.
+	 * \param n Input value of type T.
 	 *
 	 * \returns The factorial of the input n.
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
-	inline _Ty ECM_CALL Fact(_Ty const n) noexcept;
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Fact(T n) noexcept;
 
 	/**
 	 * This function calculates the power of a base raised to an exponent.
 	 *
-	 * \param base The base value of type _Ty_Base.
-	 * \param exp The exponent value of type _Ty_Exp.
+	 * \param base The base value of type B.
+	 * \param exp The exponent value of type E.
 	 *
 	 * \returns The result of raising base to the power of exp.
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty_Base, typename _Ty_Exp>
-	inline _Ty_Base ECM_CALL Pow(_Ty_Base const base,
-		_Ty_Exp const exp) noexcept;
+	template<typename B, typename E>
+	ECM_NODISCARD constexpr B ECM_CALL Pow(B base, E exp) noexcept;
 
 	/**
 	 * Computes the floating-point remainder of the division operation x/y.
@@ -83,62 +84,64 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
-	template<typename _Ty>
-	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Fmod(T x, T y) noexcept;
+
+	// Trigonometry functions
 
 	template<typename T>
-	constexpr float64 ECM_CALL DegToRad(T d) noexcept;
+	ECM_NODISCARD constexpr float64 ECM_CALL DegToRad(T d) noexcept;
 
 	template<typename T>
-	constexpr float64 ECM_CALL RadToDeg(T r) noexcept;
+	ECM_NODISCARD constexpr float64 ECM_CALL RadToDeg(T r) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Sin(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Sin(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Asin(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Asin(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Sinh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Sinh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Asinh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Asinh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Cos(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Cos(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Acos(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Acos(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Cosh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Cosh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Acosh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Acosh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Tan(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Tan(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Atan(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Atan(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Tanh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Tanh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Atanh(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Atanh(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Log(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Log(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Log2(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Log2(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Log10(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Log10(T x) noexcept;
 
 	template<typename T>
-	constexpr T ECM_CALL Log1p(T x) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Log1p(T x) noexcept;
 } // namespace ecm::math
 
 #include "functions.inl"
