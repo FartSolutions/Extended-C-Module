@@ -156,109 +156,109 @@ namespace ecm::math
 	}
 
 	template<typename T>
-	constexpr float64 DegToRad(T d)
+	constexpr float64 DegToRad(T d) noexcept
 	{
-		return static_cast<float64>(d) * (PI / 180.0);
+		return static_cast<float64>(d) * (DEF_PI / 180.0);
 	}
 
 	template<typename T>
-	constexpr float64 RadToDeg(T r)
+	constexpr float64 RadToDeg(T r) noexcept
 	{
-		return (static_cast<float64>(r) * 180.0) / PI;
+		return (static_cast<float64>(r) * 180.0) / DEF_PI;
 	}
 
 	template<typename T>
-	constexpr T Sin(T x)
+	constexpr T Sin(T x) noexcept
 	{
 		return static_cast<T>(std::sin(x));
 	}
 
 	template<typename T>
-	constexpr T Asin(T x)
+	constexpr T Asin(T x) noexcept
 	{
 		return static_cast<T>(std::asin(x));
 	}
 
 	template<typename T>
-	constexpr T Sinh(T x)
+	constexpr T Sinh(T x) noexcept
 	{
 		return static_cast<T>(std::sinh(x));
 	}
 
 	template<typename T>
-	constexpr T Asinh(T x)
+	constexpr T Asinh(T x) noexcept
 	{
 		return static_cast<T>(std::asinh(x));
 	}
 
 	template<typename T>
-	constexpr T Cos(T x)
+	constexpr T Cos(T x) noexcept
 	{
 		return static_cast<T>(std::cos(x));
 	}
 
 	template<typename T>
-	constexpr T Acos(T x)
+	constexpr T Acos(T x) noexcept
 	{
 		return static_cast<T>(std::acos(x));
 	}
 
 	template<typename T>
-	constexpr T Cosh(T x)
+	constexpr T Cosh(T x) noexcept
 	{
 		return static_cast<T>(std::cosh(x));
 	}
 
 	template<typename T>
-	constexpr T Acosh(T x)
+	constexpr T Acosh(T x) noexcept
 	{
 		return static_cast<T>(std::acosh(x));
 	}
 
 	template<typename T>
-	constexpr T Tan(T x)
+	constexpr T Tan(T x) noexcept
 	{
 		return static_cast<T>(std::tan(x));
 	}
 
 	template<typename T>
-	constexpr T Atan(T x)
+	constexpr T Atan(T x) noexcept
 	{
 		return static_cast<T>(std::atan(x));
 	}
 
 	template<typename T>
-	constexpr T Tanh(T x)
+	constexpr T Tanh(T x) noexcept
 	{
 		return static_cast<T>(std::tanh(x));
 	}
 
 	template<typename T>
-	constexpr T Atanh(T x)
+	constexpr T Atanh(T x) noexcept
 	{
 		return static_cast<T>(std::atanh(x));
 	}
 
 	template<typename T>
-	constexpr T Log(T x)
+	constexpr T Log(T x) noexcept
 	{
 		return static_cast<T>(std::log(x));
 	}
 
 	template<typename T>
-	constexpr T Log2(T x)
+	constexpr T Log2(T x) noexcept
 	{
 		return static_cast<T>(std::log2(x));
 	}
 
 	template<typename T>
-	constexpr T Log10(T x)
+	constexpr T Log10(T x) noexcept
 	{
 		return static_cast<T>(std::log10(x));
 	}
 
 	template<typename T>
-	constexpr T Log1p(T x)
+	constexpr T Log1p(T x) noexcept
 	{
 		return static_cast<T>(std::log1p(x));
 	}

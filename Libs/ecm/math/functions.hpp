@@ -10,11 +10,16 @@
 
 #include <ecm/ecm_api.h>
 #include <ecm/ecm_types.hpp>
+#include <DirectXMath.h>
 
 namespace ecm::math
 {
-	constexpr float64 PI = 3.14159265358979323846;
-	constexpr float64 PI2 = 6.28318530717958647692;
+	constexpr float64 DEF_PI = 3.14159265358979323846;
+	constexpr float64 DEF_2PI = 6.28318530717958647692;
+	constexpr float64 DEF_1DIVPI = 0.31830988618379067153;
+	constexpr float64 DEF_1DIV2PI = 0.15915494309189533576;
+	constexpr float64 DEF_PIDIV2 = 1.57079632679489661923;
+	constexpr float64 DEF_PIDIV4 = 0.78539816339744830961;
 
 	/**
 	 * This function calculates the absolute value of a given input.
@@ -82,58 +87,58 @@ namespace ecm::math
 	inline _Ty ECM_CALL Fmod(_Ty const x, _Ty const y) noexcept;
 
 	template<typename T>
-	constexpr float64 DegToRad(T d);
+	constexpr float64 ECM_CALL DegToRad(T d) noexcept;
 
 	template<typename T>
-	constexpr float64 RadToDeg(T r);
+	constexpr float64 ECM_CALL RadToDeg(T r) noexcept;
 
 	template<typename T>
-	constexpr T Sin(T x);
+	constexpr T ECM_CALL Sin(T x) noexcept;
 
 	template<typename T>
-	constexpr T Asin(T x);
+	constexpr T ECM_CALL Asin(T x) noexcept;
 
 	template<typename T>
-	constexpr T Sinh(T x);
+	constexpr T ECM_CALL Sinh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Asinh(T x);
+	constexpr T ECM_CALL Asinh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Cos(T x);
+	constexpr T ECM_CALL Cos(T x) noexcept;
 
 	template<typename T>
-	constexpr T Acos(T x);
+	constexpr T ECM_CALL Acos(T x) noexcept;
 
 	template<typename T>
-	constexpr T Cosh(T x);
+	constexpr T ECM_CALL Cosh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Acosh(T x);
+	constexpr T ECM_CALL Acosh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Tan(T x);
+	constexpr T ECM_CALL Tan(T x) noexcept;
 
 	template<typename T>
-	constexpr T Atan(T x);
+	constexpr T ECM_CALL Atan(T x) noexcept;
 
 	template<typename T>
-	constexpr T Tanh(T x);
+	constexpr T ECM_CALL Tanh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Atanh(T x);
+	constexpr T ECM_CALL Atanh(T x) noexcept;
 
 	template<typename T>
-	constexpr T Log(T x);
+	constexpr T ECM_CALL Log(T x) noexcept;
 
 	template<typename T>
-	constexpr T Log2(T x);
+	constexpr T ECM_CALL Log2(T x) noexcept;
 
 	template<typename T>
-	constexpr T Log10(T x);
+	constexpr T ECM_CALL Log10(T x) noexcept;
 
 	template<typename T>
-	constexpr T Log1p(T x);
+	constexpr T ECM_CALL Log1p(T x) noexcept;
 } // namespace ecm::math
 
 #include "functions.inl"
