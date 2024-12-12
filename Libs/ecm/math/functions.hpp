@@ -84,8 +84,38 @@ namespace ecm::math
 	 *
 	 * \since v1.0.0
 	 */
+	template<typename T, typename U>
+	ECM_NODISCARD constexpr T ECM_CALL Fmod(T x, U y) noexcept;
+
 	template<typename T>
-	ECM_NODISCARD constexpr T ECM_CALL Fmod(T x, T y) noexcept;
+	ECM_NODISCARD constexpr T ECM_CALL Cbrt(T x) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Sqrt(T x) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Ceil(T x) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Floor(T x) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Exp(T x) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Frexp(T x, int32* e) noexcept;
+
+	template<typename T, typename U>
+	ECM_NODISCARD constexpr T ECM_CALL Ldexp(T x, U n) noexcept;
+
+	template<typename T, typename U>
+	ECM_NODISCARD constexpr T ECM_CALL Hypot(T x, U y) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Min(T x, T y) noexcept;
+
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Max(T x, T y) noexcept;
 
 	// Trigonometry functions
 

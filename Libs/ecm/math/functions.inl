@@ -18,9 +18,7 @@ namespace ecm::math
 	template<typename T>
 	constexpr T Trunc(T x) noexcept
 	{
-		return x < 0 ?
-			static_cast<T>(static_cast<long long>(x)) :
-			static_cast<T>(static_cast<long long>(x));
+		return static_cast<T>(static_cast<long long>(x));
 	}
 	
 	template<typename T>
@@ -36,25 +34,114 @@ namespace ecm::math
 	template<typename B, typename E>
 	constexpr B Pow(B base, E exp) noexcept
 	{
-		static_assert(std::numeric_limits<E>::is_integer, "Exponent must be an integral type.");
-		B res{ static_cast<B>(1) };
-		for (E i{ static_cast<E>(0) }; i < Abs(exp); ++i) {
-			res *= base;
-		}
-		if (exp < 0) {
-			return static_cast<B>(1) / res;
-		}
-		return res;
+		return static_cast<B>(std::pow(base, exp));
 	}
 
-	template<typename T>
-	constexpr T Fmod(T x, T y) noexcept
+	template<typename T, typename U>
+	constexpr T Fmod(T x, U y) noexcept
 	{
 		static_assert(std::numeric_limits<T>::is_iec559, "Type must be a floating type.");
 		if (y == 0.0) {
 			return std::numeric_limits<T>::quiet_NaN();
 		}
-		return x - Trunc(x / y) * y;
+		return static_cast<T>(x - Trunc(x / y) * y);
+	}
+
+	template<typename T>
+	constexpr T Cbrt(T x) noexcept
+	{
+		return (x < 0 ? -1 : 1) * Pow(Abs(x), static_cast<T>(1) / static_cast<T>(3));
+	}
+
+	template<typename T>
+	constexpr T Sqrt(T x) noexcept
+	{
+		if (x < 0) {
+			return std::numeric_limits<T>::quiet_NaN();
+		}
+		T guess = static_cast<T>(x / 2.0);
+		T previousGuess;
+		const T epsilon = std::numeric_limits<T>::epsilon();
+		do {
+			previousGuess = guess;
+			guess = static_cast<T>((guess + x / guess) / 2.0);
+		} while (Abs(guess - previousGuess) > epsilon);
+		return guess;
+	}
+
+	template<typename T>
+	constexpr T Ceil(T x) noexcept
+	{
+		int64 intPart = static_cast<int64>(x);
+		return static_cast<T>((x > intPart) ? intPart + 1 : intPart);
+	}
+
+	template<typename T>
+	constexpr T Floor(T x) noexcept
+	{
+		int64 intPart = static_cast<int64>(x);
+		return static_cast<T>((x < intPart) ? intPart - 1 : intPart);
+	}
+
+	template<typename T>
+	constexpr T Exp(T x) noexcept
+	{
+		constexpr int32 maxIterations = 100;
+		constexpr float64 epsilon = 1e-15;
+		T term = 1;
+		T sum = 1;
+		for (int32 n{ 1 }; n < maxIterations; ++n) {
+			term *= x / n;
+			sum += term;
+			if (Abs(term) < epsilon) {
+				break;
+			}
+		}
+		return sum;
+	}
+
+	template<typename T>
+	constexpr T Frexp(T x, int32* e) noexcept
+	{
+		if (x == 0) {
+			return 0;
+		}
+		int exponent = 0;
+		T mantissa = x;
+		while (Abs(mantissa) >= 1.0) {
+			mantissa /= 2.0;
+			exponent++;
+		}
+		while (Abs(mantissa) < 0.5) {
+			mantissa *= 2.0;
+			exponent--;
+		}
+		e = &exponent;
+		return static_cast<T>(mantissa);
+	}
+
+	template<typename T, typename U>
+	constexpr T Ldexp(T x, U n) noexcept
+	{
+		return static_cast<T>(x * (1ll << n));
+	}
+
+	template<typename T, typename U>
+	constexpr T Hypot(T x, U y) noexcept
+	{
+		return Sqrt(static_cast<T>(x * x + y * y));
+	}
+
+	template<typename T>
+	constexpr T Min(T x, T y) noexcept
+	{
+		return (x < y) ? x : y;
+	}
+
+	template<typename T>
+	constexpr T Max(T x, T y) noexcept
+	{
+		return (x > y) ? x : y;
 	}
 
 	// Trigonometry functions
