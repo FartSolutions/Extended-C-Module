@@ -12,6 +12,8 @@
 #include "vector3.hpp"
 #include "vector4.hpp"
 
+#include "ext/vector_ext.hpp"
+
 namespace ecm::math
 {
 	// Vector2 definitions
