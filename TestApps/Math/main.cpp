@@ -57,6 +57,31 @@ void test_types()
 	test_type(mat1, mat2);
 
 	ecm::math::Rotate(mat1, 4, ecm::math::Vector3(1, 1, 0));
+
+	{ // Vector2 lerp
+		auto test1 = ecm::math::Vector2(238.f, 2398.f);
+		auto test2 = ecm::math::Vector2i(328, 908);
+		ecm::math::Lerp(test1, test2, 5);
+		ecm::math::Lerp(test1, test2, 24.f);
+		ecm::math::Lerp(test1, test2, test1);
+		ecm::math::Lerp(test1, test2, test2);
+	}
+	{ // Vector3 lerp
+		auto test1 = ecm::math::Vector3(238.f, 2398.f, 278.f);
+		auto test2 = ecm::math::Vector3i(328, 908, 387);
+		ecm::math::Lerp(test1, test2, 5);
+		ecm::math::Lerp(test1, test2, 24.f);
+		ecm::math::Lerp(test1, test2, test1);
+		ecm::math::Lerp(test1, test2, test2);
+	}
+	{ // Vector4 lerp
+		auto test1 = ecm::math::Vector4(238.f, 2398.f, 278.f, 78.f);
+		auto test2 = ecm::math::Vector4i(328, 908, 387, 84);
+		ecm::math::Lerp(test1, test2, 5);
+		ecm::math::Lerp(test1, test2, 24.f);
+		ecm::math::Lerp(test1, test2, test1);
+		ecm::math::Lerp(test1, test2, test2);
+	}
 }
 
 void test_sin()
@@ -140,6 +165,7 @@ void test_basics()
 	ecm::math::Pow(164.f, 2);
 	ecm::math::Sqrt(164.f);
 	ecm::math::Trunc(164.f);
+	ecm::math::Lerp(421.f, 7603.f, 1.f);
 
 	ecm::math::Sin(12.f);
 	ecm::math::Asin(12.f);

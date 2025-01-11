@@ -244,6 +244,48 @@ namespace ecm::math
 	template<typename T>
 	ECM_NODISCARD constexpr T ECM_CALL Max(T x, T y) noexcept;
 
+	/**
+	 * Linearly interpolates between two values based on a parameter \p t.
+	 *
+	 * This function computes the interpolation between \p x and \p y using the
+	 * formula:
+	 * \f[
+	 *   \text{Lerp}(x, y, t) = x + t \cdot (y - x)
+	 * \f]
+	 *
+	 * \param x The start value.
+	 * \param y The end value.
+	 * \param t The interpolation factor, typically in the range \[0, 1\].
+	 *
+	 * \tparam T The type of the input values.
+	 *
+	 * \returns The result of the linear interpolation between \p x and \p y at
+	 * \p t.
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Lerp(T x, T y, T t) noexcept;
+
+	/**
+	 * Clamps a value \p v within the inclusive range defined by \p min and \p max.
+	 *
+	 * If \p v is less than \p min, \p min is returned. If \p v is greater than
+	 * \p max, \p max is returned. Otherwise, \p v itself is returned.
+	 *
+	 * \param v The input value to clamp.
+	 * \param min The minimum bound.
+	 * \param max The maximum bound.
+	 *
+	 * \tparam T The type of the input values.
+	 *
+	 * \returns \p v clamped to the range \[\p min, \p max\].
+	 *
+	 * \since v1.0.0
+	 */
+	template<typename T>
+	ECM_NODISCARD constexpr T ECM_CALL Clamp(T v, T min, T max) noexcept;
+
 	// Trigonometry functions
 
 	/**

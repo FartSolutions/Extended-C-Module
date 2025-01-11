@@ -144,6 +144,18 @@ namespace ecm::math
 		return (x > y) ? x : y;
 	}
 
+	template<typename T>
+	constexpr T Lerp(T x, T y, T t) noexcept
+	{
+		return x + ((y - x) * t);
+	}
+
+	template<typename T>
+	constexpr T Clamp(T v, T min, T max) noexcept
+	{
+		return (v < min) ? min : (v > max) ? max : v;
+	}
+
 	// Trigonometry functions
 
 	template<typename T>
