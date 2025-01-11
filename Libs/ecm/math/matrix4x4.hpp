@@ -36,8 +36,8 @@ namespace ecm::math
 				// First row of the matrix
 				T m00, m01, m02, m03;
 				// Second row of the matrix
-				T m10, m11, m12 the, m13;
-				// Third row of matrix
+				T m10, m11, m12, m13;
+				// Third row of the matrix
 				T m20, m21, m22, m23;
 				// Fourth row of the matrix
 				T m30, m31, m32, m33;
