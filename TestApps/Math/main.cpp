@@ -65,8 +65,11 @@ void test_sin()
 	for (int i{ 0 }; i < 1000; ++i) {
 		for (int deg{ 0 }; deg < 360; deg++) {
 			// Deg2Rad
-			ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
+			ecm::float64 rad = ecm::math::DegToRad(deg);
 			volatile auto resEcm{ ecm::math::Sin(rad) };
+			resEcm = ecm::math::Asin(rad);
+			resEcm = ecm::math::Sinh(rad);
+			resEcm = ecm::math::Asinh(rad);
 		}
 	}
 	auto end = std::chrono::high_resolution_clock::now();
@@ -80,8 +83,11 @@ void test_cos()
 	for (int i{ 0 }; i < 1000; ++i) {
 		for (int deg{ 0 }; deg < 360; deg++) {
 			// Deg2Rad
-			ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
+			ecm::float64 rad = ecm::math::DegToRad(deg);
 			volatile auto resEcm{ ecm::math::Cos(rad) };
+			resEcm = ecm::math::Acos(rad);
+			resEcm = ecm::math::Cosh(rad);
+			resEcm = ecm::math::Acosh(rad);
 		}
 	}
 	auto end = std::chrono::high_resolution_clock::now();
@@ -95,8 +101,11 @@ void test_tan()
 	for (int i{ 0 }; i < 1000; ++i) {
 		for (int deg{ 0 }; deg < 360; deg++) {
 			// Deg2Rad
-			ecm::float64 rad{ deg * (ecm::math::PI / 180.0) };
+			ecm::float64 rad = ecm::math::DegToRad(deg);
 			volatile auto resEcm{ ecm::math::Tan(rad) };
+			resEcm = ecm::math::Atan(rad);
+			resEcm = ecm::math::Tanh(rad);
+			resEcm = ecm::math::Atanh(rad);
 		}
 	}
 	auto end = std::chrono::high_resolution_clock::now();
@@ -113,6 +122,41 @@ void test_basics()
 	ecm::uint64 fact{ ecm::math::Fact<ecm::uint64>(10) };
 	printf("Pow: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_pow(21.4, 5), ecm::math::Pow(21.4, 5));
 	printf("Fmod: [ sdl2: %0.80f, ecm: %0.80f ]\n", SDL_fmod(21.4, 54.8), ecm::math::Fmod(21.4, 54.8));
+
+	ecm::int32 test;
+
+	ecm::math::Abs(164.f);
+	ecm::math::Cbrt(164.f);
+	ecm::math::Ceil(164.f);
+	ecm::math::Exp(164.f);
+	ecm::math::Fact(164.f);
+	ecm::math::Floor(164.f);
+	ecm::math::Fmod(164.f, 2);
+	ecm::math::Frexp(164.f, &test);
+	ecm::math::Hypot(164.f, 4);
+	ecm::math::Ldexp(164.f, 3);
+	ecm::math::Max(164.f, 534.f);
+	ecm::math::Min(164.f, 534.f);
+	ecm::math::Pow(164.f, 2);
+	ecm::math::Sqrt(164.f);
+	ecm::math::Trunc(164.f);
+
+	ecm::math::Sin(12.f);
+	ecm::math::Asin(12.f);
+	ecm::math::Sinh(12.f);
+	ecm::math::Asinh(12.f);
+	ecm::math::Cos(12.f);
+	ecm::math::Acos(12.f);
+	ecm::math::Cosh(12.f);
+	ecm::math::Acosh(12.f);
+	ecm::math::Tan(12.f);
+	ecm::math::Atan(12.f);
+	ecm::math::Tanh(12.f);
+	ecm::math::Atanh(12.f);
+	ecm::math::Log(12.f);
+	ecm::math::Log2(12.f);
+	ecm::math::Log10(12.f);
+	ecm::math::Log1p(12.f);
 
 	test_sin();
 	test_cos();
