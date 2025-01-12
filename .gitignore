@@ -9,6 +9,8 @@ temp*/
 # Prerequisites
 *.d
 *.bak
+build/
+built/
 
 # Compiled Object files
 *.slo
