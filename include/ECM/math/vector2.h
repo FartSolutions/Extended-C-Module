@@ -575,4 +575,6 @@ namespace ecm::math
 	constexpr Vector2_Base<T> operator/(Vector2_Base<T> const& v1, Vector2_Base<U> const& v2);
 } // namespace ecm::math
 
+#include "vector2.inl"
+
 #endif // !_ECM_VECTOR2_H_

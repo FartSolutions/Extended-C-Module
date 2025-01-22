@@ -32,3 +32,8 @@ endif()
 ecm_add_library(ecm.opengl
                 SOURCES ${SRC} ${PLATFORM_SRC}
                 DEPENDENCIES "Dependencies.cmake.in")
+
+target_link_libraries(ecm.opengl PUBLIC ecm)
+target_link_libraries(ecm.opengl PUBLIC ecm.graphics)
+
+target_link_libraries(ecm.opengl PRIVATE SDL2::SDL2)

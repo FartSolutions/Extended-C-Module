@@ -100,13 +100,13 @@ namespace ecm
 		 * 
 		 * \sa Window
 		 */
-		constexpr explicit Window(id_type id);
+		explicit Window(uint32 id);
 		/*
 		 * \since v1.0.0
 		 * 
 		 * \sa Window
 		 */
-		constexpr Window();
+		Window();
 		/*
 		 * \returns 
 		 *
@@ -114,7 +114,7 @@ namespace ecm
 		 *
 		 * \sa Window
 		 */
-		constexpr bool IsValid() const;
+		bool IsValid() const;
 		/*
 		 * \returns
 		 *
@@ -122,7 +122,7 @@ namespace ecm
 		 *
 		 * \sa Window
 		 */
-		constexpr id_type GetID() const;
+		uint32 GetID() const;
 		/*
 		 * \since v1.0.0
 		 *
@@ -208,7 +208,7 @@ namespace ecm
 		 */
 		void SetSize(math::PointI size) const;
 	private:
-		id_type _id;
+		uint32 _id;
 	};
 
 	/*

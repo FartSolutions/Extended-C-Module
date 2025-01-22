@@ -34,3 +34,8 @@ endif()
 ecm_add_library(ecm.graphics
                 SOURCES ${SRC} ${PLATFORM_SRC}
                 DEPENDENCIES "Dependencies.cmake.in")
+
+target_link_libraries(ecm.graphics PUBLIC ecm)
+target_link_libraries(ecm.graphics PUBLIC ecm.math)
+
+target_link_libraries(ecm.graphics PRIVATE SDL2::SDL2)

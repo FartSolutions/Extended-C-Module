@@ -571,4 +571,6 @@ namespace ecm::math
 	constexpr Vector3_Base<T> operator/(Vector3_Base<T> const& v1, Vector3_Base<U> const& v2);
 } // namespace ecm::math
 
+#include "vector3.inl"
+
 #endif // !_ECM_VECTOR3_H_

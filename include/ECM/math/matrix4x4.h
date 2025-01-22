@@ -980,4 +980,6 @@ namespace ecm::math
 	ECM_INLINE Matrix4x4_Base<T> Rotate(const Matrix4x4_Base<T>& mat, float32 angle, const Vector3_Base<T>& r);
 } // namespace ecm::math
 
+#include "matrix4x4.inl"
+
 #endif // !_ECM_MATRIX4X4_H_

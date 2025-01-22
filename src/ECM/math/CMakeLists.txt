@@ -17,13 +17,13 @@ set(SRC
 )
 # All source files
 list(APPEND SRC
-    ${SRCROOT}/functions.cpp
+    ${INCROOT}/functions.inl
     ${SRCROOT}/functions_simd.cpp
-    ${SRCROOT}/matrix4x4.cpp
-    ${SRCROOT}/vector2.cpp
-    ${SRCROOT}/vector3.cpp
-    ${SRCROOT}/vector4.cpp
-    ${SRCROOT}/ext/vector_ext.cpp
+    ${INCROOT}/matrix4x4.inl
+    ${INCROOT}/vector2.inl
+    ${INCROOT}/vector3.inl
+    ${INCROOT}/vector4.inl
+    ${INCROOT}/ext/vector_ext.inl
 )
 source_group("" FILES ${SRC})
 
@@ -34,7 +34,7 @@ if(ECM_OS_WINDOWS)
 else()
     set(PLATFORM_SRC)
     if(ECM_OS_ANDROID)
-        list(APPEND PLATFORM_SRC )
+        #list(APPEND PLATFORM_SRC )
     endif()
     source_group("unix" FILES ${PLATFORM_SRC})
 endif()

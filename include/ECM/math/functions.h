@@ -541,4 +541,6 @@ namespace ecm::math
 	ECM_NODISCARD constexpr T ECM_CALL Log1p(T x) noexcept;
 } // namespace ecm::math
 
+#include "functions.inl"
+
 #endif // !_ECM_FUNCTIONS_H_

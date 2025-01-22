@@ -6,8 +6,17 @@
 #include <vector>
 #include <future>
 
+// TODO: Export these macros or remove them.
+#define ID_Invalid ((uint32)-1)
+#define ID_IsValid(id) (id != ID_Invalid)
+
 namespace ecm
 {
+	math::Vector2i Test()
+	{
+		return math::Vector2i(1);
+	}
+
 	namespace
 	{
 		struct window_info
@@ -21,14 +30,14 @@ namespace ecm
 		};
 
 		std::vector<window_info>	windows;
-		std::vector<id_type>		windows_available_slots;
+		std::vector<uint32>		windows_available_slots;
 
-		inline id_type add_to_windows(window_info info)
+		inline uint32 add_to_windows(window_info info)
 		{
-			id_type id{ ID_Invalid };
+			uint32 id{ ID_Invalid };
 			if (windows_available_slots.empty())
 			{
-				id = id_type(windows.size());
+				id = uint32(windows.size());
 				windows.emplace_back(info);
 			}
 			else
@@ -41,34 +50,34 @@ namespace ecm
 			return id;
 		}
 
-		inline void remove_from_windows(id_type id)
+		inline void remove_from_windows(uint32 id)
 		{
 			ECM_ASSERT(id < windows.size());
 			windows_available_slots.emplace_back(id);
 		}
 
-		inline window_info get_info_from_id(id_type id)
+		inline window_info get_info_from_id(uint32 id)
 		{
 			if (ID_IsValid(id) && id < windows.size())
 				return windows[id];
 			return window_info{};
 		}
 
-		inline id_type get_id_from_sdl_id(const id_type id)
+		inline uint32 get_id_from_sdl_id(const uint32 id)
 		{
-			for (id_type i{ 0 }; i < windows.size(); i++)
+			for (uint32 i{ 0 }; i < windows.size(); i++)
 			{
 				if (!windows[i].is_closed && id == windows[i].sdl_id) return i;
 			}
 			return ID_Invalid;
 		}
 
-		inline SDL_Window* get_handle(id_type id)
+		inline SDL_Window* get_handle(uint32 id)
 		{
 			return windows[id].handle;
 		}
 
-		inline void set_window_mode(id_type id, uint8 mode)
+		inline void set_window_mode(uint32 id, uint8 mode)
 		{
 			auto& info{ windows[id] };
 			if (info.mode == mode) return;
@@ -85,48 +94,48 @@ namespace ecm
 				static_cast<SDL_Window*>(windows[id].handle), flag);
 		}
 
-		inline uint8 get_window_mode(id_type id)
+		inline uint8 get_window_mode(uint32 id)
 		{
 			return windows[id].mode;
 		}
 
-		inline void set_focused(id_type id)
+		inline void set_focused(uint32 id)
 		{
 			auto& info{ windows[id] };
 			if (info.is_focused == true) return;
 			SDL_RaiseWindow(static_cast<SDL_Window*>(windows[id].handle));
 		}
 
-		inline bool get_closed(id_type id)
+		inline bool get_closed(uint32 id)
 		{
 			return windows[id].is_closed;
 		}
 		
-		inline bool get_focused(id_type id)
+		inline bool get_focused(uint32 id)
 		{
 			return windows[id].is_focused;
 		}
 
-		inline void set_title(id_type id, const char* title)
+		inline void set_title(uint32 id, const char* title)
 		{
 			SDL_SetWindowTitle(
 				static_cast<SDL_Window*>(windows[id].handle), title);
 		}
 
-		inline const char* get_title(id_type id)
+		inline const char* get_title(uint32 id)
 		{
 			return SDL_GetWindowTitle(
 				static_cast<SDL_Window*>(windows[id].handle));
 		}
 
-		inline void set_position(id_type id, math::PointI pos)
+		inline void set_position(uint32 id, math::PointI pos)
 		{
 			SDL_SetWindowPosition(
 				static_cast<SDL_Window*>(windows[id].handle),
 				pos.x, pos.y);
 		}
 
-		inline math::PointI get_position(id_type id)
+		inline math::PointI get_position(uint32 id)
 		{
 			math::PointI pos{ 0, 0 };
 			SDL_GetWindowPosition(
@@ -135,14 +144,14 @@ namespace ecm
 			return pos;
 		}
 
-		inline void set_size(id_type id, math::PointI size)
+		inline void set_size(uint32 id, math::PointI size)
 		{
 			SDL_SetWindowSize(
 				static_cast<SDL_Window*>(windows[id].handle),
 				size.x, size.y);
 		}
 
-		inline math::PointI get_size(id_type id)
+		inline math::PointI get_size(uint32 id)
 		{
 			math::PointI size{ 0, 0 };
 			SDL_GetWindowSize(
@@ -153,7 +162,7 @@ namespace ecm
 
 		inline void internal_window_proc(SDL_Event e, uint32 sdlId)
 		{
-			id_type id{ get_id_from_sdl_id(sdlId) };
+			uint32 id{ get_id_from_sdl_id(sdlId) };
 			window_info info{ get_info_from_id(id) };
 			if (info.is_closed) return;
 
@@ -177,20 +186,20 @@ namespace ecm
 	// #########################################################################
 	// Struct Window
 
-	constexpr Window::Window(id_type id)
+	Window::Window(uint32 id)
 		: _id{ id }
 	{ }
 
-	constexpr Window::Window()
+	Window::Window()
 		: _id{ ID_Invalid }
 	{ }
 
-	constexpr bool Window::IsValid() const
+	bool Window::IsValid() const
 	{
 		return ID_IsValid(_id);
 	}
 	
-	constexpr id_type Window::GetID() const
+	uint32 Window::GetID() const
 	{
 		return _id;
 	}

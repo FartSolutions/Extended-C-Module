@@ -37,28 +37,17 @@
 // Dynamic build configuration: ecm.math.dll
 #if ECM_MATH_DYNAMIC_BUILD
 #	if ECM_MATH_DYNAMIC_EXPORT
-#		define ECM_MATH_API ECM_DEF_API_EXPORT
+#		define ECM_MATH_API
 #	else
-#		define ECM_MATH_API ECM_DEF_API_IMPORT
+#		define ECM_MATH_API
 #	endif // ECM_MATH_DYNAMIC_EXPORT
 #else
 #	define ECM_MATH_API
 #endif // ECM_MATH_DYNAMIC_BUILD
 
-// Dynamic build configuration: ecm.algorithm.dll
-#if ECM_ALG_DYNAMIC_BUILD
-#	if ECM_ALG_DYNAMIC_EXPORT
-#		define ECM_ALG_API ECM_DEF_API_EXPORT
-#	else
-#		define ECM_ALG_API ECM_DEF_API_IMPORT
-#	endif // ECM_ALG_DYNAMIC_EXPORT
-#else
-#	define ECM_ALG_API
-#endif // ECM_ALG_DYNAMIC_BUILD
-
 // Dynamic build configuration: ecm.window.dll
-#if ECM_WIN_DYNAMIC_BUILD
-#	if ECM_WIN_DYNAMIC_EXPORT
+#if ECM_GRAPHICS_DYNAMIC
+#	if ECM_GRAPHICS_DYNAMIC_EXPORT
 #		define ECM_WIN_API ECM_DEF_API_EXPORT
 #	else
 #		define ECM_WIN_API ECM_DEF_API_IMPORT
@@ -68,8 +57,8 @@
 #endif // ECM_WIN_DYNAMIC_BUILD
 
 // Dynamic build configuration: ecm.opengl.dll
-#if ECM_GL_DYNAMIC_BUILD
-#	if ECM_GL_DYNAMIC_EXPORT
+#if ECM_OPENGL_DYNAMIC
+#	if ECM_OPENGL_DYNAMIC_EXPORT
 #		define ECM_GL_API ECM_DEF_API_EXPORT
 #	else
 #		define ECM_GL_API ECM_DEF_API_IMPORT

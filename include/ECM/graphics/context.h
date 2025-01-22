@@ -32,7 +32,7 @@ namespace ecm
 	/*
 	 * \since v1.0.0
 	 */
-	struct ContextBase
+	struct ECM_WIN_API ContextBase
 	{
 		virtual ~ContextBase() = default;
 		virtual int32 Initialize(const Window window) = 0;
@@ -41,25 +41,25 @@ namespace ecm
 		virtual void ClearBuffers() = 0;
 		virtual void SwapBuffers() = 0;
 
-		virtual inline void SetColor(const ColorF& color);
-		virtual inline void SetFPSLimit(const uint32 limit);
-		virtual inline void SetVSyncMode(const int32 vsyncMode);
-		virtual inline void SetViewport(const math::PointI& size,
+		virtual void SetColor(const ColorF& color);
+		virtual void SetFPSLimit(const uint32 limit);
+		virtual void SetVSyncMode(const int32 vsyncMode);
+		virtual void SetViewport(const math::PointI& size,
 			const math::PointI& pos = { 0, 0 });
 
-		inline ColorF GetColor() const;
-		inline uint32 GetFPSLimit() const;
-		inline int32 GetVSyncMode() const;
-		inline float64 GetDeltaTime() const;
+		ColorF GetColor() const;
+		uint32 GetFPSLimit() const;
+		int32 GetVSyncMode() const;
+		float64 GetDeltaTime() const;
 	protected:
-		inline ContextBase();
+		ContextBase();
 
 		/*
 		 * Limits the FPS if a limit is set and calculates deltatime.
 		 *
 		 * \since v1.0.0
 		 */
-		virtual inline void HandleTimings();
+		virtual void HandleTimings();
 	protected:
 		ColorF FrameColor;
 		uint32 FPSLimit;

@@ -6,10 +6,16 @@
 #include <ECM/graphics/context.h>
 #endif
 
+#include <ECM/math/functions.h>
 #include <thread>
 
 namespace ecm
 {
+	namespace
+	{
+		static ContextBase* currentContext = nullptr;
+	} // anonymous namespace
+
 	inline void ContextBase::SetColor(const ColorF& color)
 	{
 		FrameColor = color;
@@ -65,7 +71,7 @@ namespace ecm
 		DeltaTime = 0.016666666666666666666666666;
 
 		_frameDuration = std::chrono::milliseconds{ 0 };
-		_frameStartTime = std::chrono::high_resolution_clock::now();
+		_frameStartTime = std::chrono::high_resolution_clock::now(); math::Lerp(48, 735, 7);
 	}
 
 	inline void ContextBase::HandleTimings()
@@ -84,6 +90,17 @@ namespace ecm
 		DeltaTime = duration.count();
 		// Begin new frame
 		_frameStartTime = std::chrono::high_resolution_clock::now();
+	}
+
+
+	ContextBase* GetCurrentContext()
+	{
+		return currentContext;
+	}
+
+	void SetCurrentContext(ContextBase* context)
+	{
+		currentContext = context;
 	}
 } // namespace ecm
 

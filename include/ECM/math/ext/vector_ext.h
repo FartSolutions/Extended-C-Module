@@ -177,4 +177,6 @@ namespace ecm::math
 	ECM_NODISCARD constexpr Vector4_Base<T> ECM_CALL Lerp(const Vector4_Base<T>& x, const Vector4_Base<U>& y, const Vector4_Base<W>& t);
 } // namespace ecm::math
 
+#include "vector_ext.inl"
+
 #endif // !_ECM_VECTOR_EXT_H_

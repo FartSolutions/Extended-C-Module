@@ -919,8 +919,12 @@ extern "C" {
 
     typedef void* (*GLADloadproc)(const char* name);
 
-#include <ecm/ecm_api.h>
-#define GLAPI ECM_GL_API extern
+#ifdef ECM_OPENGL_DYNAMIC
+#   define GLAD_GLAPI_EXPORT 1
+#   ifdef ECM_OPENGL_DYNAMIC_EXPORT
+#       define GLAD_GLAPI_EXPORT_BUILD 1
+#   endif
+#endif
 
 #ifndef GLAPI
 # if defined(GLAD_GLAPI_EXPORT)
